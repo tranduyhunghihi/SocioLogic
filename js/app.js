@@ -180,6 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             inc.x = localCard.x;
                             inc.y = localCard.y;
                             inc.zIndex = localCard.zIndex;
+                            inc.isUserPositioned = localCard.isUserPositioned;
                         }
                     });
                 }
@@ -672,18 +673,32 @@ document.addEventListener('DOMContentLoaded', () => {
         // Render merged card canvas image
         const mergedImageData = await generateMergedCardImage();
 
-        // Calculate random coordinates anywhere across the entire visible board area
+        // Calculate balanced zone coordinates across PC board width
         const boardRect = wishBoard.getBoundingClientRect();
-        const cardWidth = window.innerWidth <= 640 ? 190 : 240;
-        const cardHeight = window.innerWidth <= 640 ? 190 : 240;
+        const isMobile = window.innerWidth <= 640;
+        const cardWidth = isMobile ? 190 : 240;
+        const cardHeight = isMobile ? 190 : 240;
 
-        const margin = 20;
-        const maxSpawnX = Math.max(margin, boardRect.width - cardWidth - margin);
-        const maxSpawnY = Math.max(margin, boardRect.height - cardHeight - margin);
+        let targetX, targetY;
 
-        // Random coordinates anywhere across the board
-        const targetX = Math.round(margin + Math.random() * (maxSpawnX - margin));
-        const targetY = Math.round(margin + Math.random() * (maxSpawnY - margin));
+        if (!isMobile) {
+            // Smart 3-zone distribution for PC (Left, Center, Right)
+            const zoneIndex = wishes.length % 3;
+            const zones = [
+                0.06 + (Math.random() * 0.22), // Left section (6% - 28%)
+                0.36 + (Math.random() * 0.24), // Center section (36% - 60%)
+                0.66 + (Math.random() * 0.24)  // Right section (66% - 90%)
+            ];
+            targetX = Math.round(boardRect.width * zones[zoneIndex]);
+            targetY = Math.round(30 + Math.random() * (boardRect.height - cardHeight - 60));
+        } else {
+            // Mobile screen bounds
+            const margin = 15;
+            const maxSpawnX = Math.max(margin, boardRect.width - cardWidth - margin);
+            const maxSpawnY = Math.max(margin, boardRect.height - cardHeight - margin);
+            targetX = Math.round(margin + Math.random() * (maxSpawnX - margin));
+            targetY = Math.round(margin + Math.random() * (maxSpawnY - margin));
+        }
 
         const targetRot = Math.floor(Math.random() * 24) - 12; // -12 to +12 deg
         
@@ -697,7 +712,8 @@ document.addEventListener('DOMContentLoaded', () => {
             y: targetY,
             rotation: targetRot,
             zIndex: maxZIndex,
-            timestamp: Date.now()
+            timestamp: Date.now(),
+            isUserPositioned: true
         };
 
         // Activate protection flags to prevent background polling from overriding local state
@@ -796,7 +812,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================================================
-    // RENDER WISH CARDS ON THE BOARD (PC/MOBILE SEPARATED RESPONSIVE POSITIONS)
+    // RENDER WISH CARDS ON THE BOARD (PC/MOBILE BALANCED DISTRIBUTION)
     // ==========================================================================
     function renderBoardCards() {
         if (wishes.length === 0) {
@@ -833,14 +849,34 @@ document.addEventListener('DOMContentLoaded', () => {
         const isMobile = window.innerWidth <= 640;
 
         // Reconcile and render each wish card
-        wishes.forEach((wish) => {
+        wishes.forEach((wish, idx) => {
             let card = wishBoard.querySelector(`.wish-card[data-id="${wish.id}"]`);
 
             let targetX = Number(wish.x);
             let targetY = Number(wish.y);
 
-            // ONLY apply coordinate clamping on Mobile Phone screens
-            if (isMobile) {
+            if (!isMobile) {
+                // PC Screen: If cards are gathered on the left edge (< 15% board width), distribute evenly across Left, Center, Right!
+                if (targetX < boardWidth * 0.15 && !wish.isUserPositioned) {
+                    const zones = [
+                        0.06 + (Math.random() * 0.22), // Left section (6% - 28%)
+                        0.36 + (Math.random() * 0.24), // Center section (36% - 60%)
+                        0.66 + (Math.random() * 0.24)  // Right section (66% - 90%)
+                    ];
+                    const zoneIndex = idx % 3;
+                    targetX = Math.round(boardWidth * zones[zoneIndex]);
+                    targetY = Math.round(40 + (idx * 40) % (boardHeight - 280));
+                    
+                    wish.x = targetX;
+                    wish.y = targetY;
+                }
+
+                const maxAllowedX = Math.max(10, boardWidth - 260);
+                const maxAllowedY = Math.max(10, boardHeight - 260);
+                targetX = Math.max(20, Math.min(maxAllowedX, targetX));
+                targetY = Math.max(20, Math.min(maxAllowedY, targetY));
+            } else {
+                // Mobile Phone screen bounds clamping
                 const cardWidth = 190;
                 const cardHeight = 190;
                 const maxAllowedX = Math.max(10, boardWidth - cardWidth - 10);
@@ -948,6 +984,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             wishData.x = Math.round(newX);
             wishData.y = Math.round(newY);
+            wishData.isUserPositioned = true; // Mark as explicitly positioned by user drag
         };
 
         const onEnd = async (e) => {
