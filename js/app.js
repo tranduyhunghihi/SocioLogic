@@ -111,8 +111,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function fetchWishesFromMongoDB(silent = false) {
-        // Skip background polling update while user is actively posting a wish
-        if (isPostingWish && silent) return;
+        // Skip background polling update while user is actively posting a wish OR dragging a card
+        if (silent && (isPostingWish || draggedCard !== null)) return;
 
         const apiUrl = getApiUrl();
         try {
@@ -145,6 +145,19 @@ document.addEventListener('DOMContentLoaded', () => {
                         combinedWishes.push(pendingWish);
                     }
                 });
+
+                // Preserve position of actively dragged card if drag just finished
+                if (draggedCard) {
+                    const activeId = draggedCard.dataset.id;
+                    const activeCardObj = wishes.find(w => w.id === activeId);
+                    if (activeCardObj) {
+                        const targetObj = combinedWishes.find(w => w.id === activeId);
+                        if (targetObj) {
+                            targetObj.x = activeCardObj.x;
+                            targetObj.y = activeCardObj.y;
+                        }
+                    }
+                }
 
                 // Check if card IDs and positions are identical to avoid unnecessary renders
                 if (silent && wishes.length === combinedWishes.length) {
@@ -892,21 +905,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const onEnd = async (e) => {
             if (!draggedCard) return;
 
-            cardEl.classList.remove('dragging');
+            const droppedCard = cardEl;
+            droppedCard.classList.remove('dragging');
 
             window.removeEventListener('mousemove', onMove, { capture: true });
-            window.removeEventListener('mouseup', onEnd);
-            window.removeEventListener('touchmove', onMove);
-            window.removeEventListener('touchend', onEnd);
+            window.removeEventListener('mouseup', onEnd, { capture: true });
+            window.removeEventListener('touchmove', onMove, { capture: true });
+            window.removeEventListener('touchend', onEnd, { capture: true });
             window.removeEventListener('blur', onEnd);
+
+            draggedCard = null;
 
             if (cardDragDistance > 5) {
                 await saveCardPosition(wishData);
             } else {
                 openReaderModal(wishData);
             }
-
-            draggedCard = null;
         };
 
         cardEl.addEventListener('mousedown', onStart);
