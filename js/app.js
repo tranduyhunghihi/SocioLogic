@@ -795,10 +795,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================================================
-    // INTERACTIVE CARD PHYSICS & POSITION PERSISTENCE
+    // INTERACTIVE CARD PHYSICS (HOLD TO DRAG & RELEASE TO DROP)
     // ==========================================================================
     function makeCardDraggableAndClickable(cardEl, wishData) {
         const onStart = (e) => {
+            // Only primary left mouse click or touch
+            if (e.type === 'mousedown' && e.button !== 0) return;
+
             draggedCard = cardEl;
             const clientX = e.touches ? e.touches[0].clientX : e.clientX;
             const clientY = e.touches ? e.touches[0].clientY : e.clientY;
@@ -816,14 +819,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
             cardEl.classList.add('dragging');
 
-            document.addEventListener('mousemove', onMove);
-            document.addEventListener('mouseup', onEnd);
-            document.addEventListener('touchmove', onMove, { passive: false });
-            document.addEventListener('touchend', onEnd);
+            window.addEventListener('mousemove', onMove, { capture: true });
+            window.addEventListener('mouseup', onEnd, { capture: true });
+            window.addEventListener('touchmove', onMove, { passive: false, capture: true });
+            window.addEventListener('touchend', onEnd, { capture: true });
+            window.addEventListener('blur', onEnd);
         };
 
         const onMove = (e) => {
-            if (!draggedCard) return;
+            if (!draggedCard || draggedCard !== cardEl) return;
+
+            // Instant drop if mouse button is no longer held down
+            if (e.type === 'mousemove' && e.buttons !== 1) {
+                onEnd(e);
+                return;
+            }
+
             const clientX = e.touches ? e.touches[0].clientX : e.clientX;
             const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
@@ -832,7 +843,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             cardDragDistance = Math.hypot(deltaX, deltaY);
 
-            if (e.touches && cardDragDistance > 5) {
+            if (cardDragDistance > 3) {
                 e.preventDefault();
             }
 
@@ -852,23 +863,24 @@ document.addEventListener('DOMContentLoaded', () => {
             wishData.y = Math.round(newY);
         };
 
-        const onEnd = async () => {
-            if (draggedCard) {
-                draggedCard.classList.remove('dragging');
-                if (cardDragDistance > 5) {
-                    await saveCardPosition(wishData);
-                }
-            }
+        const onEnd = async (e) => {
+            if (!draggedCard) return;
 
-            if (cardDragDistance < 6) {
+            cardEl.classList.remove('dragging');
+
+            window.removeEventListener('mousemove', onMove, { capture: true });
+            window.removeEventListener('mouseup', onEnd, { capture: true });
+            window.removeEventListener('touchmove', onMove, { capture: true });
+            window.removeEventListener('touchend', onEnd, { capture: true });
+            window.removeEventListener('blur', onEnd);
+
+            if (cardDragDistance > 5) {
+                await saveCardPosition(wishData);
+            } else {
                 openReaderModal(wishData);
             }
 
             draggedCard = null;
-            document.removeEventListener('mousemove', onMove);
-            document.removeEventListener('mouseup', onEnd);
-            document.removeEventListener('touchmove', onMove);
-            document.removeEventListener('touchend', onEnd);
         };
 
         cardEl.addEventListener('mousedown', onStart);
