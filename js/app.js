@@ -709,7 +709,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================================================
-    // RENDER WISH CARDS ON THE BOARD (SMOOTH DOM RECONCILIATION)
+    // RENDER WISH CARDS ON THE BOARD (PC/MOBILE SEPARATED RESPONSIVE POSITIONS)
     // ==========================================================================
     function renderBoardCards() {
         if (wishes.length === 0) {
@@ -742,28 +742,33 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Device check
+        const isMobile = window.innerWidth <= 640;
+
         // Reconcile and render each wish card
         wishes.forEach((wish) => {
             let card = wishBoard.querySelector(`.wish-card[data-id="${wish.id}"]`);
 
-            const cardWidth = window.innerWidth <= 640 ? 190 : 240;
-            const cardHeight = window.innerWidth <= 640 ? 190 : 240;
+            let targetX = Number(wish.x);
+            let targetY = Number(wish.y);
 
-            const maxAllowedX = Math.max(10, boardWidth - cardWidth - 10);
-            const maxAllowedY = Math.max(10, boardHeight - cardHeight - 10);
+            // ONLY apply coordinate clamping on Mobile Phone screens
+            if (isMobile) {
+                const cardWidth = 190;
+                const cardHeight = 190;
+                const maxAllowedX = Math.max(10, boardWidth - cardWidth - 10);
+                const maxAllowedY = Math.max(10, boardHeight - cardHeight - 10);
 
-            let clampedX = Number(wish.x);
-            let clampedY = Number(wish.y);
-
-            clampedX = Math.max(10, Math.min(maxAllowedX, clampedX));
-            clampedY = Math.max(10, Math.min(maxAllowedY, clampedY));
+                targetX = Math.max(10, Math.min(maxAllowedX, targetX));
+                targetY = Math.max(10, Math.min(maxAllowedY, targetY));
+            }
 
             if (!card) {
                 card = document.createElement('div');
                 card.className = 'wish-card';
                 card.dataset.id = wish.id;
-                card.style.left = `${clampedX}px`;
-                card.style.top = `${clampedY}px`;
+                card.style.left = `${targetX}px`;
+                card.style.top = `${targetY}px`;
                 card.style.transform = `rotate(${wish.rotation || 0}deg)`;
                 card.style.zIndex = wish.zIndex || 1;
 
@@ -781,8 +786,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 makeCardDraggableAndClickable(card, wish);
             } else {
                 if (!card.classList.contains('dragging')) {
-                    card.style.left = `${clampedX}px`;
-                    card.style.top = `${clampedY}px`;
+                    card.style.left = `${targetX}px`;
+                    card.style.top = `${targetY}px`;
                     card.style.zIndex = wish.zIndex || card.style.zIndex;
                 }
             }
