@@ -729,12 +729,30 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        const boardRect = wishBoard.getBoundingClientRect();
+        const boardWidth = boardRect.width || window.innerWidth || 800;
+        const boardHeight = boardRect.height || window.innerHeight || 600;
+
         wishes.forEach((wish) => {
             const card = document.createElement('div');
             card.className = 'wish-card';
             card.dataset.id = wish.id;
-            card.style.left = `${wish.x}px`;
-            card.style.top = `${wish.y}px`;
+
+            // Responsive card sizing check
+            const cardWidth = window.innerWidth <= 640 ? 190 : 240;
+            const cardHeight = window.innerWidth <= 640 ? 190 : 240;
+
+            const maxAllowedX = Math.max(10, boardWidth - cardWidth - 10);
+            const maxAllowedY = Math.max(10, boardHeight - cardHeight - 10);
+
+            let clampedX = Number(wish.x);
+            let clampedY = Number(wish.y);
+
+            clampedX = Math.max(10, Math.min(maxAllowedX, clampedX));
+            clampedY = Math.max(10, Math.min(maxAllowedY, clampedY));
+
+            card.style.left = `${clampedX}px`;
+            card.style.top = `${clampedY}px`;
             card.style.transform = `rotate(${wish.rotation || 0}deg)`;
             card.style.zIndex = wish.zIndex || 1;
 
