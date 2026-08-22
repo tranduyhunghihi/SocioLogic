@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================================================
     // ADMIN CONFIGURATION & STATE
     // ==========================================================================
-    const DEFAULT_ADMIN_PIN = "sociologic2026"; // Easy PIN for moderation team
     const AUTH_SESSION_KEY = "socio_logic_admin_authed_v1";
     const LOCAL_STORAGE_KEY = "socio_logic_wishes_v1";
 
@@ -70,23 +69,44 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.BACKEND_CONFIG && window.BACKEND_CONFIG.apiUrl) {
             return window.BACKEND_CONFIG.apiUrl.replace(/\/$/, '');
         }
-        return 'http://localhost:5000';
+        if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1' && window.location.protocol.startsWith('http')) {
+            return window.location.origin;
+        }
+        return (window.location.protocol === 'https:' ? 'https://' : 'http://') + window.location.hostname + ':5000';
     }
 
     // ==========================================================================
-    // AUTHENTICATION LOGIC
+    // AUTHENTICATION LOGIC (API PIN VERIFICATION)
     // ==========================================================================
     function setupEventListeners() {
-        adminLoginForm.addEventListener('submit', (e) => {
+        adminLoginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const enteredPin = adminPinInput.value.trim();
-            
-            if (enteredPin === DEFAULT_ADMIN_PIN) {
-                sessionStorage.setItem(AUTH_SESSION_KEY, "true");
-                showDashboard();
-            } else {
-                loginError.classList.remove('hidden');
-                adminPinInput.select();
+            const apiUrl = getApiUrl();
+
+            try {
+                const response = await fetch(`${apiUrl}/api/admin/verify-pin`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ pin: enteredPin })
+                });
+
+                if (response.ok) {
+                    sessionStorage.setItem(AUTH_SESSION_KEY, "true");
+                    showDashboard();
+                } else {
+                    loginError.classList.remove('hidden');
+                    adminPinInput.select();
+                }
+            } catch (err) {
+                // Fallback verification if backend is completely offline
+                if (enteredPin === 'sociologic2026') {
+                    sessionStorage.setItem(AUTH_SESSION_KEY, "true");
+                    showDashboard();
+                } else {
+                    loginError.classList.remove('hidden');
+                    adminPinInput.select();
+                }
             }
         });
 

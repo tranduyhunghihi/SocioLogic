@@ -47,9 +47,20 @@ if (MONGODB_URI) {
 
 // API ROUTES
 
-// 1. Health Check
+// 1. Health Check & Environment Config
 app.get('/api/health', (req, res) => {
     res.json({ status: 'ok', message: 'SocioLogic MongoDB Server is Running!' });
+});
+
+// 1b. Verify Admin PIN dynamically against process.env.ADMIN_PIN
+app.post('/api/admin/verify-pin', (req, res) => {
+    const { pin } = req.body;
+    const envPin = process.env.ADMIN_PIN || 'sociologic2026';
+    if (pin === envPin) {
+        res.json({ success: true, authed: true });
+    } else {
+        res.status(401).json({ success: false, error: 'Mã PIN quản trị viên không đúng!' });
+    }
 });
 
 // 2. GET /api/wishes - Fetch all wishes from MongoDB

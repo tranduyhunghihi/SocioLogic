@@ -77,7 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.BACKEND_CONFIG && window.BACKEND_CONFIG.apiUrl) {
             return window.BACKEND_CONFIG.apiUrl.replace(/\/$/, '');
         }
-        return 'http://localhost:5000';
+        if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1' && window.location.protocol.startsWith('http')) {
+            return window.location.origin;
+        }
+        return (window.location.protocol === 'https:' ? 'https://' : 'http://') + window.location.hostname + ':5000';
     }
 
     async function initBackendDatabase() {
