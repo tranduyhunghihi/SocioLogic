@@ -547,25 +547,62 @@ document.addEventListener('DOMContentLoaded', () => {
         const file = e.target.files[0];
         if (!file) return;
 
+        // 1. Check file size limit (Max 10MB)
+        const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+        if (file.size > MAX_FILE_SIZE) {
+            alert('Dung lượng tệp ảnh quá lớn (> 10MB). Vui lòng chọn tệp ảnh có dung lượng nhỏ hơn!');
+            e.target.value = '';
+            return;
+        }
+
         const reader = new FileReader();
         reader.onload = (event) => {
-            const imgWrapper = document.createElement('div');
-            imgWrapper.className = 'card-element image-element';
-            imgWrapper.style.left = '60px';
-            imgWrapper.style.top = '60px';
+            const img = new Image();
+            img.onload = () => {
+                // Downscale & compress uploaded image so it fits comfortably within card editor
+                const compressCanvas = document.createElement('canvas');
+                const maxDim = 320; // Maximum dimension in pixels
+                let width = img.width;
+                let height = img.height;
 
-            imgWrapper.innerHTML = `
-                <img src="${event.target.result}" alt="Uploaded element" draggable="false">
-                <button type="button" class="element-delete-btn" title="Xóa"><i class="ph-bold ph-x"></i></button>
-            `;
+                if (width > height) {
+                    if (width > maxDim) {
+                        height = Math.round((height * maxDim) / width);
+                        width = maxDim;
+                    }
+                } else {
+                    if (height > maxDim) {
+                        width = Math.round((width * maxDim) / height);
+                        height = maxDim;
+                    }
+                }
 
-            elementsLayer.appendChild(imgWrapper);
-            makeElementDraggable(imgWrapper);
+                compressCanvas.width = width;
+                compressCanvas.height = height;
+                const cCtx = compressCanvas.getContext('2d');
+                cCtx.drawImage(img, 0, 0, width, height);
 
-            imgWrapper.querySelector('.element-delete-btn').addEventListener('click', (ev) => {
-                ev.stopPropagation();
-                imgWrapper.remove();
-            });
+                const compressedDataUrl = compressCanvas.toDataURL('image/jpeg', 0.85);
+
+                const imgWrapper = document.createElement('div');
+                imgWrapper.className = 'card-element image-element';
+                imgWrapper.style.left = '40px';
+                imgWrapper.style.top = '40px';
+
+                imgWrapper.innerHTML = `
+                    <img src="${compressedDataUrl}" class="card-element-image" alt="Uploaded element" draggable="false">
+                    <button type="button" class="element-delete-btn" title="Xóa"><i class="ph-bold ph-x"></i></button>
+                `;
+
+                elementsLayer.appendChild(imgWrapper);
+                makeElementDraggable(imgWrapper);
+
+                imgWrapper.querySelector('.element-delete-btn').addEventListener('click', (ev) => {
+                    ev.stopPropagation();
+                    imgWrapper.remove();
+                });
+            };
+            img.src = event.target.result;
         };
         reader.readAsDataURL(file);
         e.target.value = '';

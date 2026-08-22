@@ -609,9 +609,9 @@ body {
 }
 
 .card-element-image {
-    max-width: 190px;
-    max-height: 170px;
-    min-width: 80px;
+    max-width: 150px;
+    max-height: 130px;
+    min-width: 55px;
     object-fit: contain;
     border-radius: 8px;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
@@ -919,9 +919,9 @@ body {
     }
 
     .card-element-image {
-        max-width: 135px;
-        max-height: 125px;
-        min-width: 65px;
+        max-width: 100px !important;
+        max-height: 90px !important;
+        min-width: 45px !important;
     }
 
     /* Fully Responsive Editor Toolbar */
