@@ -906,7 +906,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 `;
 
                 wishBoard.appendChild(card);
-                makeCardDraggableAndClickable(card, wish);
+                makeCardDraggableAndClickable(card);
             } else {
                 if (!card.classList.contains('dragging')) {
                     card.style.left = `${targetX}px`;
@@ -918,9 +918,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================================================
-    // INTERACTIVE CARD PHYSICS (HOLD TO DRAG & RELEASE TO DROP)
+    // INTERACTIVE CARD PHYSICS (ACCURATE CLICK & DRAG)
     // ==========================================================================
-    function makeCardDraggableAndClickable(cardEl, wishData) {
+    function makeCardDraggableAndClickable(cardEl) {
         const onStart = (e) => {
             // Only primary left mouse click or touch
             if (e.type === 'mousedown' && e.button !== 0) return;
@@ -936,9 +936,14 @@ document.addEventListener('DOMContentLoaded', () => {
             initialCardTop = parseFloat(cardEl.style.top) || 0;
             cardDragDistance = 0;
 
+            const wishId = cardEl.dataset.id;
+            const currentWish = wishes.find(w => String(w.id) === String(wishId));
+
             maxZIndex++;
             cardEl.style.zIndex = maxZIndex;
-            wishData.zIndex = maxZIndex;
+            if (currentWish) {
+                currentWish.zIndex = maxZIndex;
+            }
 
             cardEl.classList.add('dragging');
 
@@ -982,9 +987,13 @@ document.addEventListener('DOMContentLoaded', () => {
             cardEl.style.left = `${newX}px`;
             cardEl.style.top = `${newY}px`;
 
-            wishData.x = Math.round(newX);
-            wishData.y = Math.round(newY);
-            wishData.isUserPositioned = true; // Mark as explicitly positioned by user drag
+            const wishId = cardEl.dataset.id;
+            const currentWish = wishes.find(w => String(w.id) === String(wishId));
+            if (currentWish) {
+                currentWish.x = Math.round(newX);
+                currentWish.y = Math.round(newY);
+                currentWish.isUserPositioned = true;
+            }
         };
 
         const onEnd = async (e) => {
@@ -994,17 +1003,22 @@ document.addEventListener('DOMContentLoaded', () => {
             droppedCard.classList.remove('dragging');
 
             window.removeEventListener('mousemove', onMove, { capture: true });
-            window.removeEventListener('mouseup', onEnd);
-            window.removeEventListener('touchmove', onMove);
-            window.removeEventListener('touchend', onEnd);
+            window.removeEventListener('mouseup', onEnd, { capture: true });
+            window.removeEventListener('touchmove', onMove, { capture: true });
+            window.removeEventListener('touchend', onEnd, { capture: true });
             window.removeEventListener('blur', onEnd);
 
             draggedCard = null;
 
+            const wishId = cardEl.dataset.id;
+
             if (cardDragDistance > 5) {
-                await saveCardPosition(wishData);
+                const currentWish = wishes.find(w => String(w.id) === String(wishId));
+                if (currentWish) {
+                    await saveCardPosition(currentWish);
+                }
             } else {
-                openReaderModal(wishData);
+                openReaderModalByWishId(wishId);
             }
         };
 
@@ -1012,14 +1026,17 @@ document.addEventListener('DOMContentLoaded', () => {
         cardEl.addEventListener('touchstart', onStart, { passive: false });
     }
 
-    function openReaderModal(wish) {
+    function openReaderModalByWishId(wishId) {
+        const currentWish = wishes.find(w => String(w.id) === String(wishId));
+        if (!currentWish) return;
+
         readerCardContent.innerHTML = `
             <div class="reader-author-badge">
                 <i class="ph-bold ph-heart"></i>
-                <span>Lời chúc từ: ${escapeHtml(wish.author)}</span>
+                <span>Lời chúc từ: ${escapeHtml(currentWish.author)}</span>
             </div>
             <div class="reader-card-wrapper">
-                <img src="${wish.imageData}" style="width:100%; height:100%; object-fit:contain;" alt="Chi tiết lời chúc">
+                <img src="${currentWish.imageData}" style="width:100%; height:100%; object-fit:contain;" alt="Chi tiết lời chúc">
             </div>
         `;
         readerOverlay.classList.remove('hidden');
