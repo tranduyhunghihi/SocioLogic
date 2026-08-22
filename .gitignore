@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# Environment secrets
+.env
+.env.local
+
+# Build & Vercel
+.vercel/
+
+# Logs & OS
+*.log
+.DS_Store

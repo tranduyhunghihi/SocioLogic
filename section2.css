@@ -1,0 +1,466 @@
+/* ==========================================================================
+   SECTION 2 - SOCIOLOGIC BUBBLE BANNER (UPSCALED VECTOR MOUTHS)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&display=swap');
+
+:root {
+    --color-bg-white: #FFFFFF;
+    --font-main: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--color-bg-white);
+    color: #0F172A;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+.section-2-wrapper {
+    width: 100%;
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Main Bubbles Container */
+.bubbles-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    position: relative;
+    padding: 90px 0;
+}
+
+/* Individual Bubble Item Base */
+.bubble-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+}
+
+.bubble-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* HTML Letter Overlay - Smooth Unified Glassy White Outfit Font */
+.bubble-letter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-main);
+    font-weight: 600;
+    color: #FFFFFF;
+    opacity: 0.45;
+    user-select: none;
+    line-height: 1;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    margin: 0;
+    padding: 0;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.12));
+}
+
+/* ==========================================================================
+   INTERACTIVE FACES (Strictly 100% Inside Speech Bubble Bodies)
+   ========================================================================== */
+
+.bubble-face {
+    position: absolute;
+    z-index: 6;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Face Placement 100% Inside Each Speech Bubble Container (Eyes Level) */
+.face-S  { bottom: 30px; left: 52%; transform: translateX(-50%); }
+.face-o1 { top: 62%; left: 50%; transform: translate(-50%, -50%); }
+.face-c1 { top: 62%; left: 52%; transform: translate(-50%, -50%); }
+.face-i1 { top: 52%; left: 40%; transform: translate(-50%, -50%); }
+.face-o2 { top: 62%; left: 50%; transform: translate(-50%, -50%); }
+.face-L  { top: 38px; left: 46%; transform: translateX(-50%); }
+.face-o3 { top: 62%; left: 50%; transform: translate(-50%, -50%); }
+.face-g  { top: 38px; left: 47%; transform: translateX(-50%); }
+.face-i2 { top: 52%; left: 44%; transform: translate(-50%, -50%); }
+.face-c2 { top: 62%; left: 52%; transform: translate(-50%, -50%); }
+
+/* Eyes Row & Gap */
+.eyes-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.eyes-vertical {
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Eye White Container (38px Size) */
+.eye {
+    width: 38px;
+    height: 38px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.16);
+    border: 3px solid #FFFFFF;
+}
+
+/* Pupil (Mouse Tracking Mode - 20px Size) */
+.pupil {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.08s ease-out;
+    will-change: transform;
+    opacity: 0;
+}
+
+/* Always Visible Pupil for Default Calm Bubbles */
+.pupil-always {
+    opacity: 1 !important;
+}
+
+/* Pure SVG Vector Idle Eye Expressions */
+.eye-idle-svg {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s ease;
+    opacity: 1;
+    color: inherit;
+}
+.eye-idle-svg svg {
+    display: block;
+    overflow: visible;
+}
+
+/* ==========================================================================
+   DYNAMIC MORPHING TRANSITION WHEN MOUSE CURSOR COMES NEAR
+   ========================================================================== */
+
+.bubble-item.active-near .eye-idle-svg {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+.bubble-item.active-near .pupil {
+    opacity: 1;
+}
+
+.bubble-item.active-near .eye {
+    border-color: #FFFFFF;
+    box-shadow: 0 0 16px rgba(255, 255, 255, 0.98);
+}
+
+/* Mouth Styles - Lowered Downward relative to eyes */
+.mouth {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    pointer-events: none;
+}
+
+/* Move mouth lower down for standard horizontal faces */
+.eyes-row:not(.eyes-vertical) .mouth {
+    transform: translateY(14px);
+}
+
+/* Push mouth to the right for vertical faces (letter i) */
+.eyes-vertical .mouth {
+    transform: translateX(12px);
+}
+
+.mouth svg {
+    display: block;
+    overflow: visible;
+}
+
+/* 1. Vector U-Smile Mouth (Upscaled) */
+.mouth-svg-smile {
+    width: 25px;
+    height: 18px;
+}
+
+/* 2. Vector Solid Filled Circle Mouth '●' (Upscaled) */
+.mouth-svg-open {
+    width: 20px;
+    height: 20px;
+}
+
+/* 3. Vector 'w' Mouth Shape (Upscaled) */
+.mouth-svg-w {
+    width: 32px;
+    height: 20px;
+}
+
+/* 4. Vector Sideways Smile ')' for Vertical Standing Bubbles (i) (Upscaled) */
+.mouth-svg-sideways-smile {
+    width: 18px;
+    height: 24px;
+}
+
+/* ==========================================================================
+   COLOR MATCHING PUPILS & IDLE EYES ACCORDING TO BUBBLE COLOR
+   ========================================================================== */
+
+/* 1. Letter S (Blue #0066FF) -> Dark Royal Blue */
+.letter-1-S .pupil { background-color: #003F9E; }
+
+/* 2. Letter o (Cyan #00C4FF) -> Deep Cyan Blue */
+.letter-2-o .pupil { background-color: #0077B6; }
+.letter-2-o .eye-idle-svg { color: #0077B6; }
+
+/* 3. Letter c (Green #00B853) -> Deep Emerald Green (Exact Match to User Green Image!) */
+.letter-3-c .pupil { background-color: #00682E; }
+.letter-3-c .eye-idle-svg { color: #00682E; }
+
+/* 4. Letter i (Yellow #FFD000) -> Warm Dark Gold */
+.letter-4-i .pupil { background-color: #8A6500; }
+
+/* 5. Letter o (Orange #FF6B00) -> Deep Burnt Orange */
+.letter-5-o .pupil { background-color: #B34400; }
+.letter-5-o .eye-idle-svg { color: #B34400; }
+
+/* 6. Letter L (Red-Orange #FF3B30) -> Dark Crimson Red */
+.letter-6-L .pupil { background-color: #A3120B; }
+.letter-6-L .eye-idle-svg { color: #A3120B; }
+
+/* 7. Letter o (Pink #FF33A8) -> Deep Magenta Pink */
+.letter-7-o .pupil { background-color: #A30064; }
+.letter-7-o .eye-idle-svg { color: #A30064; }
+
+/* 8. Letter g (Grey #8E8E93) -> Dark Slate Charcoal */
+.letter-8-g .pupil { background-color: #3A3A3C; }
+.letter-8-g .eye-idle-svg { color: #3A3A3C; }
+
+/* 9. Letter i (Cyan #00C4FF) -> Deep Cyan Blue */
+.letter-9-i .pupil { background-color: #0077B6; }
+
+/* 10. Letter c (Blue #0066FF) -> Dark Royal Blue */
+.letter-10-c .pupil { background-color: #003F9E; }
+.letter-10-c .eye-idle-svg { color: #003F9E; }
+
+/* ==========================================================================
+   ORGANIC STAGGERED PNG DOODLE ICONS
+   ========================================================================== */
+
+.img-doodle {
+    position: absolute;
+    z-index: 5;
+    pointer-events: none;
+    object-fit: contain;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.10));
+}
+
+@keyframes doodleFloat1 {
+    0% { transform: translateY(0px) rotate(-14deg); }
+    100% { transform: translateY(-12px) rotate(-6deg); }
+}
+
+@keyframes doodleFloat2 {
+    0% { transform: translateY(0px) rotate(12deg); }
+    100% { transform: translateY(-10px) rotate(20deg); }
+}
+
+@keyframes doodleFloat3 {
+    0% { transform: translateY(0px) rotate(-8deg); }
+    100% { transform: translateY(-14px) rotate(-16deg); }
+}
+
+/* Top Doodles */
+.doodle-top-1 { width: 52px; height: 52px; top: -32px; left: 1.5%; animation: doodleFloat1 4.0s ease-in-out infinite alternate; }
+.doodle-top-2 { width: 54px; height: 54px; top: -18px; left: 20%; animation: doodleFloat2 3.6s ease-in-out infinite alternate; }
+.doodle-top-3 { width: 44px; height: 56px; top: -52px; left: 37.5%; animation: doodleFloat3 4.2s ease-in-out infinite alternate; }
+.doodle-top-4 { width: 50px; height: 50px; top: -28px; left: 64%; animation: doodleFloat1 3.8s ease-in-out infinite alternate; }
+.doodle-top-5 { width: 46px; height: 46px; top: -45px; left: 83.5%; animation: doodleFloat2 4.5s ease-in-out infinite alternate; }
+
+/* Bottom Doodles */
+.doodle-bottom-1 { width: 44px; height: 56px; bottom: -52px; left: 4.5%; animation: doodleFloat3 3.9s ease-in-out infinite alternate; }
+.doodle-bottom-2 { width: 50px; height: 50px; bottom: -32px; left: 27.5%; animation: doodleFloat1 4.1s ease-in-out infinite alternate; }
+.doodle-bottom-3 { width: 54px; height: 54px; bottom: -55px; left: 54.5%; animation: doodleFloat2 3.7s ease-in-out infinite alternate; }
+.doodle-bottom-4 { width: 46px; height: 46px; bottom: -28px; left: 79.5%; animation: doodleFloat3 4.3s ease-in-out infinite alternate; }
+
+/* ==========================================================================
+   VERTICAL STAGGERED POSITIONS & SIZES (Matching Figma Mockup)
+   ========================================================================== */
+
+/* 1. Letter S (Blue) */
+.letter-1-S {
+    width: 190px;
+    height: 260px;
+    transform: translateY(-15px);
+}
+.letter-1-S:hover {
+    transform: translateY(-25px) scale(1.06);
+    z-index: 10;
+}
+.letter-1-S .bubble-letter { font-size: 10.5rem; top: 52%; left: 52%; }
+
+/* 2. Letter o (Cyan) */
+.letter-2-o {
+    width: 200px;
+    height: 200px;
+    transform: translateY(50px);
+}
+.letter-2-o:hover {
+    transform: translateY(40px) scale(1.06);
+    z-index: 10;
+}
+.letter-2-o .bubble-letter { font-size: 10.0rem; top: 38%; left: 50%; }
+
+/* 3. Letter c (Green) */
+.letter-3-c {
+    width: 195px;
+    height: 200px;
+    transform: translateY(20px);
+}
+.letter-3-c:hover {
+    transform: translateY(10px) scale(1.06);
+    z-index: 10;
+}
+.letter-3-c .bubble-letter { font-size: 10.0rem; top: 38%; left: 54%; }
+
+/* 4. Letter i (Yellow) */
+.letter-4-i {
+    width: 100px;
+    height: 200px;
+    transform: translateY(-40px);
+}
+.letter-4-i:hover {
+    transform: translateY(-50px) scale(1.06);
+    z-index: 10;
+}
+.letter-4-i .bubble-letter { font-size: 9.4rem; top: 44%; left: 40%; }
+
+/* 5. Letter o (Orange) */
+.letter-5-o {
+    width: 200px;
+    height: 200px;
+    transform: translateY(45px);
+}
+.letter-5-o .bubble-letter { font-size: 10.0rem; top: 38%; left: 50%; }
+.letter-5-o:hover {
+    transform: translateY(35px) scale(1.06);
+    z-index: 10;
+}
+
+/* 6. Letter L (Red-Orange) */
+.letter-6-L {
+    width: 180px;
+    height: 260px;
+    transform: translateY(-55px);
+}
+.letter-6-L:hover {
+    transform: translateY(-65px) scale(1.06);
+    z-index: 10;
+}
+.letter-6-L .bubble-letter { font-size: 10.5rem; top: 54%; left: 46%; }
+
+/* 7. Letter o (Pink) */
+.letter-7-o {
+    width: 200px;
+    height: 200px;
+    transform: translateY(35px);
+}
+.letter-7-o:hover {
+    transform: translateY(25px) scale(1.06);
+    z-index: 10;
+}
+.letter-7-o .bubble-letter { font-size: 10.0rem; top: 36%; left: 50%; }
+
+/* 8. Letter g (Grey) */
+.letter-8-g {
+    width: 190px;
+    height: 260px;
+    transform: translateY(-10px);
+}
+.letter-8-g:hover {
+    transform: translateY(-20px) scale(1.06);
+    z-index: 10;
+}
+.letter-8-g .bubble-letter { font-size: 10.5rem; top: 40%; left: 47%; }
+
+/* 9. Letter i (Cyan) */
+.letter-9-i {
+    width: 100px;
+    height: 200px;
+    transform: translateY(-65px);
+}
+.letter-9-i:hover {
+    transform: translateY(-75px) scale(1.06);
+    z-index: 10;
+}
+.letter-9-i .bubble-letter { font-size: 9.4rem; top: 44%; left: 44%; }
+
+/* 10. Letter c (Blue) */
+.letter-10-c {
+    width: 195px;
+    height: 200px;
+    transform: translateY(20px);
+}
+.letter-10-c:hover {
+    transform: translateY(10px) scale(1.06);
+    z-index: 10;
+}
+.letter-10-c .bubble-letter { font-size: 10.0rem; top: 38%; left: 52%; }
+
+/* Responsive Breakpoints */
+@media (max-width: 1700px) {
+    .bubbles-row {
+        gap: 12px;
+        transform: scale(0.85);
+    }
+}
+
+@media (max-width: 1300px) {
+    .bubbles-row {
+        gap: 8px;
+        transform: scale(0.7);
+    }
+}
+
+@media (max-width: 900px) {
+    .bubbles-row {
+        flex-wrap: wrap;
+        transform: scale(1);
+        gap: 16px;
+    }
+}

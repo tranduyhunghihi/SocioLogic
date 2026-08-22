@@ -1,0 +1,345 @@
+/* ==========================================================================
+   SECTION 5A - NHỮNG GƯƠNG MẶT SOCIOLOGIC (CSS STYLING)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Be+Vietnam+Pro:wght@600;700;800;900&display=swap');
+
+:root {
+    --color-bg-white: #FFFFFF;
+    --color-blue-primary: #0066FF;
+    --color-text-dark: #0F172A;
+    --font-heading: 'Plus Jakarta Sans', 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-letter: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-heading);
+    background-color: var(--color-bg-white);
+    color: var(--color-text-dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.section-5a-wrapper {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 60px 40px;
+}
+
+.section-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* 1. Header Row (2 Columns) */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.header-title-left,
+.header-title-right {
+    font-family: var(--font-heading);
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: var(--color-blue-primary);
+    letter-spacing: -0.02em;
+}
+
+/* 2. Speech Bubbles Rows (SOCIO & LOGIC) */
+.bubbles-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    position: relative;
+    padding: 40px 0;
+}
+
+/* Individual Bubble Item Base */
+.bubble-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+}
+
+.bubble-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* HTML Letter Overlay - Solid White Outfit Font (Same as Section 2) */
+.bubble-letter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-letter);
+    font-weight: 600;
+    color: #FFFFFF;
+    user-select: none;
+    line-height: 1;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    margin: 0;
+    padding: 0;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+}
+
+/* ==========================================================================
+   ROW 1: SOCIO BUBBLES (Staggered Positions & Dimensions)
+   ========================================================================== */
+
+/* 1. Letter S (Blue) */
+.letter-1-S {
+    width: 190px;
+    height: 260px;
+    transform: translateY(-15px);
+}
+
+.letter-1-S:hover {
+    transform: translateY(-25px) scale(1.06);
+    z-index: 10;
+}
+
+.letter-1-S .bubble-letter {
+    font-size: 10.5rem;
+    top: 52%;
+    left: 52%;
+}
+
+/* 2. Letter o (Cyan) */
+.letter-2-o {
+    width: 200px;
+    height: 200px;
+    transform: translateY(35px);
+}
+
+.letter-2-o:hover {
+    transform: translateY(25px) scale(1.06);
+    z-index: 10;
+}
+
+.letter-2-o .bubble-letter {
+    font-size: 10.0rem;
+    top: 38%;
+    left: 50%;
+}
+
+/* 3. Letter c (Green) */
+.letter-3-c {
+    width: 195px;
+    height: 200px;
+    transform: translateY(20px);
+}
+
+.letter-3-c:hover {
+    transform: translateY(10px) scale(1.06);
+    z-index: 10;
+}
+
+.letter-3-c .bubble-letter {
+    font-size: 10.0rem;
+    top: 38%;
+    left: 54%;
+}
+
+/* 4. Letter i (Yellow) */
+.letter-4-i {
+    width: 100px;
+    height: 200px;
+    transform: translateY(-40px);
+}
+
+.letter-4-i:hover {
+    transform: translateY(-50px) scale(1.06);
+    z-index: 10;
+}
+
+.letter-4-i .bubble-letter {
+    font-size: 9.4rem;
+    top: 44%;
+    left: 40%;
+}
+
+/* 5. Letter o (Orange) */
+.letter-5-o {
+    width: 200px;
+    height: 200px;
+    transform: translateY(45px);
+}
+
+.letter-5-o:hover {
+    transform: translateY(35px) scale(1.06);
+    z-index: 10;
+}
+
+.letter-5-o .bubble-letter {
+    font-size: 10.0rem;
+    top: 38%;
+    left: 50%;
+}
+
+/* ==========================================================================
+   ROW 2: LOGIC BUBBLES (Staggered Positions & Dimensions)
+   ========================================================================== */
+
+/* 6. Letter L (Red-Orange) */
+.letter-6-L {
+    width: 180px;
+    height: 260px;
+    transform: translateY(-30px);
+}
+
+.letter-6-L:hover {
+    transform: translateY(-40px) scale(1.06);
+    z-index: 10;
+}
+
+.letter-6-L .bubble-letter {
+    font-size: 10.5rem;
+    top: 54%;
+    left: 46%;
+}
+
+/* 7. Letter o (Pink) */
+.letter-7-o {
+    width: 200px;
+    height: 200px;
+    transform: translateY(35px);
+}
+
+.letter-7-o:hover {
+    transform: translateY(25px) scale(1.06);
+    z-index: 10;
+}
+
+.letter-7-o .bubble-letter {
+    font-size: 10.0rem;
+    top: 36%;
+    left: 50%;
+}
+
+/* 8. Letter g (Grey) */
+.letter-8-g {
+    width: 190px;
+    height: 260px;
+    transform: translateY(-10px);
+}
+
+.letter-8-g:hover {
+    transform: translateY(-20px) scale(1.06);
+    z-index: 10;
+}
+
+.letter-8-g .bubble-letter {
+    font-size: 10.5rem;
+    top: 40%;
+    left: 47%;
+}
+
+/* 9. Letter i (Cyan) */
+.letter-9-i {
+    width: 100px;
+    height: 200px;
+    transform: translateY(-45px);
+}
+
+.letter-9-i:hover {
+    transform: translateY(-55px) scale(1.06);
+    z-index: 10;
+}
+
+.letter-9-i .bubble-letter {
+    font-size: 9.4rem;
+    top: 44%;
+    left: 40%;
+}
+
+/* 10. Letter c (Blue) */
+.letter-10-c {
+    width: 195px;
+    height: 200px;
+    transform: translateY(20px);
+}
+
+.letter-10-c:hover {
+    transform: translateY(10px) scale(1.06);
+    z-index: 10;
+}
+
+.letter-10-c .bubble-letter {
+    font-size: 10.0rem;
+    top: 38%;
+    left: 52%;
+}
+
+/* 3 & 5. Subtitle Blocks */
+.subtitle-block {
+    text-align: center;
+    margin: 45px 0;
+    padding: 0 20px;
+}
+
+.subtitle-block p {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    line-height: 1.65;
+    letter-spacing: -0.01em;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1100px) {
+
+    .header-title-left,
+    .header-title-right {
+        font-size: 1.6rem;
+    }
+
+    .bubbles-row {
+        gap: 12px;
+        transform: scale(0.85);
+    }
+}
+
+@media (max-width: 800px) {
+    .bubbles-row {
+        transform: scale(0.7);
+        gap: 8px;
+    }
+
+    .subtitle-block p {
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Góc Lời Chúc Tương Tác | Wall of Wishes</title>
+    <meta name="description" content="Nơi gửi gắm những lời chúc yêu thương với nét vẽ tự do, hình ảnh và dòng chữ sáng tạo.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Patrick+Hand&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="app-header">
+        <div class="header-badge">
+            <i class="ph-bold ph-sparkle"></i>
+            <span>Góc Lời Chúc Tương Tác</span>
+        </div>
+        <h1 class="header-title">Gửi Lời Chúc, Sẻ Chia Yêu Thương ✨</h1>
+        <p class="header-subtitle">
+            Nhấp và kéo thả các thiệp để bới tìm lời chúc. Bạn cũng có thể vẽ, viết văn bản và chèn hình ảnh để gửi lời chúc của riêng mình!
+        </p>
+        
+        <div class="header-actions">
+            <button id="btn-open-editor" class="btn-primary">
+                <i class="ph-bold ph-pencil-simple-line"></i>
+                <span>Viết Lời Chúc</span>
+            </button>
+
+            <div class="stats-pill">
+                <i class="ph-bold ph-cards"></i>
+                <span id="wish-count">0 lời chúc</span>
+            </div>
+
+            <a href="admin.html" class="btn-admin-link" title="Trang Quản Trị &amp; Kiểm Duyệt Admin" target="_blank">
+                <i class="ph-bold ph-shield-check"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Interactive Wish Board Section -->
+    <main class="board-wrapper">
+        <div class="board-instructions">
+            <span><i class="ph-bold ph-hand-grabbing"></i> Dùng chuột / ngón tay kéo để bới các card bên dưới</span>
+            <span><i class="ph-bold ph-cursor-click"></i> Click vào card để đọc nội dung</span>
+        </div>
+        
+        <div id="wish-board" class="wish-board">
+            <!-- Cards will be dynamically inserted here -->
+        </div>
+    </main>
+
+    <!-- Overlay Editor Modal (Khi bấm "Viết lời chúc") -->
+    <div id="editor-overlay" class="overlay hidden">
+        <div class="editor-card-container">
+            <div class="editor-card">
+                <!-- Header Controls -->
+                <div class="editor-header">
+                    <div class="author-input-wrapper">
+                        <i class="ph-bold ph-user-circle"></i>
+                        <input type="text" id="editor-name" placeholder="Tên của bạn (ví dụ: Minh Anh)" maxlength="30">
+                    </div>
+                    <button id="btn-close-editor" class="btn-icon" title="Đóng modal">
+                        <i class="ph-bold ph-x"></i>
+                    </button>
+                </div>
+
+                <!-- Canvas & Interactive Layers Container -->
+                <div id="editor-canvas-container" class="editor-canvas-container">
+                    <canvas id="drawing-canvas"></canvas>
+                    <div id="eraser-cursor-ring" class="eraser-ring hidden"></div>
+                    <div id="editor-elements-layer" class="elements-layer"></div>
+                </div>
+
+                <!-- Toolbar Actions -->
+                <div class="editor-toolbar">
+                    <div class="tool-group">
+                        <button type="button" class="tool-btn active" data-tool="pen" title="Bút vẽ">
+                            <i class="ph-bold ph-pen"></i>
+                        </button>
+                        <button type="button" class="tool-btn" data-tool="text" title="Thêm chữ">
+                            <i class="ph-bold ph-text-t"></i>
+                        </button>
+                        <button type="button" class="tool-btn" data-tool="eraser" title="Tẩy">
+                            <i class="ph-bold ph-eraser"></i>
+                        </button>
+                        <label class="tool-btn" title="Chèn hình ảnh">
+                            <i class="ph-bold ph-image-square"></i>
+                            <input type="file" id="btn-add-image" accept="image/*" style="display: none;">
+                        </label>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <!-- Color Palette -->
+                    <div class="color-palette-wrapper">
+                        <div class="color-swatches">
+                            <button type="button" class="color-swatch active" data-color="#1E293B" style="background-color: #1E293B;" title="Đen Xám"></button>
+                            <button type="button" class="color-swatch" data-color="#EF4444" style="background-color: #EF4444;" title="Đỏ Cam"></button>
+                            <button type="button" class="color-swatch" data-color="#3B82F6" style="background-color: #3B82F6;" title="Xanh Dương"></button>
+                            <button type="button" class="color-swatch" data-color="#10B981" style="background-color: #10B981;" title="Xanh Lá"></button>
+                            <button type="button" class="color-swatch" data-color="#F59E0B" style="background-color: #F59E0B;" title="Vàng Nắng"></button>
+                            <button type="button" class="color-swatch" data-color="#8B5CF6" style="background-color: #8B5CF6;" title="Tím Rực"></button>
+                            <button type="button" class="color-swatch" data-color="#EC4899" style="background-color: #EC4899;" title="Hồng Ngọt"></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Actions -->
+                <div class="editor-footer">
+                    <span class="shortcut-tip"><i class="ph-bold ph-key-return"></i> Bấm Enter hoặc nút Đăng để đăng card</span>
+                    <div class="footer-buttons">
+                        <button id="btn-cancel-editor" class="btn-secondary">Hủy</button>
+                        <button id="btn-post-wish" class="btn-post">
+                            <span>Đăng Lời Chúc</span>
+                            <i class="ph-bold ph-paper-plane-tilt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reader Modal (Khi nhấp vào xem lời chúc) -->
+    <div id="reader-overlay" class="overlay hidden">
+        <div class="reader-modal">
+            <button id="btn-close-reader" class="btn-icon reader-close" title="Đóng">
+                <i class="ph-bold ph-x"></i>
+            </button>
+            <div id="reader-card-content" class="reader-card-body">
+                <!-- Display card contents dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Server Configuration & Main App Script -->
+    <script src="server-config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

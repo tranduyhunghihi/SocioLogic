@@ -1,0 +1,156 @@
+/**
+ * SOCIO LOGIC - NODE.JS EXPRESS + MONGODB BACKEND SERVER
+ */
+
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+require('dotenv').config();
+
+const app = express();
+const PORT = process.env.PORT || 5000;
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/sociologic';
+
+// Middlewares - Full Unrestricted CORS for local file:// and web origins
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+app.use(express.json({ limit: '15mb' }));
+app.use(express.urlencoded({ extended: true, limit: '15mb' }));
+
+// Mongoose MongoDB Schema
+const wishSchema = new mongoose.Schema({
+    id: { type: String, required: true, unique: true },
+    author: { type: String, required: true },
+    imageData: { type: String, required: true },
+    x: { type: Number, required: true },
+    y: { type: Number, required: true },
+    rotation: { type: Number, default: 0 },
+    zIndex: { type: Number, default: 1 },
+    timestamp: { type: Number, default: Date.now }
+}, { timestamps: true });
+
+const Wish = mongoose.model('Wish', wishSchema);
+
+// MongoDB Database Connection
+mongoose.connect(MONGODB_URI)
+    .then(() => console.log('🍃 Connected to MongoDB Database Successfully!'))
+    .catch(err => console.warn('⚠️ MongoDB Connection Notice (Server in offline mode):', err.message));
+
+// API ROUTES
+
+// 1. Health Check
+app.get('/api/health', (req, res) => {
+    res.json({ status: 'ok', message: 'SocioLogic MongoDB Server is Running!' });
+});
+
+// 2. GET /api/wishes - Fetch all wishes from MongoDB
+app.get('/api/wishes', async (req, res) => {
+    try {
+        const wishes = await Wish.find().sort({ timestamp: 1 });
+        res.json(wishes);
+    } catch (err) {
+        console.error('Error fetching wishes from MongoDB:', err);
+        res.status(500).json({ error: 'Failed to fetch wishes' });
+    }
+});
+
+// 3. POST /api/wishes - Save a new wish to MongoDB
+app.post('/api/wishes', async (req, res) => {
+    try {
+        const { id, author, imageData, x, y, rotation, zIndex, timestamp } = req.body;
+        if (!id || !imageData) {
+            return res.status(400).json({ error: 'Missing required wish fields' });
+        }
+
+        const newWish = new Wish({
+            id,
+            author: author || 'Người chúc ẩn danh',
+            imageData,
+            x: x || 50,
+            y: y || 50,
+            rotation: rotation || 0,
+            zIndex: zIndex || 1,
+            timestamp: timestamp || Date.now()
+        });
+
+        await newWish.save();
+        console.log(`✅ New wish saved to MongoDB: ${newWish.author} (${newWish.id})`);
+        res.status(201).json(newWish);
+    } catch (err) {
+        console.error('Error saving wish to MongoDB:', err);
+        res.status(500).json({ error: 'Failed to save wish' });
+    }
+});
+
+// 4. PUT /api/wishes/:id/position - Update dragged card coordinates in MongoDB
+app.put('/api/wishes/:id/position', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { x, y, zIndex } = req.body;
+
+        const updated = await Wish.findOneAndUpdate(
+            { id },
+            { $set: { x, y, zIndex } },
+            { new: true }
+        );
+
+        if (!updated) {
+            return res.status(404).json({ error: 'Wish not found' });
+        }
+
+        res.json({ success: true, wish: updated });
+    } catch (err) {
+        console.error('Error updating wish position in MongoDB:', err);
+        res.status(500).json({ error: 'Failed to update wish position' });
+    }
+});
+
+// 5. DELETE /api/wishes/:id - Delete a wish by ID from MongoDB
+app.delete('/api/wishes/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deletedWish = await Wish.findOneAndDelete({ id });
+        
+        if (!deletedWish) {
+            return res.status(404).json({ error: 'Wish not found' });
+        }
+
+        console.log(`🗑️ Deleted wish from MongoDB: ${id}`);
+        res.json({ message: 'Wish deleted successfully', id });
+    } catch (err) {
+        console.error('Error deleting wish from MongoDB:', err);
+        res.status(500).json({ error: 'Failed to delete wish' });
+    }
+});
+
+// 6. DELETE /api/wishes - Delete ALL wishes from MongoDB
+app.delete('/api/wishes', async (req, res) => {
+    try {
+        await Wish.deleteMany({});
+        console.log('🧹 Cleared all wishes from MongoDB');
+        res.json({ message: 'All wishes cleared successfully' });
+    } catch (err) {
+        console.error('Error clearing wishes from MongoDB:', err);
+        res.status(500).json({ error: 'Failed to clear wishes' });
+    }
+});
+
+// Start Server with EADDRINUSE safety
+const server = app.listen(PORT, () => {
+    console.log(`🚀 SocioLogic MongoDB Server running at http://localhost:${PORT}`);
+});
+
+server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+        console.log(`⚠️ Port ${PORT} đang được sử dụng. Đang tự động chuyển sang Port ${Number(PORT) + 1}...`);
+        app.listen(Number(PORT) + 1, () => {
+            console.log(`🚀 SocioLogic MongoDB Server running at http://localhost:${Number(PORT) + 1}`);
+        });
+    } else {
+        console.error('Server error:', err);
+    }
+});

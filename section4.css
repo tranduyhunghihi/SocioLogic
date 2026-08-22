@@ -1,0 +1,244 @@
+/* ==========================================================================
+   SECTION 4 - HÀNH TRÌNH CỦA SOCIOLOGIC (100% PERFECT VIETNAMESE TYPOGRAPHY)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Be+Vietnam+Pro:wght@600;700;800;900&display=swap');
+
+:root {
+    --color-bg-white: #FFFFFF;
+    --color-blue-primary: #0066FF;
+    --color-card-bg: #E2E7EC;
+    --color-text-dark: #0F172A;
+    --font-main: 'Plus Jakarta Sans', 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--color-bg-white);
+    color: var(--color-text-dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.section-4-wrapper {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 60px 40px;
+}
+
+.section-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* 1. Header Row (2 Columns) */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.header-title-left,
+.header-title-right {
+    font-family: var(--font-main);
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: var(--color-blue-primary);
+    letter-spacing: -0.02em;
+}
+
+/* 2. Stat Cards Grid (4 Cards) */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.stat-card {
+    background-color: var(--color-card-bg);
+    border-radius: 20px;
+    padding: 45px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+}
+
+.stat-number-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4.2rem;
+    font-weight: 900;
+    color: var(--color-text-dark);
+    line-height: 1;
+    letter-spacing: -0.03em;
+}
+
+.stat-number {
+    display: inline-block;
+}
+
+.stat-plus {
+    display: inline-block;
+}
+
+.stat-label {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    margin-top: 14px;
+    line-height: 1.2;
+}
+
+/* 3. Subtitle Paragraph */
+.journey-subtitle {
+    text-align: center;
+    margin-bottom: 45px;
+    padding: 0 20px;
+}
+
+.journey-subtitle p {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    line-height: 1.65;
+    letter-spacing: -0.01em;
+}
+
+/* 4. Video Player Placeholder Container */
+.video-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 8.5;
+    background-color: var(--color-card-bg);
+    border-radius: 24px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.video-placeholder-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #E2E7EC 0%, #D8DFE6 100%);
+    z-index: 1;
+}
+
+.play-button-overlay {
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.video-container:hover .play-button-overlay {
+    transform: scale(1.12);
+}
+
+.play-icon-circle {
+    width: 130px;
+    height: 130px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.play-svg {
+    width: 50px;
+    height: 50px;
+    margin-left: 6px;
+}
+
+.video-element {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2;
+    display: none;
+}
+
+.video-container.playing .video-element {
+    display: block;
+}
+
+.video-container.playing .play-button-overlay,
+.video-container.playing .video-placeholder-bg {
+    display: none;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1100px) {
+    .header-title-left,
+    .header-title-right {
+        font-size: 1.6rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .stat-number-box {
+        font-size: 3.4rem;
+    }
+
+    .play-icon-circle {
+        width: 100px;
+        height: 100px;
+    }
+
+    .play-svg {
+        width: 38px;
+        height: 38px;
+    }
+}
+
+@media (max-width: 650px) {
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .journey-subtitle p {
+        font-size: 1.05rem;
+    }
+}

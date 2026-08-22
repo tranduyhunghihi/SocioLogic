@@ -1,0 +1,177 @@
+/* ==========================================================================
+   SECTION 6 - TƯƠNG LAI SOCIOLOGIC KIẾN TẠO (VERTICAL 3-CARD STACKED LAYOUT)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Be+Vietnam+Pro:wght@600;700;800;900&display=swap');
+
+:root {
+    --color-bg-white: #FFFFFF;
+    --color-blue-primary: #0066FF;
+    --color-text-dark: #0F172A;
+    --font-main: 'Plus Jakarta Sans', 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--color-bg-white);
+    color: var(--color-text-dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.section-6-wrapper {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 60px 40px;
+}
+
+.section-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* 1. Header Row (2 Columns) */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.header-title-left,
+.header-title-right {
+    font-family: var(--font-main);
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: var(--color-blue-primary);
+    letter-spacing: -0.02em;
+}
+
+/* 2. Subtitle Paragraph */
+.future-subtitle {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 0 20px;
+}
+
+.future-subtitle p {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    line-height: 1.65;
+    letter-spacing: -0.01em;
+}
+
+/* 3. Vertical Stacked 3 Value Cards Container */
+.values-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 780px;
+    background-color: #121824;
+    border-radius: 28px;
+    padding: 36px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+}
+
+.value-card {
+    background-color: #1A2234;
+    border-radius: 20px;
+    padding: 32px 36px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.value-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+/* Glowing Colored Borders for Each Vertical Card */
+.card-nghi-sau {
+    border: 2px solid #FF6B00;
+}
+
+.card-noi-hay {
+    border: 2px solid #FFAE00;
+}
+
+.card-lam-that {
+    border: 2px solid #00B853;
+}
+
+/* Hide line accents & badges for sleek vertical layout */
+.card-accent-line,
+.card-badge {
+    display: none;
+}
+
+/* Card Titles (Nghĩ sâu, Nói hay, Làm thật) */
+.value-title {
+    font-family: var(--font-main);
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+}
+
+/* Card Description Text */
+.value-desc {
+    font-family: var(--font-main);
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: #A0AEC0;
+    line-height: 1.6;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 900px) {
+    .header-title-left,
+    .header-title-right {
+        font-size: 1.4rem;
+    }
+
+    .values-grid {
+        padding: 24px;
+        border-radius: 22px;
+    }
+
+    .value-card {
+        padding: 24px 28px;
+    }
+
+    .value-title {
+        font-size: 1.5rem;
+    }
+
+    .value-desc {
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 650px) {
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .future-subtitle p {
+        font-size: 1.05rem;
+    }
+}

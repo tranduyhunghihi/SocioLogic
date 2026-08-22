@@ -1,0 +1,144 @@
+/* ==========================================================================
+   FOOTER SECTION - SOCIOLOGIC (CSS STYLING)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Be+Vietnam+Pro:wght@600;700;800;900&family=JetBrains+Mono:wght@500;600&display=swap');
+
+:root {
+    --color-orange-bg: #FF5232;
+    --color-dark-navy: #0F172A;
+    --font-heading: 'Plus Jakarta Sans', 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-heading);
+    background-color: #FFFFFF;
+    color: var(--color-dark-navy);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.footer-wrapper {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 60px 40px;
+}
+
+.footer-container {
+    background-color: var(--color-orange-bg);
+    border-radius: 20px;
+    padding: 90px 50px 30px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 16px 40px rgba(255, 82, 50, 0.15);
+}
+
+/* Main Heading */
+.footer-title {
+    font-family: var(--font-heading);
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: var(--color-dark-navy);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    margin-bottom: 36px;
+    max-width: 900px;
+}
+
+/* Call To Action Button Box */
+.cta-box {
+    margin-bottom: 70px;
+}
+
+.btn-send-wish {
+    background-color: var(--color-dark-navy);
+    color: #FFFFFF;
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    padding: 18px 42px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.2);
+}
+
+.btn-send-wish:hover {
+    transform: scale(1.06);
+    background-color: #1E293B;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.3);
+}
+
+.pencil-icon {
+    width: 20px;
+    height: 20px;
+    fill: #FFFFFF;
+}
+
+/* Bottom Metadata Row (Monospace) */
+.footer-bottom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-family: var(--font-mono);
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--color-dark-navy);
+    opacity: 0.9;
+    border-top: 1px solid rgba(15, 23, 42, 0.08);
+    padding-top: 24px;
+}
+
+.meta-left,
+.meta-right {
+    white-space: nowrap;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1000px) {
+    .footer-title {
+        font-size: 2.4rem;
+    }
+
+    .footer-container {
+        padding: 70px 30px 24px 30px;
+    }
+
+    .btn-send-wish {
+        padding: 16px 36px;
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 700px) {
+    .footer-title {
+        font-size: 1.8rem;
+    }
+
+    .footer-bottom-row {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .meta-left,
+    .meta-right {
+        white-space: normal;
+    }
+}

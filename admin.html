@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Quản Trị & Kiểm Duyệt Lời Chúc | SocioLogic Admin</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <!-- LOGIN MODAL LAYER -->
+    <div id="login-overlay" class="login-overlay">
+        <div class="login-card">
+            <div class="login-badge">
+                <i class="ph-bold ph-shield-check"></i>
+                <span>SOCIO LOGIC ADMIN</span>
+            </div>
+            <h2 class="login-title">Đăng Nhập Quản Trị</h2>
+            <p class="login-subtitle">Vui lòng nhập Mã PIN Admin để truy cập trang kiểm duyệt lời chúc.</p>
+            
+            <form id="admin-login-form" class="login-form">
+                <div class="input-wrapper">
+                    <i class="ph-bold ph-lock-key"></i>
+                    <input type="password" id="admin-pin-input" placeholder="Nhập mã PIN Admin..." autocomplete="current-password" autofocus required>
+                </div>
+                <div id="login-error" class="login-error hidden">
+                    <i class="ph-bold ph-warning-circle"></i>
+                    <span>Mã PIN không đúng. Vui lòng thử lại!</span>
+                </div>
+                <button type="submit" class="btn-login">
+                    <span>Xác Nhận Đăng Nhập</span>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </button>
+            </form>
+            <div class="login-footer-tip">
+                <span><i class="ph-bold ph-info"></i> Mã PIN mặc định: <strong>sociologic2026</strong></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN DASHBOARD CONTENT (HIDDEN BEFORE LOGIN) -->
+    <div id="admin-dashboard" class="dashboard-wrapper hidden">
+
+        <!-- Top Navigation Bar -->
+        <header class="admin-navbar">
+            <div class="navbar-left">
+                <div class="admin-brand">
+                    <i class="ph-bold ph-shield-star"></i>
+                    <span>SocioLogic Moderation</span>
+                </div>
+            </div>
+            <div class="navbar-right">
+                <button id="btn-refresh" class="btn-nav" title="Tải lại danh sách">
+                    <i class="ph-bold ph-arrows-clockwise"></i>
+                    <span>Làm mới</span>
+                </button>
+                <a href="index.html" class="btn-nav" target="_blank" title="Xem trang chủ">
+                    <i class="ph-bold ph-arrow-square-out"></i>
+                    <span>Trang Chủ</span>
+                </a>
+                <button id="btn-logout" class="btn-nav btn-logout" title="Đăng xuất">
+                    <i class="ph-bold ph-sign-out"></i>
+                    <span>Đăng xuất</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Dashboard Body Container -->
+        <main class="dashboard-body">
+
+            <!-- Stats & Filter Header -->
+            <div class="dashboard-header-panel">
+                <div class="panel-info">
+                    <h1 class="panel-title">Kiểm Duyệt & Quản Lý Lời Chúc</h1>
+                    <p class="panel-desc">Theo dõi tất cả lời chúc của khách ghé thăm và xóa các nội dung vi phạm.</p>
+                </div>
+
+                <div class="stats-counter-badge">
+                    <div class="stat-icon"><i class="ph-bold ph-cards"></i></div>
+                    <div class="stat-meta">
+                        <span class="stat-num" id="stat-total-wishes">0</span>
+                        <span class="stat-label">Tổng số lời chúc</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search & Control Bar -->
+            <div class="control-bar">
+                <div class="search-box">
+                    <i class="ph-bold ph-magnifying-glass"></i>
+                    <input type="text" id="search-input" placeholder="Tìm kiếm theo tên người chúc...">
+                </div>
+                <div class="control-tip">
+                    <i class="ph-bold ph-lightning"></i>
+                    <span>Thao tác xóa trên MongoDB Backend sẽ lập tức gỡ lời chúc khỏi trang chủ trong 0.1s!</span>
+                </div>
+            </div>
+
+            <!-- Wishes Grid Container -->
+            <div id="wishes-admin-grid" class="wishes-admin-grid">
+                <!-- Cards will be populated dynamically -->
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Server Configuration & Admin Script -->
+    <script src="server-config.js"></script>
+    <script src="admin.js"></script>
+
+</body>
+</html>
