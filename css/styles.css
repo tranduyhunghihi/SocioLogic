@@ -240,6 +240,7 @@ body {
     cursor: grabbing !important;
     box-shadow: 0 22px 40px -8px rgba(0, 0, 0, 0.5) !important;
     transition: none !important;
+    z-index: 9999 !important;
 }
 
 /* Pin element on top of card */
