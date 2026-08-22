@@ -1,7 +1,6 @@
 /**
  * SOCIO LOGIC FRONTEND CONFIGURATION
- * Configure your Node.js + Express + MongoDB Backend API URL here.
- * For production (Render/Railway), replace the URL below with your public server URL.
+ * Single source of truth for Backend API URL.
  */
 window.BACKEND_CONFIG = {
     apiUrl: "https://sociologic.onrender.com"
