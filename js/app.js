@@ -146,31 +146,42 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
 
-                // Preserve position of actively dragged card if drag just finished
-                if (draggedCard) {
-                    const activeId = draggedCard.dataset.id;
-                    const activeCardObj = wishes.find(w => w.id === activeId);
-                    if (activeCardObj) {
-                        const targetObj = combinedWishes.find(w => w.id === activeId);
-                        if (targetObj) {
-                            targetObj.x = activeCardObj.x;
-                            targetObj.y = activeCardObj.y;
-                        }
-                    }
-                }
-
-                // Check if card IDs and positions are identical to avoid unnecessary renders
-                if (silent && wishes.length === combinedWishes.length) {
-                    const wishesMap = new Map(combinedWishes.map(w => [w.id, w]));
-                    let changed = false;
+                if (silent) {
+                    // SILENT POLLING PROTECTION:
+                    // Preserve existing cards' local (x, y, zIndex) positions on screen so dragging/digging is NEVER reverted!
+                    const currentWishesMap = new Map(wishes.map(w => [w.id, w]));
+                    
+                    let hasNewOrDeleted = false;
+                    
+                    // Check if any card was deleted or if any new card arrived
+                    const incomingIds = new Set(combinedWishes.map(w => w.id));
                     for (let w of wishes) {
-                        const inc = wishesMap.get(w.id);
-                        if (!inc || inc.x !== w.x || inc.y !== w.y) {
-                            changed = true;
+                        if (!incomingIds.has(w.id)) {
+                            hasNewOrDeleted = true; // Card deleted by admin
                             break;
                         }
                     }
-                    if (!changed) return;
+                    if (!hasNewOrDeleted) {
+                        for (let w of combinedWishes) {
+                            if (!currentWishesMap.has(w.id)) {
+                                hasNewOrDeleted = true; // New card arrived
+                                break;
+                            }
+                        }
+                    }
+
+                    // If no new cards arrived and no cards were deleted, DO NOTHING! Keep local board 100% untouched!
+                    if (!hasNewOrDeleted) return;
+
+                    // If new cards arrived or cards were deleted, preserve local coordinates for existing cards
+                    combinedWishes.forEach((inc) => {
+                        const localCard = currentWishesMap.get(inc.id);
+                        if (localCard) {
+                            inc.x = localCard.x;
+                            inc.y = localCard.y;
+                            inc.zIndex = localCard.zIndex;
+                        }
+                    });
                 }
 
                 wishes = combinedWishes;
@@ -909,9 +920,9 @@ document.addEventListener('DOMContentLoaded', () => {
             droppedCard.classList.remove('dragging');
 
             window.removeEventListener('mousemove', onMove, { capture: true });
-            window.removeEventListener('mouseup', onEnd, { capture: true });
-            window.removeEventListener('touchmove', onMove, { capture: true });
-            window.removeEventListener('touchend', onEnd, { capture: true });
+            window.removeEventListener('mouseup', onEnd);
+            window.removeEventListener('touchmove', onMove);
+            window.removeEventListener('touchend', onEnd);
             window.removeEventListener('blur', onEnd);
 
             draggedCard = null;
