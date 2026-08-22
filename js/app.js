@@ -127,17 +127,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     timestamp: Number(item.timestamp)
                 }));
 
-                // Preserve local positions if actively dragging or if already rendered
+                // Check if card IDs and positions are identical to avoid unnecessary renders
                 if (silent && wishes.length === incomingWishes.length) {
                     const wishesMap = new Map(incomingWishes.map(w => [w.id, w]));
                     let changed = false;
                     for (let w of wishes) {
-                        if (!wishesMap.has(w.id)) {
+                        const inc = wishesMap.get(w.id);
+                        if (!inc || inc.x !== w.x || inc.y !== w.y) {
                             changed = true;
                             break;
                         }
                     }
-                    if (!changed) return; // Keep existing cards untouched if count/IDs match
+                    if (!changed) return;
                 }
 
                 wishes = incomingWishes;
@@ -168,7 +169,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.error('MongoDB POST failed:', response.status);
                 } else {
                     console.log('✅ Wish saved to MongoDB Backend!');
-                    await fetchWishesFromMongoDB(true);
                 }
             } catch (err) {
                 console.error('MongoDB POST exception:', err);
@@ -582,7 +582,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================================================
-    // COMPOSITE & POST WISH FLOW (RANDOM PLACEMENT ACROSS ENTIRE BOARD)
+    // COMPOSITE & POST WISH FLOW (SMOOTH FLICKER-FREE RENDERING)
     // ==========================================================================
     async function postWish() {
         const name = editorNameInput.value.trim() || 'Người chúc ẩn danh';
@@ -592,8 +592,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Calculate random coordinates anywhere across the entire visible board area
         const boardRect = wishBoard.getBoundingClientRect();
-        const cardWidth = 250;
-        const cardHeight = 250;
+        const cardWidth = window.innerWidth <= 640 ? 190 : 240;
+        const cardHeight = window.innerWidth <= 640 ? 190 : 240;
 
         const margin = 20;
         const maxSpawnX = Math.max(margin, boardRect.width - cardWidth - margin);
@@ -618,21 +618,16 @@ document.addEventListener('DOMContentLoaded', () => {
             timestamp: Date.now()
         };
 
-        // 1. Hide Overlay (Fade Out)
+        // 1. Hide Overlay immediately
         editorOverlay.classList.add('hidden');
 
-        // 2. Save wish to Cloud / Local
-        setTimeout(async () => {
-            wishes.push(newWish);
-            renderBoardCards();
-            await saveWishes(newWish);
+        // 2. Add to local state & render smoothly without innerHTML wipe
+        wishes.push(newWish);
+        updateWishCount();
+        renderBoardCards();
 
-            // Animate new card
-            const newCardEl = document.querySelector(`.wish-card[data-id="${newWish.id}"]`);
-            if (newCardEl) {
-                newCardEl.classList.add('card-new-anim');
-            }
-        }, 150);
+        // 3. Save wish to MongoDB in background
+        saveWishes(newWish);
     }
 
     async function generateMergedCardImage() {
@@ -714,11 +709,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================================================
-    // RENDER WISH CARDS ON THE BOARD
+    // RENDER WISH CARDS ON THE BOARD (SMOOTH DOM RECONCILIATION)
     // ==========================================================================
     function renderBoardCards() {
-        wishBoard.innerHTML = '';
-
         if (wishes.length === 0) {
             wishBoard.innerHTML = `
                 <div class="empty-board-notice">
@@ -729,16 +722,30 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        const emptyNotice = wishBoard.querySelector('.empty-board-notice');
+        if (emptyNotice) {
+            emptyNotice.remove();
+        }
+
         const boardRect = wishBoard.getBoundingClientRect();
         const boardWidth = boardRect.width || window.innerWidth || 800;
         const boardHeight = boardRect.height || window.innerHeight || 600;
 
-        wishes.forEach((wish) => {
-            const card = document.createElement('div');
-            card.className = 'wish-card';
-            card.dataset.id = wish.id;
+        const wishIds = new Set(wishes.map(w => w.id));
 
-            // Responsive card sizing check
+        // Remove DOM cards that were deleted
+        const existingCards = wishBoard.querySelectorAll('.wish-card');
+        existingCards.forEach(cardEl => {
+            const id = cardEl.dataset.id;
+            if (!wishIds.has(id)) {
+                cardEl.remove();
+            }
+        });
+
+        // Reconcile and render each wish card
+        wishes.forEach((wish) => {
+            let card = wishBoard.querySelector(`.wish-card[data-id="${wish.id}"]`);
+
             const cardWidth = window.innerWidth <= 640 ? 190 : 240;
             const cardHeight = window.innerWidth <= 640 ? 190 : 240;
 
@@ -751,23 +758,34 @@ document.addEventListener('DOMContentLoaded', () => {
             clampedX = Math.max(10, Math.min(maxAllowedX, clampedX));
             clampedY = Math.max(10, Math.min(maxAllowedY, clampedY));
 
-            card.style.left = `${clampedX}px`;
-            card.style.top = `${clampedY}px`;
-            card.style.transform = `rotate(${wish.rotation || 0}deg)`;
-            card.style.zIndex = wish.zIndex || 1;
+            if (!card) {
+                card = document.createElement('div');
+                card.className = 'wish-card';
+                card.dataset.id = wish.id;
+                card.style.left = `${clampedX}px`;
+                card.style.top = `${clampedY}px`;
+                card.style.transform = `rotate(${wish.rotation || 0}deg)`;
+                card.style.zIndex = wish.zIndex || 1;
 
-            card.innerHTML = `
-                <div class="wish-card-header">
-                    <i class="ph-bold ph-user-circle"></i>
-                    <span class="wish-card-author">${escapeHtml(wish.author)}</span>
-                </div>
-                <div class="wish-card-body">
-                    <img class="wish-card-canvas-preview" src="${wish.imageData}" alt="Lời chúc của ${escapeHtml(wish.author)}" draggable="false">
-                </div>
-            `;
+                card.innerHTML = `
+                    <div class="wish-card-header">
+                        <i class="ph-bold ph-user-circle"></i>
+                        <span class="wish-card-author">${escapeHtml(wish.author)}</span>
+                    </div>
+                    <div class="wish-card-body">
+                        <img class="wish-card-canvas-preview" src="${wish.imageData}" alt="Lời chúc của ${escapeHtml(wish.author)}" draggable="false">
+                    </div>
+                `;
 
-            wishBoard.appendChild(card);
-            makeCardDraggableAndClickable(card, wish);
+                wishBoard.appendChild(card);
+                makeCardDraggableAndClickable(card, wish);
+            } else {
+                if (!card.classList.contains('dragging')) {
+                    card.style.left = `${clampedX}px`;
+                    card.style.top = `${clampedY}px`;
+                    card.style.zIndex = wish.zIndex || card.style.zIndex;
+                }
+            }
         });
     }
 
