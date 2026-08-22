@@ -9,7 +9,8 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/sociologic';
+const MONGODB_URI = process.env.MONGODB_URI;
+const ADMIN_PIN = process.env.ADMIN_PIN || 'sociologic2026';
 
 // Middlewares - Full Unrestricted CORS for local file:// and web origins
 app.use(cors({
@@ -36,9 +37,13 @@ const wishSchema = new mongoose.Schema({
 const Wish = mongoose.model('Wish', wishSchema);
 
 // MongoDB Database Connection
-mongoose.connect(MONGODB_URI)
-    .then(() => console.log('🍃 Connected to MongoDB Database Successfully!'))
-    .catch(err => console.warn('⚠️ MongoDB Connection Notice (Server in offline mode):', err.message));
+if (MONGODB_URI) {
+    mongoose.connect(MONGODB_URI)
+        .then(() => console.log('🍃 Connected to MongoDB Database Successfully!'))
+        .catch(err => console.warn('⚠️ MongoDB Connection Notice:', err.message));
+} else {
+    console.error('⚠️ MONGODB_URI không được tìm thấy trong file .env!');
+}
 
 // API ROUTES
 
