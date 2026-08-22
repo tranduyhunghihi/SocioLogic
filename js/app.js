@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (localCard) {
                             inc.x = localCard.x;
                             inc.y = localCard.y;
-                            inc.zIndex = localCard.zIndex;
+                            inc.zIndex = Math.max(inc.zIndex || 1, localCard.zIndex || 1);
                             inc.isUserPositioned = localCard.isUserPositioned;
                         }
                     });
@@ -243,6 +243,19 @@ document.addEventListener('DOMContentLoaded', () => {
         if (wishCountEl) {
             wishCountEl.textContent = `${wishes.length} lời chúc`;
         }
+    }
+
+    // Helper: Find highest z-index across all cards on screen
+    function getHighestCardZIndex() {
+        let highest = maxZIndex;
+        const allCards = wishBoard.querySelectorAll('.wish-card');
+        allCards.forEach(c => {
+            const z = parseInt(c.style.zIndex) || 0;
+            if (z > highest && z < 9000) {
+                highest = z;
+            }
+        });
+        return highest;
     }
 
     // ==========================================================================
@@ -702,7 +715,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const targetRot = Math.floor(Math.random() * 24) - 12; // -12 to +12 deg
         
-        maxZIndex++;
+        maxZIndex = getHighestCardZIndex() + 1;
 
         const newWish = {
             id: 'wish-' + Date.now(),
@@ -886,6 +899,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 targetY = Math.max(10, Math.min(maxAllowedY, targetY));
             }
 
+            const activeZIndex = Number(wish.zIndex) || 1;
+
             if (!card) {
                 card = document.createElement('div');
                 card.className = 'wish-card';
@@ -893,7 +908,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.style.left = `${targetX}px`;
                 card.style.top = `${targetY}px`;
                 card.style.transform = `rotate(${wish.rotation || 0}deg)`;
-                card.style.zIndex = wish.zIndex || 1;
+                card.style.zIndex = activeZIndex;
 
                 card.innerHTML = `
                     <div class="wish-card-header">
@@ -911,14 +926,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!card.classList.contains('dragging')) {
                     card.style.left = `${targetX}px`;
                     card.style.top = `${targetY}px`;
-                    card.style.zIndex = wish.zIndex || card.style.zIndex;
+                    
+                    // Maintain highest z-index so released card stays permanently on top
+                    const currentStyleZ = parseInt(card.style.zIndex) || 1;
+                    const finalZ = Math.max(currentStyleZ, activeZIndex);
+                    card.style.zIndex = finalZ;
+                    wish.zIndex = finalZ;
                 }
             }
         });
     }
 
     // ==========================================================================
-    // INTERACTIVE CARD PHYSICS (ACCURATE CLICK & DRAG)
+    // INTERACTIVE CARD PHYSICS (ACCURATE CLICK & DRAG & PERMANENT Z-INDEX LAYER)
     // ==========================================================================
     function makeCardDraggableAndClickable(cardEl) {
         const onStart = (e) => {
@@ -939,10 +959,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const wishId = cardEl.dataset.id;
             const currentWish = wishes.find(w => String(w.id) === String(wishId));
 
-            maxZIndex++;
-            cardEl.style.zIndex = maxZIndex;
+            // Boost zIndex to be higher than all cards on screen
+            const nextZIndex = getHighestCardZIndex() + 5;
+            maxZIndex = nextZIndex;
+            cardEl.style.zIndex = nextZIndex;
             if (currentWish) {
-                currentWish.zIndex = maxZIndex;
+                currentWish.zIndex = nextZIndex;
             }
 
             cardEl.classList.add('dragging');
@@ -1003,17 +1025,26 @@ document.addEventListener('DOMContentLoaded', () => {
             droppedCard.classList.remove('dragging');
 
             window.removeEventListener('mousemove', onMove, { capture: true });
-            window.removeEventListener('mouseup', onEnd, { capture: true });
-            window.removeEventListener('touchmove', onMove, { capture: true });
-            window.removeEventListener('touchend', onEnd, { capture: true });
+            window.removeEventListener('mouseup', onEnd);
+            window.removeEventListener('touchmove', onMove);
+            window.removeEventListener('touchend', onEnd);
             window.removeEventListener('blur', onEnd);
 
             draggedCard = null;
 
             const wishId = cardEl.dataset.id;
+            const currentWish = wishes.find(w => String(w.id) === String(wishId));
+
+            // Ensure dropped card stays permanently on top of all other cards!
+            const finalZIndex = getHighestCardZIndex() + 5;
+            maxZIndex = finalZIndex;
+            droppedCard.style.zIndex = finalZIndex;
+
+            if (currentWish) {
+                currentWish.zIndex = finalZIndex;
+            }
 
             if (cardDragDistance > 5) {
-                const currentWish = wishes.find(w => String(w.id) === String(wishId));
                 if (currentWish) {
                     await saveCardPosition(currentWish);
                 }
