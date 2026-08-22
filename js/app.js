@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (e) {}
 
     let wishes = [];
+    let pendingWishesMap = new Map(); // Protection against polling race conditions
+    let isPostingWish = false;
+
     let activeTool = 'pen'; // 'pen', 'text', 'image', 'eraser'
     let activeColor = '#1E293B'; // Default dark color
     let isDrawing = false;
@@ -108,6 +111,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function fetchWishesFromMongoDB(silent = false) {
+        // Skip background polling update while user is actively posting a wish
+        if (isPostingWish && silent) return;
+
         const apiUrl = getApiUrl();
         try {
             const response = await fetch(`${apiUrl}/api/wishes`);
@@ -127,9 +133,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     timestamp: Number(item.timestamp)
                 }));
 
+                // Clear items from pending map if present in incoming data from server
+                incomingWishes.forEach(item => {
+                    pendingWishesMap.delete(item.id);
+                });
+
+                // Merge any local pending wishes that haven't been written to DB yet
+                const combinedWishes = [...incomingWishes];
+                pendingWishesMap.forEach((pendingWish) => {
+                    if (!combinedWishes.some(w => w.id === pendingWish.id)) {
+                        combinedWishes.push(pendingWish);
+                    }
+                });
+
                 // Check if card IDs and positions are identical to avoid unnecessary renders
-                if (silent && wishes.length === incomingWishes.length) {
-                    const wishesMap = new Map(incomingWishes.map(w => [w.id, w]));
+                if (silent && wishes.length === combinedWishes.length) {
+                    const wishesMap = new Map(combinedWishes.map(w => [w.id, w]));
                     let changed = false;
                     for (let w of wishes) {
                         const inc = wishesMap.get(w.id);
@@ -141,14 +160,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (!changed) return;
                 }
 
-                wishes = incomingWishes;
+                wishes = combinedWishes;
                 updateWishCount();
                 renderBoardCards();
             }
         } catch (err) {
             console.error('MongoDB fetch error:', err);
             if (!silent) {
-                wishes = [];
+                wishes = Array.from(pendingWishesMap.values());
                 updateWishCount();
                 renderBoardCards();
             }
@@ -169,6 +188,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.error('MongoDB POST failed:', response.status);
                 } else {
                     console.log('✅ Wish saved to MongoDB Backend!');
+                    // Trigger a silent sync after POST completion
+                    setTimeout(() => fetchWishesFromMongoDB(true), 500);
                 }
             } catch (err) {
                 console.error('MongoDB POST exception:', err);
@@ -582,7 +603,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================================================
-    // COMPOSITE & POST WISH FLOW (SMOOTH FLICKER-FREE RENDERING)
+    // COMPOSITE & POST WISH FLOW (PERFECT FLICKER-FREE PROTECTION)
     // ==========================================================================
     async function postWish() {
         const name = editorNameInput.value.trim() || 'Người chúc ẩn danh';
@@ -618,6 +639,10 @@ document.addEventListener('DOMContentLoaded', () => {
             timestamp: Date.now()
         };
 
+        // Activate protection flags to prevent background polling from overriding local state
+        isPostingWish = true;
+        pendingWishesMap.set(newWish.id, newWish);
+
         // 1. Hide Overlay immediately
         editorOverlay.classList.add('hidden');
 
@@ -627,7 +652,8 @@ document.addEventListener('DOMContentLoaded', () => {
         renderBoardCards();
 
         // 3. Save wish to MongoDB in background
-        saveWishes(newWish);
+        await saveWishes(newWish);
+        isPostingWish = false;
     }
 
     async function generateMergedCardImage() {
@@ -869,9 +895,9 @@ document.addEventListener('DOMContentLoaded', () => {
             cardEl.classList.remove('dragging');
 
             window.removeEventListener('mousemove', onMove, { capture: true });
-            window.removeEventListener('mouseup', onEnd, { capture: true });
-            window.removeEventListener('touchmove', onMove, { capture: true });
-            window.removeEventListener('touchend', onEnd, { capture: true });
+            window.removeEventListener('mouseup', onEnd);
+            window.removeEventListener('touchmove', onMove);
+            window.removeEventListener('touchend', onEnd);
             window.removeEventListener('blur', onEnd);
 
             if (cardDragDistance > 5) {
