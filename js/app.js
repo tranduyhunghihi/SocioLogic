@@ -95,10 +95,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log('🍃 Connected to Node.js + MongoDB Backend API!');
                 await fetchWishesFromMongoDB();
 
-                // Polling for realtime updates across clients every 2 seconds
+                // Polling for realtime updates across clients every 4 seconds (Optimized for 60fps performance)
                 setInterval(() => {
                     fetchWishesFromMongoDB(true);
-                }, 2000);
+                }, 4000);
                 return;
             }
         } catch (e) {
@@ -938,10 +938,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================================================
-    // INTERACTIVE CARD PHYSICS (ACCURATE CLICK & DRAG & PERMANENT Z-INDEX LAYER)
+    // INTERACTIVE CARD PHYSICS (120 FPS HIGH PERFORMANCE DRAGGING)
     // ==========================================================================
     function makeCardDraggableAndClickable(cardEl) {
         let isDraggingThisCard = false;
+        let cachedWishObj = null;
+        let cachedBoardWidth = 800;
+        let cachedBoardHeight = 600;
+        let cachedCardWidth = 250;
+        let cachedCardHeight = 250;
+        let rAFId = null;
 
         const onStart = (e) => {
             // Only primary left mouse click or touch
@@ -949,6 +955,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             isDraggingThisCard = true;
             draggedCard = cardEl;
+
             const clientX = e.touches ? e.touches[0].clientX : e.clientX;
             const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
@@ -959,20 +966,28 @@ document.addEventListener('DOMContentLoaded', () => {
             initialCardTop = parseFloat(cardEl.style.top) || 0;
             cardDragDistance = 0;
 
+            // Cache bounding dimensions once per drag start to avoid CPU reflows
+            const bRect = wishBoard.getBoundingClientRect();
+            const cRect = cardEl.getBoundingClientRect();
+            cachedBoardWidth = bRect.width || window.innerWidth || 800;
+            cachedBoardHeight = bRect.height || window.innerHeight || 600;
+            cachedCardWidth = cRect.width || 240;
+            cachedCardHeight = cRect.height || 240;
+
             const wishId = cardEl.dataset.id;
-            const currentWish = wishes.find(w => String(w.id) === String(wishId));
+            cachedWishObj = wishes.find(w => String(w.id) === String(wishId)) || null;
 
             // Boost zIndex to be higher than all cards on screen
             const nextZIndex = getHighestCardZIndex() + 5;
             maxZIndex = nextZIndex;
             cardEl.style.zIndex = nextZIndex;
-            if (currentWish) {
-                currentWish.zIndex = nextZIndex;
+            if (cachedWishObj) {
+                cachedWishObj.zIndex = nextZIndex;
             }
 
             cardEl.classList.add('dragging');
 
-            window.addEventListener('mousemove', onMove);
+            window.addEventListener('mousemove', onMove, { passive: false });
             window.addEventListener('mouseup', onEnd);
             window.addEventListener('touchmove', onMove, { passive: false });
             window.addEventListener('touchend', onEnd);
@@ -1000,30 +1015,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
             }
 
-            const boardRect = wishBoard.getBoundingClientRect();
-            const cardRect = cardEl.getBoundingClientRect();
-
             let newX = initialCardLeft + deltaX;
             let newY = initialCardTop + deltaY;
 
-            newX = Math.max(-cardRect.width * 0.4, Math.min(boardRect.width - cardRect.width * 0.6, newX));
-            newY = Math.max(-cardRect.height * 0.4, Math.min(boardRect.height - cardRect.height * 0.6, newY));
+            newX = Math.max(-cachedCardWidth * 0.4, Math.min(cachedBoardWidth - cachedCardWidth * 0.6, newX));
+            newY = Math.max(-cachedCardHeight * 0.4, Math.min(cachedBoardHeight - cachedCardHeight * 0.6, newY));
 
-            cardEl.style.left = `${newX}px`;
-            cardEl.style.top = `${newY}px`;
+            // Sync visual movement via requestAnimationFrame matching display refresh rate
+            if (rAFId) cancelAnimationFrame(rAFId);
+            rAFId = requestAnimationFrame(() => {
+                cardEl.style.left = `${newX}px`;
+                cardEl.style.top = `${newY}px`;
+            });
 
-            const wishId = cardEl.dataset.id;
-            const currentWish = wishes.find(w => String(w.id) === String(wishId));
-            if (currentWish) {
-                currentWish.x = Math.round(newX);
-                currentWish.y = Math.round(newY);
-                currentWish.isUserPositioned = true;
+            if (cachedWishObj) {
+                cachedWishObj.x = Math.round(newX);
+                cachedWishObj.y = Math.round(newY);
+                cachedWishObj.isUserPositioned = true;
             }
         };
 
         const onEnd = async (e) => {
             if (!isDraggingThisCard) return;
             isDraggingThisCard = false;
+
+            if (rAFId) cancelAnimationFrame(rAFId);
 
             cardEl.classList.remove('dragging');
 
@@ -1035,21 +1051,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
             draggedCard = null;
 
-            const wishId = cardEl.dataset.id;
-            const currentWish = wishes.find(w => String(w.id) === String(wishId));
-
             // Ensure dropped card stays permanently on top of all other cards!
             const finalZIndex = getHighestCardZIndex() + 5;
             maxZIndex = finalZIndex;
             cardEl.style.zIndex = finalZIndex;
 
-            if (currentWish) {
-                currentWish.zIndex = finalZIndex;
+            if (cachedWishObj) {
+                cachedWishObj.zIndex = finalZIndex;
             }
 
             if (cardDragDistance > 5) {
-                if (currentWish) {
-                    await saveCardPosition(currentWish);
+                if (cachedWishObj) {
+                    await saveCardPosition(cachedWishObj);
                 }
             }
         };

@@ -224,16 +224,17 @@ body {
     box-shadow: var(--card-shadow);
     cursor: grab;
     touch-action: none; /* Crucial for touch drag on mobile */
-    transition: box-shadow 0.2s ease, transform 0.15s ease-out;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     border: 1px solid rgba(0, 0, 0, 0.08);
+    will-change: left, top;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .wish-card:hover {
     box-shadow: 0 16px 32px -6px rgba(0, 0, 0, 0.4);
-    filter: brightness(1.02);
 }
 
 .wish-card.dragging {
