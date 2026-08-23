@@ -111,8 +111,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function fetchWishesFromMongoDB(silent = false) {
-        // Skip background polling update while user is actively posting a wish OR dragging a card
-        if (silent && (isPostingWish || draggedCard !== null)) return;
+        // Skip background polling update if tab is hidden, user is posting a wish, or actively dragging a card
+        if (silent && (document.hidden || isPostingWish || draggedCard !== null)) return;
 
         const apiUrl = getApiUrl();
         try {
@@ -300,6 +300,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function setupEventListeners() {
         window.addEventListener('resize', () => {
             resizeCanvas();
+        });
+
+        // Tab visibility change auto-sync when returning to active tab
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden && isBackendOnline) {
+                fetchWishesFromMongoDB(true);
+            }
         });
 
         // Open/Close Editor
