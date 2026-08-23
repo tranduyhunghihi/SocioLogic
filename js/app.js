@@ -941,10 +941,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // INTERACTIVE CARD PHYSICS (ACCURATE CLICK & DRAG & PERMANENT Z-INDEX LAYER)
     // ==========================================================================
     function makeCardDraggableAndClickable(cardEl) {
+        let isDraggingThisCard = false;
+
         const onStart = (e) => {
             // Only primary left mouse click or touch
             if (e.type === 'mousedown' && e.button !== 0) return;
 
+            isDraggingThisCard = true;
             draggedCard = cardEl;
             const clientX = e.touches ? e.touches[0].clientX : e.clientX;
             const clientY = e.touches ? e.touches[0].clientY : e.clientY;
@@ -969,15 +972,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
             cardEl.classList.add('dragging');
 
-            window.addEventListener('mousemove', onMove, { capture: true });
-            window.addEventListener('mouseup', onEnd, { capture: true });
-            window.addEventListener('touchmove', onMove, { passive: false, capture: true });
-            window.addEventListener('touchend', onEnd, { capture: true });
+            window.addEventListener('mousemove', onMove);
+            window.addEventListener('mouseup', onEnd);
+            window.addEventListener('touchmove', onMove, { passive: false });
+            window.addEventListener('touchend', onEnd);
             window.addEventListener('blur', onEnd);
         };
 
         const onMove = (e) => {
-            if (!draggedCard || draggedCard !== cardEl) return;
+            if (!isDraggingThisCard || draggedCard !== cardEl) return;
 
             // Instant drop if mouse button is no longer held down
             if (e.type === 'mousemove' && e.buttons !== 1) {
@@ -1019,12 +1022,12 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const onEnd = async (e) => {
-            if (!draggedCard) return;
+            if (!isDraggingThisCard) return;
+            isDraggingThisCard = false;
 
-            const droppedCard = cardEl;
-            droppedCard.classList.remove('dragging');
+            cardEl.classList.remove('dragging');
 
-            window.removeEventListener('mousemove', onMove, { capture: true });
+            window.removeEventListener('mousemove', onMove);
             window.removeEventListener('mouseup', onEnd);
             window.removeEventListener('touchmove', onMove);
             window.removeEventListener('touchend', onEnd);
@@ -1038,7 +1041,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Ensure dropped card stays permanently on top of all other cards!
             const finalZIndex = getHighestCardZIndex() + 5;
             maxZIndex = finalZIndex;
-            droppedCard.style.zIndex = finalZIndex;
+            cardEl.style.zIndex = finalZIndex;
 
             if (currentWish) {
                 currentWish.zIndex = finalZIndex;
@@ -1048,13 +1051,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (currentWish) {
                     await saveCardPosition(currentWish);
                 }
-            } else {
-                openReaderModalByWishId(wishId);
             }
         };
 
         cardEl.addEventListener('mousedown', onStart);
         cardEl.addEventListener('touchstart', onStart, { passive: false });
+
+        // Dedicated click handler attached directly to cardEl for exact card ID modal opening
+        cardEl.addEventListener('click', (e) => {
+            if (cardDragDistance > 5) return; // Prevent opening modal if dragged
+            const wishId = cardEl.dataset.id;
+            openReaderModalByWishId(wishId);
+        });
     }
 
     function openReaderModalByWishId(wishId) {
