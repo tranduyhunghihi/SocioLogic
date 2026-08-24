@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tổng Thể SocioLogic - All Sections Interactive Preview</title>
+    <meta name="description" content="Trang tổng hợp tất cả các section của SocioLogic với đầy đủ hiệu ứng tương tác, animation và bảng lời chúc.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@600;700;800;900&family=Itim&family=Patrick+Hand&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Stylesheets for all sections -->
+    <link rel="stylesheet" href="css/section_mix.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/section4.css">
+    <link rel="stylesheet" href="css/section5A.css">
+    <link rel="stylesheet" href="css/section5B.css">
+    <link rel="stylesheet" href="css/section6.css">
+    <link rel="stylesheet" href="css/footer.css">
+
+    <style>
+        /* Smooth Scrolling Page Container */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #FFFFFF;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================================================
+         1. SECTION MIX (SECTION 1 HERO & SECTION 2 SPEECH BUBBLE BANNERS)
+         ========================================================================== -->
+    <div class="scroll-experience-wrapper">
+
+        <!-- SECTION 1: HERO LAYOUT -->
+        <section class="section-1-wrapper" id="section1">
+            <div class="hero-layout">
+                
+                <!-- Left Column: Logo, Title & Action Pill -->
+                <div class="hero-col-left">
+                    <div class="brand-logo">
+                        <img src="assets/section1/logo.png" alt="SocioLogic Logo" class="brand-logo-img">
+                    </div>
+
+                    <h1 class="hero-title">Hành Trình</h1>
+                    <a href="#loi-chuc" class="pill-btn">Hành Trang Tranh Biện</a>
+                </div>
+
+                <!-- Middle Column: Graphic Number 2 -->
+                <div class="hero-col-center" id="heroNumber2">
+                    <img src="assets/section1/number2.png" alt="Con số 2 bằng các bong bóng ý kiến" class="number-2-img">
+                </div>
+
+                <!-- Right Column: Title & Action Pill -->
+                <div class="hero-col-right">
+                    <h1 class="hero-title">Năm</h1>
+                    <a href="#section-6" class="pill-btn">Vững Bước Tương Lai</a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 2: DESTINATION BANNER ROW AREA -->
+        <section class="section-banner" id="section2">
+
+            <!-- FLEXBOX BUBBLES ROW MATCHING SECTION2.HTML -->
+            <div class="bubbles-viewport">
+                <div class="bubbles-row state-num-2" id="bubblesContainer">
+
+                    <!-- FLOATING DOODLES -->
+                    <img src="assets/section2/icon_podium.png" alt="Podium Icon" class="img-doodle doodle-top-1">
+                    <img src="assets/section2/icon_book.png" alt="Book Icon" class="img-doodle doodle-top-2">
+                    <img src="assets/section2/icon_question.png" alt="Question Icon" class="img-doodle doodle-top-3">
+                    <img src="assets/section2/icon_medal.png" alt="Medal Icon" class="img-doodle doodle-top-4">
+                    <img src="assets/section2/icon_medal.png" alt="Medal Icon" class="img-doodle doodle-top-5">
+
+                    <img src="assets/section2/icon_question.png" alt="Question Icon" class="img-doodle doodle-bottom-1">
+                    <img src="assets/section2/icon_pencil.png" alt="Pencil Icon" class="img-doodle doodle-bottom-2">
+                    <img src="assets/section2/icon_book.png" alt="Book Icon" class="img-doodle doodle-bottom-3">
+                    <img src="assets/section2/icon_book.png" alt="Book Icon" class="img-doodle doodle-bottom-4">
+
+                    <!-- 10 INDIVIDUAL SPEECH BUBBLES WITH ANIMATED FACES & EYES -->
+
+                    <!-- 1. Letter S (Blue) -->
+                    <div class="bubble-item letter-1-S" data-index="1" title="S">
+                        <img src="assets/section2/1_S_blue.png" alt="Bubble S" class="bubble-bg">
+                        <span class="bubble-letter">S</span>
+                        <div class="bubble-face face-S">
+                            <div class="eyes-row">
+                                <div class="eye eye-left"><div class="pupil pupil-always"></div></div>
+                                <div class="mouth mouth-svg-smile">
+                                    <svg viewBox="0 0 26 20" width="25" height="18">
+                                        <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                    </svg>
+                                </div>
+                                <div class="eye eye-right"><div class="pupil pupil-always"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Letter o (Cyan) -->
+                    <div class="bubble-item letter-2-o" data-index="2" title="o">
+                        <img src="assets/section2/2_o_cyan.png" alt="Bubble o" class="bubble-bg">
+                        <span class="bubble-letter">o</span>
+                        <div class="bubble-face face-o1">
+                            <div class="eyes-row">
+                                <div class="eye eye-left">
+                                    <div class="pupil"></div>
+                                    <div class="eye-idle-svg">
+                                        <svg viewBox="0 0 22 14" width="22" height="14">
+                                            <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="mouth mouth-svg-open">
+                                    <svg viewBox="0 0 24 24" width="20" height="20">
+                                        <circle cx="12" cy="12" r="9.5" fill="#FFFFFF" />
+                                    </svg>
+                                </div>
+                                <div class="eye eye-right">
+                                    <div class="pupil"></div>
+                                    <div class="eye-idle-svg">
+                                        <svg viewBox="0 0 22 14" width="22" height="14">
+                                            <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Letter c (Green) -->
+                    <div class="bubble-item letter-3-c" data-index="3" title="c">
+                        <img src="assets/section2/3_c_green.png" alt="Bubble c" class="bubble-bg">
+                        <span class="bubble-letter">c</span>
+                        <div class="bubble-face face-c1">
+                            <div class="eyes-row">
+                                <div class="eye eye-left">
+                                    <div class="pupil"></div>
+                                    <div class="eye-idle-svg">
+                                        <svg viewBox="0 0 22 14" width="22" height="14">
+                                            <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="mouth mouth-svg-w">
+                                    <svg viewBox="0 0 34 22" width="32" height="20">
+                                        <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="eye eye-right">
+                                    <div class="pupil"></div>
+                                    <div class="eye-idle-svg">
+                                        <svg viewBox="0 0 22 14" width="22" height="14">
+                                            <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Letter i (Yellow) -->
+                    <div class="bubble-item letter-4-i" data-index="4" title="i">
+                        <img src="assets/section2/4_i_yellow.png" alt="Bubble i" class="bubble-bg">
+                        <span class="bubble-letter">i</span>
+                        <div class="bubble-face face-i1">
+                            <div class="eyes-row eyes-vertical">
+                                <div class="eye eye-top"><div class="pupil pupil-always"></div></div>
+                                <div class="mouth mouth-svg-sideways-smile">
+                                    <svg viewBox="0 0 20 26" width="18" height="24">
+                                        <path d="M 4 4 C 16 4, 16 22, 4 22" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                    </svg>
+                                </div>
+                                <div class="eye eye-bottom"><div class="pupil pupil-always"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Letter o (Orange) -->
+                    <div class="bubble-item letter-5-o" data-index="5" title="o">
+                        <img src="assets/section2/5_o_orange.png" alt="Bubble o" class="bubble-bg">
+                        <span class="bubble-letter">o</span>
+                        <div class="bubble-face face-o2">
+                            <div class="eyes-row">
+                                <div class="eye eye-left">
+                                    <div class="pupil"></div>
+                                    <div class="eye-idle-svg">
+                                        <svg viewBox="0 0 18 18" width="18" height="18">
+                                            <path d="M 3 3 L 15 9 L 3 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="mouth mouth-svg-smile">
+                                    <svg viewBox="0 0 26 20" width="25" height="18">
+                                        <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                    </svg>
+                                </div>
+                                <div class="eye eye-right">
+                                    <div class="pupil"></div>
+                                    <div class="eye-idle-svg">
+                                        <svg viewBox="0 0 18 18" width="18" height="18">
+                                            <path d="M 15 3 L 3 9 L 15 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6. Letter L (Red-Orange) -->
+                    <div class="bubble-item letter-6-L" data-index="6" title="L">
+                        <img src="assets/section2/6_L_redorange.png" alt="Bubble L" class="bubble-bg">
+                        <span class="bubble-letter">L</span>
+                        <div class="bubble-face face-L">
+                            <div class="eyes-row">
+                                <div class="eye eye-left">
+                                    <div class="pupil"></div>
+                                    <div class="eye-idle-svg">
+                                        <svg viewBox="0 0 18 18" width="18" height="18">
+                                            <path d="M 3 3 L 15 9 L 3 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="mouth mouth-svg-w">
+                                    <svg viewBox="0 0 34 22" width="32" height="20">
+                                        <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="eye eye-right">
+                                    <div class="pupil"></div>
+                                    <div class="eye-idle-svg">
+                                        <svg viewBox="0 0 18 18" width="18" height="18">
+                                            <path d="M 15 3 L 3 9 L 15 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 7. Letter o (Pink) -->
+                    <div class="bubble-item letter-7-o" data-index="7" title="o">
+                        <img src="assets/section2/7_o_pink.png" alt="Bubble o" class="bubble-bg">
+                        <span class="bubble-letter">o</span>
+                        <div class="bubble-face face-o3">
+                            <div class="eyes-row">
+                                <div class="eye eye-left"><div class="pupil pupil-always"></div></div>
+                                <div class="mouth mouth-svg-smile">
+                                    <svg viewBox="0 0 26 20" width="25" height="18">
+                                        <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                    </svg>
+                                </div>
+                                <div class="eye eye-right"><div class="pupil pupil-always"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 8. Letter g (Grey) -->
+                    <div class="bubble-item letter-8-g" data-index="8" title="g">
+                        <img src="assets/section2/8_g_grey.png" alt="Bubble g" class="bubble-bg">
+                        <span class="bubble-letter">g</span>
+                        <div class="bubble-face face-g">
+                            <div class="eyes-row">
+                                <div class="eye eye-left"><div class="pupil pupil-always"></div></div>
+                                <div class="mouth mouth-svg-o">
+                                    <svg viewBox="0 0 20 20" width="18" height="18">
+                                        <circle cx="10" cy="10" r="7.5" fill="none" stroke="#FFFFFF" stroke-width="5" />
+                                    </svg>
+                                </div>
+                                <div class="eye eye-right"><div class="pupil pupil-always"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 9. Letter i (Cyan) -->
+                    <div class="bubble-item letter-9-i" data-index="9" title="i">
+                        <img src="assets/section2/9_i_cyan.png" alt="Bubble i" class="bubble-bg">
+                        <span class="bubble-letter">i</span>
+                        <div class="bubble-face face-i2">
+                            <div class="eyes-row eyes-vertical">
+                                <div class="eye eye-top"><div class="pupil pupil-always"></div></div>
+                                <div class="mouth mouth-svg-sideways-smile">
+                                    <svg viewBox="0 0 20 26" width="18" height="24">
+                                        <path d="M 4 4 C 16 4, 16 22, 4 22" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                    </svg>
+                                </div>
+                                <div class="eye eye-bottom"><div class="pupil pupil-always"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 10. Letter c (Blue) -->
+                    <div class="bubble-item letter-10-c" data-index="10" title="c">
+                        <img src="assets/section2/10_c_blue.png" alt="Bubble c" class="bubble-bg">
+                        <span class="bubble-letter">c</span>
+                        <div class="bubble-face face-c2">
+                            <div class="eyes-row">
+                                <div class="eye eye-left">
+                                    <div class="pupil"></div>
+                                    <div class="eye-idle-svg">
+                                        <svg viewBox="0 0 22 14" width="22" height="14">
+                                            <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="mouth mouth-svg-smile">
+                                    <svg viewBox="0 0 26 20" width="25" height="18">
+                                        <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                    </svg>
+                                </div>
+                                <div class="eye eye-right">
+                                    <div class="pupil"></div>
+                                    <div class="eye-idle-svg">
+                                        <svg viewBox="0 0 22 14" width="22" height="14">
+                                            <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- ==========================================================================
+         2. LỜI CHÚC (INTERACTIVE WISH BOARD SECTION)
+         ========================================================================== -->
+    <div id="loi-chuc" style="padding-top: 40px;">
+        <!-- App Header Section -->
+        <header class="app-header">
+            <div class="header-badge">
+                <i class="ph-bold ph-sparkle"></i>
+                <span>Góc Lời Chúc Tương Tác</span>
+            </div>
+            <h1 class="header-title">Gửi Lời Chúc, Sẻ Chia Yêu Thương ✨</h1>
+            <p class="header-subtitle">
+                Nhấp và kéo thả các thiệp để bới tìm lời chúc. Bạn cũng có thể vẽ, viết văn bản và chèn hình ảnh để gửi lời chúc của riêng mình!
+            </p>
+            
+            <div class="header-actions">
+                <button id="btn-open-editor" class="btn-primary">
+                    <i class="ph-bold ph-pencil-simple-line"></i>
+                    <span>Viết Lời Chúc</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Interactive Wish Board Section -->
+        <main class="board-wrapper">
+            <div class="board-instructions">
+                <span><i class="ph-bold ph-hand-grabbing"></i> Dùng chuột / ngón tay kéo để bới các card bên dưới</span>
+                <span><i class="ph-bold ph-cursor-click"></i> Click vào card để đọc nội dung</span>
+            </div>
+            
+            <div id="wish-board" class="wish-board">
+                <!-- Cards will be dynamically inserted here by js/app.js -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Overlay Editor Modal (Khi bấm "Viết lời chúc") -->
+    <div id="editor-overlay" class="overlay hidden">
+        <div class="editor-card-container">
+            <div class="editor-card">
+                <!-- Header Controls -->
+                <div class="editor-header">
+                    <div class="author-input-wrapper">
+                        <i class="ph-bold ph-user-circle"></i>
+                        <input type="text" id="editor-name" placeholder="Tên của bạn (ví dụ: Minh Anh)" maxlength="30">
+                    </div>
+                    <button type="button" id="btn-close-editor" class="icon-btn" title="Đóng">
+                        <i class="ph-bold ph-x"></i>
+                    </button>
+                </div>
+
+                <!-- Canvas Work Area -->
+                <div id="editor-canvas-container" class="editor-canvas-container">
+                    <canvas id="drawing-canvas"></canvas>
+                    <div id="eraser-cursor-ring" class="eraser-ring hidden"></div>
+                    <div id="editor-elements-layer" class="editor-elements-layer"></div>
+                </div>
+
+                <!-- Floating Toolbar Controls -->
+                <div class="editor-toolbar">
+                    <div class="tool-group">
+                        <button type="button" class="tool-btn active" data-tool="pen" title="Vẽ bằng bút">
+                            <i class="ph-bold ph-pencil-simple"></i>
+                        </button>
+                        <button type="button" class="tool-btn" data-tool="text" title="Thêm văn bản">
+                            <i class="ph-bold ph-text-t"></i>
+                        </button>
+                        <label class="tool-btn tool-btn-upload" title="Tải ảnh lên">
+                            <i class="ph-bold ph-image-square"></i>
+                            <input type="file" id="btn-add-image" accept="image/*" class="hidden-file-input">
+                        </label>
+                        <button type="button" class="tool-btn" data-tool="eraser" title="Tẩy / Xóa">
+                            <i class="ph-bold ph-eraser"></i>
+                        </button>
+                    </div>
+
+                    <div class="tool-divider"></div>
+
+                    <!-- Color Swatches -->
+                    <div class="color-palette">
+                        <button type="button" class="color-swatch active" data-color="#1E293B" style="background-color: #1E293B;"></button>
+                        <button type="button" class="color-swatch" data-color="#EF4444" style="background-color: #EF4444;"></button>
+                        <button type="button" class="color-swatch" data-color="#F59E0B" style="background-color: #F59E0B;"></button>
+                        <button type="button" class="color-swatch" data-color="#10B981" style="background-color: #10B981;"></button>
+                        <button type="button" class="color-swatch" data-color="#0066FF" style="background-color: #0066FF;"></button>
+                        <button type="button" class="color-swatch" data-color="#8B5CF6" style="background-color: #8B5CF6;"></button>
+                        <button type="button" class="color-swatch" data-color="#EC4899" style="background-color: #EC4899;"></button>
+                    </div>
+                </div>
+
+                <!-- Footer Action Controls -->
+                <div class="editor-footer">
+                    <button type="button" id="btn-cancel-editor" class="btn-secondary">Hủy bỏ</button>
+                    <button type="button" id="btn-post-wish" class="btn-post">
+                        <i class="ph-bold ph-paper-plane-tilt"></i>
+                        <span>Đăng Lời Chúc</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reader Detail Modal Overlay -->
+    <div id="reader-overlay" class="overlay hidden">
+        <div class="reader-modal-container">
+            <button type="button" id="btn-close-reader" class="icon-btn reader-close-btn" title="Đóng">
+                <i class="ph-bold ph-x"></i>
+            </button>
+            <div id="reader-card-content" class="reader-card-content">
+                <!-- Clicked card content renders dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         3. SECTION 4 (HÀNH TRÌNH CỦA SOCIOLOGIC)
+         ========================================================================== -->
+    <section class="section-4-wrapper" id="section-4">
+        <div class="section-container">
+
+            <!-- 1. Header Row (2 Columns) -->
+            <div class="section-header">
+                <h2 class="header-title-left">A. Hành Trình Của SocioLogic</h2>
+                <h2 class="header-title-right">Từ Những Ngày Đầu Tiên Đến Hôm Nay.</h2>
+            </div>
+
+            <!-- 2. Stat Cards Grid (4 Cards with Count-Up Animation) -->
+            <div class="stats-grid">
+                
+                <!-- Card 1: Số Học Sinh -->
+                <div class="stat-card">
+                    <div class="stat-number-box">
+                        <span class="stat-number" data-target="10000">0</span><span class="stat-plus">+</span>
+                    </div>
+                    <p class="stat-label">Số Học Sinh</p>
+                </div>
+
+                <!-- Card 2: Trường Học -->
+                <div class="stat-card">
+                    <div class="stat-number-box">
+                        <span class="stat-number" data-target="10000">0</span><span class="stat-plus">+</span>
+                    </div>
+                    <p class="stat-label">Trường Học</p>
+                </div>
+
+                <!-- Card 3: Giải Đấu -->
+                <div class="stat-card">
+                    <div class="stat-number-box">
+                        <span class="stat-number" data-target="10000">0</span><span class="stat-plus">+</span>
+                    </div>
+                    <p class="stat-label">Giải Đấu</p>
+                </div>
+
+                <!-- Card 4: Dự Án -->
+                <div class="stat-card">
+                    <div class="stat-number-box">
+                        <span class="stat-number" data-target="10000">0</span><span class="stat-plus">+</span>
+                    </div>
+                    <p class="stat-label">Dự Án</p>
+                </div>
+
+            </div>
+
+            <!-- 3. Subtitle Paragraph -->
+            <div class="journey-subtitle">
+                <p>Hai Năm Không Chỉ Được Đo Bằng Những Con Số, Mà Bằng Những Lớp Học,</p>
+                <p>Những Cuộc Thi, Những Chuyến Đi, Những Lần Thử Sức Và Vô Vàn Khoảnh Khắc</p>
+                <p>Thầy Cô, Phụ Huynh Và Các Con Đã Cùng Nhau Trải Qua.</p>
+            </div>
+
+            <!-- 4. Video Player Placeholder Container -->
+            <div class="video-container" id="videoContainer">
+                <div class="video-placeholder-bg"></div>
+                <div class="play-button-overlay" id="playBtn">
+                    <div class="play-icon-circle">
+                        <svg viewBox="0 0 24 24" class="play-svg">
+                            <path d="M 8 5 V 19 L 19 12 Z" fill="#D4D8DD" />
+                        </svg>
+                    </div>
+                </div>
+                <!-- Video Element Placeholder -->
+                <video id="journeyVideo" controls class="video-element" poster="">
+                    <source src="assets/section4/journey_video.mp4" type="video/mp4">
+                    Trình duyệt của bạn không hỗ trợ thẻ video.
+                </video>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         4. SECTION 5A (NHỮNG GƯƠNG MẶT SOCIOLOGIC)
+         ========================================================================== -->
+    <section class="section-5a-wrapper" id="section-5a">
+        <div class="section-container">
+
+            <!-- 1. Header Row (2 Columns) -->
+            <div class="section-header">
+                <h2 class="header-title-left">B. Những Gương Mặt SocioLogic</h2>
+                <h2 class="header-title-right">Cộng Đồng Là Những Con Người Cùng Kiến Tạo.</h2>
+            </div>
+
+            <!-- 2. Word 1 Banner: SOCIO (5 Speech Bubbles) -->
+            <div class="bubbles-row row-socio">
+                
+                <div class="bubble-item letter-1-S" title="S">
+                    <img src="assets/section5/1_S_blue.png" alt="Bubble S" class="bubble-bg">
+                    <span class="bubble-letter">S</span>
+                </div>
+
+                <div class="bubble-item letter-2-o" title="o">
+                    <img src="assets/section5/2_o_cyan.png" alt="Bubble o" class="bubble-bg">
+                    <span class="bubble-letter">o</span>
+                </div>
+
+                <div class="bubble-item letter-3-c" title="c">
+                    <img src="assets/section5/3_c_green.png" alt="Bubble c" class="bubble-bg">
+                    <span class="bubble-letter">c</span>
+                </div>
+
+                <div class="bubble-item letter-4-i" title="i">
+                    <img src="assets/section5/4_i_yellow.png" alt="Bubble i" class="bubble-bg">
+                    <span class="bubble-letter">i</span>
+                </div>
+
+                <div class="bubble-item letter-5-o" title="o">
+                    <img src="assets/section5/5_o_orange.png" alt="Bubble o" class="bubble-bg">
+                    <span class="bubble-letter">o</span>
+                </div>
+
+            </div>
+
+            <!-- 3. Subtitle Paragraph 1 -->
+            <div class="subtitle-block block-1">
+                <p>Là Cộng Đồng, Là Những Con Người Cùng Gặp Gỡ Và Kiến Tạo</p>
+                <p>Nên Không Gian Của Tư Duy Và Tiếng Nói.</p>
+            </div>
+
+            <!-- 4. Word 2 Banner: LOGIC (5 Speech Bubbles) -->
+            <div class="bubbles-row row-logic">
+
+                <div class="bubble-item letter-6-L" title="L">
+                    <img src="assets/section5/6_L_redorange.png" alt="Bubble L" class="bubble-bg">
+                    <span class="bubble-letter">L</span>
+                </div>
+
+                <div class="bubble-item letter-7-o" title="o">
+                    <img src="assets/section5/7_o_pink.png" alt="Bubble o" class="bubble-bg">
+                    <span class="bubble-letter">o</span>
+                </div>
+
+                <div class="bubble-item letter-8-g" title="g">
+                    <img src="assets/section5/8_g_grey.png" alt="Bubble g" class="bubble-bg">
+                    <span class="bubble-letter">g</span>
+                </div>
+
+                <div class="bubble-item letter-9-i" title="i">
+                    <img src="assets/section5/9_i_cyan.png" alt="Bubble i" class="bubble-bg">
+                    <span class="bubble-letter">i</span>
+                </div>
+
+                <div class="bubble-item letter-10-c" title="c">
+                    <img src="assets/section5/10_c_blue.png" alt="Bubble c" class="bubble-bg">
+                    <span class="bubble-letter">c</span>
+                </div>
+
+            </div>
+
+            <!-- 5. Subtitle Paragraph 2 -->
+            <div class="subtitle-block block-2">
+                <p>Là Sự Liên Kết, Là Khả Năng Đặt Câu Hỏi, Tư Duy Nhìn Nhận Và</p>
+                <p>Kết Nối Những Góc Nhìn Khác Nhau.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         5. SECTION 5B (QUAN ĐIỂM ĐA CHIỀU)
+         ========================================================================== -->
+    <section class="section-5b-wrapper" id="section-5b">
+        <div class="section-container">
+
+            <h2 class="main-title">
+                SocioLogic – Quan điểm đa chiều, vì một cộng đồng đa dạng.
+            </h2>
+
+            <div class="cards-grid">
+
+                <div class="member-card card-1">
+                    <h3 class="card-title">Học sinh</h3>
+                    <p class="card-desc">Những người luôn tò mò, không ngừng khám phá và học hỏi.</p>
+                </div>
+
+                <div class="member-card card-2">
+                    <h3 class="card-title">Huấn luyện viên</h3>
+                    <p class="card-desc">Những người đồng hành và truyền cảm hứng.</p>
+                </div>
+
+                <div class="member-card card-3">
+                    <h3 class="card-title">Phụ huynh</h3>
+                    <p class="card-desc">Những người tin tưởng và cùng con bước đi.</p>
+                </div>
+
+                <div class="member-card card-4">
+                    <h3 class="card-title">Chuyên gia & Đối tác</h3>
+                    <p class="card-desc">Những người chia sẻ tri thức, tư vấn và giúp đỡ định hướng.</p>
+                </div>
+
+                <div class="member-card card-5">
+                    <h3 class="card-title">Tổ chức & Doanh nghiệp</h3>
+                    <p class="card-desc">Những đơn vị đồng hành, bảo trợ và tài trợ phát triển cộng đồng.</p>
+                </div>
+
+                <div class="member-card card-6">
+                    <h3 class="card-title">Cộng đồng</h3>
+                    <p class="card-desc">Những người cùng chia sẻ niềm tin vào một thế hệ biết nghĩ, biết nói, biết hành động.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         6. SECTION 6 (TƯƠNG LAI SOCIOLOGIC KIẾN TẠO)
+         ========================================================================== -->
+    <section class="section-6-wrapper" id="section-6">
+        <div class="section-container">
+
+            <div class="section-header">
+                <h2 class="header-title-left">C. Tương Lai SocioLogic Kiến Tạo</h2>
+                <h2 class="header-title-right">Kiến Tạo Một Xã Hội Có Văn Hoá Tranh Biện.</h2>
+            </div>
+
+            <div class="future-subtitle">
+                <p>Nơi Tư Duy Phản Biện, Đối Thoại Và Khả Năng Lắng Nghe Được Nuôi Dưỡng Từ</p>
+                <p>Gia Đình, Nhà Trường Đến Cộng Đồng — Mang Chuẩn Giáo Dục Quốc Tế Đến</p>
+                <p>Gần Hơn Với Người Trẻ Việt Nam.</p>
+            </div>
+
+            <div class="values-grid">
+
+                <div class="value-card card-nghi-sau">
+                    <div class="card-accent-line accent-orange"></div>
+                    <div class="card-badge badge-orange">01</div>
+                    <h3 class="value-title">Nghĩ sâu</h3>
+                    <p class="value-desc">
+                        Con đặt câu hỏi về những điều tưởng chừng như hiển nhiên, phân tích đa chiều và tư duy dựa trên bằng chứng.
+                    </p>
+                </div>
+
+                <div class="value-card card-noi-hay">
+                    <div class="card-accent-line accent-blue"></div>
+                    <div class="card-badge badge-blue">02</div>
+                    <h3 class="value-title">Nói hay</h3>
+                    <p class="value-desc">
+                        Con tìm thấy tiếng nói của chính mình, bảo vệ những điều mình tin tưởng và tôn trọng sự khác biệt.
+                    </p>
+                </div>
+
+                <div class="value-card card-lam-that">
+                    <div class="card-accent-line accent-green"></div>
+                    <div class="card-badge badge-green">03</div>
+                    <h3 class="value-title">Làm thật</h3>
+                    <p class="value-desc">
+                        Con hiểu thế giới mình đang sống, và tin rằng mình có thể góp phần thay đổi nó.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         7. FOOTER
+         ========================================================================== -->
+    <footer class="footer-wrapper" id="footer">
+        <div class="footer-container">
+
+            <h2 class="footer-title">
+                Cùng viết nên hai năm tiếp theo.
+            </h2>
+
+            <div class="cta-box">
+                <a href="#loi-chuc" class="btn-send-wish" id="btnSendWish" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px;">
+                    <span>Gửi lời chúc của bạn</span>
+                    <svg viewBox="0 0 24 24" class="pencil-icon" fill="currentColor">
+                        <path d="M 3 17.25 V 21 H 6.75 L 17.81 9.94 L 14.06 6.19 L 3 17.25 Z M 20.71 7.04 C 21.1 6.65 21.1 6.02 20.71 5.63 L 18.37 3.29 C 17.98 2.9 17.35 2.9 16.96 3.29 L 15.13 5.12 L 18.88 8.87 L 20.71 7.04 Z"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="footer-bottom-row">
+                <p class="meta-left">SocioLogic – Quan điểm đa chiều, vì một cộng đồng đa dạng.</p>
+                <p class="meta-right">2 năm - 2024-2026</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Scripts for interactive animations and functionality -->
+    <script src="js/server-config.js"></script>
+    <script src="js/section_mix.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/section4.js"></script>
+
+</body>
+</html>
