@@ -110,43 +110,46 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateEyes() {
         ticking = false;
 
-        // ONLY track eyes if faces are active!
-        if (!bubblesContainer.classList.contains('faces-active')) return;
+        const activeRows = document.querySelectorAll('.bubbles-row.faces-active');
+        if (activeRows.length === 0) return;
 
-        bubbleItems.forEach((bubble) => {
-            const rect = bubble.getBoundingClientRect();
-            const bubbleCenterX = rect.left + rect.width / 2;
-            const bubbleCenterY = rect.top + rect.height / 2;
+        activeRows.forEach((row) => {
+            const rowBubbles = row.querySelectorAll('.bubble-item');
+            rowBubbles.forEach((bubble) => {
+                const rect = bubble.getBoundingClientRect();
+                const bubbleCenterX = rect.left + rect.width / 2;
+                const bubbleCenterY = rect.top + rect.height / 2;
 
-            const deltaX = mouseX - bubbleCenterX;
-            const deltaY = mouseY - bubbleCenterY;
-            const distance = Math.hypot(deltaX, deltaY);
+                const deltaX = mouseX - bubbleCenterX;
+                const deltaY = mouseY - bubbleCenterY;
+                const distance = Math.hypot(deltaX, deltaY);
 
-            const pupils = bubble.querySelectorAll('.pupil');
+                const pupils = bubble.querySelectorAll('.pupil');
 
-            if (distance < PROXIMITY_THRESHOLD) {
-                bubble.classList.add('active-near');
+                if (distance < PROXIMITY_THRESHOLD) {
+                    bubble.classList.add('active-near');
 
-                pupils.forEach((pupil) => {
-                    const pupilRect = pupil.getBoundingClientRect();
-                    const pupilCenterX = pupilRect.left + pupilRect.width / 2;
-                    const pupilCenterY = pupilRect.top + pupilRect.height / 2;
+                    pupils.forEach((pupil) => {
+                        const pupilRect = pupil.getBoundingClientRect();
+                        const pupilCenterX = pupilRect.left + pupilRect.width / 2;
+                        const pupilCenterY = pupilRect.top + pupilRect.height / 2;
 
-                    const angle = Math.atan2(mouseY - pupilCenterY, mouseX - pupilCenterX);
-                    const proximityFactor = Math.pow(1 - (distance / PROXIMITY_THRESHOLD), 0.7);
-                    const shift = Math.min(MAX_PUPIL_SHIFT, proximityFactor * MAX_PUPIL_SHIFT);
+                        const angle = Math.atan2(mouseY - pupilCenterY, mouseX - pupilCenterX);
+                        const proximityFactor = Math.pow(1 - (distance / PROXIMITY_THRESHOLD), 0.7);
+                        const shift = Math.min(MAX_PUPIL_SHIFT, proximityFactor * MAX_PUPIL_SHIFT);
 
-                    const shiftX = Math.cos(angle) * shift;
-                    const shiftY = Math.sin(angle) * shift;
+                        const shiftX = Math.cos(angle) * shift;
+                        const shiftY = Math.sin(angle) * shift;
 
-                    pupil.style.transform = `translate(${shiftX.toFixed(2)}px, ${shiftY.toFixed(2)}px)`;
-                });
-            } else {
-                bubble.classList.remove('active-near');
-                pupils.forEach((pupil) => {
-                    pupil.style.transform = 'translate(0px, 0px)';
-                });
-            }
+                        pupil.style.transform = `translate(${shiftX.toFixed(2)}px, ${shiftY.toFixed(2)}px)`;
+                    });
+                } else {
+                    bubble.classList.remove('active-near');
+                    pupils.forEach((pupil) => {
+                        pupil.style.transform = 'translate(0px, 0px)';
+                    });
+                }
+            });
         });
     }
 
