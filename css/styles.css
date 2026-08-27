@@ -318,7 +318,7 @@ body {
     background: rgba(15, 23, 42, 0.75);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    z-index: 1000;
+    z-index: 999999 !important;
     display: flex;
     align-items: center;
     justify-content: center;
