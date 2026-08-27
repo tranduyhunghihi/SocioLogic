@@ -7,13 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================================================
     // APP STATE & CONSTANTS
     // ==========================================================================
-    const STORAGE_KEY = 'socio_logic_wishes_v1';
+    const CACHE_STORAGE_KEY = 'socio_logic_wishes_cache_v2';
     
-    // Clear legacy localStorage cache to prevent old sample cards from appearing
-    try {
-        localStorage.removeItem(STORAGE_KEY);
-    } catch (e) {}
-
     let wishes = [];
     let pendingWishesMap = new Map(); // Protection against polling race conditions
     let isPostingWish = false;
@@ -68,12 +63,133 @@ document.addEventListener('DOMContentLoaded', () => {
     const readerCardContent = document.getElementById('reader-card-content');
 
     // ==========================================================================
-    // INITIALIZATION & BACKEND API CONNECTION
+    // INITIALIZATION & INSTANT PRE-RENDER
     // ==========================================================================
     function init() {
         resizeCanvas();
         setupEventListeners();
+
+        // 1. INSTANT 0MS PRE-RENDER: Load from local cache or starter samples immediately!
+        loadInitialWishesInstantly();
+
+        // 2. PARALLEL ASYNC BACKEND SYNC: Connect to MongoDB in background without blocking UI
         initBackendDatabase();
+    }
+
+    function createSampleWishCanvasData(text, textColor, authorName) {
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = 480;
+        tempCanvas.height = 360;
+        const tCtx = tempCanvas.getContext('2d');
+
+        tCtx.fillStyle = '#FFFFFF';
+        tCtx.fillRect(0, 0, 480, 360);
+
+        // Grid lines pattern
+        tCtx.strokeStyle = 'rgba(226, 232, 240, 0.6)';
+        tCtx.lineWidth = 1;
+        for (let x = 0; x < 480; x += 30) {
+            tCtx.beginPath();
+            tCtx.moveTo(x, 0);
+            tCtx.lineTo(x, 360);
+            tCtx.stroke();
+        }
+        for (let y = 0; y < 360; y += 30) {
+            tCtx.beginPath();
+            tCtx.moveTo(0, y);
+            tCtx.lineTo(480, y);
+            tCtx.stroke();
+        }
+
+        // Title / Wish Text
+        tCtx.fillStyle = textColor;
+        tCtx.font = 'bold 30px "Patrick Hand", "Plus Jakarta Sans", sans-serif';
+        tCtx.textAlign = 'center';
+        tCtx.textBaseline = 'middle';
+
+        const words = text.split(' ');
+        let line = '';
+        let lines = [];
+        for (let n = 0; n < words.length; n++) {
+            let testLine = line + words[n] + ' ';
+            let metrics = tCtx.measureText(testLine);
+            if (metrics.width > 400 && n > 0) {
+                lines.push(line);
+                line = words[n] + ' ';
+            } else {
+                line = testLine;
+            }
+        }
+        lines.push(line);
+
+        const startY = 180 - ((lines.length - 1) * 22);
+        lines.forEach((l, i) => {
+            tCtx.fillText(l.trim(), 240, startY + (i * 42));
+        });
+
+        return tempCanvas.toDataURL('image/png');
+    }
+
+    function loadInitialWishesInstantly() {
+        try {
+            const cachedData = localStorage.getItem(CACHE_STORAGE_KEY);
+            if (cachedData) {
+                const parsed = JSON.parse(cachedData);
+                if (Array.isArray(parsed) && parsed.length > 0) {
+                    wishes = parsed;
+                    updateWishCount();
+                    renderBoardCards();
+                    return;
+                }
+            }
+        } catch (e) {
+            console.warn('Cache read warning:', e);
+        }
+
+        // Fallback: Instant starter wishes for first-time visitors
+        wishes = [
+            {
+                id: 'wish-starter-1',
+                author: 'SocioLogic Team',
+                imageData: createSampleWishCanvasData('Chúc mừng SocioLogic 2 Năm Kiến Tạo & Rực Rỡ! 🌟✨', '#0066FF', 'SocioLogic Team'),
+                x: 100,
+                y: 50,
+                rotation: -4,
+                zIndex: 10,
+                timestamp: Date.now() - 100000
+            },
+            {
+                id: 'wish-starter-2',
+                author: 'Minh Anh',
+                imageData: createSampleWishCanvasData('Chúc SocioLogic ngày càng phát triển, vươn xa hơn nữa! 🚀❤️', '#EC4899', 'Minh Anh'),
+                x: 450,
+                y: 110,
+                rotation: 5,
+                zIndex: 11,
+                timestamp: Date.now() - 50000
+            },
+            {
+                id: 'wish-starter-3',
+                author: 'Thành Nam',
+                imageData: createSampleWishCanvasData('Nghĩ sâu - Nói hay - Làm thật! Yêu SocioLogic nhiều! 🎓🔥', '#10B981', 'Thành Nam'),
+                x: 780,
+                y: 60,
+                rotation: -3,
+                zIndex: 12,
+                timestamp: Date.now() - 20000
+            }
+        ];
+
+        updateWishCount();
+        renderBoardCards();
+    }
+
+    function saveWishesToCache() {
+        try {
+            if (wishes && wishes.length > 0) {
+                localStorage.setItem(CACHE_STORAGE_KEY, JSON.stringify(wishes));
+            }
+        } catch (e) {}
     }
 
     function getApiUrl() {
@@ -87,27 +203,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function initBackendDatabase() {
-        const apiUrl = getApiUrl();
-        try {
-            const res = await fetch(`${apiUrl}/api/health`);
-            if (res.ok) {
-                isBackendOnline = true;
-                console.log('🍃 Connected to Node.js + MongoDB Backend API!');
-                await fetchWishesFromMongoDB();
+        // Parallel non-blocking fetch from backend
+        fetchWishesFromMongoDB();
 
-                // Polling for realtime updates across clients every 4 seconds (Optimized for 60fps performance)
-                setInterval(() => {
-                    fetchWishesFromMongoDB(true);
-                }, 4000);
-                return;
-            }
-        } catch (e) {
-            console.warn('Backend server not online (MongoDB offline mode):', e);
-        }
-
-        wishes = [];
-        updateWishCount();
-        renderBoardCards();
+        // Polling for realtime updates across clients every 4 seconds
+        setInterval(() => {
+            fetchWishesFromMongoDB(true);
+        }, 4000);
     }
 
     async function fetchWishesFromMongoDB(silent = false) {
@@ -122,6 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
 
             if (Array.isArray(data)) {
+                isBackendOnline = true;
                 const incomingWishes = data.map(item => ({
                     id: String(item.id),
                     author: String(item.author),
@@ -185,23 +288,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 }
 
-                wishes = combinedWishes;
-                updateWishCount();
-                renderBoardCards();
+                if (combinedWishes.length > 0) {
+                    wishes = combinedWishes;
+                    saveWishesToCache();
+                    updateWishCount();
+                    renderBoardCards();
+                }
             }
         } catch (err) {
-            console.error('MongoDB fetch error:', err);
-            if (!silent) {
-                wishes = Array.from(pendingWishesMap.values());
-                updateWishCount();
-                renderBoardCards();
-            }
+            console.warn('MongoDB fetch notice (using instant pre-rendered cards):', err);
         }
     }
 
     async function saveWishes(newWish = null) {
         const apiUrl = getApiUrl();
         if (newWish) {
+            saveWishesToCache();
             try {
                 const response = await fetch(`${apiUrl}/api/wishes`, {
                     method: 'POST',
@@ -223,6 +325,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function saveCardPosition(wishData) {
+        saveWishesToCache();
         const apiUrl = getApiUrl();
         try {
             await fetch(`${apiUrl}/api/wishes/${wishData.id}/position`, {
@@ -745,6 +848,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 2. Add to local state & render smoothly without innerHTML wipe
         wishes.push(newWish);
+        saveWishesToCache();
         updateWishCount();
         renderBoardCards();
 
@@ -835,7 +939,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // RENDER WISH CARDS ON THE BOARD (PC/MOBILE BALANCED DISTRIBUTION)
     // ==========================================================================
     function renderBoardCards() {
-        if (wishes.length === 0) {
+        if (!wishes || wishes.length === 0) {
             wishBoard.innerHTML = `
                 <div class="empty-board-notice">
                     <i class="ph-bold ph-cards"></i>
