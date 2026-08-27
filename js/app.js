@@ -622,12 +622,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function addTextElement(initialText = '') {
         const textWrapper = document.createElement('div');
         textWrapper.className = 'card-element text-element';
-        textWrapper.style.left = '50px';
-        textWrapper.style.top = '50px';
+        textWrapper.style.left = '40px';
+        textWrapper.style.top = '40px';
 
         const truncatedInitial = initialText ? initialText.substring(0, 150) : '';
 
         textWrapper.innerHTML = `
+            <div class="element-drag-handle" title="Nhấp giữ để kéo di chuyển"><i class="ph-bold ph-dots-six-vertical"></i> Kéo di chuyển</div>
             <div class="card-element-text-content" contenteditable="true" data-placeholder="Nhập lời chúc..." style="color: ${activeColor};">${escapeHtml(truncatedInitial)}</div>
             <button type="button" class="element-delete-btn" title="Xóa"><i class="ph-bold ph-x"></i></button>
         `;
@@ -714,6 +715,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 imgWrapper.style.top = '40px';
 
                 imgWrapper.innerHTML = `
+                    <div class="element-drag-handle" title="Nhấp giữ để kéo di chuyển"><i class="ph-bold ph-dots-six-vertical"></i> Kéo di chuyển</div>
                     <img src="${compressedDataUrl}" class="card-element-image" alt="Uploaded element" draggable="false">
                     <button type="button" class="element-delete-btn" title="Xóa"><i class="ph-bold ph-x"></i></button>
                 `;
@@ -734,6 +736,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function makeElementDraggable(el) {
         const onStart = (e) => {
+            if (e.target.classList.contains('element-delete-btn') || e.target.closest('.element-delete-btn')) return;
+
+            // If user is currently editing text inside contenteditable div, allow text selection unless dragged from handle/border
+            if (e.target.classList.contains('card-element-text-content') && document.activeElement === e.target && !e.target.closest('.element-drag-handle')) {
+                return;
+            }
+
             activeDraggedElement = el;
             const clientX = e.touches ? e.touches[0].clientX : e.clientX;
             const clientY = e.touches ? e.touches[0].clientY : e.clientY;
@@ -775,16 +784,8 @@ document.addEventListener('DOMContentLoaded', () => {
             document.removeEventListener('touchend', onEnd);
         };
 
-        el.addEventListener('mousedown', (e) => {
-            if (!e.target.classList.contains('card-element-text-content') && !e.target.classList.contains('element-delete-btn')) {
-                onStart(e);
-            }
-        });
-        el.addEventListener('touchstart', (e) => {
-            if (!e.target.classList.contains('card-element-text-content') && !e.target.classList.contains('element-delete-btn')) {
-                onStart(e);
-            }
-        }, { passive: false });
+        el.addEventListener('mousedown', onStart);
+        el.addEventListener('touchstart', onStart, { passive: false });
     }
 
     // ==========================================================================
