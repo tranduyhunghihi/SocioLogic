@@ -705,9 +705,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 compressCanvas.width = width;
                 compressCanvas.height = height;
                 const cCtx = compressCanvas.getContext('2d');
+
+                // Fill solid white background first so transparent PNGs never turn black
+                cCtx.fillStyle = '#FFFFFF';
+                cCtx.fillRect(0, 0, width, height);
                 cCtx.drawImage(img, 0, 0, width, height);
 
-                const compressedDataUrl = compressCanvas.toDataURL('image/jpeg', 0.85);
+                const isPng = file.type === 'image/png';
+                const compressedDataUrl = isPng ? compressCanvas.toDataURL('image/png') : compressCanvas.toDataURL('image/jpeg', 0.85);
 
                 const imgWrapper = document.createElement('div');
                 imgWrapper.className = 'card-element image-element';
