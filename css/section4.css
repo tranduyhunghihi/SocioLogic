@@ -57,7 +57,7 @@ body {
 .section-4-wrapper .header-title-left,
 .section-4-wrapper .header-title-right {
     font-family: var(--font-main);
-    font-size: 1.45rem;
+    font-size: 1.65rem;
     font-weight: 800;
     color: var(--color-blue-primary);
     letter-spacing: -0.02em;
@@ -67,7 +67,7 @@ body {
 .section-4-wrapper .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+    gap: 20px;
     width: 100%;
     margin-bottom: 50px;
     box-sizing: border-box;
@@ -75,8 +75,8 @@ body {
 
 .section-4-wrapper .stat-card {
     background-color: var(--color-card-bg);
-    border-radius: 20px;
-    padding: 35px 12px;
+    border-radius: 24px;
+    padding: 42px 14px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -84,20 +84,20 @@ body {
     text-align: center;
     width: 100%;
     box-sizing: border-box;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
     transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
 }
 
 .section-4-wrapper .stat-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.09);
 }
 
 .section-4-wrapper .stat-number-box {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: clamp(2.0rem, 2.8vw, 3.2rem);
+    font-size: clamp(2.4rem, 3.4vw, 4.0rem);
     font-weight: 900;
     color: var(--color-text-dark);
     line-height: 1;
@@ -114,10 +114,10 @@ body {
 }
 
 .section-4-wrapper .stat-label {
-    font-size: clamp(0.95rem, 1.15vw, 1.25rem);
-    font-weight: 700;
+    font-size: clamp(1.15rem, 1.35vw, 1.55rem);
+    font-weight: 800;
     color: var(--color-text-dark);
-    margin-top: 12px;
+    margin-top: 14px;
     line-height: 1.2;
     white-space: nowrap;
 }
@@ -130,7 +130,7 @@ body {
 }
 
 .section-4-wrapper .journey-subtitle p {
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     font-weight: 700;
     color: var(--color-text-dark);
     line-height: 1.65;
