@@ -702,16 +702,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
 
+                const isPng = file.type === 'image/png' || file.name.toLowerCase().endsWith('.png');
+
                 compressCanvas.width = width;
                 compressCanvas.height = height;
                 const cCtx = compressCanvas.getContext('2d');
 
-                // Fill solid white background first so transparent PNGs never turn black
-                cCtx.fillStyle = '#FFFFFF';
-                cCtx.fillRect(0, 0, width, height);
+                if (!isPng) {
+                    // For JPEGs, fill solid white background
+                    cCtx.fillStyle = '#FFFFFF';
+                    cCtx.fillRect(0, 0, width, height);
+                } else {
+                    // For PNGs, clear canvas to preserve 100% true alpha transparency!
+                    cCtx.clearRect(0, 0, width, height);
+                }
+
                 cCtx.drawImage(img, 0, 0, width, height);
 
-                const isPng = file.type === 'image/png';
                 const compressedDataUrl = isPng ? compressCanvas.toDataURL('image/png') : compressCanvas.toDataURL('image/jpeg', 0.85);
 
                 const imgWrapper = document.createElement('div');
