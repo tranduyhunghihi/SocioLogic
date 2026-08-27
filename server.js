@@ -63,9 +63,10 @@ app.post('/api/admin/verify-pin', (req, res) => {
     }
 });
 
-// 2. GET /api/wishes - Fetch all wishes from MongoDB
+// 2. GET /api/wishes - Fetch all wishes from MongoDB (With Edge CDN Cache Header)
 app.get('/api/wishes', async (req, res) => {
     try {
+        res.setHeader('Cache-Control', 'public, max-age=10, s-maxage=60, stale-while-revalidate=300');
         const wishes = await Wish.find().sort({ timestamp: 1 });
         res.json(wishes);
     } catch (err) {
@@ -170,3 +171,9 @@ server.on('error', (err) => {
         console.error('Server error:', err);
     }
 });
+
+// Keep-Alive Self Ping every 10 minutes to prevent Render free instance from sleeping
+setInterval(() => {
+    const serverUrl = process.env.RENDER_EXTERNAL_URL || ('http://localhost:' + PORT);
+    fetch(`${serverUrl}/api/health`).catch(() => {});
+}, 10 * 60 * 1000);
