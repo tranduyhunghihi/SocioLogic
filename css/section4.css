@@ -7,7 +7,8 @@
 :root {
     --color-bg-white: #FFFFFF;
     --color-blue-primary: #0066FF;
-    --color-card-bg: #E2E7EC;
+    --color-section-bg: #F4F6F0;
+    --color-card-bg: #FFFFFF;
     --color-text-dark: #0F172A;
     --font-main: 'Plus Jakarta Sans', 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
 }
@@ -31,16 +32,21 @@ body {
     max-width: 1400px;
     margin: 0 auto;
     padding: 60px 40px;
+    box-sizing: border-box;
 }
 
-.section-container {
+.section-4-wrapper .section-container {
+    background-color: var(--color-section-bg);
+    border-radius: 32px;
+    padding: 60px 45px;
     display: flex;
     flex-direction: column;
     width: 100%;
+    box-sizing: border-box;
 }
 
 /* 1. Header Row (2 Columns) */
-.section-header {
+.section-4-wrapper .section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -48,76 +54,82 @@ body {
     margin-bottom: 40px;
 }
 
-.header-title-left,
-.header-title-right {
+.section-4-wrapper .header-title-left,
+.section-4-wrapper .header-title-right {
     font-family: var(--font-main);
-    font-size: 1.55rem;
+    font-size: 1.45rem;
     font-weight: 800;
     color: var(--color-blue-primary);
     letter-spacing: -0.02em;
 }
 
 /* 2. Stat Cards Grid (4 Cards) */
-.stats-grid {
+.section-4-wrapper .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
+    gap: 16px;
     width: 100%;
     margin-bottom: 50px;
+    box-sizing: border-box;
 }
 
-.stat-card {
+.section-4-wrapper .stat-card {
     background-color: var(--color-card-bg);
     border-radius: 20px;
-    padding: 45px 20px;
+    padding: 35px 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
     transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
 }
 
-.stat-card:hover {
+.section-4-wrapper .stat-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
 }
 
-.stat-number-box {
+.section-4-wrapper .stat-number-box {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 4.2rem;
+    font-size: clamp(2.0rem, 2.8vw, 3.2rem);
     font-weight: 900;
     color: var(--color-text-dark);
     line-height: 1;
     letter-spacing: -0.03em;
+    white-space: nowrap;
 }
 
-.stat-number {
+.section-4-wrapper .stat-number {
     display: inline-block;
 }
 
-.stat-plus {
+.section-4-wrapper .stat-plus {
     display: inline-block;
 }
 
-.stat-label {
-    font-size: 1.4rem;
+.section-4-wrapper .stat-label {
+    font-size: clamp(0.95rem, 1.15vw, 1.25rem);
     font-weight: 700;
     color: var(--color-text-dark);
-    margin-top: 14px;
+    margin-top: 12px;
     line-height: 1.2;
+    white-space: nowrap;
 }
 
 /* 3. Subtitle Paragraph */
-.journey-subtitle {
+.section-4-wrapper .journey-subtitle {
     text-align: center;
     margin-bottom: 45px;
     padding: 0 20px;
 }
 
-.journey-subtitle p {
+.section-4-wrapper .journey-subtitle p {
     font-size: 1.25rem;
     font-weight: 700;
     color: var(--color-text-dark);
@@ -126,11 +138,11 @@ body {
 }
 
 /* 4. Video Player Placeholder Container */
-.video-container {
+.section-4-wrapper .video-container {
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 8.5;
-    background-color: var(--color-card-bg);
+    background-color: #E2E7EC;
     border-radius: 24px;
     overflow: hidden;
     display: flex;
@@ -140,7 +152,7 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
 }
 
-.video-placeholder-bg {
+.section-4-wrapper .video-placeholder-bg {
     position: absolute;
     top: 0;
     left: 0;
@@ -150,7 +162,7 @@ body {
     z-index: 1;
 }
 
-.play-button-overlay {
+.section-4-wrapper .play-button-overlay {
     position: absolute;
     z-index: 10;
     display: flex;
@@ -159,11 +171,11 @@ body {
     transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.video-container:hover .play-button-overlay {
+.section-4-wrapper .video-container:hover .play-button-overlay {
     transform: scale(1.12);
 }
 
-.play-icon-circle {
+.section-4-wrapper .play-icon-circle {
     width: 130px;
     height: 130px;
     background-color: #FFFFFF;
@@ -174,13 +186,13 @@ body {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
-.play-svg {
+.section-4-wrapper .play-svg {
     width: 50px;
     height: 50px;
     margin-left: 6px;
 }
 
-.video-element {
+.section-4-wrapper .video-element {
     position: absolute;
     top: 0;
     left: 0;
@@ -191,54 +203,66 @@ body {
     display: none;
 }
 
-.video-container.playing .video-element {
+.section-4-wrapper .video-container.playing .video-element {
     display: block;
 }
 
-.video-container.playing .play-button-overlay,
-.video-container.playing .video-placeholder-bg {
+.section-4-wrapper .video-container.playing .play-button-overlay,
+.section-4-wrapper .video-container.playing .video-placeholder-bg {
     display: none;
 }
 
 /* Responsive Breakpoints */
 @media (max-width: 1100px) {
-    .header-title-left,
-    .header-title-right {
-        font-size: 1.6rem;
+    .section-4-wrapper {
+        padding: 40px 20px;
     }
 
-    .stats-grid {
+    .section-4-wrapper .section-container {
+        padding: 40px 24px;
+    }
+
+    .section-4-wrapper .header-title-left,
+    .section-4-wrapper .header-title-right {
+        font-size: 1.35rem;
+    }
+
+    .section-4-wrapper .stats-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        gap: 16px;
     }
 
-    .stat-number-box {
-        font-size: 3.4rem;
-    }
-
-    .play-icon-circle {
+    .section-4-wrapper .play-icon-circle {
         width: 100px;
         height: 100px;
     }
 
-    .play-svg {
+    .section-4-wrapper .play-svg {
         width: 38px;
         height: 38px;
     }
 }
 
 @media (max-width: 650px) {
-    .section-header {
+    .section-4-wrapper {
+        padding: 30px 15px;
+    }
+
+    .section-4-wrapper .section-container {
+        padding: 30px 16px;
+    }
+
+    .section-4-wrapper .section-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
     }
 
-    .stats-grid {
+    .section-4-wrapper .stats-grid {
         grid-template-columns: 1fr;
     }
 
-    .journey-subtitle p {
+    .section-4-wrapper .journey-subtitle p {
         font-size: 1.05rem;
     }
 }
