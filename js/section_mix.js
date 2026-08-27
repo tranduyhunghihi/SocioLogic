@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SECTION MIX - EXACT CONVERGING ORIGIN BURST SCRIPT
+   SECTION MIX - BIDIRECTIONAL CONVERGING & PUSH OUT SCROLL ANIMATION
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroNumber2 = document.getElementById('heroNumber2');
     const bubbleItems = document.querySelectorAll('.bubble-item');
     const section2 = document.getElementById('section2');
+
+    let currentState = 'num-2'; // 'num-2' or 'banner-row'
 
     // DYNAMICALLY CALCULATE INDIVIDUAL BUBBLE VECTORS CONVERGING AT number2.png CENTER
     function updateOriginPositions() {
@@ -26,12 +28,81 @@ document.addEventListener('DOMContentLoaded', () => {
             const deltaX = num2CenterX - bubbleCenterX;
             const deltaY = num2CenterY - bubbleCenterY;
 
-            bubble.style.transform = `translate(${deltaX.toFixed(1)}px, ${deltaY.toFixed(1)}px) scale(0.25)`;
+            bubble.style.transform = `translate(${deltaX.toFixed(1)}px, ${deltaY.toFixed(1)}px) scale(0.2)`;
             bubble.style.opacity = '0';
         });
     }
 
-    // SCROLL OBSERVER FOR PUSH OUT ANIMATION SEQUENCE
+    // FORWARD ANIMATION: 1 -> 2 (Bung ra từ số 2 thành dải chữ SocioLogic)
+    function flyOutToBannerRow() {
+        if (currentState === 'banner-row') return;
+        currentState = 'banner-row';
+
+        // Step 1: Fade out & vanish number2.png image asset in Section 1
+        if (heroNumber2) {
+            heroNumber2.classList.add('vanish');
+        }
+
+        // Step 2: Clear inline origin transforms so CSS flight transitions take over smoothly
+        bubbleItems.forEach((bubble) => {
+            bubble.style.transition = '';
+            bubble.style.transform = '';
+            bubble.style.opacity = '';
+        });
+
+        // Step 3: Push out 10 individual speech bubbles from number2.png position to Section 2!
+        bubblesContainer.classList.remove('state-num-2');
+        bubblesContainer.classList.add('state-banner-row');
+
+        // Step 4: ONLY AFTER landing at final positions, add faces-active to show eyes & mouths!
+        setTimeout(() => {
+            if (currentState === 'banner-row') {
+                bubblesContainer.classList.add('faces-active');
+            }
+        }, 850);
+    }
+
+    // REVERSE ANIMATION: 2 -> 1 (Gom dải chữ SocioLogic bay ngược lại vị trí ban đầu thành số 2)
+    function flyBackToNumber2Center() {
+        if (currentState === 'num-2') return;
+        currentState = 'num-2';
+
+        if (!heroNumber2) return;
+
+        // Step 1: Hide active facial expressions
+        bubblesContainer.classList.remove('faces-active');
+
+        const num2Rect = heroNumber2.getBoundingClientRect();
+        const num2CenterX = num2Rect.left + num2Rect.width / 2;
+        const num2CenterY = num2Rect.top + num2Rect.height / 2;
+
+        // Step 2: Animate each bubble flying back to number2.png center while shrinking
+        bubbleItems.forEach((bubble) => {
+            const bubbleRect = bubble.getBoundingClientRect();
+            const bubbleCenterX = bubbleRect.left + bubbleRect.width / 2;
+            const bubbleCenterY = bubbleRect.top + bubbleRect.height / 2;
+
+            const deltaX = num2CenterX - bubbleCenterX;
+            const deltaY = num2CenterY - bubbleCenterY;
+
+            bubble.style.transition = 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease';
+            bubble.style.transform = `translate(${deltaX.toFixed(1)}px, ${deltaY.toFixed(1)}px) scale(0.2)`;
+            bubble.style.opacity = '0';
+        });
+
+        // Step 3: Re-appear number2.png graphic image right as bubbles merge back into center
+        setTimeout(() => {
+            if (currentState === 'num-2') {
+                if (heroNumber2) {
+                    heroNumber2.classList.remove('vanish');
+                }
+                bubblesContainer.classList.remove('state-banner-row');
+                bubblesContainer.classList.add('state-num-2');
+            }
+        }, 550);
+    }
+
+    // SCROLL OBSERVER FOR BIDIRECTIONAL ANIMATION SEQUENCE
     const observerOptions = {
         root: null,
         rootMargin: '-10% 0px -15% 0px',
@@ -41,41 +112,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                // USER SCROLLED DOWN INTO SECTION 2!
-                
-                // Step 1: Fade out & vanish number2.png image asset in Section 1
-                if (heroNumber2) {
-                    heroNumber2.classList.add('vanish');
-                }
-
-                // Step 2: Clear inline origin transforms so CSS transitions take over smoothly
-                bubbleItems.forEach((bubble) => {
-                    bubble.style.transform = '';
-                    bubble.style.opacity = '';
-                });
-
-                // Step 3: Push out 10 individual speech bubbles from number2.png position to Section 2!
-                bubblesContainer.classList.remove('state-num-2');
-                bubblesContainer.classList.add('state-banner-row');
-
-                // Step 4: ONLY AFTER landing at final positions, add faces-active to show eyes & mouths!
-                setTimeout(() => {
-                    bubblesContainer.classList.add('faces-active');
-                }, 900); // 900ms delay matches flight completion!
-
+                // SCROLL DOWN (1 -> 2): Bung từ số 2 thành dải chữ
+                flyOutToBannerRow();
             } else {
-                // USER SCROLLED BACK UP TO SECTION 1!
+                // SCROLL UP (2 -> 1): Gom các chữ gom lại vị trí ban đầu thành số 2
                 const rect = section2.getBoundingClientRect();
-                if (rect.top > window.innerHeight * 0.4) {
-                    if (heroNumber2) {
-                        heroNumber2.classList.remove('vanish');
-                    }
-                    bubblesContainer.classList.remove('faces-active');
-                    bubblesContainer.classList.remove('state-banner-row');
-                    bubblesContainer.classList.add('state-num-2');
-                    
-                    // Recalculate dynamic origin positions at number2.png
-                    updateOriginPositions();
+                if (rect.top > window.innerHeight * 0.3) {
+                    flyBackToNumber2Center();
                 }
             }
         });
@@ -85,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sectionObserver.observe(section2);
     }
 
-    // Initial origin calculation (delay slightly for DOM layout render)
+    // Initial origin calculation
     setTimeout(updateOriginPositions, 100);
     window.addEventListener('resize', updateOriginPositions);
 
