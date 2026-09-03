@@ -31,8 +31,9 @@
 /* 1. Header Section (2-Line Main Title & Yellow Highlight Box) */
 .section-6-wrapper .sec6-header {
     text-align: center;
-    max-width: 960px;
-    margin-bottom: 45px;
+    width: 100% !important;
+    max-width: 960px !important;
+    margin: 0 auto 45px !important;
 }
 
 .section-6-wrapper .sec6-title-main {
@@ -43,6 +44,8 @@
     line-height: 1.3;
     letter-spacing: -0.02em;
     margin-bottom: 18px;
+    width: 100% !important;
+    display: block !important;
 }
 
 /* Yellow Highlight Box behind "Văn Hoá" */
