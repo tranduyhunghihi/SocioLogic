@@ -38,8 +38,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    max-width: 960px;
+    width: 100% !important;
+    max-width: 960px !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
 }
 
 .section-7-wrapper .sec7-title-main {
@@ -51,6 +53,10 @@
     letter-spacing: -0.02em;
     margin-bottom: 32px;
     text-align: center;
+    width: 100% !important;
+    display: block !important;
+    word-break: keep-all !important;
+    white-space: normal !important;
 }
 
 /* Yellow Pastel Highlight Box behind "Chặng Đường" */

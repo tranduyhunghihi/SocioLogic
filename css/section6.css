@@ -34,6 +34,7 @@
     width: 100% !important;
     max-width: 960px !important;
     margin: 0 auto 45px !important;
+    box-sizing: border-box !important;
 }
 
 .section-6-wrapper .sec6-title-main {
@@ -46,6 +47,8 @@
     margin-bottom: 18px;
     width: 100% !important;
     display: block !important;
+    word-break: keep-all !important;
+    white-space: normal !important;
 }
 
 /* Yellow Highlight Box behind "Văn Hoá" */
