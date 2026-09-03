@@ -1128,8 +1128,8 @@ a.pill-btn-yellow:hover {
 
 /* Slot 3: Standalone Medal Blue (Giữa Letter o1 & i1) */
 .doodle-slot-3 {
-    --base-x: 370px;
-    --base-y: 100px;
+    --base-x: 375px;
+    --base-y: 110px;
     --rot-final: -4deg;
     width: 85px;
     height: 85px;

@@ -54,9 +54,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if ('IntersectionObserver' in window && targetObserved) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
-                if (entry.isIntersecting && !hasAnimatedNumbers) {
+                if (entry.isIntersecting) {
+                    // Background animation activates smoothly whenever entering viewport
                     if (section4El) section4El.classList.add('is-visible');
-                    triggerAllCountersOnce();
+
+                    // Stats Count-Up RUNS EXACTLY ONCE PERMANENTLY!
+                    if (!hasAnimatedNumbers) {
+                        triggerAllCountersOnce();
+                    }
+                } else {
+                    // Remove is-visible on scroll out so background glow re-animates smoothly when scrolling back in
+                    if (section4El) section4El.classList.remove('is-visible');
                 }
             });
         }, { threshold: 0.25 });
