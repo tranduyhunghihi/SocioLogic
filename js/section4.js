@@ -48,14 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // IntersectionObserver: Triggers count-up EXACTLY ONCE when .stats-grid enters viewport
+    // IntersectionObserver: Controls background radial expansion/contraction and 1-time count-up
     const targetObserved = statsGrid || section4El;
 
     if ('IntersectionObserver' in window && targetObserved) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    // Background animation activates smoothly whenever entering viewport
+                    // Smoothly Bung/Expand Background Outwards
                     if (section4El) section4El.classList.add('is-visible');
 
                     // Stats Count-Up RUNS EXACTLY ONCE PERMANENTLY!
@@ -63,11 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         triggerAllCountersOnce();
                     }
                 } else {
-                    // Remove is-visible on scroll out so background glow re-animates smoothly when scrolling back in
+                    // Smoothly Contract/Shrink Background Back Down into Center Top Point
                     if (section4El) section4El.classList.remove('is-visible');
                 }
             });
-        }, { threshold: 0.25 });
+        }, { threshold: 0.15 });
 
         observer.observe(targetObserved);
     } else {

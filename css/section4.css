@@ -40,7 +40,7 @@ body {
     box-sizing: border-box;
 }
 
-/* Background Radial Sky Blue Glow - Radiates Outwards from Top-Center on Scroll */
+/* Background Radial Sky Blue Glow - Radiates Outwards on Scroll & Contracts Back smoothly on Scroll-Away */
 .section-4-wrapper::before {
     content: '';
     position: absolute;
@@ -52,32 +52,16 @@ body {
     background: radial-gradient(circle 950px at 50% 0%, #60CEFF 0%, #8DE0FF 28%, #DDF4FF 58%, rgba(255, 255, 255, 0) 85%);
     clip-path: circle(0% at 50% 0%);
     opacity: 0;
-    transition: clip-path 1.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease;
+    transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.0s ease;
     pointer-events: none;
     z-index: 0;
+    will-change: clip-path, opacity;
 }
 
-/* Continuous Soft Ambient Glow Pulse for Background Radial Sky Blue */
-@keyframes sec4AmbientGlow {
-    0% {
-        transform: translateX(-50%) scale(1);
-        opacity: 0.85;
-    }
-    50% {
-        transform: translateX(-50%) scale(1.04);
-        opacity: 1;
-    }
-    100% {
-        transform: translateX(-50%) scale(1);
-        opacity: 0.85;
-    }
-}
-
-/* When Section 4 enters Viewport (.is-visible) */
+/* When Section 4 enters Viewport (.is-visible) -> Smoothly Bung/Expands Outwards */
 .section-4-wrapper.is-visible::before {
     clip-path: circle(140% at 50% 0%);
     opacity: 1;
-    animation: sec4AmbientGlow 6s ease-in-out infinite alternate;
 }
 
 .section-4-wrapper .section-container {
