@@ -1,100 +1,263 @@
 /* ==========================================================================
-   SECTION 5A - NHỮNG GƯƠNG MẶT SOCIOLOGIC (CSS STYLING)
+   SECTION 5A - NHỮNG GƯƠNG MẶT SOCIOLOGIC (INCREASED GAP & LINE-HEIGHT FOR TITLE)
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Be+Vietnam+Pro:wght@600;700;800;900&display=swap');
-
-:root {
-    --color-bg-white: #FFFFFF;
-    --color-blue-primary: #0066FF;
-    --color-text-dark: #0F172A;
-    --font-heading: 'Plus Jakarta Sans', 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-letter: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: var(--font-heading);
-    background-color: var(--color-bg-white);
-    color: var(--color-text-dark);
-    min-height: 100vh;
-    overflow-x: hidden;
-}
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Playwrite+IE:wght@100..400&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Be+Vietnam+Pro:wght@600;700;800;900&display=swap');
 
 .section-5a-wrapper {
+    position: relative;
     width: 100%;
-    max-width: 1400px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 60px 40px;
+    padding: 60px 0 80px;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: #FFFFFF;
 }
 
-.section-container {
+/* Background Radial Sky Blue Glow - Radiates Outwards from Top-Center on Scroll (Animation Tỏa Background) */
+.section-5a-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 100%;
+    background: radial-gradient(circle 950px at 50% 0%, #60CEFF 0%, #8DE0FF 28%, #DDF4FF 58%, rgba(255, 255, 255, 0) 88%);
+    clip-path: circle(0% at 50% 0%);
+    opacity: 0;
+    transition: clip-path 1.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* When Section 5A enters Viewport (.is-visible) - Radiating Expanding Background Animation Active! */
+.section-5a-wrapper.is-visible::before {
+    clip-path: circle(140% at 50% 0%);
+    opacity: 1;
+}
+
+.section-5a-wrapper .section-container {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
+    max-width: 1380px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
-/* 1. Header Row (2 Columns) */
-.section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* 1. Header Title Layout Matching Reference Screenshot 100% (Spacious Line Gap) */
+.section-5a-wrapper .header-title-container {
     width: 100%;
-    margin-bottom: 50px;
+    max-width: 900px;
+    margin: 0 auto 20px;
+    text-align: center;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
-.header-title-left,
-.header-title-right {
-    font-family: var(--font-heading);
-    font-size: 1.55rem;
-    font-weight: 800;
-    color: var(--color-blue-primary);
-    letter-spacing: -0.02em;
+.section-5a-wrapper .header-title-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    /* 👈 Increased gap to prevent line 1 & line 2 from touching */
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
-/* 2. Speech Bubbles Rows (SOCIO & LOGIC) */
-.bubbles-row {
+.section-5a-wrapper .title-line-top {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.section-5a-wrapper .title-line-bottom {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Yellow Highlight Box Container */
+.section-5a-wrapper .title-yellow-box {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0 6px;
+    line-height: 1;
+    overflow: visible;
+    z-index: 1;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Yellow Highlight Box as ::before Pseudo-Element (Clean Flat Pastel Yellow without Dark Bottom Border) */
+.section-5a-wrapper .title-yellow-box::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #FEF9C3 !important;
+    border-radius: 0;
+    box-shadow: none !important;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Playwrite IE Script Font Match for 'Cộng Đồng' (#0052FF - Spacious Line Height) */
+.section-5a-wrapper .script-reveal-text,
+.section-5a-wrapper.is-visible .script-reveal-text {
+    position: relative;
+    z-index: 2;
+    font-family: 'Playwrite IE', cursive, sans-serif !important;
+    font-weight: 400 !important;
+    font-size: clamp(2.4rem, 4.0vw, 3.3rem) !important;
+    color: #0052FF !important;
+    line-height: 1 !important;
+    letter-spacing: 0 !important;
+    padding: 0 3px !important;
+    margin: 0 !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+    clip-path: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Electric Vivid Blue Main Text (#0052FF - Spacious Line Height 1.35) */
+.section-5a-wrapper .title-main-text,
+.section-5a-wrapper.is-visible .title-main-text {
+    font-family: 'Plus Jakarta Sans', 'Be Vietnam Pro', sans-serif;
+    font-size: clamp(2.4rem, 4.0vw, 3.3rem);
+    font-weight: 600;
+    color: #0052FF !important;
+    line-height: 1.35;
+    letter-spacing: -0.3px;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* 2. Scaled Viewport Container - Balanced Neat Scale (0.68) */
+.section-5a-wrapper .sec5a-bubbles-viewport {
+    width: 100%;
+    max-width: 1380px;
+    height: 250px;
+    margin: 10px auto 35px;
+    position: relative;
+    overflow: visible;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
-    width: 100%;
-    position: relative;
-    padding: 40px 0;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
-/* Individual Bubble Item Base */
-.bubble-item {
+.section-5a-wrapper .sec5a-bubbles-viewport .bubbles-row {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    cursor: pointer;
+    gap: 10px;
+    margin: 0 auto;
+    transform: scale(0.68);
+    transform-origin: center center;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
-.bubble-bg {
+/* 100% Exact Section Mix Dimensions & Upright Stance */
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-1-S {
+    width: 195px;
+    height: 265px;
+    transform: translateY(-12px) !important;
+}
+
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-2-o {
+    width: 195px;
+    height: 195px;
+    transform: translateY(24px) !important;
+}
+
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-3-c {
+    width: 195px;
+    height: 195px;
+    transform: translateY(12px) !important;
+}
+
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-4-i {
+    width: 100px;
+    height: 195px;
+    transform: translateY(-26px) !important;
+}
+
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-5-o {
+    width: 195px;
+    height: 195px;
+    transform: translateY(28px) !important;
+}
+
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-6-L {
+    width: 190px;
+    height: 270px;
+    transform: translateY(-20px) !important;
+}
+
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-7-o {
+    width: 195px;
+    height: 195px;
+    transform: translateY(24px) !important;
+}
+
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-8-g {
+    width: 195px;
+    height: 270px;
+    transform: translateY(-6px) !important;
+}
+
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-9-i {
+    width: 100px;
+    height: 195px;
+    transform: translateY(-28px) !important;
+}
+
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-10-c {
+    width: 195px;
+    height: 195px;
+    transform: translateY(12px) !important;
+}
+
+/* Background Bubble Image */
+.section-5a-wrapper .sec5a-bubbles-viewport .bubble-bg {
     width: 100%;
     height: 100%;
     object-fit: contain;
     display: block;
 }
 
-/* HTML Letter Overlay - Solid White Outfit Font (Same as Section 2) */
-.bubble-letter {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: var(--font-letter);
+/* White Outfit Font Letter Overlay */
+.section-5a-wrapper .sec5a-bubbles-viewport .bubble-letter {
+    font-family: 'Outfit', sans-serif;
     font-weight: 600;
     color: #FFFFFF;
+    position: absolute;
     user-select: none;
     line-height: 1;
     text-align: center;
@@ -107,239 +270,228 @@ body {
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
 }
 
-/* ==========================================================================
-   ROW 1: SOCIO BUBBLES (Staggered Positions & Dimensions)
-   ========================================================================== */
-
-/* 1. Letter S (Blue) */
-.letter-1-S {
-    width: 190px;
-    height: 260px;
-    transform: translateY(-15px);
-}
-
-.letter-1-S:hover {
-    transform: translateY(-25px) scale(1.06);
-    z-index: 10;
-}
-
-.letter-1-S .bubble-letter {
-    font-size: 10.5rem;
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-1-S .bubble-letter {
+    font-size: 12.0rem;
     top: 52%;
     left: 52%;
 }
 
-/* 2. Letter o (Cyan) */
-.letter-2-o {
-    width: 200px;
-    height: 200px;
-    transform: translateY(35px);
-}
-
-.letter-2-o:hover {
-    transform: translateY(25px) scale(1.06);
-    z-index: 10;
-}
-
-.letter-2-o .bubble-letter {
-    font-size: 10.0rem;
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-2-o .bubble-letter {
+    font-size: 11.2rem;
     top: 38%;
     left: 50%;
 }
 
-/* 3. Letter c (Green) */
-.letter-3-c {
-    width: 195px;
-    height: 200px;
-    transform: translateY(20px);
-}
-
-.letter-3-c:hover {
-    transform: translateY(10px) scale(1.06);
-    z-index: 10;
-}
-
-.letter-3-c .bubble-letter {
-    font-size: 10.0rem;
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-3-c .bubble-letter {
+    font-size: 11.2rem;
     top: 38%;
     left: 54%;
 }
 
-/* 4. Letter i (Yellow) */
-.letter-4-i {
-    width: 100px;
-    height: 200px;
-    transform: translateY(-40px);
-}
-
-.letter-4-i:hover {
-    transform: translateY(-50px) scale(1.06);
-    z-index: 10;
-}
-
-.letter-4-i .bubble-letter {
-    font-size: 9.4rem;
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-4-i .bubble-letter {
+    font-size: 10.0rem;
     top: 44%;
     left: 40%;
 }
 
-/* 5. Letter o (Orange) */
-.letter-5-o {
-    width: 200px;
-    height: 200px;
-    transform: translateY(45px);
-}
-
-.letter-5-o:hover {
-    transform: translateY(35px) scale(1.06);
-    z-index: 10;
-}
-
-.letter-5-o .bubble-letter {
-    font-size: 10.0rem;
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-5-o .bubble-letter {
+    font-size: 11.2rem;
     top: 38%;
     left: 50%;
 }
 
-/* ==========================================================================
-   ROW 2: LOGIC BUBBLES (Staggered Positions & Dimensions)
-   ========================================================================== */
-
-/* 6. Letter L (Red-Orange) */
-.letter-6-L {
-    width: 180px;
-    height: 260px;
-    transform: translateY(-30px);
-}
-
-.letter-6-L:hover {
-    transform: translateY(-40px) scale(1.06);
-    z-index: 10;
-}
-
-.letter-6-L .bubble-letter {
-    font-size: 10.5rem;
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-6-L .bubble-letter {
+    font-size: 12.0rem;
     top: 54%;
     left: 46%;
 }
 
-/* 7. Letter o (Pink) */
-.letter-7-o {
-    width: 200px;
-    height: 200px;
-    transform: translateY(35px);
-}
-
-.letter-7-o:hover {
-    transform: translateY(25px) scale(1.06);
-    z-index: 10;
-}
-
-.letter-7-o .bubble-letter {
-    font-size: 10.0rem;
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-7-o .bubble-letter {
+    font-size: 11.2rem;
     top: 36%;
     left: 50%;
 }
 
-/* 8. Letter g (Grey) */
-.letter-8-g {
-    width: 190px;
-    height: 260px;
-    transform: translateY(-10px);
-}
-
-.letter-8-g:hover {
-    transform: translateY(-20px) scale(1.06);
-    z-index: 10;
-}
-
-.letter-8-g .bubble-letter {
-    font-size: 10.5rem;
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-8-g .bubble-letter {
+    font-size: 12.0rem;
     top: 40%;
     left: 47%;
 }
 
-/* 9. Letter i (Cyan) */
-.letter-9-i {
-    width: 100px;
-    height: 200px;
-    transform: translateY(-45px);
-}
-
-.letter-9-i:hover {
-    transform: translateY(-55px) scale(1.06);
-    z-index: 10;
-}
-
-.letter-9-i .bubble-letter {
-    font-size: 9.4rem;
-    top: 44%;
-    left: 40%;
-}
-
-/* 10. Letter c (Blue) */
-.letter-10-c {
-    width: 195px;
-    height: 200px;
-    transform: translateY(20px);
-}
-
-.letter-10-c:hover {
-    transform: translateY(10px) scale(1.06);
-    z-index: 10;
-}
-
-.letter-10-c .bubble-letter {
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-9-i .bubble-letter {
     font-size: 10.0rem;
+    top: 44%;
+    left: 44%;
+}
+
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-10-c .bubble-letter {
+    font-size: 11.2rem;
     top: 38%;
     left: 52%;
 }
 
-/* 3 & 5. Subtitle Blocks */
-.subtitle-block {
-    text-align: center;
-    margin: 45px 0;
-    padding: 0 20px;
+/* Face Placement With 1.28x Scaled Bigger Eyes & Mouths */
+.section-5a-wrapper .sec5a-bubbles-viewport .bubble-face {
+    position: absolute;
+    z-index: 6;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    visibility: visible;
 }
 
-.subtitle-block p {
-    font-family: var(--font-heading);
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--color-text-dark);
-    line-height: 1.65;
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-1-S .face-S {
+    bottom: 26px;
+    left: 52%;
+    transform: translateX(-50%) scale(1.50);
+}
+
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-2-o .face-o1 {
+    top: 62%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.50);
+}
+
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-3-c .face-c1 {
+    top: 62%;
+    left: 52%;
+    transform: translate(-50%, -50%) scale(1.50);
+}
+
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-4-i .face-i1 {
+    top: 52%;
+    left: 40%;
+    transform: translate(-50%, -50%) scale(1.50);
+}
+
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-5-o .face-o2 {
+    top: 62%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.50);
+}
+
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-6-L .face-L {
+    top: 38px;
+    left: 46%;
+    transform: translateX(-50%) scale(1.50);
+}
+
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-7-o .face-o3 {
+    top: 62%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.50);
+}
+
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-8-g .face-g {
+    top: 38px;
+    left: 47%;
+    transform: translateX(-50%) scale(1.50);
+}
+
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-9-i .face-i2 {
+    top: 52%;
+    left: 44%;
+    transform: translate(-50%, -50%) scale(1.50);
+}
+
+.section-5a-wrapper .sec5a-bubbles-viewport .letter-10-c .face-c2 {
+    top: 62%;
+    left: 52%;
+    transform: translate(-50%, -50%) scale(1.50);
+}
+
+/* Hover Lift Effect */
+.section-5a-wrapper .sec5a-bubbles-viewport .bubble-item:hover {
+    transform: translateY(-16px) scale(1.08) !important;
+    z-index: 10;
+}
+
+/* 3. Bottom 2 White Cards Side-by-Side (Pushed Further Apart with 64px Gap) */
+.section-5a-wrapper .community-cards-container {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 64px;
+    width: 100%;
+    max-width: 1160px;
+    margin: 25px auto 0;
+}
+
+.section-5a-wrapper .community-card {
+    flex: 1;
+    background: #FFFFFF;
+    border: 1.5px solid #E2E8F0;
+    border-radius: 18px;
+    padding: 24px 32px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.section-5a-wrapper .community-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 102, 255, 0.08);
+    border-color: #CBD5E1;
+}
+
+.section-5a-wrapper .community-card p {
+    font-family: 'Plus Jakarta Sans', 'Be Vietnam Pro', sans-serif;
+    font-size: clamp(0.95rem, 1.25vw, 1.12rem);
+    font-weight: 500;
+    color: #475569;
+    line-height: 1.6;
+    margin: 0;
     letter-spacing: -0.01em;
 }
 
-/* Responsive Breakpoints */
-@media (max-width: 1100px) {
-
-    .header-title-left,
-    .header-title-right {
-        font-size: 1.6rem;
+/* Responsive Scaling Breakpoints */
+@media (max-width: 1300px) {
+    .section-5a-wrapper .sec5a-bubbles-viewport {
+        height: 220px;
     }
 
-    .bubbles-row {
-        gap: 12px;
-        transform: scale(0.85);
+    .section-5a-wrapper .sec5a-bubbles-viewport .bubbles-row {
+        gap: 6px;
+        transform: scale(0.58);
+    }
+
+    .section-5a-wrapper .community-cards-container {
+        gap: 40px;
     }
 }
 
-@media (max-width: 800px) {
-    .bubbles-row {
-        transform: scale(0.7);
-        gap: 8px;
+@media (max-width: 950px) {
+    .section-5a-wrapper .sec5a-bubbles-viewport {
+        height: 180px;
     }
 
-    .subtitle-block p {
-        font-size: 1.05rem;
+    .section-5a-wrapper .sec5a-bubbles-viewport .bubbles-row {
+        gap: 4px;
+        transform: scale(0.46);
+    }
+
+    .section-5a-wrapper .community-cards-container {
+        flex-direction: column;
+        gap: 16px;
+        max-width: 600px;
     }
 }
 
 @media (max-width: 600px) {
-    .section-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
+    .section-5a-wrapper .sec5a-bubbles-viewport {
+        height: 140px;
+    }
+
+    .section-5a-wrapper .sec5a-bubbles-viewport .bubbles-row {
+        transform: scale(0.34);
+    }
+
+    .section-5a-wrapper {
+        padding: 35px 15px;
     }
 }

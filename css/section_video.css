@@ -1,0 +1,29 @@
+/* ==========================================================================
+   FULLSCREEN VIDEO SECTION - STYLES (RESPONSIVE SCROLL-FRIENDLY VIDEO SECTION)
+   ========================================================================== */
+
+.fullscreen-video-section {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    background-color: #000000;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.fullscreen-video-player {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    outline: none;
+    border: none;
+}

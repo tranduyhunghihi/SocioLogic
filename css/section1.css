@@ -118,7 +118,6 @@ body {
     justify-content: center;
     padding: 12px 28px;
     border: 2px solid var(--color-primary);
-    border-radius: 14px;
     background-color: transparent;
     color: var(--color-primary);
     font-family: var(--font-main);

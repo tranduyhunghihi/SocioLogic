@@ -4,10 +4,12 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. COUNT-UP ANIMATION (0 -> 10000+) WHEN SCROLLED INTO VIEW
-    const statNumbers = document.querySelectorAll('.stat-number');
+    // 1. STRICT VIEWPORT ANIMATION - COUNT-UP RUNS EXACTLY ONCE WHEN ENTERING VIEWPORT
     const statsGrid = document.querySelector('.stats-grid');
-    let hasAnimated = false;
+    const statNumbers = document.querySelectorAll('.stat-number');
+    const section4El = document.getElementById('section-4') || document.querySelector('.section-4-wrapper') || document.getElementById('sec4-countup');
+
+    let hasAnimatedNumbers = false;
 
     // Easing Function: Ease-Out Quad for smooth decelerating count-up
     function easeOutQuad(t) {
@@ -35,36 +37,38 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(updateCounter);
     }
 
-    function triggerAllCounters() {
-        if (hasAnimated) return;
-        hasAnimated = true;
+    function triggerAllCountersOnce() {
+        if (hasAnimatedNumbers) return;
+        hasAnimatedNumbers = true;
 
         statNumbers.forEach((el) => {
-            const target = parseInt(el.getAttribute('data-target'), 10) || 10000;
-            animateCountUp(el, target);
+            const target = parseInt(el.getAttribute('data-target'), 10) || 1000;
+            el.textContent = '0';
+            animateCountUp(el, target, 2200);
         });
     }
 
-    // Use IntersectionObserver to trigger animation when scrolled into view
-    if ('IntersectionObserver' in window && statsGrid) {
+    // IntersectionObserver: Triggers count-up EXACTLY ONCE when .stats-grid enters viewport
+    const targetObserved = statsGrid || section4El;
+
+    if ('IntersectionObserver' in window && targetObserved) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    triggerAllCounters();
-                    observer.unobserve(entry.target);
+                if (entry.isIntersecting && !hasAnimatedNumbers) {
+                    if (section4El) section4El.classList.add('is-visible');
+                    triggerAllCountersOnce();
                 }
             });
         }, { threshold: 0.25 });
 
-        observer.observe(statsGrid);
+        observer.observe(targetObserved);
     } else {
-        // Fallback for older browsers
-        triggerAllCounters();
+        if (section4El) section4El.classList.add('is-visible');
+        triggerAllCountersOnce();
     }
 
     // 2. VIDEO PLAYER INTERACTION
     const videoContainer = document.getElementById('videoContainer');
-    const playBtn = document.getElementById('playBtn');
     const journeyVideo = document.getElementById('journeyVideo');
 
     if (videoContainer) {

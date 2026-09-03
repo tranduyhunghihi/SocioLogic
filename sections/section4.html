@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Section 4 - Hành Trình Của SocioLogic | SocioLogic</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+IE:wght@100..400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/section4.css">
 </head>
 <body>
@@ -11,71 +15,79 @@
     <section class="section-4-wrapper" id="section-4">
         <div class="section-container">
 
-            <!-- 1. Header Row (2 Columns) -->
-            <div class="section-header">
-                <h2 class="header-title-left">A. Hành Trình Của SocioLogic</h2>
-                <h2 class="header-title-right">Từ Những Ngày Đầu Tiên Đến Hôm Nay.</h2>
+            <!-- 1. Header Title & Subtitle Matching Reference Image -->
+            <div class="journey-header-container">
+                <h2 class="journey-title">
+                    <div class="title-line-script">
+                        <span class="highlight-script-yellow">Hành Trình</span>
+                    </div>
+                    <div class="title-line-main">
+                        <span>Của SocioLogic</span>
+                    </div>
+                </h2>
+
+                <p class="journey-subtitle-text">
+                    Hai năm không chỉ được đo bằng những con số, mà bằng những lớp học,<br>
+                    những cuộc thi, những chuyến đi, những lần thử sức và vô vàn khoảnh khắc<br>
+                    thấy cô, phụ huynh và các con đã cùng nhau trải qua.
+                </p>
             </div>
 
             <!-- 2. Stat Cards Grid (4 Cards with Count-Up Animation) -->
             <div class="stats-grid">
                 
-                <!-- Card 1: Số Học Sinh -->
-                <div class="stat-card">
-                    <div class="stat-number-box">
-                        <span class="stat-number" data-target="10000">0</span><span class="stat-plus">+</span>
+                <!-- Card 1: 1000+ Học Sinh (Magenta/Pink) -->
+                <div class="stat-card card-magenta">
+                    <div class="card-image-wrapper">
+                        <img src="../assets/section4/Group 182.png" alt="Học Sinh" class="card-bubble-img">
                     </div>
-                    <p class="stat-label">Số Học Sinh</p>
-                </div>
-
-                <!-- Card 2: Trường Học -->
-                <div class="stat-card">
-                    <div class="stat-number-box">
-                        <span class="stat-number" data-target="10000">0</span><span class="stat-plus">+</span>
-                    </div>
-                    <p class="stat-label">Trường Học</p>
-                </div>
-
-                <!-- Card 3: Giải Đấu -->
-                <div class="stat-card">
-                    <div class="stat-number-box">
-                        <span class="stat-number" data-target="10000">0</span><span class="stat-plus">+</span>
-                    </div>
-                    <p class="stat-label">Giải Đấu</p>
-                </div>
-
-                <!-- Card 4: Dự Án -->
-                <div class="stat-card">
-                    <div class="stat-number-box">
-                        <span class="stat-number" data-target="10000">0</span><span class="stat-plus">+</span>
-                    </div>
-                    <p class="stat-label">Dự Án</p>
-                </div>
-
-            </div>
-
-            <!-- 3. Subtitle Paragraph -->
-            <div class="journey-subtitle">
-                <p>Hai Năm Không Chỉ Được Đo Bằng Những Con Số, Mà Bằng Những Lớp Học,</p>
-                <p>Những Cuộc Thi, Những Chuyến Đi, Những Lần Thử Sức Và Vô Vàn Khoảnh Khắc</p>
-                <p>Thầy Cô, Phụ Huynh Và Các Con Đã Cùng Nhau Trải Qua.</p>
-            </div>
-
-            <!-- 4. Video Player Placeholder Container -->
-            <div class="video-container" id="videoContainer">
-                <div class="video-placeholder-bg"></div>
-                <div class="play-button-overlay" id="playBtn">
-                    <div class="play-icon-circle">
-                        <svg viewBox="0 0 24 24" class="play-svg">
-                            <path d="M 8 5 V 19 L 19 12 Z" fill="#D4D8DD" />
-                        </svg>
+                    <div class="card-info-box">
+                        <div class="stat-number-box">
+                            <span class="stat-number" data-target="1000">0</span><span class="stat-plus">+</span>
+                        </div>
+                        <span class="stat-label">Học Sinh</span>
                     </div>
                 </div>
-                <!-- Video Element Placeholder -->
-                <video id="journeyVideo" controls class="video-element" poster="">
-                    <source src="assets/section4/journey_video.mp4" type="video/mp4">
-                    Trình duyệt của bạn không hỗ trợ thẻ video.
-                </video>
+
+                <!-- Card 2: 20+ Trường Học (Yellow/Gold) -->
+                <div class="stat-card card-yellow">
+                    <div class="card-image-wrapper">
+                        <img src="../assets/section4/Group 182.png" alt="Trường Học" class="card-bubble-img">
+                    </div>
+                    <div class="card-info-box">
+                        <div class="stat-number-box">
+                            <span class="stat-number" data-target="20">0</span><span class="stat-plus">+</span>
+                        </div>
+                        <span class="stat-label">Trường Học</span>
+                    </div>
+                </div>
+
+                <!-- Card 3: 500+ Giải Đấu (Sky Blue) -->
+                <div class="stat-card card-blue">
+                    <div class="card-image-wrapper">
+                        <img src="../assets/section4/Group 182.png" alt="Giải Đấu" class="card-bubble-img">
+                    </div>
+                    <div class="card-info-box">
+                        <div class="stat-number-box">
+                            <span class="stat-number" data-target="500">0</span><span class="stat-plus">+</span>
+                        </div>
+                        <span class="stat-label">Giải Đấu</span>
+                    </div>
+                </div>
+
+                <!-- Card 4: 10+ Dự Án (Coral/Red) -->
+                <div class="stat-card card-red">
+                    <div class="card-image-wrapper">
+                        <img src="../assets/section4/Group 182.png" alt="Dự Án" class="card-bubble-img">
+                    </div>
+                    <div class="card-info-box">
+                        <div class="stat-number-box">
+                            <span class="stat-number" data-target="10">0</span><span class="stat-plus">+</span>
+                        </div>
+                        <span class="stat-label">Dự Án</span>
+                    </div>
+                </div>
+
             </div>
 
         </div>

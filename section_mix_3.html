@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Section Mix 3 - Video ➔ Section 5A ➔ Section 5B ➔ Section 6 ➔ Section 7 ➔ Footer | SocioLogic</title>
+    <meta name="description" content="Trang tổng hợp ghép nối chính xác các section của SocioLogic: Video, Section 5A (Những Gương Mặt SocioLogic), Section 5B (Quan Điểm Đa Chiều), Section 6 (Văn Hoá Tranh Biện), Section 7 (Chặng Đường Tiếp Theo) và Footer.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Outfit:wght@500;600;700&family=Playwrite+VN:wght@100..400&family=Playwrite+IE:wght@100..400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets for all target sections -->
+    <link rel="stylesheet" href="css/section_video.css">
+    <link rel="stylesheet" href="css/section_mix.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/section5A.css">
+    <link rel="stylesheet" href="css/section5B.css">
+    <link rel="stylesheet" href="css/section6.css">
+    <link rel="stylesheet" href="css/section7.css">
+    <link rel="stylesheet" href="css/footer.css">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #FFFFFF;
+            overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        img, video, iframe, canvas {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================================================
+         1. SECTION VIDEO
+         ========================================================================== -->
+    <section class="fullscreen-video-section" id="section-video" style="position: relative; width: 100%; height: 100vh; background: #000; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+        <video 
+            class="fullscreen-video-player" 
+            style="width: 100%; height: 100%; object-fit: cover; display: block; border: none; outline: none;"
+            autoplay 
+            muted 
+            loop 
+            playsinline 
+            controls
+            poster="https://images.unsplash.com/photo-1518173946687-a4c8a383392e?auto=format&fit=crop&w=1920&q=80">
+            <source src="assets/videos/socio_logic.mp4" type="video/mp4">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-seen-from-the-sky-in-a-sunset-26070-large.mp4" type="video/mp4">
+            Trình duyệt của bạn không hỗ trợ thẻ video.
+        </video>
+    </section>
+
+    <!-- ==========================================================================
+         2. SECTION 5A (sections/section5A.html - CỘNG ĐỒNG LÀ NHỮNG CON NGƯỜI CÙNG KIẾN TẠO)
+         ========================================================================== -->
+    <section class="section-5a-wrapper" id="section-5a">
+        <div class="section-container">
+
+            <!-- 1. Centered Header Title -->
+            <div class="header-title-container">
+                <h2 class="header-title-main">
+                    <div class="title-line-top">
+                        <div class="title-yellow-box">
+                            <span class="script-reveal-text">Cộng Đồng</span>
+                        </div>
+                        <span class="title-main-text">là</span>
+                    </div>
+                    <div class="title-line-bottom">
+                        <span class="title-main-text">Những Con Người Cùng Kiến Tạo</span>
+                    </div>
+                </h2>
+            </div>
+
+            <!-- 2. SECTION MIX BUBBLES VIEWPORT & ANIMATED BUBBLE FACES -->
+            <div class="bubbles-viewport sec5a-bubbles-viewport">
+                <div class="bubbles-row state-num-2 faces-active" id="bubblesContainerSec5a">
+
+                    <!-- 1. Letter S (Blue) -->
+                    <div class="bubble-item letter-1-S" data-index="1" title="S">
+                        <img src="assets/section2/1_S_blue.png" alt="Bubble S" class="bubble-bg">
+                        <span class="bubble-letter">S</span>
+                        <div class="bubble-face face-S">
+                            <div class="eyes-row">
+                                <div class="eye eye-left"><div class="pupil pupil-always"></div></div>
+                                <div class="mouth mouth-svg-smile">
+                                    <svg viewBox="0 0 26 20" width="25" height="18">
+                                        <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                    </svg>
+                                </div>
+                                <div class="eye eye-right"><div class="pupil pupil-always"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Letter o (Cyan) -->
+                    <div class="bubble-item letter-2-o" data-index="2" title="o">
+                        <img src="assets/section2/2_o_cyan.png" alt="Bubble o" class="bubble-bg">
+                        <span class="bubble-letter">o</span>
+                        <div class="bubble-face face-o1">
+                            <div class="eyes-row">
+                                <div class="eye eye-left">
+                                    <div class="pupil"></div>
+                                    <div class="eye-idle-svg">
+                                        <svg viewBox="0 0 22 14" width="22" height="14">
+                                            <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="mouth mouth-svg-open">
+                                    <svg viewBox="0 0 24 24" width="20" height="20">
+                                        <circle cx="12" cy="12" r="9.5" fill="#FFFFFF" />
+                                    </svg>
+                                </div>
+                                <div class="eye eye-right">
+                                    <div class="pupil"></div>
+                                    <div class="eye-idle-svg">
+                                        <svg viewBox="0 0 22 14" width="22" height="14">
+                                            <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Letter c (Green) -->
+                    <div class="bubble-item letter-3-c" data-index="3" title="c">
+                        <img src="assets/section2/3_c_green.png" alt="Bubble c" class="bubble-bg">
+                        <span class="bubble-letter">c</span>
+                        <div class="bubble-face face-c1">
+                            <div class="eyes-row">
+                                <div class="eye eye-left">
+                                    <div class="pupil"></div>
+                                    <div class="eye-idle-svg">
+                                        <svg viewBox="0 0 22 14" width="22" height="14">
+                                            <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="mouth mouth-svg-w">
+                                    <svg viewBox="0 0 34 22" width="32" height="20">
+                                        <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="eye eye-right">
+                                    <div class="pupil"></div>
+                                    <div class="eye-idle-svg">
+                                        <svg viewBox="0 0 22 14" width="22" height="14">
+                                            <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Letter i (Yellow) -->
+                    <div class="bubble-item letter-4-i" data-index="4" title="i">
+                        <img src="assets/section2/4_i_yellow.png" alt="Bubble i" class="bubble-bg">
+                        <span class="bubble-letter">i</span>
+                        <div class="bubble-face face-i1">
+                            <div class="eyes-row eyes-vertical">
+                                <div class="eye eye-top"><div class="pupil pupil-always"></div></div>
+                                <div class="mouth mouth-svg-sideways-smile">
+                                    <svg viewBox="0 0 20 26" width="18" height="24">
+                                        <path d="M 4 4 C 16 4, 16 22, 4 22" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                    </svg>
+                                </div>
+                                <div class="eye eye-bottom"><div class="pupil pupil-always"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Letter o (Orange) -->
+                    <div class="bubble-item letter-5-o" data-index="5" title="o">
+                        <img src="assets/section2/5_o_orange.png" alt="Bubble o" class="bubble-bg">
+                        <span class="bubble-letter">o</span>
+                        <div class="bubble-face face-o2">
+                            <div class="eyes-row">
+                                <div class="eye eye-left">
+                                    <div class="pupil"></div>
+                                    <div class="eye-idle-svg">
+                                        <svg viewBox="0 0 18 18" width="18" height="18">
+                                            <path d="M 3 3 L 15 9 L 3 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="mouth mouth-svg-smile">
+                                    <svg viewBox="0 0 26 20" width="25" height="18">
+                                        <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                    </svg>
+                                </div>
+                                <div class="eye eye-right">
+                                    <div class="pupil"></div>
+                                    <div class="eye-idle-svg">
+                                        <svg viewBox="0 0 18 18" width="18" height="18">
+                                            <path d="M 15 3 L 3 9 L 15 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6. Letter L (Red-Orange) -->
+                    <div class="bubble-item letter-6-L" data-index="6" title="L">
+                        <img src="assets/section2/6_L_redorange.png" alt="Bubble L" class="bubble-bg">
+                        <span class="bubble-letter">L</span>
+                        <div class="bubble-face face-L">
+                            <div class="eyes-row">
+                                <div class="eye eye-left">
+                                    <div class="pupil"></div>
+                                    <div class="eye-idle-svg">
+                                        <svg viewBox="0 0 18 18" width="18" height="18">
+                                            <path d="M 3 3 L 15 9 L 3 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="mouth mouth-svg-w">
+                                    <svg viewBox="0 0 34 22" width="32" height="20">
+                                        <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="eye eye-right">
+                                    <div class="pupil"></div>
+                                    <div class="eye-idle-svg">
+                                        <svg viewBox="0 0 18 18" width="18" height="18">
+                                            <path d="M 15 3 L 3 9 L 15 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 7. Letter o (Pink) -->
+                    <div class="bubble-item letter-7-o" data-index="7" title="o">
+                        <img src="assets/section2/7_o_pink.png" alt="Bubble o" class="bubble-bg">
+                        <span class="bubble-letter">o</span>
+                        <div class="bubble-face face-o3">
+                            <div class="eyes-row">
+                                <div class="eye eye-left"><div class="pupil pupil-always"></div></div>
+                                <div class="mouth mouth-svg-smile">
+                                    <svg viewBox="0 0 26 20" width="25" height="18">
+                                        <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                    </svg>
+                                </div>
+                                <div class="eye eye-right"><div class="pupil pupil-always"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 8. Letter g (Grey) -->
+                    <div class="bubble-item letter-8-g" data-index="8" title="g">
+                        <img src="assets/section2/8_g_grey.png" alt="Bubble g" class="bubble-bg">
+                        <span class="bubble-letter">g</span>
+                        <div class="bubble-face face-g">
+                            <div class="eyes-row">
+                                <div class="eye eye-left"><div class="pupil pupil-always"></div></div>
+                                <div class="mouth mouth-svg-o">
+                                    <svg viewBox="0 0 20 20" width="18" height="18">
+                                        <circle cx="10" cy="10" r="7.5" fill="none" stroke="#FFFFFF" stroke-width="5" />
+                                    </svg>
+                                </div>
+                                <div class="eye eye-right"><div class="pupil pupil-always"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 9. Letter i (Cyan) -->
+                    <div class="bubble-item letter-9-i" data-index="9" title="i">
+                        <img src="assets/section2/9_i_cyan.png" alt="Bubble i" class="bubble-bg">
+                        <span class="bubble-letter">i</span>
+                        <div class="bubble-face face-i2">
+                            <div class="eyes-row eyes-vertical">
+                                <div class="eye eye-top"><div class="pupil pupil-always"></div></div>
+                                <div class="mouth mouth-svg-sideways-smile">
+                                    <svg viewBox="0 0 20 26" width="18" height="24">
+                                        <path d="M 4 4 C 16 4, 16 22, 4 22" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                    </svg>
+                                </div>
+                                <div class="eye eye-bottom"><div class="pupil pupil-always"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 10. Letter c (Blue) -->
+                    <div class="bubble-item letter-10-c" data-index="10" title="c">
+                        <img src="assets/section2/10_c_blue.png" alt="Bubble c" class="bubble-bg">
+                        <span class="bubble-letter">c</span>
+                        <div class="bubble-face face-c2">
+                            <div class="eyes-row">
+                                <div class="eye eye-left">
+                                    <div class="pupil"></div>
+                                    <div class="eye-idle-svg">
+                                        <svg viewBox="0 0 22 14" width="22" height="14">
+                                            <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="mouth mouth-svg-smile">
+                                    <svg viewBox="0 0 26 20" width="25" height="18">
+                                        <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                    </svg>
+                                </div>
+                                <div class="eye eye-right">
+                                    <div class="pupil"></div>
+                                    <div class="eye-idle-svg">
+                                        <svg viewBox="0 0 22 14" width="22" height="14">
+                                            <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 3. Bottom 2 White Cards Side-by-Side -->
+            <div class="community-cards-container">
+                <div class="community-card card-left">
+                    <p>Là cộng đồng, là những con người cùng gặp gỡ và kiến tạo nên không gian của tư duy và tiếng nói.</p>
+                </div>
+                <div class="community-card card-right">
+                    <p>Là sự liên kết, là khả năng đặt câu hỏi, tư duy nhìn nhận và kết nối những góc nhìn khác nhau.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         3. SECTION 5B (sections/section5B.html - MEMBER CARDS & STICKY NOTES)
+         ========================================================================== -->
+    <section class="section-5b-wrapper" id="section-5b">
+        <div class="section-container">
+
+            <!-- 3x3 Staggered Grid (6 Member Cards + 3 Yellow Sticky Notes) -->
+            <div class="cards-grid">
+
+                <!-- ROW 1 -->
+                <!-- Card 1: Học Sinh -->
+                <div class="member-card card-1">
+                    <div class="card-photo-wrapper">
+                        <img src="assets/section5/Group 289774.png" alt="Học Sinh SocioLogic" class="card-photo-img">
+                    </div>
+                    <div class="card-info-box">
+                        <h3 class="card-info-title">Học Sinh</h3>
+                        <p class="card-info-desc">Những người luôn đặt câu hỏi và không ngừng khám phá.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2: Huấn Luyện Viên -->
+                <div class="member-card card-2">
+                    <div class="card-photo-wrapper">
+                        <img src="assets/section5/Group 289774.png" alt="Huấn Luyện Viên SocioLogic" class="card-photo-img">
+                    </div>
+                    <div class="card-info-box">
+                        <h3 class="card-info-title">Huấn Luyện Viên</h3>
+                        <p class="card-info-desc">Những người đồng hành và truyền cảm hứng.</p>
+                    </div>
+                </div>
+
+                <!-- Sticky Note 1 (Row 1 Right) -->
+                <div class="sticky-note-card sticky-note-1">
+                    <div class="sticky-tape"></div>
+                    <h3 class="sticky-note-title">Lời nhắn gì đó không các cô từ phỏng vấn chẳng hạn</h3>
+                    <p class="sticky-note-body">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
+                </div>
+
+                <!-- ROW 2 -->
+                <!-- Sticky Note 2 (Row 2 Left) -->
+                <div class="sticky-note-card sticky-note-2">
+                    <div class="sticky-tape"></div>
+                    <h3 class="sticky-note-title">Lời nhắn gì đó không các cô từ phỏng vấn chẳng hạn</h3>
+                    <p class="sticky-note-body">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
+                </div>
+
+                <!-- Card 3: Phụ Huynh -->
+                <div class="member-card card-3">
+                    <div class="card-photo-wrapper">
+                        <img src="assets/section5/Group 289774.png" alt="Phụ Huynh SocioLogic" class="card-photo-img">
+                    </div>
+                    <div class="card-info-box">
+                        <h3 class="card-info-title">Phụ Huynh</h3>
+                        <p class="card-info-desc">Những người tin tưởng và cùng con bước đi.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4: Ban Giám Khảo -->
+                <div class="member-card card-4">
+                    <div class="card-photo-wrapper">
+                        <img src="assets/section5/Group 289774.png" alt="Ban Giám Khảo SocioLogic" class="card-photo-img">
+                    </div>
+                    <div class="card-info-box">
+                        <h3 class="card-info-title">Ban Giám Khảo</h3>
+                        <p class="card-info-desc">Những người thử thách và giúp chúng ta trưởng thành.</p>
+                    </div>
+                </div>
+
+                <!-- ROW 3 -->
+                <!-- Card 5: Đối Tác -->
+                <div class="member-card card-5">
+                    <div class="card-photo-wrapper">
+                        <img src="assets/section5/Group 289774.png" alt="Đối Tác SocioLogic" class="card-photo-img">
+                    </div>
+                    <div class="card-info-box">
+                        <h3 class="card-info-title">Đối Tác</h3>
+                        <p class="card-info-desc">Những người mở thêm nhiều cánh cửa mới.</p>
+                    </div>
+                </div>
+
+                <!-- Card 6: Cộng Đồng -->
+                <div class="member-card card-6">
+                    <div class="card-photo-wrapper">
+                        <img src="assets/section5/Group 289774.png" alt="Cộng Đồng SocioLogic" class="card-photo-img">
+                    </div>
+                    <div class="card-info-box">
+                        <h3 class="card-info-title">Cộng Đồng</h3>
+                        <p class="card-info-desc">Những người cùng chia sẻ niềm tin vào một thế hệ biết nghĩ, biết nói và biết hành động.</p>
+                    </div>
+                </div>
+
+                <!-- Sticky Note 3 (Row 3 Right) -->
+                <div class="sticky-note-card sticky-note-3">
+                    <div class="sticky-tape"></div>
+                    <h3 class="sticky-note-title">Lời nhắn gì đó không các cô từ phỏng vấn chẳng hạn</h3>
+                    <p class="sticky-note-body">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         4. SECTION 6 (sections/section6.html - KIẾN TẠO MỘT XÃ HỘI CÓ VĂN HOÁ TRANH BIỆN)
+         ========================================================================== -->
+    <section class="section-6-wrapper" id="section-6">
+        <div class="section-container">
+
+            <!-- 1. Header Title & Subtitle Paragraph -->
+            <div class="sec6-header">
+                <h2 class="sec6-title-main">
+                    Kiến Tạo Một Xã Hội<br>
+                    Có <span class="sec6-yellow-box"><span class="sec6-script-text">Văn Hoá</span></span> Tranh Biện.
+                </h2>
+                <p class="sec6-subtitle">
+                    Nơi tư duy phản biện, đối thoại và khả năng lắng nghe được nuôi dưỡng từ gia đình, nhà trường đến cộng đồng — mang chuẩn giáo dục quốc tế đến gần hơn với người trẻ Việt Nam.
+                </p>
+            </div>
+
+            <!-- 2. 3 Pillar Cards Grid Layout (Nghĩ Sâu - Nói Hay - Làm Thật) -->
+            <div class="sec6-cards-grid">
+
+                <!-- CARD 1: NGHĨ SÂU -->
+                <div class="sec6-card card-nghi-sau">
+                    <div>
+                        <div class="sec6-badge-number">1</div>
+                        <h3 class="sec6-card-title">Nghĩ Sâu</h3>
+                        <p class="sec6-card-desc">Những người luôn đặt câu hỏi và không ngừng khám phá</p>
+                    </div>
+                    
+                    <!-- Bottom Graphic Panel: Blue & Pink Bubbles + Faces + Icon Badges -->
+                    <div class="sec6-graphic-panel">
+                        
+                        <!-- Blue Bubble with Pupil Eye Tracking (Letter S) -->
+                        <div class="sec6-bubble-wrapper bubble-blue-1">
+                            <img src="assets/section2/1_S_blue.png" alt="Blue Bubble" class="bubble-bg">
+                            <div class="bubble-face face-S">
+                                <div class="eyes-row">
+                                    <div class="eye eye-left"><div class="pupil pupil-always"></div></div>
+                                    <div class="mouth mouth-svg-smile">
+                                        <svg viewBox="0 0 26 20" width="22" height="16">
+                                            <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                    <div class="eye eye-right"><div class="pupil pupil-always"></div></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pink Bubble with Happy Arc Eyes ^ ^ (Letter o3) -->
+                        <div class="sec6-bubble-wrapper bubble-pink-1">
+                            <img src="assets/section2/7_o_pink.png" alt="Pink Bubble" class="bubble-bg">
+                            <div class="bubble-face face-o3">
+                                <div class="eyes-row">
+                                    <div class="eye eye-left">
+                                        <div class="pupil"></div>
+                                        <div class="eye-idle-svg">
+                                            <svg viewBox="0 0 22 14" width="18" height="12">
+                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="mouth mouth-svg-smile">
+                                        <svg viewBox="0 0 26 20" width="22" height="16">
+                                            <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                    <div class="eye eye-right">
+                                        <div class="pupil"></div>
+                                        <div class="eye-idle-svg">
+                                            <svg viewBox="0 0 22 14" width="18" height="12">
+                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating Icon Badges -->
+                        <div class="icon-bubble bubble-pencil">
+                            <img src="assets/section2/icon_pencil.png" alt="Pencil Icon">
+                        </div>
+                        <div class="icon-bubble bubble-book">
+                            <img src="assets/section2/icon_book.png" alt="Book Icon">
+                        </div>
+                        <div class="icon-bubble bubble-question-1">
+                            <img src="assets/section2/icon_question.png" alt="Question Icon">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 2: NÓI HAY -->
+                <div class="sec6-card card-noi-hay">
+                    <div>
+                        <div class="sec6-badge-number">2</div>
+                        <h3 class="sec6-card-title">Nói Hay</h3>
+                        <p class="sec6-card-desc">Những người luôn đặt câu hỏi và không ngừng khám phá</p>
+                    </div>
+                    
+                    <!-- Bottom Graphic Panel: Red/Orange & Green Bubbles + Faces + Icon Badges -->
+                    <div class="sec6-graphic-panel">
+
+                        <!-- Red/Orange Bubble with Playful Squint Eyes >< & Open Mouth (Letter L) -->
+                        <div class="sec6-bubble-wrapper bubble-red-2">
+                            <img src="assets/section2/6_L_redorange.png" alt="Red Orange Bubble" class="bubble-bg">
+                            <div class="bubble-face face-L">
+                                <div class="eyes-row">
+                                    <div class="eye eye-left">
+                                        <div class="pupil"></div>
+                                        <div class="eye-idle-svg">
+                                            <svg viewBox="0 0 18 18" width="15" height="15">
+                                                <path d="M 3 3 L 15 9 L 3 15" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="mouth mouth-svg-open">
+                                        <svg viewBox="0 0 24 24" width="18" height="18">
+                                            <circle cx="12" cy="12" r="9.5" fill="#FFFFFF" />
+                                        </svg>
+                                    </div>
+                                    <div class="eye eye-right">
+                                        <div class="pupil"></div>
+                                        <div class="eye-idle-svg">
+                                            <svg viewBox="0 0 18 18" width="15" height="15">
+                                                <path d="M 15 3 L 3 9 L 15 15" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Green Bubble with Happy Arc Eyes ^ ^ & Wave Mouth (Letter c1) -->
+                        <div class="sec6-bubble-wrapper bubble-green-2">
+                            <img src="assets/section2/3_c_green.png" alt="Green Bubble" class="bubble-bg">
+                            <div class="bubble-face face-c1">
+                                <div class="eyes-row">
+                                    <div class="eye eye-left">
+                                        <div class="pupil"></div>
+                                        <div class="eye-idle-svg">
+                                            <svg viewBox="0 0 22 14" width="18" height="12">
+                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="mouth mouth-svg-w">
+                                        <svg viewBox="0 0 34 22" width="26" height="16">
+                                            <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="eye eye-right">
+                                        <div class="pupil"></div>
+                                        <div class="eye-idle-svg">
+                                            <svg viewBox="0 0 22 14" width="18" height="12">
+                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating Icon Badges -->
+                        <div class="icon-bubble bubble-exclamation">
+                            <img src="assets/section2/icon_exclamation.png" alt="Exclamation Icon">
+                        </div>
+                        <div class="icon-bubble bubble-heart">
+                            <img src="assets/section2/icon_heart.png" alt="Heart Icon">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 3: LÀM THẬT -->
+                <div class="sec6-card card-lam-that">
+                    <div>
+                        <div class="sec6-badge-number">3</div>
+                        <h3 class="sec6-card-title">Làm Thật</h3>
+                        <p class="sec6-card-desc">Những người luôn đặt câu hỏi và không ngừng khám phá</p>
+                    </div>
+                    
+                    <!-- Bottom Graphic Panel: Grey & Yellow Bubbles + Faces + Icon Badges -->
+                    <div class="sec6-graphic-panel">
+
+                        <!-- Grey Bubble with Happy Arc Eyes ^ ^ & Wave Mouth (Letter g) -->
+                        <div class="sec6-bubble-wrapper bubble-grey-3">
+                            <img src="assets/section2/8_g_grey.png" alt="Grey Bubble" class="bubble-bg">
+                            <div class="bubble-face face-g">
+                                <div class="eyes-row">
+                                    <div class="eye eye-left">
+                                        <div class="pupil"></div>
+                                        <div class="eye-idle-svg">
+                                            <svg viewBox="0 0 22 14" width="18" height="12">
+                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="mouth mouth-svg-w">
+                                        <svg viewBox="0 0 34 22" width="26" height="16">
+                                            <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="eye eye-right">
+                                        <div class="pupil"></div>
+                                        <div class="eye-idle-svg">
+                                            <svg viewBox="0 0 22 14" width="18" height="12">
+                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Yellow Bubble with Pupil Eye Tracking & Sideways Smile (Letter i1 - Vertical) -->
+                        <div class="sec6-bubble-wrapper bubble-yellow-3">
+                            <img src="assets/section2/4_i_yellow.png" alt="Yellow Bubble" class="bubble-bg">
+                            <div class="bubble-face face-i1">
+                                <div class="eyes-row eyes-vertical">
+                                    <div class="eye eye-top"><div class="pupil pupil-always"></div></div>
+                                    <div class="mouth mouth-svg-sideways-smile">
+                                        <svg viewBox="0 0 20 26" width="15" height="20">
+                                            <path d="M 4 4 C 16 4, 16 22, 4 22" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                    <div class="eye eye-bottom"><div class="pupil pupil-always"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating Icon Badges -->
+                        <div class="icon-bubble bubble-question-3">
+                            <img src="assets/section2/icon_question.png" alt="Question Icon">
+                        </div>
+                        <div class="icon-bubble bubble-trophy">
+                            <img src="assets/section2/icon_trophy.png" alt="Trophy Icon">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         5. SECTION 7 (sections/section7.html - CÙNG SOCIOLOGIC VIẾT CHẶNG ĐƯỜNG TIẾP THEO)
+         ========================================================================== -->
+    <section class="section-7-wrapper" id="section-7">
+        <div class="section-container">
+
+            <!-- 1. Header Main Title -->
+            <div class="sec7-header">
+                <h2 class="sec7-title-main">
+                    Cùng SocioLogic Viết<br>
+                    <span class="sec7-yellow-box"><span class="sec7-script-text">Chặng Đường</span></span> Tiếp Theo
+                </h2>
+                
+                <!-- 2. Cyan CTA Pill Button with Pencil Icon -->
+                <a href="#section-5a" class="sec7-cta-btn">
+                    <svg class="sec7-btn-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 20h9"></path>
+                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                    </svg>
+                    <span>Gửi lời chúc của bạn</span>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         6. FOOTER (sections/footer.html - SOCIOLOGIC BRANDING & LINKS)
+         ========================================================================== -->
+    <footer class="footer-wrapper" id="footer">
+        <div class="footer-container">
+
+            <!-- 1. Top Branding Row -->
+            <div class="footer-top-brand">
+                <div class="footer-logo-box">
+                    <img src="assets/footer/Logo Vertical 1.png" alt="SocioLogic Logo" class="footer-logo-img">
+                </div>
+                <div class="footer-brand-divider"></div>
+                <div class="footer-brand-text">
+                    <h3 class="footer-company-name">CÔNG TY TNHH TRANH BIỆN VÀ TƯ DUY PHẢN BIỆN SOCIOLOGIC</h3>
+                    <p class="footer-company-slogan">Quan điểm đa chiều, vì một cộng đồng đa dạng.</p>
+                </div>
+            </div>
+
+            <!-- 2. Middle Main 3-Column Grid Layout -->
+            <div class="footer-main-grid">
+
+                <!-- Column 1: LIÊN HỆ -->
+                <div class="footer-col footer-col-contact">
+                    <h4 class="footer-col-title">LIÊN HỆ</h4>
+                    <ul class="footer-contact-list">
+                        <li>
+                            <svg class="footer-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            </svg>
+                            <span>Số 04, ngõ 62 Khúc Thừa Dụ, phường Dịch Vọng, quận Cầu Giấy, Hà Nội</span>
+                        </li>
+                        <li>
+                            <svg class="footer-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                            </svg>
+                            <span>0979.249.156 - 0328.597.607</span>
+                        </li>
+                        <li>
+                            <svg class="footer-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                            <a href="mailto:contact@sociologic.co">contact@sociologic.co</a>
+                        </li>
+                        <li>
+                            <svg class="footer-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                            </svg>
+                            <a href="https://sociologic.co" target="_blank">contact@sociologic.co</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Column 2: VỀ CHÚNG TÔI -->
+                <div class="footer-col footer-col-links">
+                    <h4 class="footer-col-title">VỀ CHÚNG TÔI</h4>
+                    <ul class="footer-link-list">
+                        <li><a href="#"><span class="chevron">&gt;</span> Giới thiệu</a></li>
+                        <li><a href="#"><span class="chevron">&gt;</span> Chính sách</a></li>
+                        <li><a href="#"><span class="chevron">&gt;</span> Tin tức</a></li>
+                        <li><a href="#"><span class="chevron">&gt;</span> Liên hệ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: KHOÁ HỌC -->
+                <div class="footer-col footer-col-courses">
+                    <h4 class="footer-col-title">KHOÁ HỌC</h4>
+                    <ul class="footer-link-list">
+                        <li><a href="#"><span class="chevron">&gt;</span> Khoá học Tranh biện nền tảng</a></li>
+                        <li><a href="#"><span class="chevron">&gt;</span> Khoá học Tranh biện chuyên sâu</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- 3. Bottom Copyright Bar -->
+        <div class="footer-copyright-bar">
+            <div class="copyright-inner">
+                <p class="copyright-text">Bản quyền thuộc về CÔNG TY TNHH TRANH BIỆN VÀ TƯ DUY PHẢN BIỆN SOCIOLOGIC</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Eye Tracking JS Script for Section 5A -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sec5a = document.getElementById('section-5a');
+            if (sec5a && 'IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                        } else {
+                            entry.target.classList.remove('is-visible');
+                        }
+                    });
+                }, { threshold: 0.15 });
+                observer.observe(sec5a);
+            }
+
+            const PROXIMITY_THRESHOLD = 500;
+            const MAX_PUPIL_SHIFT = 11.0;
+
+            let mouseX = -9999;
+            let mouseY = -9999;
+            let ticking = false;
+
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+
+                if (!ticking) {
+                    requestAnimationFrame(updateEyes5A);
+                    ticking = true;
+                }
+            });
+
+            function updateEyes5A() {
+                ticking = false;
+                const container = document.getElementById('bubblesContainerSec5a') || document.querySelector('.sec5a-bubbles-viewport .bubbles-row');
+                if (!container) return;
+
+                const bubbles = container.querySelectorAll('.bubble-item');
+                bubbles.forEach((bubble) => {
+                    const rect = bubble.getBoundingClientRect();
+                    const bubbleCenterX = rect.left + rect.width / 2;
+                    const bubbleCenterY = rect.top + rect.height / 2;
+
+                    const deltaX = mouseX - bubbleCenterX;
+                    const deltaY = mouseY - bubbleCenterY;
+                    const distance = Math.hypot(deltaX, deltaY);
+
+                    const pupils = bubble.querySelectorAll('.pupil');
+
+                    if (distance < PROXIMITY_THRESHOLD) {
+                        bubble.classList.add('active-near');
+                        pupils.forEach((pupil) => {
+                            const pupilRect = pupil.getBoundingClientRect();
+                            const pupilCenterX = pupilRect.left + pupilRect.width / 2;
+                            const pupilCenterY = pupilRect.top + pupilRect.height / 2;
+
+                            const angle = Math.atan2(mouseY - pupilCenterY, mouseX - pupilCenterX);
+                            const proximityFactor = Math.pow(1 - (distance / PROXIMITY_THRESHOLD), 0.7);
+                            const shift = Math.min(MAX_PUPIL_SHIFT, proximityFactor * MAX_PUPIL_SHIFT);
+
+                            const shiftX = Math.cos(angle) * shift;
+                            const shiftY = Math.sin(angle) * shift;
+
+                            pupil.style.transform = `translate(${shiftX.toFixed(2)}px, ${shiftY.toFixed(2)}px)`;
+                        });
+                    } else {
+                        bubble.classList.remove('active-near');
+                        pupils.forEach((pupil) => {
+                            pupil.style.transform = 'translate(0px, 0px)';
+                        });
+                    }
+                });
+            }
+        });
+    </script>
+
+    <!-- Scripts for Section 6 -->
+    <script src="js/section6.js"></script>
+
+</body>
+</html>

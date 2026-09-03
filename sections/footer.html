@@ -4,34 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Footer - SocioLogic | SocioLogic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/footer.css">
 </head>
 <body>
 
+    <!-- ==========================================================================
+         FOOTER SECTION MATCHING REFERENCE SCREENSHOT 100%
+         ========================================================================== -->
     <footer class="footer-wrapper" id="footer">
         <div class="footer-container">
 
-            <!-- Main Heading -->
-            <h2 class="footer-title">
-                Cùng viết nên hai năm tiếp theo.
-            </h2>
-
-            <!-- Call To Action Button -->
-            <div class="cta-box">
-                <button class="btn-send-wish" id="btnSendWish">
-                    <span>Gửi lời chúc của bạn</span>
-                    <svg viewBox="0 0 24 24" class="pencil-icon" fill="currentColor">
-                        <path d="M 3 17.25 V 21 H 6.75 L 17.81 9.94 L 14.06 6.19 L 3 17.25 Z M 20.71 7.04 C 21.1 6.65 21.1 6.02 20.71 5.63 L 18.37 3.29 C 17.98 2.9 17.35 2.9 16.96 3.29 L 15.13 5.12 L 18.88 8.87 L 20.71 7.04 Z"/>
-                    </svg>
-                </button>
+            <!-- 1. Top Branding Row -->
+            <div class="footer-top-brand">
+                <div class="footer-logo-box">
+                    <img src="../assets/footer/Logo Vertical 1.png" alt="SocioLogic Logo" class="footer-logo-img">
+                </div>
+                <div class="footer-brand-divider"></div>
+                <div class="footer-brand-text">
+                    <h3 class="footer-company-name">CÔNG TY TNHH TRANH BIỆN VÀ TƯ DUY PHẢN BIỆN SOCIOLOGIC</h3>
+                    <p class="footer-company-slogan">Quan điểm đa chiều, vì một cộng đồng đa dạng.</p>
+                </div>
             </div>
 
-            <!-- Bottom Metadata Row -->
-            <div class="footer-bottom-row">
-                <p class="meta-left">SocioLogic – Quan điểm đa chiều, vì một cộng đồng đa dạng.</p>
-                <p class="meta-right">2 năm - 2024-2026</p>
+            <!-- 2. Middle Main 3-Column Grid Layout -->
+            <div class="footer-main-grid">
+
+                <!-- Column 1: LIÊN HỆ -->
+                <div class="footer-col footer-col-contact">
+                    <h4 class="footer-col-title">LIÊN HỆ</h4>
+                    <ul class="footer-contact-list">
+                        <li>
+                            <svg class="footer-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            </svg>
+                            <span>Số 04, ngõ 62 Khúc Thừa Dụ, phường Dịch Vọng, quận Cầu Giấy, Hà Nội</span>
+                        </li>
+                        <li>
+                            <svg class="footer-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                            </svg>
+                            <span>0979.249.156 - 0328.597.607</span>
+                        </li>
+                        <li>
+                            <svg class="footer-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                            <a href="mailto:contact@sociologic.co">contact@sociologic.co</a>
+                        </li>
+                        <li>
+                            <svg class="footer-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                            </svg>
+                            <a href="https://sociologic.co" target="_blank">contact@sociologic.co</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Column 2: VỀ CHÚNG TÔI -->
+                <div class="footer-col footer-col-links">
+                    <h4 class="footer-col-title">VỀ CHÚNG TÔI</h4>
+                    <ul class="footer-link-list">
+                        <li><a href="#"><span class="chevron">&gt;</span> Giới thiệu</a></li>
+                        <li><a href="#"><span class="chevron">&gt;</span> Chính sách</a></li>
+                        <li><a href="#"><span class="chevron">&gt;</span> Tin tức</a></li>
+                        <li><a href="#"><span class="chevron">&gt;</span> Liên hệ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: KHOÁ HỌC -->
+                <div class="footer-col footer-col-courses">
+                    <h4 class="footer-col-title">KHOÁ HỌC</h4>
+                    <ul class="footer-link-list">
+                        <li><a href="#"><span class="chevron">&gt;</span> Khoá học Tranh biện nền tảng</a></li>
+                        <li><a href="#"><span class="chevron">&gt;</span> Khoá học Tranh biện chuyên sâu</a></li>
+                    </ul>
+                </div>
+
             </div>
 
+        </div>
+
+        <!-- 3. Bottom Copyright Bar (PURE WHITE STRIP AT VERY BOTTOM) -->
+        <div class="footer-copyright-bar">
+            <div class="copyright-inner">
+                <p class="copyright-text">Bản quyền thuộc về CÔNG TY TNHH TRANH BIỆN VÀ TƯ DUY PHẢN BIỆN SOCIOLOGIC</p>
+            </div>
         </div>
     </footer>
 

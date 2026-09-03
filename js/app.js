@@ -68,12 +68,39 @@ document.addEventListener('DOMContentLoaded', () => {
     function init() {
         resizeCanvas();
         setupEventListeners();
+        setupScrollRevealObserver();
 
         // 1. INSTANT 0MS PRE-RENDER: Load from local cache or starter samples immediately!
         loadInitialWishesInstantly();
 
         // 2. PARALLEL ASYNC BACKEND SYNC: Connect to MongoDB in background without blocking UI
         initBackendDatabase();
+    }
+
+    function setupScrollRevealObserver() {
+        const revealHeaders = document.querySelectorAll('.scroll-reveal-header');
+        if (revealHeaders.length === 0) return;
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -5% 0px',
+            threshold: 0.15
+        };
+
+        const headerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                } else {
+                    // Out of viewport: reset class so animation triggers ONLY when scrolled into view!
+                    entry.target.classList.remove('is-visible');
+                }
+            });
+        }, observerOptions);
+
+        revealHeaders.forEach(header => {
+            headerObserver.observe(header);
+        });
     }
 
     function createSampleWishCanvasData(text, textColor, authorName) {

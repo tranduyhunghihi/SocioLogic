@@ -4,13 +4,381 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Section Mix - Perfect Section 1 Hero & Section 2 Transition | SocioLogic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+IE:wght@100..400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/section_mix.css">
 </head>
 <body>
 
     <div class="scroll-experience-wrapper">
 
-        <!-- SECTION 1: EXACT MATCH TO SECTION1.HTML HERO LAYOUT -->
+        <!-- FLOATING GLASSMORPHISM NAVBAR MATCHING REFERENCE IMAGE -->
+        <nav class="floating-navbar">
+            <div class="nav-container">
+                
+                <!-- Left Brand Logo -->
+                <a href="#" class="nav-brand">
+                    <div class="nav-num2-group">
+                        <img src="../assets/section1/number2.png" alt="Graphic Number 2" class="nav-number2-img">
+                        <div class="nav-years-text">
+                            <span>years</span>
+                            <span>gether</span>
+                        </div>
+                    </div>
+                    <div class="nav-divider"></div>
+                    <img src="../assets/section1/logo.png" alt="SocioLogic Logo" class="nav-logo-img">
+                </a>
+
+                <!-- Right Nav Links -->
+                <div class="nav-links">
+                    <a href="#loi-chuc" class="nav-link">Lời Chúc</a>
+                    <a href="#hanh-trinh" class="nav-link">Hành Trình</a>
+                    <a href="#ban-dong-hanh" class="nav-link">Bạn Đồng Hành</a>
+                    <a href="#tuong-lai" class="nav-link">Tương Lai</a>
+                </div>
+
+            </div>
+        </nav>
+
+        <!-- SECTION 2: DESTINATION BANNER ROW AREA -->
+        <section class="section-banner" id="section2">
+
+            <!-- HERO ROUNDED CARD CONTAINER MATCHING REFERENCE IMAGE -->
+            <div class="hero-rounded-card">
+
+                <!-- RIGHT SIDE SCROLL INDICATOR DASHES -->
+                <div class="card-scroll-indicator">
+                    <span></span><span></span><span></span><span></span><span></span>
+                </div>
+
+                <!-- CENTERED HERO TITLES MATCHING REFERENCE IMAGE -->
+                <div class="hero-center-titles">
+                    <h1 class="hero-main-title">Hành Trang <span class="highlight-script">Tranh Biện</span></h1>
+                    <h1 class="hero-main-title">Vững Bước Tương Lai</h1>
+                </div>
+
+                <!-- EXACT BUBBLES CONTAINER MANAGING 18 STANDALONE PHYSICS BUBBLES -->
+                <div class="bubbles-viewport">
+                    <div class="bubbles-row faces-active" id="bubblesContainer">
+
+                        <!-- 10 INDIVIDUAL SPEECH BUBBLES & 8 STANDALONE MINI ICONS -->
+
+                        <!-- 1. Letter S (Blue) -->
+                        <div class="bubble-item letter-1-S" data-index="1" title="S">
+                            <img src="../assets/section2/1_S_blue.png" alt="Bubble S" class="bubble-bg">
+                            <span class="bubble-letter">S</span>
+                            <div class="bubble-face face-S">
+                                <div class="eyes-row">
+                                    <div class="eye eye-left"><div class="pupil pupil-always"></div></div>
+                                    <div class="mouth mouth-svg-smile">
+                                        <svg viewBox="0 0 26 20" width="25" height="18">
+                                            <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                    <div class="eye eye-right"><div class="pupil pupil-always"></div></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mini Icon 1 (Book Yellow - Standalone) -->
+                        <div class="mini-bubble-item img-doodle doodle-slot-1 bubble-yellow" title="Book">
+                            <img src="../assets/section2/icon_book.png" alt="Book Icon" class="doodle-icon-img">
+                        </div>
+
+                        <!-- Mini Icon 2 (Pencil Pink - Standalone) -->
+                        <div class="mini-bubble-item img-doodle doodle-slot-2 bubble-pink" title="Pencil">
+                            <img src="../assets/section2/icon_pencil.png" alt="Pencil Icon" class="doodle-icon-img">
+                        </div>
+
+                        <!-- 2. Letter o (Cyan) -->
+                        <div class="bubble-item letter-2-o" data-index="2" title="o">
+                            <img src="../assets/section2/2_o_cyan.png" alt="Bubble o" class="bubble-bg">
+                            <span class="bubble-letter">o</span>
+                            <div class="bubble-face face-o1">
+                                <div class="eyes-row">
+                                    <div class="eye eye-left">
+                                        <div class="pupil"></div>
+                                        <div class="eye-idle-svg">
+                                            <svg viewBox="0 0 22 14" width="22" height="14">
+                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="mouth mouth-svg-open">
+                                        <svg viewBox="0 0 24 24" width="20" height="20">
+                                            <circle cx="12" cy="12" r="9.5" fill="#FFFFFF" />
+                                        </svg>
+                                    </div>
+                                    <div class="eye eye-right">
+                                        <div class="pupil"></div>
+                                        <div class="eye-idle-svg">
+                                            <svg viewBox="0 0 22 14" width="22" height="14">
+                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mini Icon 3 (Medal Blue - Standalone) -->
+                        <div class="mini-bubble-item img-doodle doodle-slot-3 bubble-blue" title="Medal">
+                            <img src="../assets/section2/icon_medal.png" alt="Medal Icon" class="doodle-icon-img">
+                        </div>
+
+                        <!-- 3. Letter c (Green) -->
+                        <div class="bubble-item letter-3-c" data-index="3" title="c">
+                            <img src="../assets/section2/3_c_green.png" alt="Bubble c" class="bubble-bg">
+                            <span class="bubble-letter">c</span>
+                            <div class="bubble-face face-c1">
+                                <div class="eyes-row">
+                                    <div class="eye eye-left">
+                                        <div class="pupil"></div>
+                                        <div class="eye-idle-svg">
+                                            <svg viewBox="0 0 22 14" width="22" height="14">
+                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="mouth mouth-svg-w">
+                                        <svg viewBox="0 0 34 22" width="32" height="20">
+                                            <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="eye eye-right">
+                                        <div class="pupil"></div>
+                                        <div class="eye-idle-svg">
+                                            <svg viewBox="0 0 22 14" width="22" height="14">
+                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. Letter i (Yellow) -->
+                        <div class="bubble-item letter-4-i" data-index="4" title="i">
+                            <img src="../assets/section2/4_i_yellow.png" alt="Bubble i" class="bubble-bg">
+                            <span class="bubble-letter">i</span>
+                            <div class="bubble-face face-i1">
+                                <div class="eyes-row eyes-vertical">
+                                    <div class="eye eye-top"><div class="pupil pupil-always"></div></div>
+                                    <div class="mouth mouth-svg-sideways-smile">
+                                        <svg viewBox="0 0 20 26" width="18" height="24">
+                                            <path d="M 4 4 C 16 4, 16 22, 4 22" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                    <div class="eye eye-bottom"><div class="pupil pupil-always"></div></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 5. Letter o (Orange) -->
+                        <div class="bubble-item letter-5-o" data-index="5" title="o">
+                            <img src="../assets/section2/5_o_orange.png" alt="Bubble o" class="bubble-bg">
+                            <span class="bubble-letter">o</span>
+                            <div class="bubble-face face-o2">
+                                <div class="eyes-row">
+                                    <div class="eye eye-left">
+                                        <div class="pupil"></div>
+                                        <div class="eye-idle-svg">
+                                            <svg viewBox="0 0 18 18" width="18" height="18">
+                                                <path d="M 3 3 L 15 9 L 3 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="mouth mouth-svg-smile">
+                                        <svg viewBox="0 0 26 20" width="25" height="18">
+                                            <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                    <div class="eye eye-right">
+                                        <div class="pupil"></div>
+                                        <div class="eye-idle-svg">
+                                            <svg viewBox="0 0 18 18" width="18" height="18">
+                                                <path d="M 15 3 L 3 9 L 15 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mini Icon 4 (Trophy Cyan - Standalone) -->
+                        <div class="mini-bubble-item img-doodle doodle-slot-4 bubble-cyan" title="Trophy">
+                            <img src="../assets/section2/icon_trophy.png" alt="Trophy Icon" class="doodle-icon-img">
+                        </div>
+
+                        <!-- 6. Letter L (Red-Orange) -->
+                        <div class="bubble-item letter-6-L" data-index="6" title="L">
+                            <img src="../assets/section2/6_L_redorange.png" alt="Bubble L" class="bubble-bg">
+                            <span class="bubble-letter">L</span>
+                            <div class="bubble-face face-L">
+                                <div class="eyes-row">
+                                    <div class="eye eye-left">
+                                        <div class="pupil"></div>
+                                        <div class="eye-idle-svg">
+                                            <svg viewBox="0 0 18 18" width="18" height="18">
+                                                <path d="M 3 3 L 15 9 L 3 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="mouth mouth-svg-open">
+                                        <svg viewBox="0 0 24 24" width="20" height="20">
+                                            <circle cx="12" cy="12" r="9.5" fill="#FFFFFF" />
+                                        </svg>
+                                    </div>
+                                    <div class="eye eye-right">
+                                        <div class="pupil"></div>
+                                        <div class="eye-idle-svg">
+                                            <svg viewBox="0 0 18 18" width="18" height="18">
+                                                <path d="M 15 3 L 3 9 L 15 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mini Icon 5 (Heart Green - Standalone) -->
+                        <div class="mini-bubble-item img-doodle doodle-slot-5 bubble-green" title="Heart">
+                            <img src="../assets/section2/icon_heart.png" alt="Heart Icon" class="doodle-icon-img">
+                        </div>
+
+                        <!-- 7. Letter o (Pink) -->
+                        <div class="bubble-item letter-7-o" data-index="7" title="o">
+                            <img src="../assets/section2/7_o_pink.png" alt="Bubble o" class="bubble-bg">
+                            <span class="bubble-letter">o</span>
+                            <div class="bubble-face face-o3">
+                                <div class="eyes-row">
+                                    <div class="eye eye-left">
+                                        <div class="pupil"></div>
+                                        <div class="eye-idle-svg">
+                                            <svg viewBox="0 0 22 14" width="22" height="14">
+                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="mouth mouth-svg-smile">
+                                        <svg viewBox="0 0 26 20" width="25" height="18">
+                                            <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                    <div class="eye eye-right">
+                                        <div class="pupil"></div>
+                                        <div class="eye-idle-svg">
+                                            <svg viewBox="0 0 22 14" width="22" height="14">
+                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mini Icon 6 (Podium Pink - Standalone) -->
+                        <div class="mini-bubble-item img-doodle doodle-slot-6 bubble-pink" title="Podium">
+                            <img src="../assets/section2/icon_podium.png" alt="Podium Icon" class="doodle-icon-img">
+                        </div>
+
+                        <!-- 8. Letter g (Grey) -->
+                        <div class="bubble-item letter-8-g" data-index="8" title="g">
+                            <img src="../assets/section2/8_g_grey.png" alt="Bubble g" class="bubble-bg">
+                            <span class="bubble-letter">g</span>
+                            <div class="bubble-face face-g">
+                                <div class="eyes-row">
+                                    <div class="eye eye-left">
+                                        <div class="pupil"></div>
+                                        <div class="eye-idle-svg">
+                                            <svg viewBox="0 0 22 14" width="22" height="14">
+                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="mouth mouth-svg-w">
+                                        <svg viewBox="0 0 34 22" width="32" height="20">
+                                            <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="eye eye-right">
+                                        <div class="pupil"></div>
+                                        <div class="eye-idle-svg">
+                                            <svg viewBox="0 0 22 14" width="22" height="14">
+                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mini Icon 7 (Exclamation ! Cyan - Standalone) -->
+                        <div class="mini-bubble-item img-doodle doodle-slot-7 bubble-cyan" title="Exclamation">
+                            <img src="../assets/section2/icon_exclamation.png" alt="Exclamation Icon" class="doodle-icon-img">
+                        </div>
+
+                        <!-- 9. Letter i (Cyan) -->
+                        <div class="bubble-item letter-9-i" data-index="9" title="i">
+                            <img src="../assets/section2/9_i_cyan.png" alt="Bubble i" class="bubble-bg">
+                            <span class="bubble-letter">i</span>
+                            <div class="bubble-face face-i2">
+                                <div class="eyes-row eyes-vertical">
+                                    <div class="eye eye-top"><div class="pupil pupil-always"></div></div>
+                                    <div class="mouth mouth-svg-sideways-smile">
+                                        <svg viewBox="0 0 20 26" width="18" height="24">
+                                            <path d="M 4 4 C 16 4, 16 22, 4 22" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                    <div class="eye eye-bottom"><div class="pupil pupil-always"></div></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 10. Letter c (Blue) -->
+                        <div class="bubble-item letter-10-c" data-index="10" title="c">
+                            <img src="../assets/section2/10_c_blue.png" alt="Bubble c" class="bubble-bg">
+                            <span class="bubble-letter">c</span>
+                            <div class="bubble-face face-c2">
+                                <div class="eyes-row">
+                                    <div class="eye eye-left">
+                                        <div class="pupil"></div>
+                                        <div class="eye-idle-svg">
+                                            <svg viewBox="0 0 18 18" width="18" height="18">
+                                                <path d="M 3 3 L 15 9 L 3 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="mouth mouth-svg-w">
+                                        <svg viewBox="0 0 34 22" width="32" height="20">
+                                            <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="eye eye-right">
+                                        <div class="pupil"></div>
+                                        <div class="eye-idle-svg">
+                                            <svg viewBox="0 0 18 18" width="18" height="18">
+                                                <path d="M 15 3 L 3 9 L 15 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mini Icon 8 (Search Q Blue - Standalone) -->
+                        <div class="mini-bubble-item img-doodle doodle-slot-8 bubble-blue" title="Search">
+                            <img src="../assets/section2/Property 1=Variant5.png" alt="Search Icon" class="doodle-icon-img">
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 1: HERO LAYOUT -->
         <section class="section-1-wrapper" id="section1">
             <div class="hero-layout">
                 
@@ -22,313 +390,20 @@
                     </div>
 
                     <h1 class="hero-title">Hành Trình</h1>
-                    <a href="#hanh-trang" class="pill-btn">Hành Trang Tranh Biện</a>
+                    <a href="#hanh-trang" class="pill-btn pill-btn-yellow">Hành Trang Tranh Biện</a>
                 </div>
 
                 <!-- Middle Column: Graphic Number 2 -->
-                <div class="hero-col-center" id="heroNumber2">
+                <div class="hero-col-center vanish" id="heroNumber2">
                     <img src="../assets/section1/number2.png" alt="Con số 2 bằng các bong bóng ý kiến" class="number-2-img">
                 </div>
 
                 <!-- Right Column: Title & Action Pill -->
                 <div class="hero-col-right">
                     <h1 class="hero-title">Năm</h1>
-                    <a href="#tuong-lai" class="pill-btn">Vững Bước Tương Lai</a>
+                    <a href="#tuong-lai" class="pill-btn pill-btn-yellow">Vững Bước Tương Lai</a>
                 </div>
 
-            </div>
-        </section>
-
-        <!-- SECTION 2: DESTINATION BANNER ROW AREA -->
-        <section class="section-banner" id="section2">
-
-            <!-- EXACT FLEXBOX BUBBLES ROW MATCHING SECTION2.HTML -->
-            <div class="bubbles-viewport">
-                <div class="bubbles-row state-num-2" id="bubblesContainer">
-
-                    <!-- FLOATING DOODLES -->
-                    <img src="../assets/section2/icon_podium.png" alt="Podium Icon" class="img-doodle doodle-top-1">
-                    <img src="../assets/section2/icon_book.png" alt="Book Icon" class="img-doodle doodle-top-2">
-                    <img src="../assets/section2/icon_question.png" alt="Question Icon" class="img-doodle doodle-top-3">
-                    <img src="../assets/section2/icon_medal.png" alt="Medal Icon" class="img-doodle doodle-top-4">
-                    <img src="../assets/section2/icon_medal.png" alt="Medal Icon" class="img-doodle doodle-top-5">
-
-                    <img src="../assets/section2/icon_question.png" alt="Question Icon" class="img-doodle doodle-bottom-1">
-                    <img src="../assets/section2/icon_pencil.png" alt="Pencil Icon" class="img-doodle doodle-bottom-2">
-                    <img src="../assets/section2/icon_book.png" alt="Book Icon" class="img-doodle doodle-bottom-3">
-                    <img src="../assets/section2/icon_book.png" alt="Book Icon" class="img-doodle doodle-bottom-4">
-
-                    <!-- 10 INDIVIDUAL SPEECH BUBBLES WITH EXACT SECTION2.HTML CLASSES -->
-
-                    <!-- 1. Letter S (Blue) -->
-                    <div class="bubble-item letter-1-S" data-index="1" title="S">
-                        <img src="../assets/section2/1_S_blue.png" alt="Bubble S" class="bubble-bg">
-                        <span class="bubble-letter">S</span>
-                        <div class="bubble-face face-S">
-                            <div class="eyes-row">
-                                <div class="eye eye-left"><div class="pupil pupil-always"></div></div>
-                                <div class="mouth mouth-svg-smile">
-                                    <svg viewBox="0 0 26 20" width="25" height="18">
-                                        <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
-                                    </svg>
-                                </div>
-                                <div class="eye eye-right"><div class="pupil pupil-always"></div></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 2. Letter o (Cyan) -->
-                    <div class="bubble-item letter-2-o" data-index="2" title="o">
-                        <img src="../assets/section2/2_o_cyan.png" alt="Bubble o" class="bubble-bg">
-                        <span class="bubble-letter">o</span>
-                        <div class="bubble-face face-o1">
-                            <div class="eyes-row">
-                                <div class="eye eye-left">
-                                    <div class="pupil"></div>
-                                    <div class="eye-idle-svg">
-                                        <svg viewBox="0 0 22 14" width="22" height="14">
-                                            <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="mouth mouth-svg-open">
-                                    <svg viewBox="0 0 24 24" width="20" height="20">
-                                        <circle cx="12" cy="12" r="9.5" fill="#FFFFFF" />
-                                    </svg>
-                                </div>
-                                <div class="eye eye-right">
-                                    <div class="pupil"></div>
-                                    <div class="eye-idle-svg">
-                                        <svg viewBox="0 0 22 14" width="22" height="14">
-                                            <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 3. Letter c (Green) -->
-                    <div class="bubble-item letter-3-c" data-index="3" title="c">
-                        <img src="../assets/section2/3_c_green.png" alt="Bubble c" class="bubble-bg">
-                        <span class="bubble-letter">c</span>
-                        <div class="bubble-face face-c1">
-                            <div class="eyes-row">
-                                <div class="eye eye-left">
-                                    <div class="pupil"></div>
-                                    <div class="eye-idle-svg">
-                                        <svg viewBox="0 0 22 14" width="22" height="14">
-                                            <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="mouth mouth-svg-w">
-                                    <svg viewBox="0 0 34 22" width="32" height="20">
-                                        <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                                <div class="eye eye-right">
-                                    <div class="pupil"></div>
-                                    <div class="eye-idle-svg">
-                                        <svg viewBox="0 0 22 14" width="22" height="14">
-                                            <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 4. Letter i (Yellow) -->
-                    <div class="bubble-item letter-4-i" data-index="4" title="i">
-                        <img src="../assets/section2/4_i_yellow.png" alt="Bubble i" class="bubble-bg">
-                        <span class="bubble-letter">i</span>
-                        <div class="bubble-face face-i1">
-                            <div class="eyes-row eyes-vertical">
-                                <div class="eye eye-top"><div class="pupil pupil-always"></div></div>
-                                <div class="mouth mouth-svg-sideways-smile">
-                                    <svg viewBox="0 0 20 26" width="18" height="24">
-                                        <path d="M 4 4 C 16 4, 16 22, 4 22" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
-                                    </svg>
-                                </div>
-                                <div class="eye eye-bottom"><div class="pupil pupil-always"></div></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 5. Letter o (Orange) -->
-                    <div class="bubble-item letter-5-o" data-index="5" title="o">
-                        <img src="../assets/section2/5_o_orange.png" alt="Bubble o" class="bubble-bg">
-                        <span class="bubble-letter">o</span>
-                        <div class="bubble-face face-o2">
-                            <div class="eyes-row">
-                                <div class="eye eye-left">
-                                    <div class="pupil"></div>
-                                    <div class="eye-idle-svg">
-                                        <svg viewBox="0 0 18 18" width="18" height="18">
-                                            <path d="M 3 3 L 15 9 L 3 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="mouth mouth-svg-smile">
-                                    <svg viewBox="0 0 26 20" width="25" height="18">
-                                        <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
-                                    </svg>
-                                </div>
-                                <div class="eye eye-right">
-                                    <div class="pupil"></div>
-                                    <div class="eye-idle-svg">
-                                        <svg viewBox="0 0 18 18" width="18" height="18">
-                                            <path d="M 15 3 L 3 9 L 15 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 6. Letter L (Red-Orange) -->
-                    <div class="bubble-item letter-6-L" data-index="6" title="L">
-                        <img src="../assets/section2/6_L_redorange.png" alt="Bubble L" class="bubble-bg">
-                        <span class="bubble-letter">L</span>
-                        <div class="bubble-face face-L">
-                            <div class="eyes-row">
-                                <div class="eye eye-left">
-                                    <div class="pupil"></div>
-                                    <div class="eye-idle-svg">
-                                        <svg viewBox="0 0 18 18" width="18" height="18">
-                                            <path d="M 3 3 L 15 9 L 3 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="mouth mouth-svg-open">
-                                    <svg viewBox="0 0 24 24" width="20" height="20">
-                                        <circle cx="12" cy="12" r="9.5" fill="#FFFFFF" />
-                                    </svg>
-                                </div>
-                                <div class="eye eye-right">
-                                    <div class="pupil"></div>
-                                    <div class="eye-idle-svg">
-                                        <svg viewBox="0 0 18 18" width="18" height="18">
-                                            <path d="M 15 3 L 3 9 L 15 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 7. Letter o (Pink) -->
-                    <div class="bubble-item letter-7-o" data-index="7" title="o">
-                        <img src="../assets/section2/7_o_pink.png" alt="Bubble o" class="bubble-bg">
-                        <span class="bubble-letter">o</span>
-                        <div class="bubble-face face-o3">
-                            <div class="eyes-row">
-                                <div class="eye eye-left">
-                                    <div class="pupil"></div>
-                                    <div class="eye-idle-svg">
-                                        <svg viewBox="0 0 22 14" width="22" height="14">
-                                            <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="mouth mouth-svg-smile">
-                                    <svg viewBox="0 0 26 20" width="25" height="18">
-                                        <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
-                                    </svg>
-                                </div>
-                                <div class="eye eye-right">
-                                    <div class="pupil"></div>
-                                    <div class="eye-idle-svg">
-                                        <svg viewBox="0 0 22 14" width="22" height="14">
-                                            <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 8. Letter g (Grey) -->
-                    <div class="bubble-item letter-8-g" data-index="8" title="g">
-                        <img src="../assets/section2/8_g_grey.png" alt="Bubble g" class="bubble-bg">
-                        <span class="bubble-letter">g</span>
-                        <div class="bubble-face face-g">
-                            <div class="eyes-row">
-                                <div class="eye eye-left">
-                                    <div class="pupil"></div>
-                                    <div class="eye-idle-svg">
-                                        <svg viewBox="0 0 22 14" width="22" height="14">
-                                            <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="mouth mouth-svg-w">
-                                    <svg viewBox="0 0 34 22" width="32" height="20">
-                                        <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                                <div class="eye eye-right">
-                                    <div class="pupil"></div>
-                                    <div class="eye-idle-svg">
-                                        <svg viewBox="0 0 22 14" width="22" height="14">
-                                            <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 9. Letter i (Cyan) -->
-                    <div class="bubble-item letter-9-i" data-index="9" title="i">
-                        <img src="../assets/section2/9_i_cyan.png" alt="Bubble i" class="bubble-bg">
-                        <span class="bubble-letter">i</span>
-                        <div class="bubble-face face-i2">
-                            <div class="eyes-row eyes-vertical">
-                                <div class="eye eye-top"><div class="pupil pupil-always"></div></div>
-                                <div class="mouth mouth-svg-sideways-smile">
-                                    <svg viewBox="0 0 20 26" width="18" height="24">
-                                        <path d="M 4 4 C 16 4, 16 22, 4 22" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
-                                    </svg>
-                                </div>
-                                <div class="eye eye-bottom"><div class="pupil pupil-always"></div></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 10. Letter c (Blue) -->
-                    <div class="bubble-item letter-10-c" data-index="10" title="c">
-                        <img src="../assets/section2/10_c_blue.png" alt="Bubble c" class="bubble-bg">
-                        <span class="bubble-letter">c</span>
-                        <div class="bubble-face face-c2">
-                            <div class="eyes-row">
-                                <div class="eye eye-left">
-                                    <div class="pupil"></div>
-                                    <div class="eye-idle-svg">
-                                        <svg viewBox="0 0 18 18" width="18" height="18">
-                                            <path d="M 3 3 L 15 9 L 3 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="mouth mouth-svg-w">
-                                    <svg viewBox="0 0 34 22" width="32" height="20">
-                                        <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                                <div class="eye eye-right">
-                                    <div class="pupil"></div>
-                                    <div class="eye-idle-svg">
-                                        <svg viewBox="0 0 18 18" width="18" height="18">
-                                            <path d="M 15 3 L 3 9 L 15 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
             </div>
         </section>
 
