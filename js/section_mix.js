@@ -15,12 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let spaceFloatAnimation = null;
     let spaceState = [];
 
-    // 1. ULTRA-REALISTIC NATURAL PHYSICS DROP ANIMATION
+    // 1. ULTRA-REALISTIC NATURAL PHYSICS DROP ANIMATION FOR ALL 18 ITEMS (LETTER BUBBLES + MINI ICONS)
     function applyPhysicsDrop() {
         if (!bubblesContainer || allSection1Items.length === 0) return;
         bubblesContainer.classList.add('faces-active');
         bubblesContainer.classList.remove('state-converging');
 
+        // Target ALL 18 items (letter bubbles + mini icons) for Section 1 drop physics
         const physicsState = allSection1Items.map((el, index) => {
             const style = getComputedStyle(el);
             const baseXStr = style.getPropertyValue('--base-x').trim() || '0px';
@@ -30,12 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const rotFinalStr = style.getPropertyValue('--rot-final').trim() || '0deg';
             const rotFinal = parseFloat(rotFinalStr) || 0;
 
-            const dropDistance = 320 + Math.sin(index * 1.5) * 50;
+            const dropDistance = 340 + Math.sin(index * 1.5) * 60;
             const startY = baseY - dropDistance;
 
             el.style.transition = 'none';
             el.style.opacity = '0';
-            el.style.transform = `translate3d(${baseX}px, ${startY}px, 0) rotate(${rotFinal + (index % 2 === 0 ? 18 : -18)}deg) scale(0.9)`;
+            el.style.transform = `translate3d(${baseX}px, ${startY}px, 0) rotate(${rotFinal + (index % 2 === 0 ? 18 : -18)}deg) scale(0.92)`;
 
             return {
                 el,
@@ -46,39 +47,77 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentX: baseX,
                 currentY: startY,
                 velocityX: (Math.sin(index * 2) * 20),
-                velocityY: 280 + (index % 4) * 90,
-                scaleX: 0.9,
-                scaleY: 1.1,
+                velocityY: 0,
+                swayPhase: index * 0.9,
                 rotOffset: (index % 2 === 0 ? 18 : -18),
+                scaleX: 0.92,
+                scaleY: 1.08,
+                bounceCount: 0,
                 settled: false,
-                bounceCount: 0
+                started: false,
+                startDelay: 30 + index * 40,
+                airTime: 0
             };
         });
 
-        const startTime = performance.now();
+        bubblesContainer.offsetHeight;
 
-        function physicsStep(now) {
+        let startTime = null;
+        let lastFrameTime = null;
+
+        function physicsStep(timestamp) {
+            if (!startTime) {
+                startTime = timestamp;
+                lastFrameTime = timestamp;
+            }
+
+            // High-precision adaptive delta-time capped at max 32ms (30fps min, 60-120fps smooth)
+            const rawDt = (timestamp - lastFrameTime) / 1000;
+            const dt = Math.min(Math.max(rawDt, 0.008), 0.032) || 0.016;
+            lastFrameTime = timestamp;
+
             let allSettled = true;
 
             physicsState.forEach((state, index) => {
                 if (state.settled) return;
+
+                const elapsedMs = timestamp - startTime;
+                if (!state.started) {
+                    if (elapsedMs < state.startDelay) {
+                        allSettled = false;
+                        return;
+                    }
+                    state.started = true;
+                    state.el.style.opacity = '1';
+                }
+
                 allSettled = false;
+                state.airTime += dt;
 
-                const dt = 0.016;
+                const gravity = 2400;
+                const airDragY = 1.3;
+                const airDragX = 2.0;
 
-                state.velocityY += 1800 * dt;
+                state.velocityY += (gravity - state.velocityY * airDragY) * dt;
                 state.currentY += state.velocityY * dt;
 
-                state.currentX += state.velocityX * dt;
-                state.velocityX *= 0.96;
+                const remainingDist = Math.max(0, state.baseY - state.currentY);
+                const dampening = Math.min(1, remainingDist / 140);
 
-                state.rotOffset *= 0.92;
-                state.scaleX += (1 - state.scaleX) * 0.15;
-                state.scaleY += (1 - state.scaleY) * 0.15;
+                const swayForce = Math.sin(state.airTime * 7.5 + state.swayPhase) * 24 * dampening;
+                state.velocityX += (swayForce - state.velocityX * airDragX) * dt;
+                state.currentX = state.baseX + state.velocityX * 0.15;
+
+                const targetRotOffset = (state.velocityX * 0.35) + Math.cos(state.airTime * 6 + index) * 10 * dampening;
+                state.rotOffset += (targetRotOffset - state.rotOffset) * 0.12;
+
+                state.scaleX += (1 - state.scaleX) * 0.18;
+                state.scaleY += (1 - state.scaleY) * 0.18;
 
                 if (state.currentY >= state.baseY) {
-                    if (Math.abs(state.velocityY) > 80 && state.bounceCount < 3) {
-                        state.currentY = state.baseY;
+                    state.currentY = state.baseY;
+
+                    if (Math.abs(state.velocityY) > 60 && state.bounceCount < 3) {
                         state.bounceCount++;
 
                         const impactFactor = Math.min(0.28, Math.abs(state.velocityY) / 2200);
@@ -98,10 +137,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
 
-                const renderX = state.currentX;
-                const renderY = state.currentY;
-                const renderRot = state.rotFinal + state.rotOffset;
-                state.el.style.transform = `translate3d(${renderX.toFixed(2)}px, ${renderY.toFixed(2)}px, 0) rotate(${renderRot.toFixed(2)}deg) scale(${state.scaleX.toFixed(3)}, ${state.scaleY.toFixed(3)})`;
+                // 60FPS Pure GPU Acceleration String Render
+                state.el.style.transform = `translate3d(${state.currentX.toFixed(1)}px, ${state.currentY.toFixed(1)}px, 0) rotate(${(state.rotFinal + state.rotOffset).toFixed(1)}deg) scale(${state.scaleX.toFixed(2)}, ${state.scaleY.toFixed(2)})`;
             });
 
             if (!allSettled) {
