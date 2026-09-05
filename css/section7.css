@@ -11,7 +11,7 @@
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
-    padding: 100px 0 120px;
+    padding: 180px 0 120px;
     box-sizing: border-box;
     background-color: #FFFFFF;
     overflow: hidden;
@@ -40,7 +40,7 @@
     justify-content: center;
     width: 100% !important;
     max-width: 960px !important;
-    margin: 0 auto !important;
+    margin: 40px auto 0 !important;
     box-sizing: border-box !important;
 }
 
@@ -51,7 +51,7 @@
     color: #0052FF;
     line-height: 1.35;
     letter-spacing: -0.02em;
-    margin-bottom: 32px;
+    margin-bottom: 46px;
     text-align: center;
     width: 100% !important;
     display: block !important;
@@ -70,10 +70,10 @@
 .section-7-wrapper .sec7-yellow-box::before {
     content: '';
     position: absolute;
-    top: 22%;
+    top: 38%;
     left: 0;
     width: 100%;
-    height: 70%;
+    height: 65%;
     background-color: #FEF9C3 !important;
     z-index: -1;
 }
@@ -109,6 +109,7 @@
     box-shadow: 0 6px 20px rgba(56, 189, 248, 0.38);
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     cursor: pointer;
+    margin-top: 10px;
 }
 
 .section-7-wrapper .sec7-cta-btn:hover {

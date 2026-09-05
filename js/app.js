@@ -623,7 +623,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (gridOverlay) {
             gridOverlay.addEventListener('click', (e) => {
-                if (!e.target.closest('.grid-wish-card')) closeGridModal();
+                if (!e.target.closest('.grid-modal-container')) closeGridModal();
             });
         }
 
@@ -969,15 +969,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 imgWrapper.className = 'card-element image-element';
                 imgWrapper.style.left = '40px';
                 imgWrapper.style.top = '40px';
+                imgWrapper.style.width = '160px';
 
                 imgWrapper.innerHTML = `
                     <div class="element-drag-handle" title="Nhấp giữ để kéo di chuyển"><i class="ph-bold ph-dots-six-vertical"></i> Kéo di chuyển</div>
                     <img src="${compressedDataUrl}" class="card-element-image" alt="Uploaded element" draggable="false">
                     <button type="button" class="element-delete-btn" title="Xóa"><i class="ph-bold ph-x"></i></button>
+                    <div class="element-resize-handle" title="Kéo góc để chỉnh kích thước"><i class="ph-bold ph-arrows-out-cardinal"></i></div>
                 `;
 
                 elementsLayer.appendChild(imgWrapper);
                 makeElementDraggable(imgWrapper);
+                makeElementResizable(imgWrapper);
 
                 imgWrapper.querySelector('.element-delete-btn').addEventListener('click', (ev) => {
                     ev.stopPropagation();
@@ -992,7 +995,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function makeElementDraggable(el) {
         const onStart = (e) => {
-            if (e.target.classList.contains('element-delete-btn') || e.target.closest('.element-delete-btn')) return;
+            if (e.target.classList.contains('element-delete-btn') || 
+                e.target.closest('.element-delete-btn') ||
+                e.target.classList.contains('element-resize-handle') ||
+                e.target.closest('.element-resize-handle')) return;
 
             // If user is currently editing text inside contenteditable div, allow text selection unless dragged from handle/border
             if (e.target.classList.contains('card-element-text-content') && document.activeElement === e.target && !e.target.closest('.element-drag-handle')) {
@@ -1042,6 +1048,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
         el.addEventListener('mousedown', onStart);
         el.addEventListener('touchstart', onStart, { passive: false });
+    }
+
+    function makeElementResizable(el) {
+        const resizeHandle = el.querySelector('.element-resize-handle');
+        if (!resizeHandle) return;
+
+        let startX = 0;
+        let startW = 0;
+
+        const onResizeStart = (e) => {
+            e.stopPropagation();
+            if (e.type === 'touchstart') e.preventDefault();
+
+            startX = e.touches ? e.touches[0].clientX : e.clientX;
+            startW = el.offsetWidth || 160;
+
+            document.addEventListener('mousemove', onResizeMove);
+            document.addEventListener('mouseup', onResizeEnd);
+            document.addEventListener('touchmove', onResizeMove, { passive: false });
+            document.addEventListener('touchend', onResizeEnd);
+        };
+
+        const onResizeMove = (e) => {
+            if (e.touches) e.preventDefault();
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const deltaX = clientX - startX;
+            const newW = Math.max(50, Math.min(420, startW + deltaX));
+            el.style.width = `${newW}px`;
+        };
+
+        const onResizeEnd = () => {
+            document.removeEventListener('mousemove', onResizeMove);
+            document.removeEventListener('mouseup', onResizeEnd);
+            document.removeEventListener('touchmove', onResizeMove);
+            document.removeEventListener('touchend', onResizeEnd);
+        };
+
+        resizeHandle.addEventListener('mousedown', onResizeStart);
+        resizeHandle.addEventListener('touchstart', onResizeStart, { passive: false });
     }
 
     // ==========================================================================
@@ -1162,7 +1207,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const color = textContent.style.color || '#1E293B';
                     
                     rCtx.fillStyle = color;
-                    rCtx.font = 'bold 28px "Patrick Hand", "Plus Jakarta Sans", sans-serif';
+                    rCtx.font = '300 24px "Playwrite GB S", "Playwrite IE", cursive, sans-serif';
                     rCtx.textAlign = 'left';
                     rCtx.textBaseline = 'top';
 
@@ -1174,13 +1219,17 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (el.classList.contains('image-element')) {
                 const imgEl = el.querySelector('img');
                 if (imgEl) {
+                    const imgRect = imgEl.getBoundingClientRect();
+                    const imgPosX = (imgRect.left - containerRect.left) * scaleX;
+                    const imgPosY = (imgRect.top - containerRect.top) * scaleY;
+                    const drawW = imgRect.width * scaleX;
+                    const drawH = imgRect.height * scaleY;
+
                     await new Promise((resolve) => {
                         const img = new Image();
                         img.crossOrigin = 'anonymous';
                         img.onload = () => {
-                            const drawW = elRect.width * scaleX;
-                            const drawH = elRect.height * scaleY;
-                            rCtx.drawImage(img, posX, posY, drawW, drawH);
+                            rCtx.drawImage(img, imgPosX, imgPosY, drawW, drawH);
                             resolve();
                         };
                         img.onerror = () => resolve();

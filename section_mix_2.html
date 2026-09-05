@@ -160,9 +160,32 @@
 
     <!-- Grid View All Wishes Modal Overlay -->
     <div id="grid-overlay" class="overlay hidden">
-        <div class="grid-overlay-scroll">
-            <div id="grid-modal-cards" class="wishes-modal-grid">
-                <!-- Cards dynamically inserted here by js/app.js -->
+        <div class="grid-modal-container">
+            <!-- Modal Close Button -->
+            <button type="button" id="btn-close-grid" class="grid-modal-close-btn" aria-label="Đóng">
+                <i class="ph-bold ph-x"></i>
+            </button>
+
+            <!-- Modal Header Title (Matching Reference Image) -->
+            <div class="grid-modal-header">
+                <h2 class="grid-modal-title">
+                    <div class="grid-title-line-top">
+                        <span class="grid-title-main">Những Lời</span>
+                        <div class="grid-title-yellow-box">
+                            <span class="grid-title-script">Nhắn Gửi</span>
+                        </div>
+                    </div>
+                    <div class="grid-title-line-bottom">
+                        <span class="grid-title-main">Yêu Thương</span>
+                    </div>
+                </h2>
+            </div>
+
+            <!-- Scrollable Grid Body -->
+            <div class="grid-modal-scroll">
+                <div id="grid-modal-cards" class="wishes-modal-grid">
+                    <!-- Cards dynamically inserted here by js/app.js -->
+                </div>
             </div>
         </div>
     </div>
