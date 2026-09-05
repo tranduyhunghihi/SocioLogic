@@ -2,6 +2,7 @@
    FOOTER SECTION - SOCIOLOGIC (SEAMLESS COLOR BLENDING BETWEEN TOP & BOTTOM)
    ========================================================================== */
 
+@import url('fonts.css');
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap');
 
 .footer-wrapper {
@@ -70,7 +71,7 @@
 }
 
 .footer-wrapper .footer-company-name {
-    font-family: 'Plus Jakarta Sans', 'Be Vietnam Pro', sans-serif;
+    font-family: 'BT BeauSans', sans-serif;
     font-size: 1.15rem;
     font-weight: 700;
     color: #0A52AD;
@@ -80,7 +81,7 @@
 }
 
 .footer-wrapper .footer-company-slogan {
-    font-family: 'Plus Jakarta Sans', 'Be Vietnam Pro', sans-serif;
+    font-family: 'BT BeauSans', sans-serif;
     font-size: 1.0rem;
     font-weight: 400;
     color: #0A52AD;
@@ -97,7 +98,7 @@
 }
 
 .footer-wrapper .footer-col-title {
-    font-family: 'Plus Jakarta Sans', 'Be Vietnam Pro', sans-serif;
+    font-family: 'BT BeauSans', sans-serif;
     font-size: 1.05rem;
     font-weight: 700;
     color: #0A52AD;
@@ -120,7 +121,7 @@
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    font-family: 'Plus Jakarta Sans', 'Be Vietnam Pro', sans-serif;
+    font-family: 'BT BeauSans', sans-serif;
     font-size: 0.96rem;
     font-weight: 400;
     color: #0A52AD;
@@ -155,7 +156,7 @@
 }
 
 .footer-wrapper .footer-link-list li a {
-    font-family: 'Plus Jakarta Sans', 'Be Vietnam Pro', sans-serif;
+    font-family: 'BT BeauSans', sans-serif;
     font-size: 0.96rem;
     font-weight: 400;
     color: #0A52AD;
@@ -201,7 +202,7 @@
 }
 
 .footer-wrapper .copyright-text {
-    font-family: 'Plus Jakarta Sans', 'Be Vietnam Pro', sans-serif;
+    font-family: 'BT BeauSans', sans-serif;
     font-size: 0.88rem;
     font-weight: 500;
     color: #0A52AD;

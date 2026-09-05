@@ -2,15 +2,16 @@
    SECTION MIX - COMBINING 100% EXACT SECTION 1 & SECTION 2 STYLES
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=Playwrite+IE:wght@100..400&display=swap');
+@import url('fonts.css');
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+IE:wght@100..400&display=swap');
 
 :root {
     --color-primary: #0052FF;
     --color-primary-hover: #0041CC;
     --color-text-dark: #0F172A;
     --color-bg-white: #FFFFFF;
-    --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-outfit: 'Outfit', sans-serif;
+    --font-main: 'BT BeauSans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-outfit: 'BT BeauSans', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-playwrite: 'Playwrite IE', cursive, sans-serif;
 }
 
@@ -45,6 +46,14 @@ body {
     max-width: 1720px;
     z-index: 100;
     pointer-events: auto;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+    will-change: transform, opacity;
+}
+
+.floating-navbar.nav-hidden {
+    transform: translate(-50%, -150%) !important;
+    opacity: 0;
+    pointer-events: none;
 }
 
 .nav-container {
@@ -60,6 +69,7 @@ body {
     align-items: center;
     justify-content: space-between;
     box-sizing: border-box;
+    transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 .nav-brand {
@@ -67,6 +77,23 @@ body {
     align-items: center;
     gap: 8px;
     text-decoration: none;
+}
+
+.nav-brand-old {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-brand-new {
+    display: none;
+}
+
+.nav-brand-logo {
+    height: 42px;
+    width: auto;
+    object-fit: contain;
+    display: block;
 }
 
 .nav-num2-group {
@@ -118,13 +145,43 @@ body {
     font-weight: 600;
     color: #40B4FF;
     text-decoration: none;
-    transition: all 0.25s ease;
+    transition: color 0.3s ease, transform 0.25s ease, opacity 0.25s ease;
     letter-spacing: -0.2px;
     white-space: nowrap;
 }
 
 .nav-link:hover {
     color: #0052FF;
+    transform: translateY(-1px);
+}
+
+/* Dynamic Video Mode (When Scrolled Down to Video Section onwards) */
+.floating-navbar.nav-video-mode .nav-brand-old {
+    display: none;
+}
+
+.floating-navbar.nav-video-mode .nav-brand-new {
+    display: block;
+}
+
+.floating-navbar.nav-video-mode .nav-container {
+    background: #F8F8F833;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 16px;
+    padding: 10px 32px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+
+.floating-navbar.nav-video-mode .nav-link {
+    color: #FFFFFF;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+.floating-navbar.nav-video-mode .nav-link:hover {
+    color: #FFFFFF;
+    opacity: 0.82;
     transform: translateY(-1px);
 }
 
@@ -234,7 +291,7 @@ body {
     color: var(--color-primary);
     font-family: var(--font-main);
     font-size: 1.15rem;
-    font-weight: 800;
+    font-weight: 600 !important;
     text-decoration: none;
     cursor: pointer;
     transition: all 0.25s ease;
@@ -248,7 +305,7 @@ a.pill-btn-outline {
     border: 2.5px solid #0084FF !important;
     border-radius: 6px !important;
     color: #0052FF !important;
-    font-weight: 800 !important;
+    font-weight: 600 !important;
     padding: 10px 24px !important;
     box-shadow: 0 4px 14px rgba(0, 132, 255, 0.1) !important;
 }
@@ -267,7 +324,7 @@ a.pill-btn-yellow {
     background-color: #FFF6C7 !important;
     border: none !important;
     color: #0052FF !important;
-    font-weight: 800 !important;
+    font-weight: 600 !important;
     padding: 12px 26px !important;
     box-shadow: 0 4px 14px rgba(255, 242, 117, 0.4) !important;
 }
@@ -356,21 +413,21 @@ a.pill-btn-yellow:hover {
     display: flex !important;
     flex-direction: column !important;
     align-items: flex-end !important;
-    gap: 8px !important;
+    gap: 6px !important;
     z-index: 999999 !important;
     pointer-events: auto !important;
 }
 
 .card-scroll-indicator span,
 .side-indicator-dash {
-    width: 20px !important;
-    min-width: 20px !important;
-    max-width: 20px !important;
-    height: 4px !important;
-    min-height: 4px !important;
-    max-height: 4px !important;
+    width: 16px !important;
+    min-width: 16px !important;
+    max-width: 16px !important;
+    height: 2px !important;
+    min-height: 2px !important;
+    max-height: 2px !important;
     background-color: #C8D6ED;
-    border-radius: 4px !important;
+    border-radius: 2px !important;
     cursor: pointer;
     transition: background-color 0.25s ease, opacity 0.25s ease;
     position: relative;
@@ -390,15 +447,15 @@ a.pill-btn-yellow:hover {
 
 .card-scroll-indicator span.active,
 .side-indicator-dash.active {
-    width: 20px !important;
-    min-width: 20px !important;
-    max-width: 20px !important;
-    height: 4px !important;
-    min-height: 4px !important;
-    max-height: 4px !important;
+    width: 16px !important;
+    min-width: 16px !important;
+    max-width: 16px !important;
+    height: 2px !important;
+    min-height: 2px !important;
+    max-height: 2px !important;
     background-color: #0052FF !important;
     opacity: 1 !important;
-    border-radius: 4px !important;
+    border-radius: 2px !important;
     transform: none !important;
     box-shadow: none !important;
     border: none !important;
@@ -518,7 +575,7 @@ a.pill-btn-yellow:hover {
 .hero-main-title .highlight-script {
     font-family: var(--font-playwrite);
     font-weight: 400;
-    font-size: 3.6rem;
+    font-size: 2.85rem;
     color: #0052FF;
     position: relative;
     display: inline-block;
@@ -535,7 +592,11 @@ a.pill-btn-yellow:hover {
     height: 85%;
     background-color: #FEF9C3 !important;
     z-index: -1;
-    opacity: 1 !important;
+}
+
+.hero-main-title .highlight-script.is-center-visible {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 @media (max-width: 868px) {
@@ -796,9 +857,9 @@ a.pill-btn-yellow:hover {
 }
 
 .face-g {
-    top: 38px;
-    left: 47%;
-    transform: translateX(-50%) scale(1);
+    top: 40px;
+    left: 42%;
+    transform: translateX(-50%) rotate(-4deg) scale(1);
 }
 
 .face-i2 {
@@ -873,8 +934,8 @@ a.pill-btn-yellow:hover {
 }
 
 .eye {
-    width: 34px;
-    height: 34px;
+    width: 27px;
+    height: 27px;
     background-color: #FFFFFF;
     border-radius: 50%;
     position: relative;
@@ -882,13 +943,13 @@ a.pill-btn-yellow:hover {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.16);
-    border: 3px solid #FFFFFF;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.14);
+    border: 2px solid #FFFFFF;
 }
 
 .pupil {
-    width: 18px;
-    height: 18px;
+    width: 14px;
+    height: 14px;
     border-radius: 50%;
     transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.08s ease-out;
     will-change: transform;

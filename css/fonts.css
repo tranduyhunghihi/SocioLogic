@@ -1,0 +1,161 @@
+/* ==========================================================================
+   BT BEAUSANS FONT SYSTEM - COMPLETE WEIGHT & STYLE MAPPING
+   ========================================================================== */
+
+/* 1. Light (Weight: 300) */
+@font-face {
+    font-family: 'BT BeauSans';
+    src: url('../font/BT-BeauSans-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'BT BeauSans';
+    src: url('../font/BT-BeauSans-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* 2. Regular (Weight: 400) */
+@font-face {
+    font-family: 'BT BeauSans';
+    src: url('../font/BT-BeauSans-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'BT BeauSans';
+    src: url('../font/BT-BeauSans-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* 3. Medium (Weight: 500) */
+@font-face {
+    font-family: 'BT BeauSans';
+    src: url('../font/BT-BeauSans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'BT BeauSans';
+    src: url('../font/BT-BeauSans-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* 4. Bold (Weight: 600 & 700) */
+@font-face {
+    font-family: 'BT BeauSans';
+    src: url('../font/BT-BeauSans-Bold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'BT BeauSans';
+    src: url('../font/BT-BeauSans-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'BT BeauSans';
+    src: url('../font/BT-BeauSans-BoldItalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'BT BeauSans';
+    src: url('../font/BT-BeauSans-BoldItalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* 5. ExtraBold (Weight: 800 & 900) */
+@font-face {
+    font-family: 'BT BeauSans';
+    src: url('../font/BT-BeauSans-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'BT BeauSans';
+    src: url('../font/BT-BeauSans-ExtraBold.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'BT BeauSans';
+    src: url('../font/BT-BeauSans-ExtraBoldItalic.ttf') format('truetype');
+    font-weight: 800;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'BT BeauSans';
+    src: url('../font/BT-BeauSans-ExtraBoldItalic.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* ==========================================================================
+   GLOBAL DEFAULT FONT FAMILY OVERRIDE (EXCEPT CURSIVE SCRIPT TEXT ON YELLOW BOX)
+   ========================================================================== */
+
+:root {
+    --font-sans: 'BT BeauSans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    --font-main: 'BT BeauSans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    --font-outfit: 'BT BeauSans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+html, body, button, input, select, textarea, p, span, div, h1, h2, h3, h4, h5, h6, a, li, label {
+    font-family: 'BT BeauSans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* PRESERVE PLAYWRITE / CURSIVE HANDWRITING FOR YELLOW HIGHLIGHT SPECIAL TEXT ONLY */
+.script-slide-inner,
+.script-reveal-text,
+.sec6-script-text,
+.sec7-script-text,
+.title-yellow-box .script-reveal-text,
+.sec6-yellow-box .sec6-script-text,
+.sec7-yellow-box .sec7-script-text,
+.highlight-script,
+.highlight-script-yellow,
+.scroll-word-span {
+    font-family: 'Playwrite IE', 'Playwrite VN', cursive, sans-serif !important;
+}
+
+.scroll-word-span {
+    font-family: inherit !important;
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    font-style: inherit !important;
+    color: inherit !important;
+    line-height: inherit !important;
+    letter-spacing: inherit !important;
+    font-feature-settings: "calt" 1, "liga" 1, "ss01" 1, "ss02" 1, "cv01" 1 !important;
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+}

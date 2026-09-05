@@ -25,12 +25,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const easedProgress = easeOutQuad(progress);
 
             const currentValue = Math.floor(easedProgress * target);
-            el.textContent = currentValue.toLocaleString('en-US');
+            el.textContent = currentValue;
 
             if (progress < 1) {
                 requestAnimationFrame(updateCounter);
             } else {
-                el.textContent = target.toLocaleString('en-US');
+                el.textContent = target;
             }
         }
 

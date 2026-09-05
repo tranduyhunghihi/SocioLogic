@@ -78,29 +78,163 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function setupScrollRevealObserver() {
-        const revealHeaders = document.querySelectorAll('.scroll-reveal-header');
-        if (revealHeaders.length === 0) return;
+        const yellowTargets = document.querySelectorAll('.yellow-highlight-target, .title-yellow-box, .sec6-yellow-box, .sec7-yellow-box, .highlight-script, .highlight-script-yellow');
+        if (yellowTargets.length === 0) return;
 
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px 0px -5% 0px',
-            threshold: 0.15
-        };
+        // Pre-process each target: split inner text into individual word spans
+        yellowTargets.forEach(target => {
+            const childScript = target.querySelector('.script-slide-inner, .script-reveal-text, .sec6-script-text, .sec7-script-text') || target;
+            if (childScript && !childScript.dataset.wordsPrepared) {
+                const textContent = childScript.textContent.trim();
+                if (textContent.length > 0) {
+                    const words = textContent.split(/\s+/).filter(w => w.length > 0);
+                    childScript.innerHTML = '';
+                    words.forEach((word, idx) => {
+                        const span = document.createElement('span');
+                        span.className = 'scroll-word-span';
+                        span.textContent = word;
+                        span.style.cssText = 'display: inline-block; white-space: nowrap; position: relative; will-change: clip-path, opacity; vertical-align: baseline; opacity: 0; clip-path: inset(-15px 100% -15px -20px); transform: none !important; transition: none !important; font-family: inherit !important; font-size: inherit !important; font-weight: inherit !important; font-style: inherit !important; color: inherit !important;';
+                        childScript.appendChild(span);
+                        if (idx < words.length - 1) {
+                            childScript.appendChild(document.createTextNode(' '));
+                        }
+                    });
+                    childScript.dataset.wordsPrepared = 'true';
+                }
+            }
+        });
 
-        const headerObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
+        let ticking = false;
+
+        const updateScrollProgress = () => {
+            const windowHeight = window.innerHeight;
+            const centerPoint = windowHeight * 0.5; // Top of element at 50% screen height = 100% revealed
+
+            // Animate surrounding header text elements (dramatic 50px float up + fade in from bottom to upper center across all sections)
+            const headers = document.querySelectorAll('.scroll-reveal-header, .sec6-header, .sec7-header, .header-title-container, .journey-header-container, .hero-center-titles, .hero-col-left, .hero-col-right');
+            headers.forEach(header => {
+                const rect = header.getBoundingClientRect();
+                const isCompletelyOut = rect.bottom < 0 || rect.top > windowHeight;
+                
+                const surroundingElements = header.querySelectorAll('.title-main-text, .header-subtitle, .sec6-title-main, .sec7-title-main, .sec6-subtitle, .sec7-subtitle, .journey-title, .title-line-main, .journey-subtitle-text, .hero-main-title, .hero-title');
+                const targetElements = surroundingElements.length > 0 ? surroundingElements : [header];
+
+                if (isCompletelyOut) {
+                    header.classList.remove('is-visible', 'is-center-visible');
+                    targetElements.forEach(el => {
+                        el.style.opacity = '0';
+                        el.style.transform = 'translateY(50px)';
+                    });
                 } else {
-                    // Out of viewport: reset class so animation triggers ONLY when scrolled into view!
-                    entry.target.classList.remove('is-visible');
+                    header.classList.add('is-visible', 'is-center-visible');
+                    
+                    // Animation starts when header enters into viewport (85% height) and finishes at 35% height (upper center)
+                    const startPoint = windowHeight * 0.85;
+                    const endPoint = windowHeight * 0.35;
+                    const totalDistance = startPoint - endPoint;
+                    const scrolledDistance = startPoint - rect.top;
+                    let hProgress = Math.min(Math.max(scrolledDistance / totalDistance, 0), 1);
+
+                    targetElements.forEach((el, idx) => {
+                        let isSubtitle = el.classList.contains('header-subtitle') || el.classList.contains('sec6-subtitle') || el.classList.contains('sec7-subtitle') || el.classList.contains('journey-subtitle-text');
+                        let delayOffset = isSubtitle ? 0.18 : (idx * 0.08);
+                        let progress = Math.min(Math.max((hProgress - delayOffset) / (1 - delayOffset), 0), 1);
+
+                        if (progress === 1) {
+                            el.style.opacity = '1';
+                            el.style.transform = 'translateY(0)';
+                        } else if (progress === 0) {
+                            el.style.opacity = '0';
+                            el.style.transform = 'translateY(50px)';
+                        } else {
+                            const opacity = progress.toFixed(2);
+                            const translateY = ((1 - progress) * 50).toFixed(1);
+                            el.style.opacity = opacity;
+                            el.style.transform = `translateY(${translateY}px)`;
+                        }
+                    });
                 }
             });
-        }, observerOptions);
 
-        revealHeaders.forEach(header => {
-            headerObserver.observe(header);
-        });
+            yellowTargets.forEach(target => {
+                const rect = target.getBoundingClientRect();
+                const childScript = target.querySelector('.script-slide-inner, .script-reveal-text, .sec6-script-text, .sec7-script-text') || target;
+                const parentHeader = target.closest('.scroll-reveal-header, .sec6-header, .sec7-header, .header-title-container');
+                const wordSpans = childScript ? childScript.querySelectorAll('.scroll-word-span') : [];
+
+                const isCompletelyOut = rect.bottom < 0 || rect.top > windowHeight;
+
+                if (isCompletelyOut) {
+                    target.classList.remove('is-center-visible', 'is-visible');
+                    if (childScript) {
+                        childScript.classList.remove('is-center-visible', 'is-visible');
+                    }
+                    if (wordSpans.length > 0) {
+                        wordSpans.forEach(span => {
+                            span.style.opacity = '0';
+                            span.style.clipPath = 'inset(-15px 100% -15px -20px)';
+                            span.style.transform = 'none';
+                        });
+                    }
+                    return;
+                }
+
+                if (parentHeader) {
+                    parentHeader.classList.add('is-visible', 'is-center-visible');
+                }
+                target.classList.add('is-visible', 'is-center-visible');
+                if (childScript) {
+                    childScript.classList.add('is-visible', 'is-center-visible');
+                }
+
+                // Progress: 0 at windowHeight (bottom), 1 at centerPoint (50% screen height)
+                const startPoint = windowHeight;
+                const totalDistance = startPoint - centerPoint;
+                const scrolledDistance = startPoint - rect.top;
+
+                let rawProgress = scrolledDistance / totalDistance;
+                let progress = Math.min(Math.max(rawProgress, 0), 1);
+
+                if (wordSpans.length > 0) {
+                    const N = wordSpans.length;
+                    wordSpans.forEach((span, idx) => {
+                        const wordStart = idx / N;
+                        const wordEnd = (idx + 1) / N;
+                        let wP = (progress - wordStart) / (wordEnd - wordStart);
+                        wP = Math.min(Math.max(wP, 0), 1);
+
+                        span.style.transform = 'none';
+
+                        if (wP === 1) {
+                            span.style.opacity = '1';
+                            span.style.clipPath = 'inset(-15px -20px -15px -20px)';
+                        } else if (wP === 0) {
+                            span.style.opacity = '0';
+                            span.style.clipPath = 'inset(-15px 100% -15px -20px)';
+                        } else {
+                            const clipRight = ((1 - wP) * 100).toFixed(1);
+                            span.style.opacity = wP.toFixed(2);
+                            span.style.clipPath = `inset(-15px ${clipRight}% -15px -20px)`;
+                        }
+                    });
+                }
+            });
+
+            ticking = false;
+        };
+
+        const requestTick = () => {
+            if (!ticking) {
+                requestAnimationFrame(updateScrollProgress);
+                ticking = true;
+            }
+        };
+
+        window.addEventListener('scroll', requestTick, { passive: true });
+        window.addEventListener('resize', requestTick, { passive: true });
+
+        // Initial calculation on page load
+        updateScrollProgress();
     }
 
     function createSampleWishCanvasData(text, textColor, authorName) {
@@ -459,7 +593,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (readerOverlay) {
             readerOverlay.addEventListener('click', (e) => {
-                if (e.target === readerOverlay) closeReader();
+                if (!e.target.closest('.wish-card')) closeReader();
             });
         }
 
@@ -1234,12 +1368,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!currentWish) return;
 
         readerCardContent.innerHTML = `
-            <div class="reader-author-badge">
-                <i class="ph-bold ph-heart"></i>
-                <span>Lời chúc từ: ${escapeHtml(currentWish.author)}</span>
-            </div>
-            <div class="reader-card-wrapper">
-                <img src="${currentWish.imageData}" style="width:100%; height:100%; object-fit:contain;" alt="Chi tiết lời chúc">
+            <div class="wish-card wish-card-modal-view">
+                <div class="wish-card-header">
+                    <i class="ph-bold ph-user-circle"></i>
+                    <span class="wish-card-author">${escapeHtml(currentWish.author)}</span>
+                </div>
+                <div class="wish-card-body">
+                    <img class="wish-card-canvas-preview" src="${currentWish.imageData}" alt="Lời chúc của ${escapeHtml(currentWish.author)}" draggable="false">
+                </div>
             </div>
         `;
         readerOverlay.classList.remove('hidden');

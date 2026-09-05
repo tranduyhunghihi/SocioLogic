@@ -2,7 +2,8 @@
    SECTION 4 - HÀNH TRÌNH CỦA SOCIOLOGIC (100% PERFECT VIETNAMESE TYPOGRAPHY)
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Playwrite+IE:wght@100..400&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap');
+@import url('fonts.css');
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+IE:wght@100..400&display=swap');
 
 :root {
     --color-bg-white: #FFFFFF;
@@ -10,7 +11,7 @@
     --color-section-bg: transparent;
     --color-card-bg: #FFFFFF;
     --color-text-dark: #0F172A;
-    --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-main: 'BT BeauSans', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 * {
@@ -120,12 +121,16 @@ body {
     background-color: #FEF9C3 !important;
     z-index: -1;
     border-radius: 0px;
-    opacity: 1 !important;
+}
+
+.highlight-script-yellow.is-center-visible {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .title-line-main {
     font-family: var(--font-main);
-    font-size: clamp(2.2rem, 4.2vw, 3.6rem);
+    font-size: clamp(2.4rem, 4.0vw, 3.4rem);
     font-weight: 600;
     color: #0052FF;
     line-height: 1.15;
@@ -229,7 +234,7 @@ body {
     display: flex;
     align-items: center;
     font-size: clamp(2.4rem, 3.4vw, 3.8rem);
-    font-weight: 800;
+    font-weight: 600;
     color: #FFFFFF;
     line-height: 1;
     letter-spacing: -1px;
@@ -247,7 +252,7 @@ body {
 .section-4-wrapper .stat-label,
 .stat-label {
     font-size: clamp(1.15rem, 1.6vw, 1.45rem);
-    font-weight: 600;
+    font-weight: 500;
     color: #60CEFF;
     /* Soft sky blue text matching reference image 100%! */
     white-space: nowrap;

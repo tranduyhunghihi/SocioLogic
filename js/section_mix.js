@@ -520,4 +520,83 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+
+    // ==========================================================================
+    // MOBILE TWITTER/X STYLE SMART AUTO-HIDE NAVBAR ON SCROLL
+    // ==========================================================================
+    function setupSmartNavbarScroll() {
+        const navbar = document.querySelector('.floating-navbar');
+        if (!navbar) return;
+
+        let lastScrollY = window.scrollY || window.pageYOffset || 0;
+        let ticking = false;
+
+        function updateNavbar() {
+            const currentScrollY = window.scrollY || window.pageYOffset || 0;
+            const scrollDelta = currentScrollY - lastScrollY;
+
+            // Always reveal near top of page
+            if (currentScrollY <= 40) {
+                navbar.classList.remove('nav-hidden');
+            } 
+            // Hide on Scroll Down
+            else if (scrollDelta > 8 && currentScrollY > 80) {
+                navbar.classList.add('nav-hidden');
+            } 
+            // Reveal on Scroll Up
+            else if (scrollDelta < -5) {
+                navbar.classList.remove('nav-hidden');
+            }
+
+            lastScrollY = currentScrollY;
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateNavbar);
+                ticking = true;
+            }
+        }, { passive: true });
+    }
+
+    setupSmartNavbarScroll();
+
+    // ==========================================================================
+    // DYNAMIC NAVBAR THEME SWITCH EXCLUSIVELY FOR VIDEO SECTION
+    // ==========================================================================
+    function setupVideoNavbarMode() {
+        const navbar = document.querySelector('.floating-navbar');
+        if (!navbar) return;
+
+        const videoSection = document.querySelector('#sec5-video, .fullscreen-video-section, #section-video');
+        
+        // If on standalone video page without other sections, activate video mode
+        if (document.body.classList.contains('page-video-only') || window.location.pathname.includes('section_video.html')) {
+            navbar.classList.add('nav-video-mode');
+            return;
+        }
+
+        if (!videoSection) return;
+
+        function updateVideoNavbarTheme() {
+            const navRect = navbar.getBoundingClientRect();
+            const videoRect = videoSection.getBoundingClientRect();
+
+            // Pixel-perfect collision: Check if navbar center point physically overlaps video section bounds
+            const navCenter = navRect.top + (navRect.height / 2);
+            const isNavbarOverlappingVideo = (navCenter >= videoRect.top) && (navCenter <= videoRect.bottom);
+
+            if (isNavbarOverlappingVideo) {
+                navbar.classList.add('nav-video-mode');
+            } else {
+                navbar.classList.remove('nav-video-mode');
+            }
+        }
+
+        window.addEventListener('scroll', updateVideoNavbarTheme, { passive: true });
+        updateVideoNavbarTheme();
+    }
+
+    setupVideoNavbarMode();
 });

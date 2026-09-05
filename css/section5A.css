@@ -2,14 +2,15 @@
    SECTION 5A - NHỮNG GƯƠNG MẶT SOCIOLOGIC (INCREASED GAP & LINE-HEIGHT FOR TITLE)
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Playwrite+IE:wght@100..400&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Be+Vietnam+Pro:wght@600;700;800;900&display=swap');
+@import url('fonts.css');
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+IE:wght@100..400&display=swap');
 
 .section-5a-wrapper {
     position: relative;
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
-    padding: 60px 0 80px;
+    padding: 150px 0 80px;
     box-sizing: border-box;
     overflow: hidden;
     background-color: #FFFFFF;
@@ -55,7 +56,7 @@
 .section-5a-wrapper .header-title-container {
     width: 100%;
     max-width: 900px;
-    margin: 0 auto 20px;
+    margin: 0 auto 45px;
     text-align: center;
     opacity: 1 !important;
     visibility: visible !important;
@@ -66,7 +67,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 4px;
+    gap: 8px;
     /* 👈 Increased gap to prevent line 1 & line 2 from touching */
     opacity: 1 !important;
     visibility: visible !important;
@@ -100,11 +101,8 @@
     line-height: 1;
     overflow: visible;
     z-index: 1;
-    opacity: 1 !important;
-    visibility: visible !important;
 }
 
-/* Yellow Highlight Box as ::before Pseudo-Element (Clean Flat Pastel Yellow without Dark Bottom Border) */
 .section-5a-wrapper .title-yellow-box::before {
     content: '';
     position: absolute;
@@ -117,13 +115,9 @@
     box-shadow: none !important;
     z-index: -1;
     pointer-events: none;
-    opacity: 1 !important;
-    visibility: visible !important;
 }
 
-/* Playwrite IE Script Font Match for 'Cộng Đồng' (#0052FF - Spacious Line Height) */
-.section-5a-wrapper .script-reveal-text,
-.section-5a-wrapper.is-visible .script-reveal-text {
+.section-5a-wrapper .script-reveal-text {
     position: relative;
     z-index: 2;
     font-family: 'Playwrite IE', cursive, sans-serif !important;
@@ -136,17 +130,13 @@
     margin: 0 !important;
     display: inline-block !important;
     vertical-align: middle !important;
-    clip-path: none !important;
-    transform: none !important;
-    opacity: 1 !important;
-    visibility: visible !important;
 }
 
 /* Electric Vivid Blue Main Text (#0052FF - Spacious Line Height 1.35) */
 .section-5a-wrapper .title-main-text,
 .section-5a-wrapper.is-visible .title-main-text {
-    font-family: 'Plus Jakarta Sans', 'Be Vietnam Pro', sans-serif;
-    font-size: clamp(2.4rem, 4.0vw, 3.3rem);
+    font-family: 'BT BeauSans', sans-serif;
+    font-size: clamp(2.4rem, 4.0vw, 3.4rem);
     font-weight: 600;
     color: #0052FF !important;
     line-height: 1.35;
@@ -159,8 +149,8 @@
 .section-5a-wrapper .sec5a-bubbles-viewport {
     width: 100%;
     max-width: 1380px;
-    height: 250px;
-    margin: 10px auto 35px;
+    height: 180px;
+    margin: 15px auto 0;
     position: relative;
     overflow: visible;
     display: flex;
@@ -254,7 +244,7 @@
 
 /* White Outfit Font Letter Overlay */
 .section-5a-wrapper .sec5a-bubbles-viewport .bubble-letter {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'BT BeauSans', sans-serif;
     font-weight: 600;
     color: #FFFFFF;
     position: absolute;
@@ -416,7 +406,7 @@
     gap: 64px;
     width: 100%;
     max-width: 1160px;
-    margin: 25px auto 0;
+    margin: -10px auto 0;
 }
 
 .section-5a-wrapper .community-card {
@@ -440,7 +430,7 @@
 }
 
 .section-5a-wrapper .community-card p {
-    font-family: 'Plus Jakarta Sans', 'Be Vietnam Pro', sans-serif;
+    font-family: 'BT BeauSans', sans-serif;
     font-size: clamp(0.95rem, 1.25vw, 1.12rem);
     font-weight: 500;
     color: #475569;
@@ -452,7 +442,7 @@
 /* Responsive Scaling Breakpoints */
 @media (max-width: 1300px) {
     .section-5a-wrapper .sec5a-bubbles-viewport {
-        height: 220px;
+        height: 150px;
     }
 
     .section-5a-wrapper .sec5a-bubbles-viewport .bubbles-row {
@@ -467,7 +457,7 @@
 
 @media (max-width: 950px) {
     .section-5a-wrapper .sec5a-bubbles-viewport {
-        height: 180px;
+        height: 130px;
     }
 
     .section-5a-wrapper .sec5a-bubbles-viewport .bubbles-row {
@@ -484,7 +474,7 @@
 
 @media (max-width: 600px) {
     .section-5a-wrapper .sec5a-bubbles-viewport {
-        height: 140px;
+        height: 100px;
     }
 
     .section-5a-wrapper .sec5a-bubbles-viewport .bubbles-row {
