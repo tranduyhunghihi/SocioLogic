@@ -44,7 +44,7 @@
             max-width: 100%;
         }
 
-        /* UNIFIED SECTION TITLE FONT SIZE MATCHING SECTION 1 HERO TITLE */
+        /* UNIFIED SECTION TITLE FONT SIZE & THINNER FONT WEIGHT */
         .hero-main-title,
         .title-line-top,
         .title-line-bottom,
@@ -53,7 +53,7 @@
         .sec6-title-main,
         .sec7-title-main {
             font-size: clamp(2.4rem, 4.0vw, 3.4rem) !important;
-            font-weight: 600 !important;
+            font-weight: 500 !important;
             letter-spacing: -0.02em;
         }
 
@@ -89,17 +89,27 @@
             font-weight: 600 !important;
         }
 
-        /* INFORMATIONAL COUNTER BADGE: NON-CLICKABLE */
+        /* CLICKABLE COUNTER BUTTON: OPENS GRID MODAL */
         .btn-board-counter {
-            cursor: default !important;
-            pointer-events: none !important;
+            cursor: pointer !important;
+            pointer-events: auto !important;
             user-select: none !important;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
 
-        .btn-board-counter:hover,
+        .btn-board-counter:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+            color: #0260ED !important;
+            border-color: rgba(2, 96, 237, 0.3) !important;
+        }
+
+        .btn-board-counter:hover i {
+            color: #0260ED !important;
+        }
+
         .btn-board-counter:active {
-            transform: none !important;
-            box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1), 0 4px 14px rgba(0, 0, 0, 0.04) !important;
+            transform: translateY(0) !important;
         }
 
         /* ==========================================================================
@@ -131,6 +141,10 @@
             visibility: visible !important;
         }
 
+        .hero-main-title .highlight-script::before {
+            top: calc(18% + 2px) !important;
+        }
+
         /* INNER CURSIVE SCRIPT TEXT: INITIAL HIDDEN OFF-SCREEN SLIDE STATE */
         .script-slide-inner,
         .script-reveal-text,
@@ -146,13 +160,14 @@
             will-change: transform, opacity;
         }
 
-        .hero-main-title .script-slide-inner {
-            font-size: 2.75rem !important;
+        .hero-main-title .script-slide-inner,
+        .hero-main-title .highlight-script {
+            font-size: clamp(2.7rem, 4.4vw, 3.5rem) !important;
         }
 
         /* Section 3 "Nhắn Gửi" clip-path wipe mask */
         .title-yellow-box .script-reveal-text {
-            clip-path: inset(-30px 100% -35px -20px) !important;
+            clip-path: inset(-60px 100% -60px -30px) !important;
         }
 
         /* ACTIVE REVEAL STATE WHEN SCROLLED INTO VIEWPORT CENTER */
@@ -166,7 +181,7 @@
         .sec7-script-text.is-center-visible {
             opacity: 1 !important;
             transform: translateX(0) !important;
-            clip-path: inset(-30px -30px -35px -20px) !important;
+            clip-path: inset(-60px -30px -60px -30px) !important;
         }
 
         /* ==========================================================================
@@ -252,15 +267,7 @@
             <!-- Left Brand Logo -->
             <a href="#" class="nav-brand">
                 <div class="nav-brand-old">
-                    <div class="nav-num2-group">
-                        <img src="assets/section1/number2.png" alt="Graphic Number 2" class="nav-number2-img">
-                        <div class="nav-years-text">
-                            <span>years</span>
-                            <span>gether</span>
-                        </div>
-                    </div>
-                    <div class="nav-divider"></div>
-                    <img src="assets/section1/logo.png" alt="SocioLogic Logo" class="nav-logo-img">
+                    <img src="assets/section1/navbar_logo_old.png" alt="SocioLogic 2 Years Together Logo" class="nav-brand-logo-old">
                 </div>
                 <div class="nav-brand-new">
                     <img src="assets/section1/navbar_logo.png" alt="SocioLogic 2 Years Together Logo" class="nav-brand-logo">
@@ -693,10 +700,10 @@
                             <span>Viết lời chúc của bạn</span>
                         </button>
 
-                        <div class="btn-board-action btn-board-counter">
+                        <button id="btn-open-grid" class="btn-board-action btn-board-counter" type="button">
                             <i class="ph-bold ph-envelope"></i>
                             <span id="wish-count">0 lời chúc</span>
-                        </div>
+                        </button>
                     </div>
                 </div>
             </main>
@@ -827,13 +834,14 @@
                     <!-- Color Palette -->
                     <div class="color-palette-wrapper">
                         <div class="color-swatches">
-                            <button type="button" class="color-swatch active" data-color="#1E293B" style="background-color: #1E293B;" title="Đen Xám"></button>
-                            <button type="button" class="color-swatch" data-color="#EF4444" style="background-color: #EF4444;" title="Đỏ Cam"></button>
-                            <button type="button" class="color-swatch" data-color="#0066FF" style="background-color: #0066FF;" title="Xanh Dương"></button>
-                            <button type="button" class="color-swatch" data-color="#10B981" style="background-color: #10B981;" title="Xanh Lá"></button>
-                            <button type="button" class="color-swatch" data-color="#F59E0B" style="background-color: #F59E0B;" title="Vàng Nắng"></button>
-                            <button type="button" class="color-swatch" data-color="#8B5CF6" style="background-color: #8B5CF6;" title="Tím Rực"></button>
-                            <button type="button" class="color-swatch" data-color="#EC4899" style="background-color: #EC4899;" title="Hồng Ngọt"></button>
+                            <button type="button" class="color-swatch active" data-color="#0260ED" style="background-color: #0260ED;" title="Xanh Dương"></button>
+                            <button type="button" class="color-swatch" data-color="#64D3FF" style="background-color: #64D3FF;" title="Xanh Nhạt"></button>
+                            <button type="button" class="color-swatch" data-color="#04A651" style="background-color: #04A651;" title="Xanh Lá"></button>
+                            <button type="button" class="color-swatch" data-color="#FEDF50" style="background-color: #FEDF50;" title="Vàng Tươi"></button>
+                            <button type="button" class="color-swatch" data-color="#FFB701" style="background-color: #FFB701;" title="Vàng Cam"></button>
+                            <button type="button" class="color-swatch" data-color="#FD5E60" style="background-color: #FD5E60;" title="Đỏ Cam"></button>
+                            <button type="button" class="color-swatch" data-color="#FF52B3" style="background-color: #FF52B3;" title="Hồng"></button>
+                            <button type="button" class="color-swatch" data-color="#334155" style="background-color: #334155;" title="Xám Đen"></button>
                         </div>
                     </div>
                 </div>
@@ -854,6 +862,15 @@
         <div class="reader-modal-container">
             <div id="reader-card-content" class="reader-card-content" style="width: 100%; display: flex; justify-content: center;">
                 <!-- Clicked card content renders dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Grid View All Wishes Modal Overlay -->
+    <div id="grid-overlay" class="overlay hidden">
+        <div class="grid-overlay-scroll">
+            <div id="grid-modal-cards" class="wishes-modal-grid">
+                <!-- Cards dynamically inserted here by js/app.js -->
             </div>
         </div>
     </div>
@@ -1279,7 +1296,7 @@
                                     <div class="eyes-row">
                                         <div class="eye eye-left"><div class="pupil pupil-always"></div></div>
                                         <div class="mouth mouth-svg-smile">
-                                            <svg viewBox="0 0 26 20" width="22" height="16">
+                                            <svg viewBox="0 0 26 20" width="18" height="12">
                                                 <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round" />
                                             </svg>
                                         </div>
@@ -1434,7 +1451,7 @@
                                         <div class="eye eye-right">
                                             <div class="pupil"></div>
                                             <div class="eye-idle-svg">
-                                                <svg viewBox="0 0 22 14" width="22" height="14">
+                                                <svg viewBox="0 0 22 14" width="18" height="12">
                                                     <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" />
                                                 </svg>
                                             </div>
@@ -1539,7 +1556,7 @@
                                 <svg class="footer-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
                                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
                                 </svg>
-                                <a href="https://sociologic.co" target="_blank">contact@sociologic.co</a>
+                                <a href="https://sociologic.vn/" target="_blank">sociologic.vn</a>
                             </li>
                         </ul>
                     </div>
@@ -1601,7 +1618,7 @@
                             const span = document.createElement('span');
                             span.className = 'scroll-word-span';
                             span.textContent = word;
-                            span.style.cssText = 'display: inline-block; white-space: nowrap; position: relative; will-change: clip-path, opacity; vertical-align: baseline; opacity: 0; clip-path: inset(-15px 100% -15px -20px); transform: none !important; transition: none !important; font-family: inherit !important; font-size: inherit !important; font-weight: inherit !important; font-style: inherit !important; color: inherit !important;';
+                            span.style.cssText = 'display: inline-block; white-space: nowrap; position: relative; will-change: clip-path, opacity; vertical-align: baseline; opacity: 0; clip-path: inset(-60px 100% -60px -30px); transform: none !important; transition: none !important; font-family: inherit !important; font-size: inherit !important; font-weight: inherit !important; font-style: inherit !important; color: inherit !important; overflow: visible !important; line-height: 1.4 !important;';
                             childScript.appendChild(span);
                             if (idx < words.length - 1) {
                                 childScript.appendChild(document.createTextNode(' '));
@@ -1680,7 +1697,7 @@
                         if (wordSpans.length > 0) {
                             wordSpans.forEach(span => {
                                 span.style.opacity = '0';
-                                span.style.clipPath = 'inset(-15px 100% -15px -20px)';
+                                span.style.clipPath = 'inset(-60px 100% -60px -30px)';
                                 span.style.transform = 'none';
                             });
                         }
@@ -1715,14 +1732,14 @@
 
                             if (wP === 1) {
                                 span.style.opacity = '1';
-                                span.style.clipPath = 'inset(-15px -20px -15px -20px)';
+                                span.style.clipPath = 'inset(-60px -30px -60px -30px)';
                             } else if (wP === 0) {
                                 span.style.opacity = '0';
-                                span.style.clipPath = 'inset(-15px 100% -15px -20px)';
+                                span.style.clipPath = 'inset(-60px 100% -60px -30px)';
                             } else {
                                 const clipRight = ((1 - wP) * 100).toFixed(1);
                                 span.style.opacity = wP.toFixed(2);
-                                span.style.clipPath = `inset(-15px ${clipRight}% -15px -20px)`;
+                                span.style.clipPath = `inset(-60px ${clipRight}% -60px -30px)`;
                             }
                         });
                     }

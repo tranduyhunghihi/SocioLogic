@@ -237,7 +237,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="card-meta-area">
                     <div class="author-info">
-                        <i class="ph-bold ph-user-circle"></i>
                         <span>${escapeHtml(wish.author || 'Người chúc ẩn danh')}</span>
                     </div>
                     <div class="time-stamp">

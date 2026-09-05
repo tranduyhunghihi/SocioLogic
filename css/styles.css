@@ -87,6 +87,7 @@ body {
 .scroll-reveal-header {
     opacity: 1;
     transition: opacity 0.5s ease;
+    margin-bottom: 44px !important;
 }
 
 .header-title-wishes {
@@ -104,7 +105,7 @@ body {
     gap: 16px;
     font-family: var(--font-sans);
     font-size: clamp(2.4rem, 4.0vw, 3.4rem);
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1.15;
     letter-spacing: -0.5px;
 }
@@ -112,7 +113,7 @@ body {
 .title-line-bottom {
     font-family: var(--font-sans);
     font-size: clamp(2.4rem, 4.0vw, 3.4rem);
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1.15;
     letter-spacing: -0.5px;
     margin-top: 4px;
@@ -165,10 +166,10 @@ body {
 .title-yellow-box::before {
     content: '';
     position: absolute;
-    top: 30%;
+    top: 28%;
     left: 0;
     width: 100%;
-    height: 80%;
+    height: 70%;
     background-color: #FFF9C4;
     z-index: 0;
 }
@@ -178,15 +179,18 @@ body {
     position: relative;
     z-index: 1;
     font-family: 'Playwrite IE', cursive, sans-serif;
-    font-size: clamp(2.4rem, 5vw, 3.5rem);
+    font-size: clamp(2.7rem, 4.6vw, 3.6rem);
     font-weight: 400;
     color: #0052FF;
-    line-height: 1.35;
-    padding-bottom: 8px;
-    padding-right: 16px;
-    margin-bottom: -8px;
+    line-height: 1.4 !important;
+    padding-top: 8px !important;
+    padding-bottom: 14px !important;
+    padding-right: 16px !important;
+    margin-top: -8px !important;
+    margin-bottom: -14px !important;
     white-space: nowrap;
     display: inline-block;
+    overflow: visible !important;
 }
 
 /* ==========================================================================
@@ -279,7 +283,7 @@ body {
     position: relative;
     width: 96%;
     max-width: 1560px;
-    margin: 0 auto 3rem;
+    margin: 20px auto 3rem !important;
 }
 
 .board-floating-actions {
@@ -298,14 +302,14 @@ body {
     align-items: center;
     gap: 12px;
     padding: 15px 30px;
-    background: #FFFFFF;
-    color: #334155;
+    background: #FFFFFF !important;
+    color: #7B7B7B !important;
     font-family: var(--font-sans);
     font-size: 1.1rem;
     font-weight: 600;
     border-radius: 9999px;
     border: 1px solid rgba(226, 232, 240, 0.9);
-    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1), 0 4px 14px rgba(0, 0, 0, 0.04);
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.06), 0 4px 14px rgba(0, 0, 0, 0.04);
     cursor: pointer;
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     user-select: none;
@@ -314,42 +318,46 @@ body {
 
 .btn-board-action i {
     font-size: 1.4rem;
-    color: #475569;
+    color: #7B7B7B !important;
     transition: color 0.2s ease;
 }
 
 .btn-board-action:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.09), 0 2px 6px rgba(0, 0, 0, 0.03);
-    color: #0F172A;
+    color: #4A4A4A !important;
     border-color: #CBD5E1;
 }
 
 .btn-board-action:hover i {
-    color: #0052FF;
+    color: #4A4A4A !important;
 }
 
 .btn-board-action:active {
     transform: translateY(0);
 }
 
-/* Counter Pill Badge: Pure Informational, Non-Clickable */
+/* Counter Button: Interactive Grid Pop-up Trigger */
 .btn-board-counter {
-    cursor: default !important;
-    pointer-events: none !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
     user-select: none !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.btn-board-counter:hover,
-.btn-board-counter:active {
-    transform: none !important;
-    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1), 0 4px 14px rgba(0, 0, 0, 0.04) !important;
-    color: #334155 !important;
-    border-color: rgba(226, 232, 240, 0.9) !important;
+.btn-board-counter:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+    color: #0260ED !important;
+    border-color: rgba(2, 96, 237, 0.3) !important;
 }
 
 .btn-board-counter:hover i {
-    color: #0052FF !important;
+    color: #0260ED !important;
+}
+
+.btn-board-counter:active {
+    transform: translateY(0) !important;
 }
 
 @media (max-width: 640px) {
@@ -409,8 +417,8 @@ body {
     position: absolute;
     width: 250px;
     min-height: 250px;
-    border-radius: 12px;
-    background-color: #FFFFFF !important;
+    border-radius: 0px !important;
+    background-color: #FFFFFF;
     /* 100% Opaque Solid White Background */
     box-shadow: var(--card-shadow);
     cursor: grab;
@@ -479,6 +487,7 @@ body {
     flex: 1;
     position: relative;
     padding: 10px;
+    background: #FFFFFF;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -1022,8 +1031,8 @@ body {
     max-width: 520px !important;
     aspect-ratio: 1 / 1 !important;
     min-height: auto !important;
-    background-color: #FFFFFF !important;
-    border-radius: 16px !important;
+    background-color: #FFFFFF;
+    border-radius: 0px !important;
     box-shadow: 0 30px 70px -10px rgba(0, 0, 0, 0.6) !important;
     border: 1px solid rgba(255, 255, 255, 0.25) !important;
     cursor: default !important;
@@ -1412,4 +1421,157 @@ body {
     border-color: var(--primary);
     box-shadow: 0 4px 14px var(--primary-glow);
     transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   GRID POP-UP OVERLAY & READER MODAL Z-INDEX FIX
+   ========================================================================== */
+#grid-overlay {
+    background: rgba(245, 247, 250, 0.82) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+}
+
+#reader-overlay {
+    z-index: 100050 !important;
+}
+
+#reader-overlay .reader-modal-container {
+    z-index: 100051 !important;
+}
+
+.grid-overlay-close-btn {
+    display: none !important;
+}
+
+.grid-overlay-scroll {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding: 60px 40px 80px 40px;
+    display: flex;
+    justify-content: center;
+    scroll-behavior: smooth;
+}
+
+.grid-overlay-scroll::-webkit-scrollbar {
+    width: 8px;
+}
+.grid-overlay-scroll::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.04);
+}
+.grid-overlay-scroll::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.18);
+    border-radius: 4px;
+}
+.grid-overlay-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.32);
+}
+
+/* 5 Column Grid Layout directly on translucent backdrop */
+.wishes-modal-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    align-self: start;
+}
+
+@media (max-width: 1280px) {
+    .wishes-modal-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+}
+@media (max-width: 960px) {
+    .wishes-modal-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+    .grid-overlay-scroll {
+        padding: 50px 20px 60px 20px;
+    }
+}
+@media (max-width: 640px) {
+    .wishes-modal-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+    .grid-overlay-scroll {
+        padding: 40px 14px 50px 14px;
+    }
+}
+@media (max-width: 400px) {
+    .wishes-modal-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Individual Grid Wish Card (Upright Sticky Note) */
+.grid-wish-card {
+    position: relative;
+    background-color: #FFFFFF;
+    border-radius: 0 !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
+    padding: 14px 14px 16px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: none !important;
+    user-select: none;
+    aspect-ratio: 1 / 1.05;
+}
+
+.grid-wish-card:hover {
+    transform: translateY(-6px) scale(1.03) !important;
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.14);
+    z-index: 2;
+}
+
+.grid-card-pin {
+    width: 14px;
+    height: 14px;
+    background: radial-gradient(circle at 35% 35%, #64D3FF, #0260ED);
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(2, 96, 237, 0.4);
+    margin-bottom: 8px;
+    flex-shrink: 0;
+}
+
+.grid-card-author {
+    font-family: "Patrick Hand", "Caveat", cursive, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #0260ED;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2;
+}
+
+.grid-card-body {
+    width: 100%;
+    flex: 1;
+    background: #FFFFFF;
+    border-radius: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+
+.grid-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
 }

@@ -31,6 +31,7 @@ const wishSchema = new mongoose.Schema({
     y: { type: Number, required: true },
     rotation: { type: Number, default: 0 },
     zIndex: { type: Number, default: 1 },
+    bgColor: { type: String, default: '#FFFFFF' },
     timestamp: { type: Number, default: Date.now }
 }, { timestamps: true });
 
@@ -78,7 +79,7 @@ app.get('/api/wishes', async (req, res) => {
 // 3. POST /api/wishes - Save a new wish to MongoDB
 app.post('/api/wishes', async (req, res) => {
     try {
-        const { id, author, imageData, x, y, rotation, zIndex, timestamp } = req.body;
+        const { id, author, imageData, x, y, rotation, zIndex, bgColor, timestamp } = req.body;
         if (!id || !imageData) {
             return res.status(400).json({ error: 'Missing required wish fields' });
         }
@@ -91,6 +92,7 @@ app.post('/api/wishes', async (req, res) => {
             y: y || 50,
             rotation: rotation || 0,
             zIndex: zIndex || 1,
+            bgColor: bgColor || '#FFFFFF',
             timestamp: timestamp || Date.now()
         });
 

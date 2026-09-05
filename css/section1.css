@@ -46,7 +46,7 @@ body {
 .brand-logo {
     display: inline-flex;
     align-items: center;
-    margin-bottom: 24px;
+    margin-bottom: -14px !important;
     text-decoration: none;
 }
 

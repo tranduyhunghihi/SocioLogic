@@ -76,10 +76,10 @@
                         <span>Viết lời chúc của bạn</span>
                     </button>
 
-                    <div class="btn-board-action btn-board-counter">
+                    <button id="btn-open-grid" class="btn-board-action btn-board-counter" type="button">
                         <i class="ph-bold ph-envelope"></i>
                         <span id="wish-count">0 lời chúc</span>
-                    </div>
+                    </button>
                 </div>
             </div>
         </main>
@@ -154,6 +154,15 @@
         <div class="reader-modal-container">
             <div id="reader-card-content" class="reader-card-content" style="width: 100%; display: flex; justify-content: center;">
                 <!-- Clicked card content renders dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Grid View All Wishes Modal Overlay -->
+    <div id="grid-overlay" class="overlay hidden">
+        <div class="grid-overlay-scroll">
+            <div id="grid-modal-cards" class="wishes-modal-grid">
+                <!-- Cards dynamically inserted here by js/app.js -->
             </div>
         </div>
     </div>

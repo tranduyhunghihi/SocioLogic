@@ -8,13 +8,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // APP STATE & CONSTANTS
     // ==========================================================================
     const CACHE_STORAGE_KEY = 'socio_logic_wishes_cache_v2';
+    const WISH_CARD_COLORS = ['#FFFFFF', '#FFF6C7', '#B5EAFF'];
+    let currentEditorBgColor = '#FFFFFF';
+
+    function getWishBgColor(wish, index = 0) {
+        if (wish && wish.bgColor && WISH_CARD_COLORS.some(c => c.toUpperCase() === String(wish.bgColor).toUpperCase())) {
+            return wish.bgColor;
+        }
+        const seed = wish ? (String(wish.id).split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) + index) : index;
+        const color = WISH_CARD_COLORS[seed % WISH_CARD_COLORS.length];
+        if (wish) wish.bgColor = color;
+        return color;
+    }
     
     let wishes = [];
     let pendingWishesMap = new Map(); // Protection against polling race conditions
     let isPostingWish = false;
 
     let activeTool = 'pen'; // 'pen', 'text', 'image', 'eraser'
-    let activeColor = '#1E293B'; // Default dark color
+    let activeColor = '#0260ED'; // Default Blue color
     let isDrawing = false;
     let lastX = 0;
     let lastY = 0;
@@ -57,10 +69,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const wishBoard = document.getElementById('wish-board');
     const wishCountEl = document.getElementById('wish-count');
+    const btnOpenGrid = document.getElementById('btn-open-grid');
 
     const readerOverlay = document.getElementById('reader-overlay');
     const btnCloseReader = document.getElementById('btn-close-reader');
     const readerCardContent = document.getElementById('reader-card-content');
+
+    const gridOverlay = document.getElementById('grid-overlay');
+    const btnCloseGrid = document.getElementById('btn-close-grid');
+    const gridModalCardsContainer = document.getElementById('grid-modal-cards');
 
     // ==========================================================================
     // INITIALIZATION & INSTANT PRE-RENDER
@@ -93,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const span = document.createElement('span');
                         span.className = 'scroll-word-span';
                         span.textContent = word;
-                        span.style.cssText = 'display: inline-block; white-space: nowrap; position: relative; will-change: clip-path, opacity; vertical-align: baseline; opacity: 0; clip-path: inset(-15px 100% -15px -20px); transform: none !important; transition: none !important; font-family: inherit !important; font-size: inherit !important; font-weight: inherit !important; font-style: inherit !important; color: inherit !important;';
+                        span.style.cssText = 'display: inline-block; white-space: nowrap; position: relative; will-change: clip-path, opacity; vertical-align: baseline; opacity: 0; clip-path: inset(-60px 100% -60px -30px); transform: none !important; transition: none !important; font-family: inherit !important; font-size: inherit !important; font-weight: inherit !important; font-style: inherit !important; color: inherit !important; overflow: visible !important; line-height: 1.4 !important;';
                         childScript.appendChild(span);
                         if (idx < words.length - 1) {
                             childScript.appendChild(document.createTextNode(' '));
@@ -172,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (wordSpans.length > 0) {
                         wordSpans.forEach(span => {
                             span.style.opacity = '0';
-                            span.style.clipPath = 'inset(-15px 100% -15px -20px)';
+                            span.style.clipPath = 'inset(-60px 100% -60px -30px)';
                             span.style.transform = 'none';
                         });
                     }
@@ -207,14 +224,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         if (wP === 1) {
                             span.style.opacity = '1';
-                            span.style.clipPath = 'inset(-15px -20px -15px -20px)';
+                            span.style.clipPath = 'inset(-60px -30px -60px -30px)';
                         } else if (wP === 0) {
                             span.style.opacity = '0';
-                            span.style.clipPath = 'inset(-15px 100% -15px -20px)';
+                            span.style.clipPath = 'inset(-60px 100% -60px -30px)';
                         } else {
                             const clipRight = ((1 - wP) * 100).toFixed(1);
                             span.style.opacity = wP.toFixed(2);
-                            span.style.clipPath = `inset(-15px ${clipRight}% -15px -20px)`;
+                            span.style.clipPath = `inset(-60px ${clipRight}% -60px -30px)`;
                         }
                     });
                 }
@@ -597,6 +614,19 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        // Open/Close Grid Modal
+        if (btnOpenGrid) {
+            btnOpenGrid.addEventListener('click', openGridModal);
+        }
+        if (btnCloseGrid) {
+            btnCloseGrid.addEventListener('click', closeGridModal);
+        }
+        if (gridOverlay) {
+            gridOverlay.addEventListener('click', (e) => {
+                if (!e.target.closest('.grid-wish-card')) closeGridModal();
+            });
+        }
+
         // Tools switching
         toolBtns.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -652,6 +682,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // EDITOR MODAL LOGIC
     // ==========================================================================
     function openEditor() {
+        currentEditorBgColor = WISH_CARD_COLORS[Math.floor(Math.random() * WISH_CARD_COLORS.length)];
+        const editorCard = document.querySelector('.editor-card');
+        if (editorCard) {
+            editorCard.style.backgroundColor = currentEditorBgColor;
+        }
         editorOverlay.classList.remove('hidden');
         resetEditor();
         setTimeout(resizeCanvas, 50);
@@ -669,6 +704,9 @@ document.addEventListener('DOMContentLoaded', () => {
         toolBtns.forEach(b => b.classList.remove('active'));
         document.querySelector('.tool-btn[data-tool="pen"]').classList.add('active');
         updateCtxStyle();
+        if (editorCanvasContainer) {
+            editorCanvasContainer.style.backgroundColor = '#FFFFFF';
+        }
         editorCanvasContainer.classList.remove('eraser-mode');
         drawingCanvas.classList.remove('eraser-mode');
         eraserCursorRing.classList.add('hidden');
@@ -676,6 +714,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function closeReader() {
         readerOverlay.classList.add('hidden');
+    }
+
+    function openGridModal() {
+        renderGridModalCards();
+        if (gridOverlay) gridOverlay.classList.remove('hidden');
+    }
+
+    function closeGridModal() {
+        if (gridOverlay) gridOverlay.classList.add('hidden');
+    }
+
+    function renderGridModalCards() {
+        if (!gridModalCardsContainer) return;
+
+        if (!wishes || wishes.length === 0) {
+            gridModalCardsContainer.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: #64748B;">
+                    <i class="ph-bold ph-envelope-open" style="font-size: 48px; color: #94A3B8; display: block; margin-bottom: 12px;"></i>
+                    <p style="font-size: 16px;">Chưa có lời chúc nào trên bảng.</p>
+                </div>
+            `;
+            return;
+        }
+
+        gridModalCardsContainer.innerHTML = wishes.map((wish, index) => {
+            const cardColor = getWishBgColor(wish, index);
+            return `
+                <div class="grid-wish-card" data-id="${wish.id}" style="background-color: ${cardColor} !important;">
+                    <div class="grid-card-pin"></div>
+                    <div class="grid-card-author">Từ ${escapeHtml(wish.author)}</div>
+                    <div class="grid-card-body">
+                        <img class="grid-card-img" src="${wish.imageData}" alt="Lời chúc của ${escapeHtml(wish.author)}" draggable="false">
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        // Attach click listener to each grid card to open detail reader modal
+        const gridCards = gridModalCardsContainer.querySelectorAll('.grid-wish-card');
+        gridCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const wishId = card.dataset.id;
+                openReaderModalByWishId(wishId);
+            });
+        });
     }
 
     function toggleEraserCursor() {
@@ -1009,6 +1092,7 @@ document.addEventListener('DOMContentLoaded', () => {
             y: targetY,
             rotation: targetRot,
             zIndex: maxZIndex,
+            bgColor: currentEditorBgColor,
             timestamp: Date.now(),
             isUserPositioned: true
         };
@@ -1037,7 +1121,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderCanvas.height = 360;
         const rCtx = renderCanvas.getContext('2d');
 
-        // Fill solid white opaque card background
+        // Fill solid white opaque card background inside drawing preview
         rCtx.fillStyle = '#FFFFFF';
         rCtx.fillRect(0, 0, 480, 360);
 
@@ -1185,6 +1269,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const activeZIndex = Number(wish.zIndex) || 1;
+            const cardColor = getWishBgColor(wish, idx);
 
             if (!card) {
                 card = document.createElement('div');
@@ -1194,10 +1279,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.style.top = `${targetY}px`;
                 card.style.transform = `rotate(${wish.rotation || 0}deg)`;
                 card.style.zIndex = activeZIndex;
+                card.style.backgroundColor = cardColor;
 
                 card.innerHTML = `
                     <div class="wish-card-header">
-                        <i class="ph-bold ph-user-circle"></i>
                         <span class="wish-card-author">${escapeHtml(wish.author)}</span>
                     </div>
                     <div class="wish-card-body">
@@ -1367,10 +1452,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentWish = wishes.find(w => String(w.id) === String(wishId));
         if (!currentWish) return;
 
+        const cardColor = getWishBgColor(currentWish);
+
         readerCardContent.innerHTML = `
-            <div class="wish-card wish-card-modal-view">
+            <div class="wish-card wish-card-modal-view" style="background-color: ${cardColor} !important;">
                 <div class="wish-card-header">
-                    <i class="ph-bold ph-user-circle"></i>
                     <span class="wish-card-author">${escapeHtml(currentWish.author)}</span>
                 </div>
                 <div class="wish-card-body">

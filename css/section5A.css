@@ -98,18 +98,18 @@
     justify-content: center;
     padding: 0;
     margin: 0 6px;
-    line-height: 1;
-    overflow: visible;
+    line-height: 1.4 !important;
+    overflow: visible !important;
     z-index: 1;
 }
 
 .section-5a-wrapper .title-yellow-box::before {
     content: '';
     position: absolute;
-    top: 20%;
+    top: 25%;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 70%;
     background-color: #FEF9C3 !important;
     border-radius: 0;
     box-shadow: none !important;
@@ -122,14 +122,15 @@
     z-index: 2;
     font-family: 'Playwrite IE', cursive, sans-serif !important;
     font-weight: 400 !important;
-    font-size: clamp(2.4rem, 4.0vw, 3.3rem) !important;
+    font-size: clamp(2.7rem, 4.4vw, 3.5rem) !important;
     color: #0052FF !important;
-    line-height: 1 !important;
+    line-height: 1.4 !important;
     letter-spacing: 0 !important;
-    padding: 0 3px !important;
-    margin: 0 !important;
+    padding: 8px 6px 14px !important;
+    margin: -8px 0 -14px !important;
     display: inline-block !important;
     vertical-align: middle !important;
+    overflow: visible !important;
 }
 
 /* Electric Vivid Blue Main Text (#0052FF - Spacious Line Height 1.35) */
