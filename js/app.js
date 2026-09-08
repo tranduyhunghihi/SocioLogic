@@ -11,6 +11,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const WISH_CARD_COLORS = ['#FFFFFF', '#FFF6C7', '#B5EAFF'];
     let currentEditorBgColor = '#FFFFFF';
 
+    const CARD_THEME_CLASSES = ['card-theme-pink', 'card-theme-yellow', 'card-theme-white', 'card-theme-blue'];
+
+    function getWishThemeClass(wish, index = 0) {
+        if (!wish) return CARD_THEME_CLASSES[index % CARD_THEME_CLASSES.length];
+        
+        if (wish.themeClass && CARD_THEME_CLASSES.includes(wish.themeClass)) {
+            return wish.themeClass;
+        }
+        
+        if (wish.bgColor) {
+            const bg = String(wish.bgColor).toUpperCase();
+            if (bg === '#FDE8EF' || bg === '#FFD1DC' || bg === 'PINK') return 'card-theme-pink';
+            if (bg === '#FEF9C3' || bg === '#FFF6C7' || bg === 'YELLOW') return 'card-theme-yellow';
+            if (bg === '#E0F2FE' || bg === '#B5EAFF' || bg === 'BLUE') return 'card-theme-blue';
+            if (bg === '#FFFFFF' || bg === 'WHITE') return 'card-theme-white';
+        }
+        
+        // Deterministic hash based on wish.id (ensures exact same color everywhere)
+        const seedStr = String(wish.id || index);
+        let hash = 0;
+        for (let i = 0; i < seedStr.length; i++) {
+            hash = (hash * 31 + seedStr.charCodeAt(i)) & 0xFFFFFFFF;
+        }
+        const themeIdx = Math.abs(hash) % CARD_THEME_CLASSES.length;
+        const themeClass = CARD_THEME_CLASSES[themeIdx];
+        wish.themeClass = themeClass;
+        return themeClass;
+    }
+
     function getWishBgColor(wish, index = 0) {
         if (wish && wish.bgColor && WISH_CARD_COLORS.some(c => c.toUpperCase() === String(wish.bgColor).toUpperCase())) {
             return wish.bgColor;
@@ -128,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const centerPoint = windowHeight * 0.5; // Top of element at 50% screen height = 100% revealed
 
             // Animate surrounding header text elements (dramatic 50px float up + fade in from bottom to upper center across all sections)
-            const headers = document.querySelectorAll('.scroll-reveal-header, .sec6-header, .sec7-header, .header-title-container, .journey-header-container, .hero-center-titles, .hero-col-left, .hero-col-right');
+            const headers = document.querySelectorAll('.scroll-reveal-header, .sec6-header, .sec7-header, .header-title-container, .journey-header-container, .hero-center-titles');
             headers.forEach(header => {
                 const rect = header.getBoundingClientRect();
                 const isCompletelyOut = rect.bottom < 0 || rect.top > windowHeight;
@@ -316,7 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (Array.isArray(parsed) && parsed.length > 0) {
                     wishes = parsed;
                     updateWishCount();
-                    renderBoardCards();
+                    renderWishesView();
                     return;
                 }
             }
@@ -324,42 +353,37 @@ document.addEventListener('DOMContentLoaded', () => {
             console.warn('Cache read warning:', e);
         }
 
-        // Fallback: Instant starter wishes for first-time visitors
+        // Fallback: Instant 4 starter wishes for first-time visitors matching reference design
         wishes = [
             {
                 id: 'wish-starter-1',
-                author: 'SocioLogic Team',
-                imageData: createSampleWishCanvasData('Chúc mừng SocioLogic 2 Năm Kiến Tạo & Rực Rỡ! 🌟✨', '#0066FF', 'SocioLogic Team'),
-                x: 100,
-                y: 50,
-                rotation: -4,
-                zIndex: 10,
+                author: 'Cô Hoanh',
+                imageData: createSampleWishCanvasData('Chúc mừng SocioLogic 2 Năm Kiến Tạo & Rực Rỡ! 🌟✨', '#0052FF', 'Cô Hoanh'),
                 timestamp: Date.now() - 100000
             },
             {
                 id: 'wish-starter-2',
-                author: 'Minh Anh',
-                imageData: createSampleWishCanvasData('Chúc SocioLogic ngày càng phát triển, vươn xa hơn nữa! 🚀❤️', '#EC4899', 'Minh Anh'),
-                x: 450,
-                y: 110,
-                rotation: 5,
-                zIndex: 11,
+                author: 'Người Bạn Bí Ẩn',
+                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                imageData: createSampleWishCanvasData('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', '#0052FF', 'Người Bạn Bí Ẩn'),
                 timestamp: Date.now() - 50000
             },
             {
                 id: 'wish-starter-3',
-                author: 'Thành Nam',
-                imageData: createSampleWishCanvasData('Nghĩ sâu - Nói hay - Làm thật! Yêu SocioLogic nhiều! 🎓🔥', '#10B981', 'Thành Nam'),
-                x: 780,
-                y: 60,
-                rotation: -3,
-                zIndex: 12,
-                timestamp: Date.now() - 20000
+                author: 'Cô Hoanh',
+                imageData: createSampleWishCanvasData('Học sinh tự tin tranh biện và tỏa sáng! 🚀❤️', '#0052FF', 'Cô Hoanh'),
+                timestamp: Date.now() - 30000
+            },
+            {
+                id: 'wish-starter-4',
+                author: 'Rosy',
+                imageData: createSampleWishCanvasData('Yêu SocioLogic nhiều! ❤️😊', '#EC4899', 'Rosy'),
+                timestamp: Date.now() - 10000
             }
         ];
 
         updateWishCount();
-        renderBoardCards();
+        renderWishesView();
     }
 
     function saveWishesToCache() {
@@ -470,12 +494,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     wishes = combinedWishes;
                     saveWishesToCache();
                     updateWishCount();
-                    renderBoardCards();
+                    renderWishesView();
                 }
             }
         } catch (err) {
             console.warn('MongoDB fetch notice (using instant pre-rendered cards):', err);
         }
+    }
+
+    function getApiUrl() {
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:') {
+            return 'http://localhost:5000';
+        }
+        return window.location.origin;
     }
 
     async function saveWishes(newWish = null) {
@@ -526,16 +557,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Helper: Find highest z-index across all cards on screen
+    // Helper: Find highest z-index across all cards in memory and on screen (excluding active dragging card)
     function getHighestCardZIndex() {
-        let highest = maxZIndex;
-        const allCards = wishBoard.querySelectorAll('.wish-card');
+        let highest = 10;
+        if (wishes && wishes.length > 0) {
+            wishes.forEach(w => {
+                const z = Number(w.zIndex) || 0;
+                if (z > highest && z < 900000) highest = z;
+            });
+        }
+        const allCards = wishBoard ? wishBoard.querySelectorAll('.wish-card:not(.dragging)') : [];
         allCards.forEach(c => {
             const z = parseInt(c.style.zIndex) || 0;
-            if (z > highest && z < 9000) {
+            if (z > highest && z < 900000) {
                 highest = z;
             }
         });
+        if (maxZIndex > highest && maxZIndex < 900000) {
+            highest = maxZIndex;
+        }
         return highest;
     }
 
@@ -590,6 +630,34 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Touch Swipe Navigation for 2x2 Grid Carousel
+        if (wishBoard) {
+            let touchStartX = 0;
+            wishBoard.addEventListener('touchstart', (e) => {
+                if (e.touches && e.touches.length === 1) {
+                    touchStartX = e.touches[0].clientX;
+                }
+            }, { passive: true });
+
+            wishBoard.addEventListener('touchend', (e) => {
+                if (e.changedTouches && e.changedTouches.length === 1) {
+                    const touchEndX = e.changedTouches[0].clientX;
+                    const diffX = touchEndX - touchStartX;
+                    const totalPages = Math.max(1, Math.ceil(wishes.length / CARDS_PER_PAGE));
+
+                    if (Math.abs(diffX) > 40) {
+                        if (diffX < 0 && currentWishPage < totalPages - 1) {
+                            currentWishPage++;
+                            renderWishesView();
+                        } else if (diffX > 0 && currentWishPage > 0) {
+                            currentWishPage--;
+                            renderWishesView();
+                        }
+                    }
+                }
+            }, { passive: true });
+        }
+
         // Open/Close Editor
         if (btnOpenEditor) {
             btnOpenEditor.addEventListener('click', openEditor);
@@ -616,7 +684,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Open/Close Grid Modal
         if (btnOpenGrid) {
-            btnOpenGrid.addEventListener('click', openGridModal);
+            btnOpenGrid.addEventListener('click', (e) => {
+                openGridModal(e);
+            });
         }
         if (btnCloseGrid) {
             btnCloseGrid.addEventListener('click', closeGridModal);
@@ -739,13 +809,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         gridModalCardsContainer.innerHTML = wishes.map((wish, index) => {
-            const cardColor = getWishBgColor(wish, index);
+            const themeClass = getWishThemeClass(wish, index);
+            const author = escapeHtml(wish.author || 'Người chúc ẩn danh');
+            const hasText = wish.text && wish.text.length > 0;
             return `
-                <div class="grid-wish-card" data-id="${wish.id}" style="background-color: ${cardColor} !important;">
+                <div class="grid-wish-card ${themeClass}" data-id="${wish.id}">
                     <div class="grid-card-pin"></div>
-                    <div class="grid-card-author">Từ ${escapeHtml(wish.author)}</div>
+                    <div class="grid-card-author">Từ ${author}</div>
                     <div class="grid-card-body">
-                        <img class="grid-card-img" src="${wish.imageData}" alt="Lời chúc của ${escapeHtml(wish.author)}" draggable="false">
+                        ${hasText && !wish.imageData ?
+                            `<div class="card-text-content">${escapeHtml(wish.text)}</div>` :
+                            `<img class="grid-card-img" src="${wish.imageData}" alt="Lời chúc của ${author}" draggable="false">`
+                        }
                     </div>
                 </div>
             `;
@@ -866,14 +941,19 @@ document.addEventListener('DOMContentLoaded', () => {
     function addTextElement(initialText = '') {
         const textWrapper = document.createElement('div');
         textWrapper.className = 'card-element text-element';
-        textWrapper.style.left = '40px';
-        textWrapper.style.top = '40px';
+        textWrapper.style.left = '24px';
+        textWrapper.style.top = '20px';
+        textWrapper.style.maxWidth = 'calc(100% - 40px)';
+        textWrapper.style.boxSizing = 'border-box';
 
-        const truncatedInitial = initialText ? initialText.substring(0, 150) : '';
+        const truncatedInitial = initialText ? initialText.substring(0, 50) : '';
 
         textWrapper.innerHTML = `
-            <div class="element-drag-handle" title="Nhấp giữ để kéo di chuyển"><i class="ph-bold ph-dots-six-vertical"></i> Kéo di chuyển</div>
-            <div class="card-element-text-content" contenteditable="true" data-placeholder="Nhập lời chúc..." style="color: ${activeColor};">${escapeHtml(truncatedInitial)}</div>
+            <div class="element-drag-handle" title="Nhấp giữ để kéo di chuyển">
+                <i class="ph-bold ph-dots-six-vertical"></i> Kéo di chuyển
+                <span class="text-char-count">${truncatedInitial.length}/50</span>
+            </div>
+            <div class="card-element-text-content" contenteditable="true" data-placeholder="Nhập lời chúc (tối đa 50 ký tự)..." style="color: ${activeColor};">${escapeHtml(truncatedInitial)}</div>
             <button type="button" class="element-delete-btn" title="Xóa"><i class="ph-bold ph-x"></i></button>
         `;
 
@@ -881,14 +961,30 @@ document.addEventListener('DOMContentLoaded', () => {
         makeElementDraggable(textWrapper);
 
         const textContent = textWrapper.querySelector('.card-element-text-content');
+        const charCounter = textWrapper.querySelector('.text-char-count');
 
-        // Character limit check (Max 150 chars)
-        textContent.addEventListener('input', () => {
-            if (textContent.innerText.length > 150) {
-                textContent.innerText = textContent.innerText.substring(0, 150);
+        const updateCharCount = () => {
+            let currentText = textContent.innerText || '';
+            if (currentText.endsWith('\n')) currentText = currentText.slice(0, -1);
+
+            if (currentText.length > 50) {
+                currentText = currentText.substring(0, 50);
+                textContent.innerText = currentText;
                 placeCaretAtEnd(textContent);
             }
-        });
+
+            if (charCounter) {
+                charCounter.innerText = `${currentText.length}/50`;
+                if (currentText.length >= 50) {
+                    charCounter.classList.add('limit-reached');
+                } else {
+                    charCounter.classList.remove('limit-reached');
+                }
+            }
+        };
+
+        textContent.addEventListener('input', updateCharCount);
+        textContent.addEventListener('keyup', updateCharCount);
 
         // Focus text element
         setTimeout(() => textContent.focus(), 50);
@@ -1030,9 +1126,13 @@ document.addEventListener('DOMContentLoaded', () => {
             let newX = clientX - containerRect.left - dragOffsetX;
             let newY = clientY - containerRect.top - dragOffsetY;
 
-            // Bounds check
-            newX = Math.max(-20, Math.min(containerRect.width - 40, newX));
-            newY = Math.max(-20, Math.min(containerRect.height - 30, newY));
+            // Bounds check - ensure element stays strictly within card paper canvas
+            const elWidth = activeDraggedElement.offsetWidth || 80;
+            const elHeight = activeDraggedElement.offsetHeight || 30;
+            const maxX = Math.max(20, containerRect.width - elWidth - 16);
+            const maxY = Math.max(16, containerRect.height - elHeight - 16);
+            newX = Math.max(20, Math.min(maxX, newX));
+            newY = Math.max(16, Math.min(maxY, newY));
 
             activeDraggedElement.style.left = `${newX}px`;
             activeDraggedElement.style.top = `${newY}px`;
@@ -1127,8 +1227,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const targetRot = Math.floor(Math.random() * 24) - 12; // -12 to +12 deg
         
-        maxZIndex = getHighestCardZIndex() + 1;
+        const highestZ = getHighestCardZIndex() + 10;
+        maxZIndex = highestZ;
 
+        const chosenTheme = getWishThemeClass({ id: 'wish-' + Date.now(), bgColor: currentEditorBgColor }, wishes.length);
         const newWish = {
             id: 'wish-' + Date.now(),
             author: name,
@@ -1136,8 +1238,9 @@ document.addEventListener('DOMContentLoaded', () => {
             x: targetX,
             y: targetY,
             rotation: targetRot,
-            zIndex: maxZIndex,
+            zIndex: highestZ,
             bgColor: currentEditorBgColor,
+            themeClass: chosenTheme,
             timestamp: Date.now(),
             isUserPositioned: true
         };
@@ -1153,7 +1256,7 @@ document.addEventListener('DOMContentLoaded', () => {
         wishes.push(newWish);
         saveWishesToCache();
         updateWishCount();
-        renderBoardCards();
+        renderWishesView();
 
         // 3. Save wish to MongoDB in background
         await saveWishes(newWish);
@@ -1203,7 +1306,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (el.classList.contains('text-element')) {
                 const textContent = el.querySelector('.card-element-text-content');
                 if (textContent && textContent.innerText.trim()) {
-                    const text = textContent.innerText.trim();
+                    let text = textContent.innerText.trim();
+                    if (text.length > 50) text = text.substring(0, 50);
+
                     const color = textContent.style.color || '#1E293B';
                     
                     rCtx.fillStyle = color;
@@ -1211,9 +1316,33 @@ document.addEventListener('DOMContentLoaded', () => {
                     rCtx.textAlign = 'left';
                     rCtx.textBaseline = 'top';
 
-                    const lines = text.split('\n');
+                    // Ensure generous left margin safe offset so cursive font flourishes/swashes (e.g. h, H, C) never clip on left canvas edge
+                    const safeX = Math.max(32, posX + 16);
+                    const safeY = Math.max(24, posY + 12);
+                    // Match full editor container paper width so text line wrapping is 100% identical to what user typed in editor
+                    const maxTextWidth = Math.max(260, 480 - safeX - 24);
+
+                    // Automatic multiline word wrapping for canvas rendering
+                    const lines = [];
+                    const paragraphs = text.split('\n');
+                    paragraphs.forEach((p) => {
+                        const words = p.split(' ');
+                        let currentLine = '';
+                        words.forEach((w) => {
+                            const testLine = currentLine ? currentLine + ' ' + w : w;
+                            const metrics = rCtx.measureText(testLine);
+                            if (metrics.width > maxTextWidth && currentLine !== '') {
+                                lines.push(currentLine);
+                                currentLine = w;
+                            } else {
+                                currentLine = testLine;
+                            }
+                        });
+                        if (currentLine) lines.push(currentLine);
+                    });
+
                     lines.forEach((l, idx) => {
-                        rCtx.fillText(l, posX + 8, posY + 8 + idx * 34);
+                        rCtx.fillText(l, safeX, safeY + idx * 34);
                     });
                 }
             } else if (el.classList.contains('image-element')) {
@@ -1242,24 +1371,105 @@ document.addEventListener('DOMContentLoaded', () => {
         return renderCanvas.toDataURL('image/png');
     }
 
+    function bindFloatingActionButtons() {
+        const btnOpenEditorEl = document.getElementById('btn-open-editor');
+        const btnOpenGridEl = document.getElementById('btn-open-grid');
+        if (btnOpenEditorEl) {
+            btnOpenEditorEl.onclick = openEditor;
+        }
+        if (btnOpenGridEl) {
+            btnOpenGridEl.onclick = openGridModal;
+        }
+    }
+
+    function bindCameraControls() {
+        const btnZoomIn = document.getElementById('btn-zoom-in');
+        const btnZoomOut = document.getElementById('btn-zoom-out');
+        const btnZoomReset = document.getElementById('btn-zoom-reset');
+
+        if (btnZoomIn) {
+            btnZoomIn.onclick = () => {
+                userZoomMultiplier = Math.min(3.5, userZoomMultiplier + 0.2);
+                updateBoardCameraTransform();
+            };
+        }
+        if (btnZoomOut) {
+            btnZoomOut.onclick = () => {
+                userZoomMultiplier = Math.max(0.3, userZoomMultiplier - 0.2);
+                updateBoardCameraTransform();
+            };
+        }
+        if (btnZoomReset) {
+            btnZoomReset.onclick = () => {
+                userZoomMultiplier = 1.0;
+                boardPanX = 0;
+                boardPanY = 0;
+                updateBoardCameraTransform();
+            };
+        }
+
+        if (wishBoard && !wishBoard.dataset.wheelBound) {
+            wishBoard.dataset.wheelBound = "true";
+            wishBoard.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const delta = e.deltaY < 0 ? 0.08 : -0.08;
+                userZoomMultiplier = Math.max(0.3, Math.min(3.5, userZoomMultiplier + delta));
+                updateBoardCameraTransform();
+            }, { passive: false });
+        }
+    }
+
     // ==========================================================================
     // RENDER WISH CARDS ON THE BOARD (PC/MOBILE BALANCED DISTRIBUTION)
     // ==========================================================================
     function renderBoardCards() {
+        if (!wishBoard) return;
+
+        const cardsViewport = document.getElementById('wish-cards-viewport') || wishBoard;
+
+        let floatingActions = wishBoard.querySelector('.board-floating-actions');
+        if (!floatingActions) {
+            const actionsDiv = document.createElement('div');
+            actionsDiv.className = 'board-floating-actions';
+            actionsDiv.innerHTML = `
+                <button id="btn-open-editor" class="btn-board-action" type="button">
+                    <i class="ph-bold ph-pencil-line"></i>
+                    <span>Viết lời chúc của bạn</span>
+                </button>
+
+                <button id="btn-open-grid" class="btn-board-action btn-board-counter" type="button">
+                    <i class="ph-bold ph-envelope"></i>
+                    <span id="wish-count">${wishes ? wishes.length : 0} lời chúc</span>
+                </button>
+            `;
+            wishBoard.appendChild(actionsDiv);
+            bindFloatingActionButtons();
+        } else {
+            const countSpan = floatingActions.querySelector('#wish-count');
+            if (countSpan) countSpan.textContent = `${wishes ? wishes.length : 0} lời chúc`;
+        }
+
         if (!wishes || wishes.length === 0) {
-            wishBoard.innerHTML = `
-                <div class="empty-board-notice">
+            cardsViewport.style.transform = 'scale(1)';
+            let emptyNotice = cardsViewport.querySelector('.empty-board-notice');
+            if (!emptyNotice) {
+                emptyNotice = document.createElement('div');
+                emptyNotice.className = 'empty-board-notice';
+                emptyNotice.innerHTML = `
                     <i class="ph-bold ph-cards"></i>
                     <p>Chưa có lời chúc nào. Hãy là người đầu tiên viết lời chúc nhé!</p>
-                </div>
-            `;
+                `;
+                cardsViewport.appendChild(emptyNotice);
+            }
             return;
         }
 
-        const emptyNotice = wishBoard.querySelector('.empty-board-notice');
+        const emptyNotice = cardsViewport.querySelector('.empty-board-notice');
         if (emptyNotice) {
             emptyNotice.remove();
         }
+
+        cardsViewport.style.transform = 'scale(1)';
 
         const boardRect = wishBoard.getBoundingClientRect();
         const boardWidth = boardRect.width || window.innerWidth || 800;
@@ -1268,7 +1478,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const wishIds = new Set(wishes.map(w => w.id));
 
         // Remove DOM cards that were deleted
-        const existingCards = wishBoard.querySelectorAll('.wish-card');
+        const existingCards = cardsViewport.querySelectorAll('.wish-card');
         existingCards.forEach(cardEl => {
             const id = cardEl.dataset.id;
             if (!wishIds.has(id)) {
@@ -1276,27 +1486,34 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Device check
         const isMobile = window.innerWidth <= 640;
+        const count = wishes.length;
+        const cardThemes = ['card-theme-pink', 'card-theme-yellow', 'card-theme-white', 'card-theme-blue'];
+        const cols = Math.max(3, Math.ceil(Math.sqrt(count * 1.5)));
+        const rows = Math.max(2, Math.ceil(count / cols));
+        const cellW = (boardWidth - 260) / Math.max(1, cols - 1);
+        const cellH = (boardHeight - 260) / Math.max(1, rows - 1);
+
+        // Sort wishes by zIndex before rendering so DOM child order matches zIndex 100%
+        wishes.sort((a, b) => (Number(a.zIndex) || 0) - (Number(b.zIndex) || 0));
 
         // Reconcile and render each wish card
         wishes.forEach((wish, idx) => {
-            let card = wishBoard.querySelector(`.wish-card[data-id="${wish.id}"]`);
+            let card = cardsViewport.querySelector(`.wish-card[data-id="${wish.id}"]`);
 
             let targetX = Number(wish.x);
             let targetY = Number(wish.y);
 
             if (!isMobile) {
-                // PC Screen: If cards are gathered on the left edge (< 15% board width), distribute evenly across Left, Center, Right!
-                if (targetX < boardWidth * 0.15 && !wish.isUserPositioned) {
-                    const zones = [
-                        0.06 + (Math.random() * 0.22), // Left section (6% - 28%)
-                        0.36 + (Math.random() * 0.24), // Center section (36% - 60%)
-                        0.66 + (Math.random() * 0.24)  // Right section (66% - 90%)
-                    ];
-                    const zoneIndex = idx % 3;
-                    targetX = Math.round(boardWidth * zones[zoneIndex]);
-                    targetY = Math.round(40 + (idx * 40) % (boardHeight - 280));
+                // PC Screen: Spreads cards evenly across calculated cols x rows grid
+                if ((!targetX || targetX < boardWidth * 0.15) && !wish.isUserPositioned) {
+                    const r = Math.floor(idx / cols);
+                    const c = idx % cols;
+                    const offsetX = Math.sin(idx * 7) * 20;
+                    const offsetY = Math.cos(idx * 5) * 20;
+
+                    targetX = Math.round(40 + (c * cellW) + offsetX);
+                    targetY = Math.round(35 + (r * cellH) + offsetY);
                     
                     wish.x = targetX;
                     wish.y = targetY;
@@ -1318,42 +1535,261 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const activeZIndex = Number(wish.zIndex) || 1;
-            const cardColor = getWishBgColor(wish, idx);
+            const themeClass = getWishThemeClass(wish, idx);
+            const author = escapeHtml(wish.author || 'Người chúc ẩn danh');
+            const hasText = wish.text && wish.text.length > 0;
 
             if (!card) {
                 card = document.createElement('div');
-                card.className = 'wish-card';
+                card.className = `wish-card ${themeClass}`;
                 card.dataset.id = wish.id;
                 card.style.left = `${targetX}px`;
                 card.style.top = `${targetY}px`;
-                card.style.transform = `rotate(${wish.rotation || 0}deg)`;
+                card.style.transform = `rotate(${wish.rotation || (Math.floor(Math.random() * 24) - 12)}deg)`;
                 card.style.zIndex = activeZIndex;
-                card.style.backgroundColor = cardColor;
 
                 card.innerHTML = `
-                    <div class="wish-card-header">
-                        <span class="wish-card-author">${escapeHtml(wish.author)}</span>
-                    </div>
-                    <div class="wish-card-body">
-                        <img class="wish-card-canvas-preview" src="${wish.imageData}" alt="Lời chúc của ${escapeHtml(wish.author)}" draggable="false">
+                    <div class="card-blue-pin"></div>
+                    <div class="card-author-title">Từ ${author}</div>
+                    <div class="card-content-box">
+                        ${hasText && !wish.imageData ? 
+                            `<div class="card-text-content">${escapeHtml(wish.text)}</div>` : 
+                            `<img class="card-img-content" src="${wish.imageData}" alt="Lời chúc của ${author}" draggable="false">`
+                        }
                     </div>
                 `;
 
-                wishBoard.appendChild(card);
+                cardsViewport.appendChild(card);
                 makeCardDraggableAndClickable(card);
             } else {
                 if (!card.classList.contains('dragging')) {
                     card.style.left = `${targetX}px`;
                     card.style.top = `${targetY}px`;
                     
-                    // Maintain highest z-index so released card stays permanently on top
                     const currentStyleZ = parseInt(card.style.zIndex) || 1;
                     const finalZ = Math.max(currentStyleZ, activeZIndex);
                     card.style.zIndex = finalZ;
                     wish.zIndex = finalZ;
+                    cardsViewport.appendChild(card);
                 }
             }
         });
+    }
+
+    let currentMobilePage = 0;
+    let mobileTouchStartX = 0;
+    let mobileTouchEndX = 0;
+
+    function bindMobileActionButtons() {
+        const btnOpenEditorMobile = document.getElementById('btn-open-editor-mobile');
+        const btnOpenGridMobile = document.getElementById('btn-open-grid-mobile');
+        if (btnOpenEditorMobile) {
+            btnOpenEditorMobile.onclick = openEditor;
+        }
+        if (btnOpenGridMobile) {
+            btnOpenGridMobile.onclick = openGridModal;
+        }
+    }
+
+    function renderMobileWishView() {
+        const mobileContainer = document.getElementById('wishes-mobile-container');
+        const mobileGrid = document.getElementById('mobile2x2Grid');
+        const mobileDotsContainer = document.getElementById('mobilePaginationDots');
+        const mobileCountSpan = document.getElementById('wish-count-mobile');
+
+        if (!mobileContainer || !mobileGrid) return;
+
+        bindMobileActionButtons();
+
+        if (mobileCountSpan) {
+            mobileCountSpan.textContent = `${wishes ? wishes.length : 0} lời chúc`;
+        }
+
+        if (!wishes || wishes.length === 0) {
+            mobileGrid.innerHTML = `
+                <div class="empty-board-notice" style="grid-column: 1 / -1; padding: 40px 10px;">
+                    <i class="ph-bold ph-cards" style="font-size: 2rem; color: #94A3B8;"></i>
+                    <p style="color: #64748B; margin-top: 8px;">Chưa có lời chúc nào. Hãy là người đầu tiên viết lời chúc nhé!</p>
+                </div>
+            `;
+            if (mobileDotsContainer) mobileDotsContainer.innerHTML = '';
+            return;
+        }
+
+        const itemsPerPage = 4;
+        const totalPages = Math.max(1, Math.ceil(wishes.length / itemsPerPage));
+        if (currentMobilePage >= totalPages) {
+            currentMobilePage = totalPages - 1;
+        }
+        if (currentMobilePage < 0) {
+            currentMobilePage = 0;
+        }
+
+        const pageWishes = wishes.slice(currentMobilePage * itemsPerPage, (currentMobilePage + 1) * itemsPerPage);
+        mobileGrid.innerHTML = '';
+        pageWishes.forEach((wish, idx) => {
+            const cardEl = document.createElement('div');
+            const themeClass = getWishThemeClass(wish, (currentMobilePage * 4 + idx));
+            cardEl.className = `mobile-wish-card ${themeClass}`;
+            cardEl.dataset.id = wish.id;
+
+            const author = escapeHtml(wish.author || 'Người chúc ẩn danh');
+            const hasText = wish.text && wish.text.length > 0;
+
+            cardEl.innerHTML = `
+                <div class="card-blue-pin"></div>
+                <div class="card-author-title">Từ ${author}</div>
+                <div class="card-content-box">
+                    ${hasText && !wish.imageData ? 
+                        `<div class="card-text-content">${escapeHtml(wish.text)}</div>` : 
+                        `<img class="card-img-content" src="${wish.imageData}" alt="Lời chúc của ${author}">`
+                    }
+                </div>
+            `;
+
+            cardEl.onclick = () => {
+                openReaderModalByWishId(wish.id);
+            };
+
+            mobileGrid.appendChild(cardEl);
+        });
+
+        // Render Pagination Dots (Capped strictly at maximum 6 dots)
+        if (mobileDotsContainer) {
+            mobileDotsContainer.innerHTML = '';
+            const MAX_DOTS = 6;
+            const numDots = Math.min(MAX_DOTS, totalPages);
+            const activeDotIndex = Math.min(numDots - 1, currentMobilePage);
+
+            for (let i = 0; i < numDots; i++) {
+                const dot = document.createElement('span');
+                const isActive = (i === activeDotIndex);
+                dot.className = `dot ${isActive ? 'active' : ''}`;
+                dot.onclick = () => {
+                    currentMobilePage = i;
+                    renderMobileWishView();
+                };
+                mobileDotsContainer.appendChild(dot);
+            }
+        }
+
+        // Bind Touch Swipe Navigation
+        const gridWrapper = document.getElementById('mobileGridWrapper');
+        if (gridWrapper && !gridWrapper.dataset.swipeBound) {
+            gridWrapper.dataset.swipeBound = "true";
+
+            gridWrapper.addEventListener('touchstart', (e) => {
+                mobileTouchStartX = e.touches[0].clientX;
+            }, { passive: true });
+
+            gridWrapper.addEventListener('touchend', (e) => {
+                mobileTouchEndX = e.changedTouches[0].clientX;
+                const diff = mobileTouchStartX - mobileTouchEndX;
+                if (Math.abs(diff) > 40) {
+                    if (diff > 0) {
+                        // Swipe Left -> Next Page
+                        if (currentMobilePage < totalPages - 1) {
+                            currentMobilePage++;
+                            renderMobileWishView();
+                        }
+                    } else {
+                        // Swipe Right -> Prev Page
+                        if (currentMobilePage > 0) {
+                            currentMobilePage--;
+                            renderMobileWishView();
+                        }
+                    }
+                }
+            }, { passive: true });
+        }
+    }
+
+    function renderWishesView() {
+        if (window.innerWidth <= 640) {
+            renderMobileWishView();
+        } else {
+            renderBoardCards();
+        }
+    }
+
+    function renderPaginationDots(totalPages) {
+        const paginationEl = document.getElementById('wishes-pagination');
+        const prevBtn = document.getElementById('wish-prev-btn');
+        const nextBtn = document.getElementById('wish-next-btn');
+
+        if (!paginationEl) return;
+
+        // Toggle Prev/Next arrow buttons
+        if (prevBtn) {
+            prevBtn.disabled = (currentWishPage <= 0);
+            prevBtn.onclick = () => {
+                if (currentWishPage > 0) {
+                    currentWishPage--;
+                    renderWishesView();
+                }
+            };
+        }
+
+        if (nextBtn) {
+            nextBtn.disabled = (currentWishPage >= totalPages - 1);
+            nextBtn.onclick = () => {
+                if (currentWishPage < totalPages - 1) {
+                    currentWishPage++;
+                    renderWishesView();
+                }
+            };
+        }
+
+        // Strictly cap rendered dots count to maximum 6 fixed dots
+        const MAX_DOTS = 6;
+        const numDots = Math.min(MAX_DOTS, totalPages);
+
+        // Active dot index moves from 0 to 5 for first 6 pages, then stays at dot 5 for pages > 5
+        const activeDotIdx = Math.min(numDots - 1, currentWishPage);
+
+        let dotsHtml = '';
+        for (let i = 0; i < numDots; i++) {
+            const isActive = (i === activeDotIdx);
+            dotsHtml += `
+                <span class="dot-item ${isActive ? 'active' : ''}" 
+                      data-dot-index="${i}" 
+                      title="Trang ${i + 1}"></span>
+            `;
+        }
+
+        paginationEl.innerHTML = dotsHtml;
+
+        const dots = paginationEl.querySelectorAll('.dot-item');
+        dots.forEach((dot) => {
+            dot.addEventListener('click', () => {
+                const targetPage = parseInt(dot.dataset.dotIndex) || 0;
+                if (targetPage < totalPages) {
+                    currentWishPage = targetPage;
+                    renderWishesView();
+                }
+            });
+        });
+    }
+
+    function bringCardToFront(cardEl, wishObj) {
+        const topZ = getHighestCardZIndex() + 100;
+        maxZIndex = topZ;
+        cardEl.style.zIndex = topZ;
+        
+        const cardsVP = document.getElementById('wish-cards-viewport') || wishBoard;
+        if (cardsVP && cardEl.parentElement === cardsVP) {
+            cardsVP.appendChild(cardEl); // Bring card to absolute top of DOM stack immediately!
+        }
+
+        if (wishObj) {
+            wishObj.zIndex = topZ;
+            // Move wishObj to the end of wishes array so DOM order and memory order match
+            const wIdx = wishes.findIndex(w => String(w.id) === String(wishObj.id));
+            if (wIdx >= 0) {
+                const [moved] = wishes.splice(wIdx, 1);
+                wishes.push(moved);
+            }
+        }
     }
 
     // ==========================================================================
@@ -1396,13 +1832,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const wishId = cardEl.dataset.id;
             cachedWishObj = wishes.find(w => String(w.id) === String(wishId)) || null;
 
-            // Boost zIndex to be higher than all cards on screen
-            const nextZIndex = getHighestCardZIndex() + 5;
-            maxZIndex = nextZIndex;
-            cardEl.style.zIndex = nextZIndex;
-            if (cachedWishObj) {
-                cachedWishObj.zIndex = nextZIndex;
-            }
+            // Boost zIndex & DOM position to be higher than all cards on screen
+            bringCardToFront(cardEl, cachedWishObj);
 
             cardEl.classList.add('dragging');
 
@@ -1422,13 +1853,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            // Ensure dragging card stays at the absolute top of DOM child stack on every move frame
+            const cardsVP = document.getElementById('wish-cards-viewport') || wishBoard;
+            if (cardsVP && cardEl.parentElement === cardsVP && cardsVP.lastElementChild !== cardEl) {
+                cardsVP.appendChild(cardEl);
+            }
+
             const clientX = e.touches ? e.touches[0].clientX : e.clientX;
             const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
-            const deltaX = clientX - cardDragStartX;
-            const deltaY = clientY - cardDragStartY;
+            const scale = 1.0;
+            const deltaX = (clientX - cardDragStartX) / scale;
+            const deltaY = (clientY - cardDragStartY) / scale;
 
-            cardDragDistance = Math.hypot(deltaX, deltaY);
+            cardDragDistance = Math.hypot(clientX - cardDragStartX, clientY - cardDragStartY);
 
             if (cardDragDistance > 3) {
                 e.preventDefault();
@@ -1471,13 +1909,8 @@ document.addEventListener('DOMContentLoaded', () => {
             draggedCard = null;
 
             // Ensure dropped card stays permanently on top of all other cards!
-            const finalZIndex = getHighestCardZIndex() + 5;
-            maxZIndex = finalZIndex;
-            cardEl.style.zIndex = finalZIndex;
-
-            if (cachedWishObj) {
-                cachedWishObj.zIndex = finalZIndex;
-            }
+            bringCardToFront(cardEl, cachedWishObj);
+            saveWishesToCache();
 
             if (cardDragDistance > 5) {
                 if (cachedWishObj) {
@@ -1501,15 +1934,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentWish = wishes.find(w => String(w.id) === String(wishId));
         if (!currentWish) return;
 
-        const cardColor = getWishBgColor(currentWish);
+        const wishIdx = wishes.findIndex(w => String(w.id) === String(wishId));
+        const themeClass = getWishThemeClass(currentWish, wishIdx >= 0 ? wishIdx : 0);
+        const author = escapeHtml(currentWish.author || 'Người chúc ẩn danh');
+        const hasText = currentWish.text && currentWish.text.length > 0;
 
         readerCardContent.innerHTML = `
-            <div class="wish-card wish-card-modal-view" style="background-color: ${cardColor} !important;">
-                <div class="wish-card-header">
-                    <span class="wish-card-author">${escapeHtml(currentWish.author)}</span>
-                </div>
-                <div class="wish-card-body">
-                    <img class="wish-card-canvas-preview" src="${currentWish.imageData}" alt="Lời chúc của ${escapeHtml(currentWish.author)}" draggable="false">
+            <div class="reader-modal-card ${themeClass}">
+                <div class="card-blue-pin"></div>
+                <div class="card-author-title">Từ ${author}</div>
+                <div class="card-content-box">
+                    ${hasText && !currentWish.imageData ? 
+                        `<div class="card-text-content">${escapeHtml(currentWish.text)}</div>` : 
+                        `<img class="card-img-content" src="${currentWish.imageData}" alt="Lời chúc của ${author}" draggable="false">`
+                    }
                 </div>
             </div>
         `;
@@ -1525,6 +1963,10 @@ document.addEventListener('DOMContentLoaded', () => {
             .replace(/"/g, '&quot;')
             .replace(/'/g, '&#039;');
     }
+
+    window.addEventListener('resize', () => {
+        renderWishesView();
+    });
 
     // Run Initialization
     init();

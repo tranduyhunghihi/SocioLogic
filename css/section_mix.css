@@ -270,15 +270,36 @@ body {
     transform: scale(0.85);
 }
 
-/* Typography & Titles */
-.hero-title {
-    font-family: var(--font-playwrite);
-    font-size: 4.5rem;
+.sec2-right-logo {
+    display: none;
+}
+
+.hero-title,
+.hero-title span,
+.hero-title-hanh,
+.hero-title-trinh {
+    font-family: var(--font-playwrite) !important;
     font-weight: 400;
     color: var(--color-primary);
     line-height: 1.2;
     letter-spacing: -0.5px;
     white-space: nowrap;
+}
+
+.hero-title {
+    font-size: 4.5rem;
+}
+
+.hero-title-hanh {
+    display: inline-block;
+    font-family: var(--font-playwrite) !important;
+}
+
+.hero-title-trinh {
+    display: inline-block;
+    font-family: var(--font-playwrite) !important;
+    transform: none !important;
+    margin-right: 0 !important;
 }
 
 /* Pill Buttons */
@@ -470,7 +491,7 @@ a.pill-btn-yellow:hover {
     justify-content: center;
     align-items: flex-end;
     position: absolute;
-    bottom: 20px !important;
+    bottom: 30px !important;
     left: 50%;
     transform: translateX(-50%);
     padding: 0;
@@ -478,13 +499,15 @@ a.pill-btn-yellow:hover {
     overflow: visible;
 }
 
-/* Main Bubbles Container */
+/* Main Bubbles Container - Fixed 1400px Container on PC for 100% Locked Icon Coordinates Across All Screen Resolutions */
 .bubbles-row {
     display: flex;
     align-items: flex-end;
     justify-content: center;
     gap: 0px;
-    width: 100%;
+    width: 1400px;
+    min-width: 1400px;
+    max-width: 1400px;
     position: relative;
     padding: 0 !important;
     margin: 0 auto;
@@ -564,19 +587,72 @@ a.pill-btn-yellow:hover {
 
 .hero-main-title {
     font-family: var(--font-main);
-    font-size: 3.4rem;
-    font-weight: 500;
+    font-size: clamp(2.4rem, 4.0vw, 3.4rem);
+    font-weight: 600;
     color: #0052FF;
-    line-height: 1.15;
-    letter-spacing: -0.8px;
+    line-height: 1.25;
+    letter-spacing: -0.5px;
     margin: 0;
     white-space: nowrap;
+}
+
+/* Unified Global PC Desktop Section Main Titles Typography */
+@media (min-width: 769px) {
+    .hero-main-title,
+    .title-main-text,
+    .journey-title,
+    .title-line-main,
+    .sec6-title-main,
+    .sec7-title-main,
+    .header-title-wishes,
+    .header-title-wishes *,
+    #sec3-loichuc .header-title-wishes,
+    #sec3-loichuc .title-main-text,
+    #sec3-loichuc .title-line-top,
+    #sec3-loichuc .title-line-bottom,
+    #sec3-loichuc .title-line-bottom .title-main-text,
+    .section-1-wrapper .title-main-text,
+    .section-2-wrapper .title-main-text,
+    .section-3-wrapper .title-main-text,
+    .section-4-wrapper .title-main-text,
+    .section-5a-wrapper .title-main-text,
+    .section-5b-wrapper .title-main-text,
+    .section-6-wrapper .sec6-title-main,
+    .section-7-wrapper .sec7-title-main {
+        font-size: clamp(2.4rem, 4.0vw, 3.4rem) !important;
+        font-weight: 500 !important;
+        line-height: 1.25 !important;
+        letter-spacing: -0.5px !important;
+        color: #0052FF !important;
+        text-align: center !important;
+        -webkit-font-smoothing: antialiased !important;
+        -moz-osx-font-smoothing: grayscale !important;
+    }
+
+    .hero-main-title .highlight-script,
+    .title-main-text .script-slide-inner,
+    .title-main-text .highlight-script,
+    .journey-title .script-slide-inner,
+    .journey-title .highlight-script,
+    .sec6-title-main .sec6-script-text,
+    .sec7-title-main .sec7-script-text,
+    .script-slide-inner,
+    .script-reveal-text,
+    .sec6-script-text,
+    .sec7-script-text,
+    .highlight-script-yellow {
+        font-size: clamp(2.5rem, 4.2vw, 3.6rem) !important;
+        font-weight: 400 !important;
+        color: #0052FF !important;
+        -webkit-font-smoothing: antialiased !important;
+        -moz-osx-font-smoothing: grayscale !important;
+    }
 }
 
 .hero-main-title .highlight-script {
     font-family: var(--font-playwrite);
     font-weight: 400;
-    font-size: clamp(2.7rem, 4.4vw, 3.5rem);
+    font-size: clamp(2.5rem, 4.2vw, 3.5rem);
     color: #0052FF;
     position: relative;
     display: inline-block;
@@ -1133,6 +1209,14 @@ a.pill-btn-yellow:hover {
     height: 85px;
 }
 
+/* Floating Doodle Icons in Section 2 on PC (100% same size as Section 1) */
+#sec2-hero .mini-bubble-item,
+#sec2-hero .img-doodle {
+    width: 85px !important;
+    height: 85px !important;
+    padding: 13px !important;
+}
+
 .doodle-icon-img {
     width: 100%;
     height: 100%;
@@ -1180,7 +1264,7 @@ a.pill-btn-yellow:hover {
 /* 8 Standalone Independent Mini Speech Bubbles (Positioned Absolutely Inside Container) */
 /* Slot 1: Standalone Book Yellow (Cạnh dưới Letter S) */
 .doodle-slot-1 {
-    --base-x: 100px;
+    --base-x: 50px;
     --base-y: 200px;
     --rot-final: 6deg;
     width: 85px;
@@ -1190,7 +1274,7 @@ a.pill-btn-yellow:hover {
 
 /* Slot 2: Standalone Pencil Pink (Eo bên phải Letter S) */
 .doodle-slot-2 {
-    --base-x: 210px;
+    --base-x: 170px;
     --base-y: 0px;
     --rot-final: -12deg;
     width: 85px;
@@ -1200,7 +1284,7 @@ a.pill-btn-yellow:hover {
 
 /* Slot 3: Standalone Medal Blue (Giữa Letter o1 & i1) */
 .doodle-slot-3 {
-    --base-x: 375px;
+    --base-x: 320px;
     --base-y: 110px;
     --rot-final: -4deg;
     width: 85px;
@@ -1210,8 +1294,8 @@ a.pill-btn-yellow:hover {
 
 /* Slot 4: Standalone Trophy Cyan (Trên đỉnh Letter o2) */
 .doodle-slot-4 {
-    --base-x: 620px;
-    --base-y: 10px;
+    --base-x: 580px;
+    --base-y: 0px;
     --rot-final: 30deg;
     width: 85px;
     height: 85px;
@@ -1220,7 +1304,7 @@ a.pill-btn-yellow:hover {
 
 /* Slot 5: Standalone Heart Green (Giữa Letter L & o3) */
 .doodle-slot-5 {
-    --base-x: 875px;
+    --base-x: 820px;
     --base-y: 25px;
     --rot-final: -40deg;
     width: 85px;
@@ -1230,7 +1314,7 @@ a.pill-btn-yellow:hover {
 
 /* Slot 6: Standalone Podium Pink (Dưới Letter o3) */
 .doodle-slot-6 {
-    --base-x: 1095px;
+    --base-x: 1040px;
     --base-y: 160px;
     --rot-final: 5deg;
     width: 85px;
@@ -1240,7 +1324,7 @@ a.pill-btn-yellow:hover {
 
 /* Slot 7: Standalone Exclamation ! Cyan (Trên đỉnh phải Letter g) */
 .doodle-slot-7 {
-    --base-x: 1270px;
+    --base-x: 1215px;
     --base-y: -30px;
     --rot-final: 6deg;
     width: 85px;
@@ -1250,7 +1334,7 @@ a.pill-btn-yellow:hover {
 
 /* Slot 8: Standalone Search Q Blue (Dưới chân Letter c2) */
 .doodle-slot-8 {
-    --base-x: 1260px;
+    --base-x: 1210px;
     --base-y: 200px;
     --rot-final: -6deg;
     width: 85px;
@@ -1258,18 +1342,23 @@ a.pill-btn-yellow:hover {
     z-index: 10;
 }
 
-/* Responsive Breakpoints */
-@media (max-width: 1700px) {
-    .bubbles-row {
-        gap: 0px;
-        transform: scale(1);
+/* Responsive Desktop Scaling Engine for Section 1 Hero Bubbles (100% Proportional Unit Locking) */
+@media (min-width: 769px) {
+
+    .section-banner .bubbles-row,
+    #sec1-banner .bubbles-row {
+        width: 1400px !important;
+        min-width: 1400px !important;
+        max-width: 1400px !important;
     }
 }
 
-@media (max-width: 1300px) {
-    .bubbles-row {
-        gap: 0px;
-        transform: scale(0.9);
+@media (min-width: 769px) and (max-width: 1440px) {
+
+    .section-banner .bubbles-row,
+    #sec1-banner .bubbles-row {
+        transform: scale(calc(100vw / 1440)) !important;
+        transform-origin: bottom center !important;
     }
 }
 
@@ -1323,5 +1412,432 @@ a.pill-btn-yellow:hover {
 
     .hero-title {
         font-size: 2.5rem;
+    }
+}
+
+/* ==========================================================================
+   SECTION 1 MOBILE RESPONSIVE DESIGN (EXACT MATCH FOR MOBILE SCREENSHOT)
+   ========================================================================== */
+@media (max-width: 768px) {
+
+    /* 1. Header & Navigation Adjustments for Mobile */
+    .floating-navbar {
+        display: none !important;
+    }
+
+    .card-scroll-indicator,
+    #fixedSideNav {
+        display: none !important;
+    }
+
+    /* 2. Section 1 Container */
+    .section-banner {
+        height: auto !important;
+        min-height: 100vh !important;
+        padding-top: 30px !important;
+        padding-bottom: 20px !important;
+        overflow: hidden !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+    }
+
+    .section-banner::before {
+        background: linear-gradient(180deg, #94E1FF 0%, #CEF2FF 15%, #F0F9FF 25%, #FFFFFF 36%) !important;
+        height: 100% !important;
+    }
+
+    .hero-rounded-card {
+        height: auto !important;
+        min-height: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        position: relative !important;
+        width: 100% !important;
+    }
+
+    /* 3. Centered Heading Title on Mobile */
+    .hero-center-titles {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        margin: 10px auto 10px auto !important;
+        width: 100% !important;
+        max-width: 360px !important;
+        gap: 4px !important;
+        padding: 0 10px !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+        z-index: 10 !important;
+    }
+
+    /* Unified Global Section Main Titles Typography on Mobile */
+    .hero-main-title,
+    .title-main-text,
+    .journey-title,
+    .title-line-main,
+    .sec6-title-main,
+    .sec7-title-main,
+    .section-1-wrapper .title-main-text,
+    .section-2-wrapper .title-main-text,
+    .section-3-wrapper .title-main-text,
+    .section-4-wrapper .title-main-text,
+    .section-5a-wrapper .title-main-text,
+    .section-5b-wrapper .title-main-text,
+    .section-6-wrapper .sec6-title-main,
+    .section-7-wrapper .sec7-title-main {
+        font-size: clamp(1.75rem, 5.8vw, 2.1rem) !important;
+        font-weight: 500 !important;
+        line-height: 1.35 !important;
+        letter-spacing: -0.3px !important;
+        color: #0052FF !important;
+        text-align: center !important;
+        -webkit-font-smoothing: antialiased !important;
+        -moz-osx-font-smoothing: grayscale !important;
+    }
+
+    .hero-main-title .script-slide-inner,
+    .hero-main-title .highlight-script,
+    .title-main-text .script-slide-inner,
+    .title-main-text .highlight-script,
+    .journey-title .script-slide-inner,
+    .journey-title .highlight-script,
+    .sec6-title-main .sec6-script-text,
+    .sec7-title-main .sec7-script-text,
+    .script-slide-inner,
+    .script-reveal-text,
+    .sec6-script-text,
+    .sec7-script-text,
+    .highlight-script-yellow {
+        font-size: clamp(1.65rem, 5.8vw, 2.0rem) !important;
+        font-weight: 400 !important;
+        color: #0052FF !important;
+        padding: 0 4px !important;
+        -webkit-font-smoothing: antialiased !important;
+        -moz-osx-font-smoothing: grayscale !important;
+    }
+
+    .hero-main-title .highlight-script::before {
+        top: 36% !important;
+        height: 60% !important;
+    }
+
+    /* 4. Speech Bubbles Viewport & Rows on Mobile (Proportional 380px Grid) */
+    .section-banner .bubbles-viewport,
+    #sec1-banner .bubbles-viewport {
+        position: relative !important;
+        bottom: auto !important;
+        left: auto !important;
+        top: auto !important;
+        transform: none !important;
+        margin: 5px auto 0 auto !important;
+        width: 380px !important;
+        max-width: 95vw !important;
+        height: 520px !important;
+        min-height: 520px !important;
+        overflow: visible !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: flex-start !important;
+    }
+
+    .bubbles-row {
+        position: relative !important;
+        width: 380px !important;
+        height: 520px !important;
+        margin: 0 auto !important;
+        transform-origin: top center !important;
+        transform: scale(calc((100vw - 20px) / 380)) !important;
+    }
+
+    @media (min-width: 380px) and (max-width: 768px) {
+        .bubbles-row {
+            transform: scale(1) !important;
+        }
+    }
+
+    /* ==========================================================================
+       5. ABSOLUTE PROPORTIONAL POSITIONING MATCHING MOCKUP (IMAGE 3)
+       ========================================================================== */
+    .bubbles-row .bubble-item,
+    .bubbles-row .mini-bubble-item {
+        position: absolute !important;
+        margin: 0 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: flex !important;
+        --base-x: 0px !important;
+        --base-y: 0px !important;
+        will-change: transform;
+    }
+
+    /* 1. Letter S (Blue - Top Left) */
+    .letter-1-S {
+        left: 10px !important;
+        top: 10px !important;
+        width: 110px !important;
+        height: 145px !important;
+        transform: rotate(0deg) !important;
+        z-index: 5 !important;
+    }
+
+    /* 2. Letter o (Cyan - Top Center) */
+    .letter-2-o {
+        left: 130px !important;
+        top: 35px !important;
+        width: 115px !important;
+        height: 115px !important;
+        transform: rotate(0deg) !important;
+        z-index: 4 !important;
+    }
+
+    /* 3. Letter c (Green - Top Right) */
+    .letter-3-c {
+        left: 255px !important;
+        top: 10px !important;
+        width: 115px !important;
+        height: 115px !important;
+        transform: rotate(0deg) !important;
+        z-index: 6 !important;
+    }
+
+    /* 4. Letter i (Yellow - Mid Left) */
+    .letter-4-i {
+        left: 65px !important;
+        top: 155px !important;
+        width: 55px !important;
+        height: 140px !important;
+        transform: rotate(-28deg) !important;
+        z-index: 7 !important;
+    }
+
+    /* 5. Letter o (Orange - Mid Right) */
+    .letter-5-o {
+        left: 210px !important;
+        top: 160px !important;
+        width: 120px !important;
+        height: 120px !important;
+        transform: rotate(-6deg) !important;
+        z-index: 5 !important;
+    }
+
+    /* 6. Letter L (Red - Lower Mid Left) */
+    .letter-6-L {
+        left: 15px !important;
+        top: 215px !important;
+        width: 100px !important;
+        height: 145px !important;
+        transform: rotate(0deg) !important;
+        z-index: 6 !important;
+    }
+
+    /* 7. Letter o (Pink - Lower Mid Center) */
+    .letter-7-o {
+        left: 115px !important;
+        top: 270px !important;
+        width: 115px !important;
+        height: 115px !important;
+        transform: rotate(-15deg) !important;
+        z-index: 8 !important;
+    }
+
+    /* 8. Letter g (Green - Lower Mid Right) */
+    .letter-8-g {
+        left: 255px !important;
+        top: 280px !important;
+        width: 115px !important;
+        height: 150px !important;
+        transform: rotate(0deg) !important;
+        z-index: 6 !important;
+    }
+
+    /* 9. Letter i (Cyan - Bottom Left) */
+    .letter-9-i {
+        left: 65px !important;
+        top: 375px !important;
+        width: 55px !important;
+        height: 140px !important;
+        transform: rotate(-18deg) !important;
+        z-index: 7 !important;
+    }
+
+    /* 10. Letter c (Blue - Bottom Center/Right) */
+    .letter-10-c {
+        left: 135px !important;
+        top: 360px !important;
+        width: 115px !important;
+        height: 115px !important;
+        transform: rotate(0deg) !important;
+        z-index: 8 !important;
+    }
+
+    /* DOODLE MINI ICONS ABSOLUTE LOCATIONS ON MOBILE */
+    .bubbles-row .mini-bubble-item,
+    .bubbles-row .img-doodle {
+        width: 42px !important;
+        height: 42px !important;
+        padding: 4px !important;
+        position: absolute !important;
+        --base-x: 0px !important;
+        --base-y: 0px !important;
+    }
+
+    .doodle-slot-1 { left: 205px !important; top: 15px !important; z-index: 9 !important; }
+    .doodle-slot-2 { left: 125px !important; top: 25px !important; z-index: 9 !important; }
+    .doodle-slot-3 { left: 260px !important; top: 465px !important; z-index: 9 !important; }
+    .doodle-slot-4 { left: 12px !important; top: 175px !important; z-index: 9 !important; }
+    .doodle-slot-5 { left: 280px !important; top: 145px !important; z-index: 9 !important; }
+    .doodle-slot-6 { left: 165px !important; top: 185px !important; z-index: 9 !important; }
+    .doodle-slot-7 { left: 22px !important; top: 395px !important; z-index: 9 !important; }
+    .doodle-slot-8 { left: 325px !important; top: 215px !important; z-index: 9 !important; }
+
+    #sec2-hero .mini-bubble-item,
+    #sec2-hero .img-doodle {
+        width: 39px !important;
+        height: 39px !important;
+        padding: 5px !important;
+    }
+
+    /* ==========================================================================
+       SECTION 2 MOBILE RESPONSIVE DESIGN (EXACT MATCH FOR MOBILE SCREENSHOT)
+       ========================================================================== */
+    #sec2-hero .section-1-wrapper {
+        padding: 20px 8px !important;
+        min-height: 100vh !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    #sec2-hero .hero-layout {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 6px !important;
+        width: 100% !important;
+        max-width: 360px !important;
+        margin: 0 auto !important;
+    }
+
+    #sec2-hero .hero-col-left {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-end !important;
+        text-align: right !important;
+        gap: 4px !important;
+        flex: 1 !important;
+        z-index: 5 !important;
+        order: 1 !important;
+    }
+
+    #sec2-hero .hero-col-left .brand-logo {
+        display: none !important;
+    }
+
+    #sec2-hero .hero-col-left .hero-title,
+    #sec2-hero .hero-col-left .hero-title span,
+    #sec2-hero .hero-col-right .hero-title,
+    #sec2-hero .hero-col-right .hero-title span,
+    #sec2-hero .hero-title-hanh,
+    #sec2-hero .hero-title-trinh {
+        font-family: var(--font-playwrite) !important;
+        font-size: clamp(1.35rem, 5.2vw, 1.75rem) !important;
+        font-weight: 400 !important;
+        line-height: 1.15 !important;
+        color: #0052FF !important;
+        text-align: right !important;
+        white-space: normal !important;
+        max-width: 120px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-end !important;
+        overflow: visible !important;
+    }
+
+    #sec2-hero .hero-title-hanh {
+        display: block !important;
+        font-family: var(--font-playwrite) !important;
+        transform: translateX(-12px) !important;
+    }
+
+    #sec2-hero .hero-title-trinh {
+        display: block !important;
+        font-family: var(--font-playwrite) !important;
+        transform: translateX(18px) !important;
+        margin-right: -18px !important;
+    }
+
+    #sec2-hero .hero-col-left a.pill-btn-yellow,
+    #sec2-hero .hero-col-left .pill-btn-yellow,
+    #sec2-hero .hero-col-right a.pill-btn-yellow,
+    #sec2-hero .hero-col-right .pill-btn-yellow {
+        font-family: var(--font-main) !important;
+        font-size: 0.58rem !important;
+        padding: 3px 6px !important;
+        border-radius: 4px !important;
+        background-color: #FFF9C4 !important;
+        color: #0052FF !important;
+        font-weight: 600 !important;
+        box-shadow: none !important;
+        white-space: nowrap !important;
+        margin-top: 4px !important;
+        letter-spacing: -0.2px !important;
+        display: inline-block !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    #sec2-hero .hero-col-center {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        flex: 0 0 auto !important;
+        z-index: 2 !important;
+        order: 2 !important;
+    }
+
+    #sec2-hero .number-2-img {
+        height: 200px !important;
+        width: auto !important;
+        max-width: 100px !important;
+        object-fit: contain !important;
+    }
+
+    #sec2-hero .hero-col-right {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+        gap: 4px !important;
+        flex: 1 !important;
+        z-index: 5 !important;
+        order: 3 !important;
+    }
+
+    #sec2-hero .hero-col-right .hero-title {
+        font-family: var(--font-playwrite) !important;
+        font-size: clamp(1.35rem, 5.2vw, 1.75rem) !important;
+        font-weight: 400 !important;
+        line-height: 1.15 !important;
+        color: #0052FF !important;
+        text-align: left !important;
+    }
+
+    #sec2-hero .sec2-right-logo {
+        display: flex !important;
+        align-items: center !important;
+        margin: 2px 0 2px 14px !important;
+        transform: translateX(12px) !important;
+    }
+
+    #sec2-hero .sec2-right-logo-img {
+        height: 16px !important;
+        width: auto !important;
+        object-fit: contain !important;
     }
 }

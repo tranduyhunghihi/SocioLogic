@@ -245,20 +245,25 @@
 
 /* White Outfit Font Letter Overlay */
 .section-5a-wrapper .sec5a-bubbles-viewport .bubble-letter {
-    font-family: 'BT BeauSans', sans-serif;
-    font-weight: 600;
-    color: #FFFFFF;
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Outfit', 'BT BeauSans', sans-serif !important;
+    font-weight: 700;
+    color: #FFFFFF !important;
+    opacity: 0.55;
     user-select: none;
     line-height: 1;
     text-align: center;
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
     pointer-events: none;
     margin: 0;
     padding: 0;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.8);
+    filter: drop-shadow(0 2px 10px rgba(255, 255, 255, 0.6));
 }
 
 .section-5a-wrapper .sec5a-bubbles-viewport .letter-1-S .bubble-letter {
@@ -440,49 +445,218 @@
     letter-spacing: -0.01em;
 }
 
-/* Responsive Scaling Breakpoints */
-@media (max-width: 1300px) {
-    .section-5a-wrapper .sec5a-bubbles-viewport {
-        height: 150px;
-    }
+/* PC ONLY & MOBILE DISPLAY CONTROL FOR SEC5A */
+.sec5a-pc-view {
+    display: block !important;
+    width: 100%;
+}
+.sec5a-mobile-view {
+    display: none !important;
+    width: 100%;
+}
 
-    .section-5a-wrapper .sec5a-bubbles-viewport .bubbles-row {
-        gap: 6px;
-        transform: scale(0.58);
+@media (min-width: 769px) {
+    .sec5a-pc-view {
+        display: block !important;
     }
-
-    .section-5a-wrapper .community-cards-container {
-        gap: 40px;
+    .sec5a-mobile-view {
+        display: none !important;
     }
 }
 
-@media (max-width: 950px) {
-    .section-5a-wrapper .sec5a-bubbles-viewport {
-        height: 130px;
+@media (max-width: 768px) {
+    .sec5a-pc-view {
+        display: none !important;
+    }
+    .sec5a-mobile-view {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+        padding: 10px 12px 30px !important;
+        box-sizing: border-box !important;
+        gap: 22px !important;
     }
 
-    .section-5a-wrapper .sec5a-bubbles-viewport .bubbles-row {
-        gap: 4px;
-        transform: scale(0.46);
-    }
-
-    .section-5a-wrapper .community-cards-container {
-        flex-direction: column;
-        gap: 16px;
-        max-width: 600px;
-    }
-}
-
-@media (max-width: 600px) {
-    .section-5a-wrapper .sec5a-bubbles-viewport {
-        height: 100px;
-    }
-
-    .section-5a-wrapper .sec5a-bubbles-viewport .bubbles-row {
-        transform: scale(0.34);
-    }
-
+    #sec6-5a,
     .section-5a-wrapper {
-        padding: 35px 15px;
+        min-height: auto !important;
+        height: auto !important;
+        padding: 30px 12px 40px !important;
+        background: linear-gradient(180deg, #DDF4FF 0%, #EEF7FF 40%, #F8FCFF 70%, #FFFFFF 100%) !important;
+    }
+
+    /* Mobile Header matching reference mockup 100% */
+    .sec5a-mobile-header {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        margin-bottom: 8px !important;
+    }
+
+    .sec5a-mobile-yellow-box {
+        position: relative !important;
+        display: inline-block !important;
+        background-color: #FEF9C3 !important;
+        padding: 2px 14px 4px !important;
+        border-radius: 4px !important;
+        margin-bottom: 2px !important;
+    }
+
+    .sec5a-mobile-script {
+        font-family: 'Playwrite IE', cursive, sans-serif !important;
+        font-size: clamp(2.0rem, 7.5vw, 2.5rem) !important;
+        font-weight: 400 !important;
+        color: #0052FF !important;
+        line-height: 1.3 !important;
+        display: block !important;
+    }
+
+    .sec5a-mobile-blue-title {
+        font-family: 'BT BeauSans', sans-serif !important;
+        font-size: clamp(2.4rem, 8.5vw, 3.0rem) !important;
+        font-weight: 700 !important;
+        color: #0052FF !important;
+        margin: 0 !important;
+        line-height: 1.2 !important;
+        letter-spacing: -0.02em !important;
+    }
+
+    /* Mobile Vertical Groups */
+    .sec5a-mobile-group {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+        gap: 14px !important;
+    }
+
+    .sec5a-mobile-bubbles-viewport {
+        width: 100% !important;
+        height: 115px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        overflow: visible !important;
+        margin: 0 auto !important;
+    }
+
+    .sec5a-mobile-bubbles-viewport .bubbles-row {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 2px !important;
+        width: 930px !important;
+        min-width: 930px !important;
+        max-width: 930px !important;
+        height: 270px !important;
+        transform: scale(0.39) !important;
+        transform-origin: center center !important;
+        margin: 0 auto !important;
+    }
+
+    /* NEUTRALIZE OVERRIDING SCATTER TRANSLATIONS FROM SECTION_MIX.CSS */
+    .sec5a-mobile-view .bubble-item {
+        --base-x: 0px !important;
+        --base-y: 0px !important;
+        --rot-final: 0deg !important;
+        position: relative !important;
+        flex-shrink: 0 !important;
+        margin: 0 !important;
+        top: auto !important;
+        left: auto !important;
+        bottom: auto !important;
+        right: auto !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    /* INDIVIDUAL BUBBLE SIZES & STAGGERED VERTICAL ALIGNMENT IN SEC5A MOBILE VIEW */
+    .sec5a-mobile-view .letter-1-S {
+        width: 195px !important;
+        height: 265px !important;
+        transform: translateY(-10px) !important;
+    }
+    .sec5a-mobile-view .letter-2-o {
+        width: 195px !important;
+        height: 195px !important;
+        transform: translateY(15px) !important;
+    }
+    .sec5a-mobile-view .letter-3-c {
+        width: 195px !important;
+        height: 195px !important;
+        transform: translateY(6px) !important;
+    }
+    .sec5a-mobile-view .letter-4-i {
+        width: 100px !important;
+        height: 195px !important;
+        transform: translateY(-18px) !important;
+    }
+    .sec5a-mobile-view .letter-5-o {
+        width: 195px !important;
+        height: 195px !important;
+        transform: translateY(16px) !important;
+    }
+    .sec5a-mobile-view .letter-6-L {
+        width: 190px !important;
+        height: 270px !important;
+        transform: translateY(-12px) !important;
+    }
+    .sec5a-mobile-view .letter-7-o {
+        width: 195px !important;
+        height: 195px !important;
+        transform: translateY(15px) !important;
+    }
+    .sec5a-mobile-view .letter-8-g {
+        width: 195px !important;
+        height: 270px !important;
+        transform: translateY(-4px) !important;
+    }
+    .sec5a-mobile-view .letter-9-i {
+        width: 100px !important;
+        height: 195px !important;
+        transform: translateY(-20px) !important;
+    }
+    .sec5a-mobile-view .letter-10-c {
+        width: 195px !important;
+        height: 195px !important;
+        transform: translateY(8px) !important;
+    }
+
+    /* Mobile Cards matching reference mockup 100% */
+    .sec5a-mobile-card {
+        width: 100% !important;
+        max-width: 360px !important;
+        background: #FFFFFF !important;
+        border: 1.5px solid #E2E8F0 !important;
+        border-radius: 18px !important;
+        padding: 16px 20px !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04) !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
+    }
+
+    .sec5a-mobile-card p {
+        font-family: 'BT BeauSans', sans-serif !important;
+        font-size: clamp(0.78rem, 3.2vw, 0.88rem) !important;
+        font-weight: 500 !important;
+        color: #475569 !important;
+        line-height: 1.5 !important;
+        margin: 0 !important;
+        letter-spacing: -0.01em !important;
+        text-align: center !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .sec5a-mobile-bubbles-viewport {
+        height: 110px !important;
+    }
+    .sec5a-mobile-bubbles-viewport .bubbles-row {
+        transform: scale(0.38) !important;
     }
 }

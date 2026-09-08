@@ -102,7 +102,7 @@ body {
 .highlight-script-yellow {
     font-family: 'Playwrite IE', cursive, sans-serif;
     font-weight: 400;
-    font-size: clamp(2.7rem, 4.6vw, 3.6rem);
+    font-size: clamp(2.5rem, 4.2vw, 3.5rem);
     color: #0052FF;
     position: relative;
     display: inline-block;
@@ -168,7 +168,7 @@ body {
 
 .section-4-wrapper .stat-card,
 .stat-card {
-    background-color: #0066FF;
+    background-color: #0052FF;
     border-radius: 22px;
     overflow: visible;
     display: flex;
@@ -219,7 +219,7 @@ body {
 
 /* Bottom Solid Blue Info Box - Tight Compact Base */
 .card-info-box {
-    background-color: #0066FF;
+    background-color: #0052FF;
     padding: 10px 16px 18px 18px;
     display: flex;
     align-items: center;
@@ -387,26 +387,97 @@ body {
     }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 768px) {
     .section-4-wrapper {
-        padding: 30px 15px;
+        padding: 30px 16px 60px 16px !important;
+        height: auto !important;
+        min-height: auto !important;
+        overflow: visible !important;
     }
 
     .section-4-wrapper .section-container {
-        padding: 30px 16px;
+        padding: 10px 0 !important;
+        height: auto !important;
+        min-height: auto !important;
+        overflow: visible !important;
     }
 
-    .section-4-wrapper .section-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
+    .journey-header-container {
+        margin-bottom: 36px !important;
     }
 
-    .section-4-wrapper .stats-grid {
-        grid-template-columns: 1fr;
+    .title-line-main {
+        font-size: clamp(1.75rem, 5.8vw, 2.1rem) !important;
+        font-weight: 600 !important;
+        line-height: 1.35 !important;
+        letter-spacing: -0.3px !important;
+        color: #0052FF !important;
+        text-align: center !important;
     }
 
-    .section-4-wrapper .journey-subtitle p {
-        font-size: 1.05rem;
+    .highlight-script-yellow {
+        font-size: clamp(1.65rem, 5.8vw, 2.0rem) !important;
+        font-weight: 400 !important;
+        color: #0052FF !important;
+        padding: 2px 6px !important;
+        margin: 0 !important;
+    }
+
+    .highlight-script-yellow::before {
+        top: 22% !important;
+        left: 2px !important;
+        width: calc(100% - 4px) !important;
+        height: 62% !important;
+        border-radius: 4px !important;
+    }
+
+    .journey-subtitle-text {
+        font-size: 0.86rem !important;
+        font-weight: 400 !important;
+        line-height: 1.5 !important;
+        color: #526071 !important;
+        text-align: center !important;
+        max-width: 315px !important;
+        margin: 12px auto 0 !important;
+        padding: 0 !important;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr !important;
+        gap: 48px !important;
+        max-width: 350px !important;
+        margin: 0 auto !important;
+    }
+
+    .stat-card {
+        background-color: #0052FF !important;
+        border-radius: 20px !important;
+        box-shadow: 0 8px 24px rgba(0, 102, 255, 0.15) !important;
+    }
+
+    .card-info-box {
+        background-color: #0052FF !important;
+        padding: 12px 18px 16px 18px !important;
+        border-radius: 0 0 20px 20px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 8px !important;
+    }
+
+    .stat-number-box {
+        font-size: 3.4rem !important;
+        font-weight: 700 !important;
+        color: #FFFFFF !important;
+    }
+
+    .stat-label {
+        font-size: 1.85rem !important;
+        color: #60CEFF !important;
+        font-weight: 700 !important;
+    }
+
+    .journey-subtitle p {
+        font-size: 1.05rem !important;
     }
 }

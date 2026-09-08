@@ -21,6 +21,15 @@ document.addEventListener('DOMContentLoaded', () => {
         bubblesContainer.classList.add('faces-active');
         bubblesContainer.classList.remove('state-converging');
 
+        if (window.innerWidth <= 768) {
+            allSection1Items.forEach(el => {
+                el.style.opacity = '1';
+                el.style.transform = '';
+                el.style.transition = '';
+            });
+            return;
+        }
+
         // Target ALL 18 items (letter bubbles + mini icons) for Section 1 drop physics
         const physicsState = allSection1Items.map((el, index) => {
             const style = getComputedStyle(el);
@@ -160,6 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. SLOW ZERO-GRAVITY SPACE FLOATING ANIMATION FOR ALL MINI ICONS IN SECTION 2
     function startSpaceFloating() {
+        if (window.innerWidth <= 768) return;
         if (miniBubbleItems.length === 0) return;
 
         const sec2Hero = document.getElementById('sec2-hero') || document.getElementById('section1');
@@ -176,20 +186,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 sec2Hero.appendChild(el);
             }
 
+            // Remove any leftover CSS transform transitions to prevent scale distortion
+            el.style.transition = 'none';
             el.style.position = 'absolute';
             el.style.zIndex = '5';
             el.style.pointerEvents = 'none';
-            el.style.opacity = '0.85';
+            el.style.opacity = '0'; // Start invisible above the top edge
 
-            const startX = 40 + ((idx * (heroW - 160)) / Math.max(1, miniBubbleItems.length - 1));
-            const startY = 30 + ((idx % 3) * 50);
+            const isMobile = (window.innerWidth <= 640);
+            const targetX = (isMobile ? 15 : 40) + ((idx * (heroW - (isMobile ? 60 : 160))) / Math.max(1, miniBubbleItems.length - 1));
+            const targetY = (isMobile ? 30 : 60) + ((idx % 3) * (isMobile ? 30 : 50));
+            const startY = -180 - (idx * 30); // Start high ABOVE the top edge of Section 2
+
+            el.style.transform = `translate3d(${targetX.toFixed(1)}px, ${startY.toFixed(1)}px, 0) rotate(${(idx * 45) % 360}deg)`;
 
             return {
                 el,
-                x: startX,
+                x: targetX,
                 y: startY,
+                targetY: targetY,
                 vx: (Math.sin(idx * 1.8) * 0.25) + (Math.random() - 0.5) * 0.15,
-                vy: 3.5 + (idx % 3) * 0.8, // Natural gravity fall momentum down into Section 2
+                vy: 14 + (idx % 3) * 3, // Strong initial downward drop momentum from top to bottom
                 rot: (idx * 45) % 360,
                 vRot: (idx % 2 === 0 ? 0.08 : -0.08),
                 phase: idx * 0.85,
@@ -202,39 +219,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const containerW = sec2Hero.clientWidth || window.innerWidth;
             const containerH = sec2Hero.clientHeight || window.innerHeight;
+            const isMobile = (window.innerWidth <= 640);
+            const minX = isMobile ? 15 : 40;
+            const maxX = isMobile ? 45 : 130;
+            const minY = isMobile ? 40 : 60;
+            const maxY = isMobile ? 50 : 100;
 
             spaceState.forEach((item) => {
                 if (item.falling) {
-                    item.y += item.vy;
-                    item.vy *= 0.972;
-                    if (item.vy <= 0.25) {
-                        item.vy = 0.18 + Math.random() * 0.22;
-                        item.falling = false; // Decelerated into zero-g space float!
+                    // Ultra-smooth spring lerp interpolation: continuously tapers velocity to zero with no hard snapping
+                    const distY = item.targetY - item.y;
+                    item.y += distY * 0.10;
+
+                    // Fade in smoothly as it drops down from top
+                    const dropProgress = Math.min(1, Math.max(0, (item.y + 180) / (item.targetY + 180)));
+                    item.el.style.opacity = (dropProgress * 0.85).toFixed(2);
+
+                    if (Math.abs(distY) < 1.0) {
+                        item.y = item.targetY;
+                        item.falling = false; // Smoothly hand off to zero-g float loop
+                        item.el.style.opacity = '0.85';
                     }
                 } else {
                     item.x += item.vx;
-                    item.y += item.vy;
-                    item.vx += Math.sin(Date.now() * 0.0004 + item.phase) * 0.008;
+                    item.y += Math.sin(Date.now() * 0.0015 + item.phase) * 0.35;
+                    item.rot += item.vRot;
+
+                    if (item.x < minX) {
+                        item.x = minX;
+                        item.vx = Math.abs(item.vx);
+                    } else if (item.x > containerW - maxX) {
+                        item.x = containerW - maxX;
+                        item.vx = -Math.abs(item.vx);
+                    }
+
+                    if (item.y < minY) {
+                        item.y = minY;
+                    } else if (item.y > containerH - maxY) {
+                        item.y = containerH - maxY;
+                    }
                 }
 
-                item.rot += item.vRot;
-
-                if (item.x < 40) { item.x = 40; item.vx = Math.abs(item.vx) * 0.6 + 0.05; }
-                if (item.x > containerW - 130) { 
-                    item.x = containerW - 130; 
-                    item.vx = -Math.abs(item.vx) * 0.6 - 0.05; 
-                }
-                if (item.y > containerH - 100) { 
-                    item.y = containerH - 100; 
-                    item.vy = -Math.abs(item.vy) * 0.6 - 0.05; 
-                }
-                if (item.y < 60) { 
-                    item.y = 60; 
-                    item.vy = Math.abs(item.vy) * 0.6 + 0.05; 
-                }
-
-                item.el.style.transition = 'none';
-                item.el.style.opacity = '0.85';
                 item.el.style.transform = `translate3d(${item.x.toFixed(1)}px, ${item.y.toFixed(1)}px, 0) rotate(${item.rot.toFixed(1)}deg)`;
             });
 
@@ -249,6 +274,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (spaceFloatAnimation) {
             cancelAnimationFrame(spaceFloatAnimation);
             spaceFloatAnimation = null;
+        }
+
+        if (spaceState.length > 0) {
+            spaceState.forEach((item) => {
+                if (item.el) {
+                    item.el.style.position = '';
+                    item.el.style.left = '';
+                    item.el.style.top = '';
+                    item.el.style.transform = '';
+                    item.el.style.opacity = '';
+                }
+            });
         }
 
         if (!bubblesContainer) return;
@@ -268,6 +305,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. CONVERGE LETTER BUBBLES FROM FLOOR INTO LOGO GRAPHIC
     function convergeToLogo() {
+        if (window.innerWidth <= 768) return;
         if (currentState === 'converged') return;
         currentState = 'converged';
         if (physicsAnimationFrame) cancelAnimationFrame(physicsAnimationFrame);
@@ -275,12 +313,31 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!bubblesContainer) return;
         bubblesContainer.classList.add('state-converging');
 
+        // Reveal graphic Number 2 / Logo smoothly!
+        if (heroNumber2) {
+            heroNumber2.classList.remove('vanish');
+        }
+
         const targetEl = heroNumber2 || section1;
         if (!targetEl) return;
 
         const targetRect = targetEl.getBoundingClientRect();
         const targetCenterX = targetRect.left + targetRect.width / 2;
         const targetCenterY = targetRect.top + targetRect.height / 2;
+
+        function getTransformTranslate(el) {
+            const style = window.getComputedStyle(el);
+            const transform = style.transform || style.webkitTransform;
+            if (!transform || transform === 'none') {
+                return { tx: 0, ty: 0 };
+            }
+            try {
+                const matrix = new DOMMatrix(transform);
+                return { tx: matrix.e || matrix.m41 || 0, ty: matrix.f || matrix.m42 || 0 };
+            } catch (err) {
+                return { tx: 0, ty: 0 };
+            }
+        }
 
         letterBubbles.forEach((bubble) => {
             const bubbleRect = bubble.getBoundingClientRect();
@@ -290,15 +347,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const deltaX = targetCenterX - bubbleCenterX;
             const deltaY = targetCenterY - bubbleCenterY;
 
+            const { tx, ty } = getTransformTranslate(bubble);
+            const finalTx = deltaX + tx;
+            const finalTy = deltaY + ty;
+
             bubble.style.transition = 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease';
-            bubble.style.transform = `translate(${deltaX.toFixed(1)}px, ${deltaY.toFixed(1)}px) scale(0.18)`;
+            bubble.style.transform = `translate3d(${finalTx.toFixed(1)}px, ${finalTy.toFixed(1)}px, 0) scale(0.18)`;
             bubble.style.opacity = '0';
         });
-
-        // Reveal graphic Number 2 / Logo smoothly!
-        if (heroNumber2) {
-            heroNumber2.classList.remove('vanish');
-        }
 
         // Start slow space-like floating physics for 8 mini icons strictly inside Cụm 1!
         startSpaceFloating();
@@ -306,6 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 4. DISPERSE BUBBLES BACK FROM LOGO TO FLOOR POSITIONS
     function disperseBackToFloor() {
+        if (window.innerWidth <= 768) return;
         if (currentState === 'floor') return;
         currentState = 'floor';
 
@@ -348,6 +405,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 5. SCROLL OBSERVER & SCROLL LISTENER FOR STRICT SECTION 2 CONTAINMENT
     function checkSection2Scroll() {
+        if (window.innerWidth <= 768) return;
         if (!section1) return;
         const rect = section1.getBoundingClientRect();
         const vh = window.innerHeight;

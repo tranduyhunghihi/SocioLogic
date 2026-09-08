@@ -266,21 +266,34 @@
     align-items: flex-start;
 }
 
-/* Organic Rotation Angles for Sticky Notes */
-.section-5b-wrapper .sticky-note-1 {
-    transform: rotate(1.2deg);
+/* Cursive Author Line in Sticky Note */
+.section-5b-wrapper .sticky-note-author {
+    font-family: 'Playwrite IE', cursive, sans-serif;
+    font-weight: 400;
+    font-size: 0.95rem;
+    color: #334155;
+    text-align: right;
+    display: block;
+    margin-top: 14px;
 }
 
-.section-5b-wrapper .sticky-note-2 {
-    transform: rotate(-1.5deg);
-}
+/* Organic Rotation Angles for Sticky Notes on PC */
+@media (min-width: 769px) {
+    .section-5b-wrapper .sticky-note-1 {
+        transform: rotate(1.2deg);
+    }
 
-.section-5b-wrapper .sticky-note-3 {
-    transform: rotate(1.0deg);
+    .section-5b-wrapper .sticky-note-2 {
+        transform: rotate(-1.5deg);
+    }
+
+    .section-5b-wrapper .sticky-note-3 {
+        transform: rotate(1.0deg);
+    }
 }
 
 /* Responsive Scaling Breakpoints */
-@media (max-width: 1150px) {
+@media (max-width: 1150px) and (min-width: 769px) {
     .section-5b-wrapper .cards-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 24px;
@@ -289,22 +302,158 @@
 
 @media (max-width: 768px) {
     .section-5b-wrapper {
-        padding: 45px 16px;
+        padding: 30px 12px 40px !important;
     }
 
     .section-5b-wrapper .cards-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+        row-gap: 18px !important;
+        width: 100% !important;
     }
 
-    .section-5b-wrapper .member-card,
-    .section-5b-wrapper .sticky-note-card {
-        min-height: auto;
+    /* EXACT 100% MOBILE ORDER CONTROL MATCHING DESIGN MOCKUP */
+    .section-5b-wrapper .card-1 {
+        order: 1 !important;
     }
 
-    .section-5b-wrapper .sticky-note-1,
-    .section-5b-wrapper .sticky-note-2,
+    .section-5b-wrapper .card-2 {
+        order: 2 !important;
+    }
+
+    .section-5b-wrapper .sticky-note-1 {
+        order: 3 !important;
+        grid-column: 1 / -1 !important;
+    }
+
+    .section-5b-wrapper .card-3 {
+        order: 4 !important;
+    }
+
+    .section-5b-wrapper .card-4 {
+        order: 5 !important;
+    }
+
+    .section-5b-wrapper .sticky-note-2 {
+        order: 6 !important;
+        grid-column: 1 / -1 !important;
+    }
+
+    .section-5b-wrapper .card-5 {
+        order: 7 !important;
+    }
+
+    .section-5b-wrapper .card-6 {
+        order: 8 !important;
+    }
+
     .section-5b-wrapper .sticky-note-3 {
-        transform: none;
+        order: 9 !important;
+        grid-column: 1 / -1 !important;
+    }
+
+    /* Member Cards Mobile Compact Scaling - Flush Inner Fit */
+    .section-5b-wrapper .member-card {
+        min-height: auto !important;
+        padding: 0 !important;
+        border-radius: 8px !important;
+        border: 1.5px dashed #CBD5E1 !important;
+        overflow: hidden !important;
+        box-sizing: border-box !important;
+        background: #FFFFFF !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .section-5b-wrapper .card-photo-wrapper {
+        height: 145px !important;
+        margin: 0 !important;
+        width: 100% !important;
+        border-top-left-radius: 8px !important;
+        border-top-right-radius: 8px !important;
+        overflow: hidden !important;
+        position: relative !important;
+    }
+
+    .section-5b-wrapper .card-photo-img {
+        transform: translateY(14px) scale(1.08) !important;
+        border-radius: 6px !important;
+    }
+
+    #section-5b .card-info-box,
+    .section-5b-wrapper .member-card .card-info-box,
+    .section-5b-wrapper .card-info-box {
+        margin-top: -24px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-bottom: 0 !important;
+        width: 100% !important;
+        padding: 14px 12px 14px !important;
+        border-radius: 8px !important;
+        border-top-left-radius: 8px !important;
+        border-top-right-radius: 8px !important;
+        border-bottom-left-radius: 8px !important;
+        border-bottom-right-radius: 8px !important;
+        border: none !important;
+        border-top: 1.5px solid rgba(191, 219, 254, 0.85) !important;
+        min-height: 70px !important;
+        align-items: flex-start !important;
+        box-sizing: border-box !important;
+        background-color: #F1F5F9 !important;
+        box-shadow: none !important;
+    }
+
+    .section-5b-wrapper .card-info-title {
+        font-size: clamp(0.78rem, 3.2vw, 0.88rem) !important;
+        font-weight: 800 !important;
+        margin-bottom: 3px !important;
+        color: #0052FF !important;
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+        text-align: left !important;
+    }
+
+    .section-5b-wrapper .card-info-desc {
+        font-size: clamp(0.62rem, 2.5vw, 0.70rem) !important;
+        line-height: 1.35 !important;
+        color: #64748B !important;
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+        text-align: left !important;
+    }
+
+    /* Sticky Note Card Mobile Styling */
+    .section-5b-wrapper .sticky-note-card {
+        min-height: auto !important;
+        transform: none !important;
+        padding: 22px 16px 16px !important;
+        margin: 4px 0 !important;
+        box-shadow: 0 4px 14px rgba(234, 179, 8, 0.12) !important;
+        border-radius: 6px !important;
+    }
+
+    .section-5b-wrapper .sticky-tape {
+        top: -8px !important;
+        width: 75px !important;
+        height: 18px !important;
+    }
+
+    .section-5b-wrapper .sticky-note-title {
+        font-size: clamp(0.95rem, 3.8vw, 1.12rem) !important;
+        margin-bottom: 10px !important;
+        text-align: center !important;
+    }
+
+    .section-5b-wrapper .sticky-note-body {
+        font-size: clamp(0.78rem, 3.1vw, 0.88rem) !important;
+        line-height: 1.6 !important;
+        text-align: center !important;
+    }
+
+    .section-5b-wrapper .sticky-note-author {
+        font-size: clamp(0.75rem, 2.8vw, 0.84rem) !important;
+        margin-top: 10px !important;
+        text-align: right !important;
     }
 }

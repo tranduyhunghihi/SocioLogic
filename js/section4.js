@@ -1,22 +1,18 @@
 /* ==========================================================================
-   SECTION 4 - HÀNH TRÌNH CỦA SOCIOLOGIC (COUNT-UP ANIMATION & VIDEO SCRIPT)
+   SECTION 4 - HÀNH TRÌNH CỦA SOCIOLOGIC (PER-CARD SCROLL COUNT-UP)
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. STRICT VIEWPORT ANIMATION - COUNT-UP RUNS EXACTLY ONCE WHEN ENTERING VIEWPORT
-    const statsGrid = document.querySelector('.stats-grid');
-    const statNumbers = document.querySelectorAll('.stat-number');
     const section4El = document.getElementById('section-4') || document.querySelector('.section-4-wrapper') || document.getElementById('sec4-countup');
-
-    let hasAnimatedNumbers = false;
+    const statCards = document.querySelectorAll('.stat-card');
 
     // Easing Function: Ease-Out Quad for smooth decelerating count-up
     function easeOutQuad(t) {
         return t * (2 - t);
     }
 
-    function animateCountUp(el, target, duration = 2200) {
+    function animateCountUp(el, target, duration = 2000) {
         const startTime = performance.now();
 
         function updateCounter(currentTime) {
@@ -37,45 +33,55 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(updateCounter);
     }
 
-    function triggerAllCountersOnce() {
-        if (hasAnimatedNumbers) return;
-        hasAnimatedNumbers = true;
+    // Per-Card Scroll Observer: Starts count-up animation ONLY when each individual card scrolls into view!
+    if ('IntersectionObserver' in window && statCards.length > 0) {
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const card = entry.target;
+                    const statNumber = card.querySelector('.stat-number');
+                    if (statNumber && !statNumber.dataset.animated) {
+                        statNumber.dataset.animated = 'true';
+                        const target = parseInt(statNumber.getAttribute('data-target'), 10) || 1000;
+                        statNumber.textContent = '0';
+                        animateCountUp(statNumber, target, 2000);
+                    }
+                }
+            });
+        }, { threshold: 0.3 });
 
-        statNumbers.forEach((el) => {
-            const target = parseInt(el.getAttribute('data-target'), 10) || 1000;
-            el.textContent = '0';
-            animateCountUp(el, target, 2200);
+        statCards.forEach((card) => {
+            cardObserver.observe(card);
+        });
+    } else {
+        // Fallback if IntersectionObserver is not supported
+        statCards.forEach((card) => {
+            const statNumber = card.querySelector('.stat-number');
+            if (statNumber) {
+                const target = parseInt(statNumber.getAttribute('data-target'), 10) || 1000;
+                animateCountUp(statNumber, target, 2000);
+            }
         });
     }
 
-    // IntersectionObserver: Controls background radial expansion/contraction and 1-time count-up
-    const targetObserved = statsGrid || section4El;
-
-    if ('IntersectionObserver' in window && targetObserved) {
-        const observer = new IntersectionObserver((entries) => {
+    // Section 4 background glow observer
+    if ('IntersectionObserver' in window && section4El) {
+        const bgObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    // Smoothly Bung/Expand Background Outwards
-                    if (section4El) section4El.classList.add('is-visible');
-
-                    // Stats Count-Up RUNS EXACTLY ONCE PERMANENTLY!
-                    if (!hasAnimatedNumbers) {
-                        triggerAllCountersOnce();
-                    }
+                    section4El.classList.add('is-visible');
                 } else {
-                    // Smoothly Contract/Shrink Background Back Down into Center Top Point
-                    if (section4El) section4El.classList.remove('is-visible');
+                    section4El.classList.remove('is-visible');
                 }
             });
-        }, { threshold: 0.15 });
+        }, { threshold: 0.1 });
 
-        observer.observe(targetObserved);
-    } else {
-        if (section4El) section4El.classList.add('is-visible');
-        triggerAllCountersOnce();
+        bgObserver.observe(section4El);
+    } else if (section4El) {
+        section4El.classList.add('is-visible');
     }
 
-    // 2. VIDEO PLAYER INTERACTION
+    // Video Player Interaction
     const videoContainer = document.getElementById('videoContainer');
     const journeyVideo = document.getElementById('journeyVideo');
 
@@ -83,11 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
         videoContainer.addEventListener('click', () => {
             videoContainer.classList.add('playing');
             if (journeyVideo && journeyVideo.currentSrc) {
-                journeyVideo.play().catch(() => {
-                    console.log('Video play interrupted or placeholder source used.');
-                });
+                journeyVideo.play().catch(() => {});
             }
         });
     }
-
 });
