@@ -723,24 +723,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const overlay = section.querySelector('.video-play-btn-overlay');
         if (!video) return;
 
-        const togglePlay = (e) => {
-            if (e) e.stopPropagation();
-            if (video.paused) {
-                video.play().then(() => {
-                    if (overlay) overlay.classList.add('is-playing');
-                }).catch(() => {});
-            } else {
-                video.pause();
-                if (overlay) overlay.classList.remove('is-playing');
-            }
-        };
-
+        // Click on big play button overlay triggers video play/pause
         if (overlay) {
-            overlay.addEventListener('click', togglePlay);
+            overlay.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (video.paused) {
+                    video.play().catch(() => {});
+                } else {
+                    video.pause();
+                }
+            });
         }
 
-        video.addEventListener('click', togglePlay);
-
+        // Sync overlay visibility with native HTML5 video play/pause events
         video.addEventListener('play', () => {
             if (overlay) overlay.classList.add('is-playing');
         });
