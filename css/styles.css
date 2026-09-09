@@ -1762,8 +1762,8 @@ body {
 }
 
 .stat-label {
-    font-size: clamp(1.3rem, 1.8vw, 1.8rem) !important;
-    font-weight: 700 !important;
+    font-size: clamp(1.5rem, 2.2vw, 2.2rem) !important;
+    font-weight: 800 !important;
     color: #60CEFF !important;
     /* Soft sky blue text matching reference image 100%! */
     white-space: nowrap !important;
@@ -1771,7 +1771,7 @@ body {
     margin: 0;
     padding: 3px 0 5px 0;
     background: none;
-    line-height: 1.3 !important;
+    line-height: 1.2 !important;
     overflow: visible !important;
 }
 

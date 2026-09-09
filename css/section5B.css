@@ -405,7 +405,7 @@
     }
 
     .section-5b-wrapper .card-info-title {
-        font-size: clamp(1.05rem, 3.8vw, 1.25rem) !important;
+        font-size: clamp(1.25rem, 4.5vw, 1.45rem) !important;
         font-weight: 800 !important;
         margin-bottom: 3px !important;
         color: #0052FF !important;
@@ -415,7 +415,7 @@
     }
 
     .section-5b-wrapper .card-info-desc {
-        font-size: clamp(0.85rem, 3.2vw, 0.98rem) !important;
+        font-size: clamp(0.95rem, 3.6vw, 1.10rem) !important;
         line-height: 1.35 !important;
         color: #64748B !important;
         padding-left: 0 !important;
