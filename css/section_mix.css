@@ -2007,6 +2007,10 @@ a.pill-btn-yellow:hover {
         z-index: 10 !important;
         background-color: #FFFFFF !important;
         overflow: visible !important;
+        will-change: transform !important;
+        transform: translateZ(0) !important;
+        -webkit-backface-visibility: hidden !important;
+        backface-visibility: hidden !important;
     }
 
     #sec2-hero,

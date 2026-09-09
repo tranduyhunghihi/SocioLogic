@@ -546,6 +546,10 @@ body {
         flex-direction: column !important;
         justify-content: space-between !important;
         align-items: center !important;
+        will-change: transform !important;
+        transform: translateZ(0) !important;
+        -webkit-backface-visibility: hidden !important;
+        backface-visibility: hidden !important;
     }
 
     .wishes-section-wrapper {
