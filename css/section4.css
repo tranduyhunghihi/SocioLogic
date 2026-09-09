@@ -170,7 +170,7 @@ body {
 .stat-card {
     background-color: #0052FF;
     border-radius: 22px;
-    overflow: visible;
+    overflow: hidden !important;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -192,24 +192,28 @@ body {
 
 .card-image-wrapper {
     width: 100%;
-    padding: 0 4px;
-    margin: 0;
+    padding: 0 !important;
+    margin: 0 !important;
     display: block;
     position: relative;
     z-index: 1;
-    overflow: visible;
+    overflow: hidden !important;
+    border-top-left-radius: 22px !important;
+    border-top-right-radius: 22px !important;
     box-sizing: border-box;
 }
 
 .card-bubble-img {
     position: relative;
-    top: -10%;
-    width: 100%;
+    top: 0 !important;
+    width: 100% !important;
     height: auto;
     display: block;
-    object-fit: contain;
+    object-fit: cover !important;
+    margin: 0 !important;
+    transform: scale(1.02) !important;
+    transform-origin: top center !important;
     transition: transform 0.3s ease, filter 0.3s ease;
-    margin-top: 0;
 }
 
 /* Shared Original Sample Image across all 4 Stat Cards (No color filters) */
