@@ -51,11 +51,12 @@
     white-space: normal !important;
 }
 
-/* Yellow Highlight Box behind "Văn Hoá" */
+/* Yellow Highlight Box behind "Giáo Dục" */
 .section-6-wrapper .sec6-yellow-box {
     position: relative;
     display: inline-block;
-    padding: 0 10px;
+    padding: 0 4px;
+    margin: 0 2px;
     z-index: 1;
 }
 
@@ -76,11 +77,17 @@
     font-weight: 400 !important;
     font-size: 1.05em !important;
     color: #0052FF !important;
-    padding-right: 4px;
+    padding-right: 0;
+    margin-right: 0;
     display: inline-block;
     font-feature-settings: "calt" 1, "liga" 1, "ss01" 1, "ss02" 1, "cv01" 1 !important;
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased;
+}
+
+.sec6-tranh-bien {
+    white-space: nowrap !important;
+    display: inline-block;
 }
 
 /* Subtitle Paragraph */
@@ -537,11 +544,21 @@
     }
 
     .section-6-wrapper .sec6-title-main {
-        font-size: clamp(1.75rem, 5.8vw, 2.1rem) !important;
+        font-size: clamp(1.5rem, 5.0vw, 1.95rem) !important;
         font-weight: 600 !important;
         line-height: 1.35 !important;
         letter-spacing: -0.3px !important;
         margin-bottom: 12px !important;
+    }
+
+    .section-6-wrapper .sec6-yellow-box {
+        padding: 0 2px !important;
+        margin: 0 2px !important;
+    }
+
+    .section-6-wrapper .sec6-script-text {
+        padding-right: 0 !important;
+        margin-right: 0 !important;
     }
 
     .section-6-wrapper .sec6-subtitle {

@@ -494,7 +494,7 @@ body {
         color: #FFFFFF !important;
         flex-shrink: 0 !important;
         position: relative;
-        bottom: 18px;
+        bottom: 10px;
     }
 
     .section-4-wrapper .stat-label,
