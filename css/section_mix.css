@@ -1884,9 +1884,9 @@ a.pill-btn-yellow:hover {
     .bubbles-row .img-doodle,
     .mini-bubble-item,
     .img-doodle {
-        width: 60px !important;
-        height: 60px !important;
-        padding: 10px !important;
+        width: 40px !important;
+        height: 40px !important;
+        padding: 6px !important;
         box-sizing: border-box !important;
         overflow: hidden !important;
         border-radius: 50% !important;
