@@ -209,6 +209,7 @@ body {
     display: block;
     object-fit: contain !important;
     margin: 0 !important;
+    transform: none !important;
     transition: transform 0.3s ease, filter 0.3s ease;
 }
 
@@ -220,11 +221,12 @@ body {
 /* Bottom Solid Blue Info Box - Left Aligned Number + Soft Sky Blue Label Tight Below Image */
 .card-info-box {
     background-color: #0052FF;
-    padding: 4px 4px 2px 4px;
+    padding: 4px 6px 2px 6px;
     display: flex;
     align-items: baseline;
     justify-content: flex-start;
-    gap: 10px;
+    flex-wrap: wrap;
+    gap: 6px;
     width: 100%;
     margin-top: -12px;
     z-index: 2;
@@ -239,8 +241,8 @@ body {
 .stat-number-box {
     display: inline-flex;
     align-items: baseline;
-    font-size: clamp(2.4rem, 3.5vw, 3.6rem);
-    font-weight: 600;
+    font-size: clamp(1.8rem, 2.3vw, 2.6rem);
+    font-weight: 500;
     color: #FFFFFF;
     line-height: 1;
     letter-spacing: -0.5px;
@@ -258,11 +260,11 @@ body {
 
 .section-4-wrapper .stat-label,
 .stat-label {
-    font-size: clamp(1.05rem, 1.35vw, 1.45rem) !important;
-    font-weight: 500;
+    font-size: clamp(0.85rem, 1.05vw, 1.15rem) !important;
+    font-weight: 400;
     color: #60CEFF !important;
     white-space: nowrap !important;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
     margin: 0 !important;
     padding: 0 !important;
     background: none;
@@ -479,16 +481,16 @@ body {
     }
 
     .stat-number-box {
-        font-size: clamp(2.2rem, 6.8vw, 2.8rem) !important;
-        font-weight: 600 !important;
+        font-size: clamp(1.6rem, 5.5vw, 2.2rem) !important;
+        font-weight: 500 !important;
         color: #FFFFFF !important;
         flex-shrink: 0 !important;
     }
 
     .stat-label {
-        font-size: clamp(1.1rem, 4.0vw, 1.35rem) !important;
+        font-size: clamp(0.85rem, 3.2vw, 1.1rem) !important;
         color: #60CEFF !important;
-        font-weight: 500 !important;
+        font-weight: 400 !important;
         white-space: nowrap !important;
         letter-spacing: -0.02em !important;
         line-height: 1.2 !important;
