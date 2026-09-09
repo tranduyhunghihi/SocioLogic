@@ -196,6 +196,8 @@ body {
     margin: 0 !important;
     display: block;
     position: relative;
+    right: 8px;
+    bottom: 48px;
     z-index: 1;
     overflow: visible !important;
     box-sizing: border-box;
@@ -209,7 +211,7 @@ body {
     display: block;
     object-fit: contain !important;
     margin: 0 !important;
-    transform: none !important;
+    transform: scale(1.1);
     transition: transform 0.3s ease, filter 0.3s ease;
 }
 
