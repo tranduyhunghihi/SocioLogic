@@ -557,18 +557,37 @@ body {
         padding: 24px 10px 20px 10px;
     }
 
+    #sec3-loichuc .header-title-wishes {
+        gap: 0 !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    #sec3-loichuc .title-line-top {
+        margin-bottom: -4px !important;
+        line-height: 1.15 !important;
+    }
+
+    #sec3-loichuc .title-line-bottom {
+        margin-top: -4px !important;
+        line-height: 1.15 !important;
+    }
+
     #sec3-loichuc .title-main-text,
     #sec3-loichuc .title-line-bottom .title-main-text {
         font-size: clamp(1.75rem, 5.8vw, 2.1rem) !important;
         font-weight: 600 !important;
-        line-height: 1.35 !important;
+        line-height: 1.15 !important;
         letter-spacing: -0.3px !important;
     }
 
     #sec3-loichuc .script-reveal-text {
         font-size: clamp(1.65rem, 5.8vw, 2.0rem) !important;
         font-weight: 400 !important;
-        line-height: 1.35 !important;
+        line-height: 1.15 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
     }
 }
 
