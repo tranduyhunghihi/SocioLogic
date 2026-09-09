@@ -533,10 +533,13 @@ body {
     #sec3-loichuc,
     #loi-chuc-section {
         height: 100vh !important;
+        height: 100svh !important;
         height: 100dvh !important;
         min-height: 100vh !important;
+        min-height: 100svh !important;
         min-height: 100dvh !important;
         max-height: 100vh !important;
+        max-height: 100svh !important;
         max-height: 100dvh !important;
         overflow: hidden !important;
         box-sizing: border-box !important;

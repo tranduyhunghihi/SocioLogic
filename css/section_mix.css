@@ -1450,10 +1450,13 @@ a.pill-btn-yellow:hover {
     .section-banner,
     #sec1-banner .section-banner {
         height: 100vh !important;
+        height: 100svh !important;
         height: 100dvh !important;
         min-height: 100vh !important;
+        min-height: 100svh !important;
         min-height: 100dvh !important;
         max-height: 100vh !important;
+        max-height: 100svh !important;
         max-height: 100dvh !important;
         padding-top: 10px !important;
         padding-bottom: 0px !important;
@@ -1525,7 +1528,7 @@ a.pill-btn-yellow:hover {
         -moz-osx-font-smoothing: grayscale !important;
     }
 
-    /* Unified Global Section Main Titles Typography on Mobile (Matching Section 3 "Những Lời Yêu Thương") */
+    /* Unified Global Section Main Titles Typography on Mobile (Matching Section 3 "Những LỜI YÊU THƯƠNG") */
     .hero-main-title,
     .title-main-text,
     .journey-title,
@@ -1588,8 +1591,8 @@ a.pill-btn-yellow:hover {
         margin: 0 auto !important;
         width: 100% !important;
         max-width: 100% !important;
-        height: calc(820px * min(calc((100vw - 16px) / 440), calc((100vh - 90px) / 820))) !important;
-        min-height: calc(820px * min(calc((100vw - 16px) / 440), calc((100vh - 90px) / 820))) !important;
+        height: calc(820px * min(calc((100vw - 16px) / 440), calc((100dvh - 65px) / 820))) !important;
+        min-height: calc(820px * min(calc((100vw - 16px) / 440), calc((100dvh - 65px) / 820))) !important;
         overflow: visible !important;
         display: flex !important;
         justify-content: center !important;
@@ -1608,7 +1611,7 @@ a.pill-btn-yellow:hover {
         min-height: 820px !important;
         margin: 0 auto !important;
         transform-origin: bottom center !important;
-        transform: scale(min(calc((100vw - 16px) / 440), calc((100vh - 90px) / 820))) !important;
+        transform: scale(min(calc((100vw - 16px) / 440), calc((100dvh - 65px) / 820))) !important;
     }
 
     /* ==========================================================================
@@ -2002,10 +2005,13 @@ a.pill-btn-yellow:hover {
     #sec2-hero,
     #sec2-hero .section-1-wrapper {
         height: 100vh !important;
+        height: 100svh !important;
         height: 100dvh !important;
         min-height: 100vh !important;
+        min-height: 100svh !important;
         min-height: 100dvh !important;
         max-height: 100vh !important;
+        max-height: 100svh !important;
         max-height: 100dvh !important;
         padding: 20px 6px !important;
         box-sizing: border-box !important;
