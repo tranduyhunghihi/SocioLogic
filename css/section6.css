@@ -595,14 +595,16 @@
     }
 
     .section-6-wrapper .sec6-graphic-panel {
-        height: 240px !important;
+        width: 100% !important;
         max-width: 290px !important;
+        height: 240px !important;
         margin: 0 auto !important;
         border-radius: 18px !important;
         background: #FFFFFF !important;
         position: relative !important;
         overflow: hidden !important;
         box-shadow: 0 4px 16px rgba(0, 82, 255, 0.08) !important;
+        flex-shrink: 0 !important;
     }
 
     /* Scaling graphic elements inside panel on mobile */
