@@ -157,7 +157,7 @@
     border-top-right-radius: 20px !important;
     border-bottom-left-radius: 22px !important;
     border-bottom-right-radius: 22px !important;
-    padding: 20px 18px;
+    padding: 16px 18px 18px 18px;
     margin-top: -50px;
     margin-left: -14px !important;
     margin-right: -14px !important;
@@ -166,10 +166,11 @@
     text-align: left !important;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start !important;
-    flex: 1 !important;
-    min-height: auto;
+    flex: 0 0 auto !important;
+    height: 140px;
+    min-height: 140px;
     box-shadow: 0 -4px 14px rgba(147, 197, 253, 0.15) !important;
     border: 1.5px solid #CBD5E1 !important;
     border-top: 2px solid rgba(191, 219, 254, 0.75) !important;
@@ -185,21 +186,21 @@
 
 .section-5b-wrapper .card-info-title {
     font-family: 'BT BeauSans', sans-serif;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: 800;
     color: #0052FF;
-    margin-bottom: 8px;
-    line-height: 1.25;
+    margin-bottom: 6px;
+    line-height: 1.2;
     letter-spacing: -0.01em;
     text-align: left !important;
 }
 
 .section-5b-wrapper .card-info-desc {
     font-family: 'BT BeauSans', sans-serif;
-    font-size: 1.12rem;
+    font-size: 1.05rem;
     font-weight: 500;
     color: #64748B;
-    line-height: 1.55;
+    line-height: 1.45;
     margin: 0;
     text-align: left !important;
 }
