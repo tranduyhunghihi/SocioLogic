@@ -100,6 +100,22 @@ app.get('/api/parent-registrations', async (req, res) => {
     }
 });
 
+// 1e. DELETE /api/parent-registrations/:id - Delete registration entry by ID
+app.delete('/api/parent-registrations/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deleted = await ParentRegistration.findByIdAndDelete(id);
+        if (!deleted) {
+            return res.status(404).json({ error: 'Registration not found' });
+        }
+        console.log(`🗑️ Deleted parent registration: ${deleted.parentName} (${deleted.phone})`);
+        res.json({ message: 'Registration deleted successfully', id });
+    } catch (err) {
+        console.error('Error deleting parent registration:', err);
+        res.status(500).json({ error: 'Failed to delete registration' });
+    }
+});
+
 // 2. GET /api/wishes - Fetch all wishes from MongoDB (With Edge CDN Cache Header)
 app.get('/api/wishes', async (req, res) => {
     try {

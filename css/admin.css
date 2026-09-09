@@ -479,6 +479,238 @@ body {
     box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
 }
 
+/* ==========================================================================
+   ADMIN TABS NAVIGATION & BADGES
+   ========================================================================== */
+
+.admin-tabs-nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    border-bottom: 2px solid var(--color-border);
+    padding-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.admin-tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 22px;
+    border-radius: 14px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--color-text-muted);
+    font-family: var(--font-main);
+    font-size: 0.98rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.admin-tab-btn i {
+    font-size: 1.25rem;
+}
+
+.admin-tab-btn:hover {
+    background-color: #F1F5F9;
+    color: var(--color-text-dark);
+}
+
+.admin-tab-btn.active {
+    background-color: var(--color-primary);
+    color: #FFFFFF;
+    border-color: var(--color-primary);
+    box-shadow: 0 6px 18px rgba(0, 82, 255, 0.25);
+}
+
+.tab-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 8px;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.25);
+    color: inherit;
+    font-size: 0.8rem;
+    font-weight: 800;
+}
+
+.admin-tab-btn:not(.active) .tab-badge {
+    background-color: #E2E8F0;
+    color: #475569;
+}
+
+.admin-tab-btn:not(.active) .tab-badge.badge-pink {
+    background-color: #FCE4EC;
+    color: #DB2777;
+}
+
+.stats-counter-group {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.stats-counter-badge.badge-pink-stat {
+    border-color: #FBCFE8;
+}
+
+.icon-pink {
+    background-color: #FCE4EC !important;
+    color: #EC4899 !important;
+}
+
+.control-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn-action-export {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 12px;
+    background-color: #10B981;
+    color: #FFFFFF;
+    font-family: var(--font-main);
+    font-size: 0.9rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.28);
+    transition: all 0.2s ease;
+}
+
+.btn-action-export:hover {
+    background-color: #059669;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(16, 185, 129, 0.38);
+}
+
+/* ==========================================================================
+   PARENT REGISTRATIONS DATA TABLE & CARDS
+   ========================================================================== */
+
+.registrations-table-wrapper {
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: 18px;
+    overflow-x: auto;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+}
+
+.registrations-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    min-width: 680px;
+}
+
+.registrations-table th {
+    background-color: #F8FAFC;
+    padding: 16px 20px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.registrations-table td {
+    padding: 16px 20px;
+    border-bottom: 1px solid #F1F5F9;
+    font-size: 0.95rem;
+    color: var(--color-text-dark);
+    vertical-align: middle;
+}
+
+.registrations-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.registrations-table tbody tr:hover {
+    background-color: #F8FAFC;
+}
+
+.col-stt {
+    font-weight: 700;
+    color: var(--color-text-muted);
+}
+
+.parent-name-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    color: #0F172A;
+}
+
+.parent-name-meta i {
+    font-size: 1.35rem;
+    color: var(--color-primary);
+}
+
+.reg-phone-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 50px;
+    background-color: #F0F9FF;
+    color: #0284C7;
+    font-weight: 700;
+    text-decoration: none;
+    border: 1px solid #BAE6FD;
+    transition: all 0.2s ease;
+}
+
+.reg-phone-link:hover {
+    background-color: #0284C7;
+    color: #FFFFFF;
+    border-color: #0284C7;
+}
+
+.col-time {
+    color: var(--color-text-muted);
+    font-size: 0.88rem;
+}
+
+.col-time i {
+    margin-right: 4px;
+}
+
+.btn-delete-reg {
+    padding: 8px 14px;
+    border-radius: 8px;
+    background-color: rgba(239, 68, 68, 0.08);
+    color: var(--color-danger);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    font-family: var(--font-main);
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.btn-delete-reg:hover {
+    background-color: var(--color-danger);
+    color: #FFFFFF;
+    border-color: var(--color-danger);
+}
+
 /* Empty State */
 .admin-empty-state {
     grid-column: 1 / -1;
@@ -515,5 +747,14 @@ body {
 
     .search-box {
         max-width: 100%;
+    }
+
+    .admin-tabs-nav {
+        gap: 8px;
+    }
+
+    .admin-tab-btn {
+        padding: 10px 14px;
+        font-size: 0.88rem;
     }
 }
