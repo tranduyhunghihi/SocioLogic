@@ -1500,8 +1500,9 @@ a.pill-btn-yellow:hover {
     }
 
     .hero-main-title {
-        font-size: clamp(1.35rem, 5.0vw, 1.85rem) !important;
-        font-weight: 500 !important;
+        font-family: var(--font-main), 'BT BeauSans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+        font-size: clamp(1.75rem, 5.8vw, 2.1rem) !important;
+        font-weight: 600 !important;
         line-height: 1.35 !important;
         letter-spacing: -0.3px !important;
         color: #0052FF !important;
@@ -1513,7 +1514,8 @@ a.pill-btn-yellow:hover {
 
     .hero-main-title .script-slide-inner,
     .hero-main-title .highlight-script {
-        font-size: clamp(1.35rem, 5.0vw, 1.85rem) !important;
+        font-family: var(--font-playwrite), 'Playwrite IE', cursive, sans-serif !important;
+        font-size: clamp(1.75rem, 5.8vw, 2.1rem) !important;
         font-weight: 400 !important;
         color: #0052FF !important;
         padding: 0 4px !important;
@@ -1523,7 +1525,8 @@ a.pill-btn-yellow:hover {
         -moz-osx-font-smoothing: grayscale !important;
     }
 
-    /* Unified Global Section Main Titles Typography on Mobile */
+    /* Unified Global Section Main Titles Typography on Mobile (Matching Section 3 "Những Lời Yêu Thương") */
+    .hero-main-title,
     .title-main-text,
     .journey-title,
     .title-line-main,
@@ -1537,8 +1540,9 @@ a.pill-btn-yellow:hover {
     .section-5b-wrapper .title-main-text,
     .section-6-wrapper .sec6-title-main,
     .section-7-wrapper .sec7-title-main {
+        font-family: var(--font-main), 'BT BeauSans', -apple-system, BlinkMacSystemFont, sans-serif !important;
         font-size: clamp(1.75rem, 5.8vw, 2.1rem) !important;
-        font-weight: 500 !important;
+        font-weight: 600 !important;
         line-height: 1.35 !important;
         letter-spacing: -0.3px !important;
         color: #0052FF !important;
@@ -1547,6 +1551,7 @@ a.pill-btn-yellow:hover {
         -moz-osx-font-smoothing: grayscale !important;
     }
 
+    /* Keep handwritten yellow highlight text untouched script font */
     .title-main-text .script-slide-inner,
     .title-main-text .highlight-script,
     .journey-title .script-slide-inner,
@@ -1558,6 +1563,7 @@ a.pill-btn-yellow:hover {
     .sec6-script-text,
     .sec7-script-text,
     .highlight-script-yellow {
+        font-family: var(--font-playwrite), 'Playwrite IE', cursive, sans-serif !important;
         font-size: clamp(1.65rem, 5.8vw, 2.0rem) !important;
         font-weight: 400 !important;
         color: #0052FF !important;
