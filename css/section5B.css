@@ -360,6 +360,8 @@
     /* Member Cards Mobile Compact Scaling - Flush Inner Fit */
     .section-5b-wrapper .member-card {
         min-height: auto !important;
+        height: auto !important;
+        align-self: auto !important;
         padding: 0 !important;
         border-radius: 8px !important;
         border: 1.5px dashed #CBD5E1 !important;
@@ -401,7 +403,9 @@
         border-bottom-right-radius: 8px !important;
         border: none !important;
         border-top: 1.5px solid rgba(191, 219, 254, 0.85) !important;
-        min-height: 70px !important;
+        height: auto !important;
+        min-height: auto !important;
+        flex: 1 !important;
         align-items: flex-start !important;
         box-sizing: border-box !important;
         background-color: #F1F5F9 !important;
