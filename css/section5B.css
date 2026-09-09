@@ -243,7 +243,7 @@
 
 /* Cursive Title in Sticky Note */
 .section-5b-wrapper .sticky-note-title {
-    font-family: 'Playwrite IE', cursive, sans-serif;
+    font-family: 'Playwrite IE', 'Playwrite VN', cursive, sans-serif !important;
     font-weight: 400;
     font-size: 1.35rem;
     color: #1E293B;
@@ -254,7 +254,7 @@
 
 /* Cursive Quote Body in Sticky Note */
 .section-5b-wrapper .sticky-note-body {
-    font-family: 'Playwrite IE', cursive, sans-serif;
+    font-family: 'Playwrite GB S', 'Playwrite IE', cursive, sans-serif !important;
     font-weight: 400;
     font-size: 1.1rem;
     color: #334155;
@@ -268,7 +268,7 @@
 
 /* Cursive Author Line in Sticky Note */
 .section-5b-wrapper .sticky-note-author {
-    font-family: 'Playwrite IE', cursive, sans-serif;
+    font-family: 'Playwrite GB S', 'Playwrite IE', cursive, sans-serif !important;
     font-weight: 400;
     font-size: 0.95rem;
     color: #334155;

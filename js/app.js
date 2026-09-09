@@ -502,12 +502,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function getApiUrl() {
-        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:') {
-            return 'http://localhost:5000';
-        }
-        return window.location.origin;
-    }
+
 
     async function saveWishes(newWish = null) {
         const apiUrl = getApiUrl();
@@ -1578,7 +1573,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentMobilePage = 0;
     let mobileTouchStartX = 0;
-    let mobileTouchEndX = 0;
+    let mobileTouchStartY = 0;
+    let mobileTouchIsSwiping = false;
 
     function bindMobileActionButtons() {
         const btnOpenEditorMobile = document.getElementById('btn-open-editor-mobile');
@@ -1587,7 +1583,9 @@ document.addEventListener('DOMContentLoaded', () => {
             btnOpenEditorMobile.onclick = openEditor;
         }
         if (btnOpenGridMobile) {
-            btnOpenGridMobile.onclick = openGridModal;
+            btnOpenGridMobile.onclick = null;
+            btnOpenGridMobile.style.pointerEvents = 'none';
+            btnOpenGridMobile.style.cursor = 'default';
         }
     }
 
@@ -1647,48 +1645,94 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
 
-            cardEl.onclick = () => {
+            cardEl.onclick = (e) => {
+                if (mobileTouchIsSwiping) {
+                    mobileTouchIsSwiping = false;
+                    return;
+                }
                 openReaderModalByWishId(wish.id);
             };
 
             mobileGrid.appendChild(cardEl);
         });
 
-        // Render Pagination Dots (Capped strictly at maximum 6 dots)
+        // Render Pagination Dots & Controls
         if (mobileDotsContainer) {
             mobileDotsContainer.innerHTML = '';
-            const MAX_DOTS = 6;
-            const numDots = Math.min(MAX_DOTS, totalPages);
-            const activeDotIndex = Math.min(numDots - 1, currentMobilePage);
-
-            for (let i = 0; i < numDots; i++) {
-                const dot = document.createElement('span');
-                const isActive = (i === activeDotIndex);
-                dot.className = `dot ${isActive ? 'active' : ''}`;
-                dot.onclick = () => {
-                    currentMobilePage = i;
-                    renderMobileWishView();
+            if (totalPages > 1) {
+                // Prev Arrow
+                const prevBtn = document.createElement('button');
+                prevBtn.type = 'button';
+                prevBtn.className = 'mobile-page-arrow prev-arrow';
+                prevBtn.innerHTML = '<i class="ph-bold ph-caret-left"></i>';
+                prevBtn.disabled = (currentMobilePage <= 0);
+                prevBtn.onclick = () => {
+                    if (currentMobilePage > 0) {
+                        currentMobilePage--;
+                        renderMobileWishView();
+                    }
                 };
-                mobileDotsContainer.appendChild(dot);
+                mobileDotsContainer.appendChild(prevBtn);
+
+                // Dynamic sliding window (max 6 visible dots)
+                const MAX_DOTS = 6;
+                let startPage = 0;
+                if (totalPages > MAX_DOTS) {
+                    startPage = Math.max(0, Math.min(currentMobilePage - 2, totalPages - MAX_DOTS));
+                }
+                const endPage = Math.min(totalPages, startPage + MAX_DOTS);
+
+                for (let i = startPage; i < endPage; i++) {
+                    const dot = document.createElement('span');
+                    const isActive = (i === currentMobilePage);
+                    dot.className = `dot ${isActive ? 'active' : ''}`;
+                    dot.setAttribute('title', `Trang ${i + 1}`);
+                    dot.onclick = () => {
+                        currentMobilePage = i;
+                        renderMobileWishView();
+                    };
+                    mobileDotsContainer.appendChild(dot);
+                }
+
+                // Next Arrow
+                const nextBtn = document.createElement('button');
+                nextBtn.type = 'button';
+                nextBtn.className = 'mobile-page-arrow next-arrow';
+                nextBtn.innerHTML = '<i class="ph-bold ph-caret-right"></i>';
+                nextBtn.disabled = (currentMobilePage >= totalPages - 1);
+                nextBtn.onclick = () => {
+                    if (currentMobilePage < totalPages - 1) {
+                        currentMobilePage++;
+                        renderMobileWishView();
+                    }
+                };
+                mobileDotsContainer.appendChild(nextBtn);
             }
         }
 
-        // Bind Touch Swipe Navigation
-        const gridWrapper = document.getElementById('mobileGridWrapper');
+        // Bind Touch & Swipe Gesture Navigation
+        const gridWrapper = document.getElementById('mobileGridWrapper') || mobileContainer;
         if (gridWrapper && !gridWrapper.dataset.swipeBound) {
             gridWrapper.dataset.swipeBound = "true";
 
-            gridWrapper.addEventListener('touchstart', (e) => {
-                mobileTouchStartX = e.touches[0].clientX;
-            }, { passive: true });
+            const handleStart = (clientX, clientY) => {
+                mobileTouchStartX = clientX;
+                mobileTouchStartY = clientY;
+                mobileTouchIsSwiping = false;
+            };
 
-            gridWrapper.addEventListener('touchend', (e) => {
-                mobileTouchEndX = e.changedTouches[0].clientX;
-                const diff = mobileTouchStartX - mobileTouchEndX;
-                if (Math.abs(diff) > 40) {
-                    if (diff > 0) {
+            const handleEnd = (clientX, clientY) => {
+                const diffX = mobileTouchStartX - clientX;
+                const diffY = mobileTouchStartY - clientY;
+
+                // Horizontal swipe check: horizontal displacement > vertical displacement and > 30px
+                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 30) {
+                    mobileTouchIsSwiping = true;
+                    const totalPagesNow = Math.max(1, Math.ceil((wishes ? wishes.length : 0) / 4));
+
+                    if (diffX > 0) {
                         // Swipe Left -> Next Page
-                        if (currentMobilePage < totalPages - 1) {
+                        if (currentMobilePage < totalPagesNow - 1) {
                             currentMobilePage++;
                             renderMobileWishView();
                         }
@@ -1700,12 +1744,43 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
                 }
+            };
+
+            // Touch events for mobile phones/tablets
+            gridWrapper.addEventListener('touchstart', (e) => {
+                if (e.touches && e.touches.length === 1) {
+                    handleStart(e.touches[0].clientX, e.touches[0].clientY);
+                }
             }, { passive: true });
+
+            gridWrapper.addEventListener('touchend', (e) => {
+                if (e.changedTouches && e.changedTouches.length === 1) {
+                    handleEnd(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
+                }
+            }, { passive: true });
+
+            // Mouse drag support for desktop mouse / devtools simulation
+            let isMouseDown = false;
+            gridWrapper.addEventListener('mousedown', (e) => {
+                isMouseDown = true;
+                handleStart(e.clientX, e.clientY);
+            });
+
+            gridWrapper.addEventListener('mouseup', (e) => {
+                if (isMouseDown) {
+                    isMouseDown = false;
+                    handleEnd(e.clientX, e.clientY);
+                }
+            });
+
+            gridWrapper.addEventListener('mouseleave', () => {
+                isMouseDown = false;
+            });
         }
     }
 
     function renderWishesView() {
-        if (window.innerWidth <= 640) {
+        if (window.innerWidth <= 768) {
             renderMobileWishView();
         } else {
             renderBoardCards();
@@ -1740,16 +1815,17 @@ document.addEventListener('DOMContentLoaded', () => {
             };
         }
 
-        // Strictly cap rendered dots count to maximum 6 fixed dots
+        // Dynamic sliding window (max 6 visible dots)
         const MAX_DOTS = 6;
-        const numDots = Math.min(MAX_DOTS, totalPages);
-
-        // Active dot index moves from 0 to 5 for first 6 pages, then stays at dot 5 for pages > 5
-        const activeDotIdx = Math.min(numDots - 1, currentWishPage);
+        let startPage = 0;
+        if (totalPages > MAX_DOTS) {
+            startPage = Math.max(0, Math.min(currentWishPage - 2, totalPages - MAX_DOTS));
+        }
+        const endPage = Math.min(totalPages, startPage + MAX_DOTS);
 
         let dotsHtml = '';
-        for (let i = 0; i < numDots; i++) {
-            const isActive = (i === activeDotIdx);
+        for (let i = startPage; i < endPage; i++) {
+            const isActive = (i === currentWishPage);
             dotsHtml += `
                 <span class="dot-item ${isActive ? 'active' : ''}" 
                       data-dot-index="${i}" 
@@ -1761,15 +1837,87 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const dots = paginationEl.querySelectorAll('.dot-item');
         dots.forEach((dot) => {
-            dot.addEventListener('click', () => {
+            dot.onclick = () => {
                 const targetPage = parseInt(dot.dataset.dotIndex) || 0;
                 if (targetPage < totalPages) {
                     currentWishPage = targetPage;
                     renderWishesView();
                 }
-            });
+            };
         });
     }
+
+    // Keyboard Arrow Keys (Left / Right) & Mouse Drag Swipe Navigation for PC & Mobile
+    let boardDragStartX = 0;
+    let isBoardMouseDown = false;
+
+    if (wishBoard && !wishBoard.dataset.dragSwipeBound) {
+        wishBoard.dataset.dragSwipeBound = "true";
+
+        wishBoard.addEventListener('mousedown', (e) => {
+            if (e.target.closest('.wish-card') || e.target.closest('.btn-board-action') || e.target.closest('.wish-nav-btn')) return;
+            isBoardMouseDown = true;
+            boardDragStartX = e.clientX;
+        });
+
+        wishBoard.addEventListener('mouseup', (e) => {
+            if (!isBoardMouseDown) return;
+            isBoardMouseDown = false;
+            const diff = boardDragStartX - e.clientX;
+            if (Math.abs(diff) > 40) {
+                if (diff > 0) {
+                    // Drag Left -> Next Page
+                    const itemsPerPage = 8;
+                    const totalPages = Math.max(1, Math.ceil((wishes ? wishes.length : 0) / itemsPerPage));
+                    if (currentWishPage < totalPages - 1) {
+                        currentWishPage++;
+                        renderWishesView();
+                    }
+                } else {
+                    // Drag Right -> Prev Page
+                    if (currentWishPage > 0) {
+                        currentWishPage--;
+                        renderWishesView();
+                    }
+                }
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+        if (editorOverlay && !editorOverlay.classList.contains('hidden')) return;
+
+        if (e.key === 'ArrowLeft') {
+            if (window.innerWidth <= 768) {
+                if (currentMobilePage > 0) {
+                    currentMobilePage--;
+                    renderMobileWishView();
+                }
+            } else {
+                if (currentWishPage > 0) {
+                    currentWishPage--;
+                    renderWishesView();
+                }
+            }
+        } else if (e.key === 'ArrowRight') {
+            if (window.innerWidth <= 768) {
+                const itemsPerPage = 4;
+                const totalPages = Math.max(1, Math.ceil((wishes ? wishes.length : 0) / itemsPerPage));
+                if (currentMobilePage < totalPages - 1) {
+                    currentMobilePage++;
+                    renderMobileWishView();
+                }
+            } else {
+                const itemsPerPage = 8;
+                const totalPages = Math.max(1, Math.ceil((wishes ? wishes.length : 0) / itemsPerPage));
+                if (currentWishPage < totalPages - 1) {
+                    currentWishPage++;
+                    renderWishesView();
+                }
+            }
+        }
+    });
 
     function bringCardToFront(cardEl, wishObj) {
         const topZ = getHighestCardZIndex() + 100;

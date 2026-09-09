@@ -173,10 +173,10 @@ body {
 .title-yellow-box::before {
     content: '';
     position: absolute;
-    top: 38%;
+    top: 30% !important;
     left: 0;
     width: 100%;
-    height: 65%;
+    height: 58% !important;
     background-color: #FFF9C4;
     z-index: 0;
 }
@@ -523,6 +523,23 @@ body {
 }
 
 @media (max-width: 768px) {
+    #sec3-loichuc,
+    #loi-chuc-section {
+        height: 100vh !important;
+        height: 100dvh !important;
+        min-height: 100vh !important;
+        min-height: 100dvh !important;
+        max-height: 100vh !important;
+        max-height: 100dvh !important;
+        overflow: hidden !important;
+        box-sizing: border-box !important;
+        padding: 16px 10px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+
     .wishes-section-wrapper {
         max-width: 480px;
         padding: 24px 10px 20px 10px;
@@ -588,9 +605,10 @@ body {
 }
 
 #sec3-loichuc .title-yellow-box {
-    background-color: #FEF9C3 !important;
-    padding: 1px 4px !important;
-    border-radius: 4px;
+    position: relative;
+    background-color: transparent !important;
+    padding: 0 6px !important;
+    border-radius: 0;
     display: inline-flex;
     align-items: center;
     white-space: nowrap !important;
@@ -1711,7 +1729,7 @@ body {
 /* Bottom Solid Blue Info Box - Tight Compact Base */
 .card-info-box {
     background-color: #0066FF;
-    padding: 10px 16px 18px 18px;
+    padding: 10px 10px 20px 12px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -1722,17 +1740,19 @@ body {
     border-radius: 0 0 22px 22px;
     min-width: 0;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .stat-number-box {
     display: flex;
     align-items: center;
-    font-size: clamp(2.4rem, 3.4vw, 3.8rem);
+    font-size: clamp(2.2rem, 3.1vw, 3.6rem);
     font-weight: 600;
     color: #FFFFFF;
     line-height: 1;
     letter-spacing: -1px;
     font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
 }
 
 .stat-number,
@@ -1742,15 +1762,17 @@ body {
 }
 
 .stat-label {
-    font-size: clamp(1.15rem, 1.6vw, 1.45rem);
-    font-weight: 500;
+    font-size: clamp(1.05rem, 1.4vw, 1.4rem);
+    font-weight: 700;
     color: #60CEFF;
     /* Soft sky blue text matching reference image 100%! */
-    white-space: nowrap;
+    white-space: nowrap !important;
+    letter-spacing: -0.02em;
     margin: 0;
-    padding: 0;
+    padding: 3px 0 5px 0;
     background: none;
-    line-height: 1;
+    line-height: 1.3 !important;
+    overflow: visible !important;
 }
 
 /* ==========================================================================
@@ -2325,9 +2347,12 @@ body {
     display: none; /* Hidden on PC */
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
     /* Hide PC Wish Board on Mobile */
-    .wish-board {
+    .wish-board,
+    .board-wrapper,
+    .wishes-pagination-container,
+    #wishes-pagination-bar {
         display: none !important;
     }
 
@@ -2354,22 +2379,42 @@ body {
 
     /* Top Action Buttons Bar */
     .mobile-board-floating-actions {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        width: 100%;
-        margin-top: 15px;
-        margin-bottom: 25px;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-wrap: nowrap !important;
+        gap: 8px !important;
+        width: 100% !important;
+        margin-top: 15px !important;
+        margin-bottom: 20px !important;
+        padding: 0 4px !important;
+        box-sizing: border-box !important;
+        order: 1 !important;
     }
 
-    .mobile-board-floating-actions .btn-board-action {
-        padding: 10px 18px !important;
-        font-size: 0.88rem !important;
+    .mobile-board-floating-actions .btn-board-action,
+    .btn-board-action {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 6px !important;
+        white-space: nowrap !important;
+        padding: 8px 12px !important;
+        font-size: clamp(0.72rem, 3.2vw, 0.85rem) !important;
+        flex-shrink: 0 !important;
         box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05) !important;
         border: 1px solid #E2E8F0 !important;
         background: #FFFFFF !important;
         border-radius: 9999px !important;
+        word-break: keep-all !important;
+    }
+
+    .mobile-board-floating-actions .btn-board-action span,
+    .btn-board-action span {
+        white-space: nowrap !important;
+        display: inline-block !important;
+        word-break: keep-all !important;
     }
 
     /* 2x2 Grid Slider Wrapper */
@@ -2378,6 +2423,7 @@ body {
         min-height: 420px;
         touch-action: pan-y;
         position: relative;
+        order: 2 !important;
     }
 
     .mobile-2x2-grid {
@@ -2391,7 +2437,7 @@ body {
     /* Mobile Wish Card Base */
     .mobile-wish-card {
         position: relative;
-        border-radius: 8px;
+        border-radius: 0 !important;
         padding: 24px 10px 10px 10px;
         display: flex;
         flex-direction: column;
@@ -2442,7 +2488,7 @@ body {
     .mobile-wish-card .card-content-box {
         width: 100%;
         height: calc(100% - 24px);
-        border-radius: 8px;
+        border-radius: 0 !important;
         overflow: hidden;
         display: flex;
         align-items: center;
@@ -2455,7 +2501,7 @@ body {
         height: 100%;
         object-fit: contain;
         background-color: #FFFFFF;
-        border-radius: 8px;
+        border-radius: 0 !important;
         display: block;
     }
 
@@ -2473,12 +2519,14 @@ body {
 
     /* Pagination Dots Container */
     .mobile-pagination-dots {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        margin-top: 24px;
-        width: 100%;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        margin-top: 24px !important;
+        margin-bottom: 20px !important;
+        width: 100% !important;
+        order: 3 !important;
     }
 
     .mobile-pagination-dots .dot {
@@ -2495,5 +2543,78 @@ body {
         border-radius: 9999px;
         background-color: #38BDF8;
         box-shadow: 0 2px 6px rgba(56, 189, 248, 0.4);
+    }
+
+    .mobile-pagination-dots .mobile-page-arrow {
+        background: #FFFFFF;
+        border: 1px solid #CBD5E1;
+        color: #0052FF;
+        border-radius: 50%;
+        width: 28px;
+        height: 28px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 0.9rem;
+        padding: 0;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+        transition: all 0.2s ease;
+    }
+
+    .mobile-pagination-dots .mobile-page-arrow:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+        box-shadow: none;
+    }
+}
+
+/* Mobile Responsive Customizations (PC Desktop Remains 100% Untouched Originals) */
+@media (max-width: 768px) {
+    /* Zero Border-Radius for Mobile Wish Cards */
+    .wish-card,
+    .wish-note-card,
+    .mobile-wish-card,
+    .grid-wish-card,
+    .reader-modal-card,
+    .admin-wish-card,
+    .wish-card-modal-view,
+    .wish-card .card-content-box,
+    .wish-note-card .card-content-box,
+    .mobile-wish-card .card-content-box,
+    .mobile-wish-card .card-img-content,
+    .grid-wish-card .card-content-box {
+        border-radius: 0 !important;
+    }
+
+    /* Disable Interaction for Wish Count Button / Pill on Mobile */
+    .btn-board-counter,
+    #btn-open-grid-mobile {
+        pointer-events: none !important;
+        cursor: default !important;
+        transform: none !important;
+        box-shadow: none !important;
+        user-select: none !important;
+    }
+
+    .btn-board-counter:hover,
+    .btn-board-counter:active,
+    #btn-open-grid-mobile:hover,
+    #btn-open-grid-mobile:active {
+        transform: none !important;
+        box-shadow: none !important;
+        color: #475569 !important;
+        border-color: #E2E8F0 !important;
+    }
+
+    .btn-board-counter:hover i,
+    #btn-open-grid-mobile:hover i {
+        color: #64748B !important;
+    }
+
+    /* Remove shadow transition line between Section 3 and Section 4 on Mobile */
+    #sec3-loichuc,
+    #sec4-countup {
+        box-shadow: none !important;
     }
 }

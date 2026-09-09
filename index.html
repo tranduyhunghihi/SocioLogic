@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Tổng Thể SocioLogic - All Sections Master Page | SocioLogic</title>
-    <meta name="description" content="Trang tổng hợp hoàn chỉnh 10 section của SocioLogic chia thành 3 cụm lớn với hiệu ứng Sticky ở section cuối của mỗi cụm (Section 2 & Section 4).">
+    <meta name="description"
+        content="Trang tổng hợp hoàn chỉnh 10 section của SocioLogic chia thành 3 cụm lớn với hiệu ứng Sticky ở section cuối của mỗi cụm (Section 2 & Section 4).">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Itim&family=Outfit:wght@500;600;700&family=Patrick+Hand&family=Playwrite+GB+S:wght@100..400&family=Playwrite+VN:wght@100..400&family=Playwrite+IE:wght@100..400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Itim&family=Outfit:wght@500;600;700&family=Patrick+Hand&family=Playwrite+GB+S:wght@100..400&family=Playwrite+VN:wght@100..400&family=Playwrite+IE:wght@100..400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -32,6 +36,7 @@
         html {
             scroll-behavior: smooth;
         }
+
         body {
             font-family: 'BT BeauSans', -apple-system, BlinkMacSystemFont, sans-serif !important;
             background-color: #FFFFFF;
@@ -40,21 +45,27 @@
             margin: 0;
             padding: 0;
         }
-        img, video, iframe, canvas {
+
+        img,
+        video,
+        iframe,
+        canvas {
             max-width: 100%;
         }
 
         /* UNIFIED SECTION TITLE FONT SIZE & THINNER FONT WEIGHT */
-        .hero-main-title,
-        .title-line-top,
-        .title-line-bottom,
-        .title-line-main,
-        .section-5a-wrapper .title-main-text,
-        .sec6-title-main,
-        .sec7-title-main {
-            font-size: clamp(2.4rem, 4.0vw, 3.4rem);
-            font-weight: 500 !important;
-            letter-spacing: -0.02em;
+        @media (min-width: 769px) {
+            .hero-main-title,
+            .title-line-top,
+            .title-line-bottom,
+            .title-line-main,
+            .section-5a-wrapper .title-main-text,
+            .sec6-title-main,
+            .sec7-title-main {
+                font-size: clamp(2.4rem, 4.0vw, 3.4rem);
+                font-weight: 500 !important;
+                letter-spacing: -0.02em;
+            }
         }
 
         /* ULTRA SLEEK & THIN SIDE NAV SCROLL INDICATOR DASHES */
@@ -112,6 +123,30 @@
             transform: translateY(0) !important;
         }
 
+        @media (max-width: 768px) {
+            .btn-board-counter,
+            #btn-open-grid-mobile {
+                pointer-events: none !important;
+                cursor: default !important;
+                transform: none !important;
+                box-shadow: none !important;
+                user-select: none !important;
+            }
+            .btn-board-counter:hover,
+            .btn-board-counter:active,
+            #btn-open-grid-mobile:hover,
+            #btn-open-grid-mobile:active {
+                transform: none !important;
+                box-shadow: none !important;
+                color: #475569 !important;
+                border-color: #E2E8F0 !important;
+            }
+            .btn-board-counter:hover i,
+            #btn-open-grid-mobile:hover i {
+                color: #64748B !important;
+            }
+        }
+
         /* ==========================================================================
            100% FIXED YELLOW BACKGROUND & TEXT-ONLY SLIDE-IN ANIMATION
            ========================================================================== */
@@ -160,9 +195,11 @@
             will-change: transform, opacity;
         }
 
-        .hero-main-title .script-slide-inner,
-        .hero-main-title .highlight-script {
-            font-size: clamp(2.7rem, 4.4vw, 3.5rem);
+        @media (min-width: 769px) {
+            .hero-main-title .script-slide-inner,
+            .hero-main-title .highlight-script {
+                font-size: clamp(2.7rem, 4.4vw, 3.5rem);
+            }
         }
 
         /* Section 3 "Nhắn Gửi" clip-path wipe mask */
@@ -211,14 +248,22 @@
             will-change: transform;
         }
 
-        #section1, #section2, .section-banner, .section-1-wrapper, .hero-rounded-card, .bubbles-viewport {
+        #section1,
+        #section2,
+        .section-banner,
+        .section-1-wrapper,
+        .hero-rounded-card,
+        .bubbles-viewport {
             border: none !important;
             box-shadow: none !important;
             outline: none !important;
             overflow: visible !important;
         }
 
-        .bubbles-viewport, #bubblesContainer, .bubble-item, .mini-bubble-item {
+        .bubbles-viewport,
+        #bubblesContainer,
+        .bubble-item,
+        .mini-bubble-item {
             z-index: 99 !important;
         }
 
@@ -268,19 +313,22 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- FLOATING GLASSMORPHISM NAVBAR -->
     <nav class="floating-navbar">
         <div class="nav-container">
-            
+
             <!-- Left Brand Logo -->
             <a href="#" class="nav-brand">
                 <div class="nav-brand-old">
-                    <img src="assets/section1/navbar_logo_old.png" alt="SocioLogic 2 Years Together Logo" class="nav-brand-logo-old">
+                    <img src="assets/section1/navbar_logo_old.png" alt="SocioLogic 2 Years Together Logo"
+                        class="nav-brand-logo-old">
                 </div>
                 <div class="nav-brand-new">
-                    <img src="assets/section1/navbar_logo.png" alt="SocioLogic 2 Years Together Logo" class="nav-brand-logo">
+                    <img src="assets/section1/navbar_logo.png" alt="SocioLogic 2 Years Together Logo"
+                        class="nav-brand-logo">
                 </div>
             </a>
 
@@ -290,7 +338,7 @@
                 <a href="#section-4" class="nav-link">Hành Trình</a>
                 <a href="#section-5a" class="nav-link">Bạn Đồng Hành</a>
                 <a href="#section-6" class="nav-link">Tương Lai</a>
-        </div>
+            </div>
     </nav>
 
     <!-- FIXED RIGHT SIDE SCROLL INDICATOR MENU FOR ALL 10 SECTIONS -->
@@ -310,17 +358,18 @@
     <!-- ==========================================================================
          CỤM 1: SECTION 1 + SECTION 2
          ========================================================================== -->
-    
+
     <!-- SECTION 1 (DESTINATION BANNER WITH 18 SPEECH BUBBLES) -->
     <div id="sec1-banner">
-        <section class="section-banner" id="section2" style="min-height: 100vh;">
+        <section class="section-banner" id="section2">
 
             <!-- HERO ROUNDED CARD CONTAINER -->
             <div class="hero-rounded-card">
 
                 <!-- CENTERED HERO TITLES -->
                 <div class="hero-center-titles">
-                    <h1 class="hero-main-title">Hành Trang <span class="highlight-script yellow-highlight-target"><span class="script-slide-inner">Tranh Biện</span></span></h1>
+                    <h1 class="hero-main-title">Hành Trang <span class="highlight-script yellow-highlight-target"><span
+                                class="script-slide-inner">Tranh Biện</span></span></h1>
                     <h1 class="hero-main-title">Vững Bước Tương Lai</h1>
                 </div>
 
@@ -334,13 +383,18 @@
                             <span class="bubble-letter">S</span>
                             <div class="bubble-face face-S">
                                 <div class="eyes-row">
-                                    <div class="eye eye-left"><div class="pupil pupil-always"></div></div>
+                                    <div class="eye eye-left">
+                                        <div class="pupil pupil-always"></div>
+                                    </div>
                                     <div class="mouth mouth-svg-smile">
                                         <svg viewBox="0 0 26 20" width="25" height="18">
-                                            <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                            <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF"
+                                                stroke-width="7" stroke-linecap="round" />
                                         </svg>
                                     </div>
-                                    <div class="eye eye-right"><div class="pupil pupil-always"></div></div>
+                                    <div class="eye eye-right">
+                                        <div class="pupil pupil-always"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -365,7 +419,8 @@
                                         <div class="pupil"></div>
                                         <div class="eye-idle-svg">
                                             <svg viewBox="0 0 22 14" width="22" height="14">
-                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor"
+                                                    stroke-width="5.5" stroke-linecap="round" />
                                             </svg>
                                         </div>
                                     </div>
@@ -378,7 +433,8 @@
                                         <div class="pupil"></div>
                                         <div class="eye-idle-svg">
                                             <svg viewBox="0 0 22 14" width="22" height="14">
-                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor"
+                                                    stroke-width="5.5" stroke-linecap="round" />
                                             </svg>
                                         </div>
                                     </div>
@@ -401,20 +457,24 @@
                                         <div class="pupil"></div>
                                         <div class="eye-idle-svg">
                                             <svg viewBox="0 0 22 14" width="22" height="14">
-                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor"
+                                                    stroke-width="5.5" stroke-linecap="round" />
                                             </svg>
                                         </div>
                                     </div>
                                     <div class="mouth mouth-svg-w">
                                         <svg viewBox="0 0 34 22" width="32" height="20">
-                                            <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none"
+                                                stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round"
+                                                stroke-linejoin="round" />
                                         </svg>
                                     </div>
                                     <div class="eye eye-right">
                                         <div class="pupil"></div>
                                         <div class="eye-idle-svg">
                                             <svg viewBox="0 0 22 14" width="22" height="14">
-                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor"
+                                                    stroke-width="5.5" stroke-linecap="round" />
                                             </svg>
                                         </div>
                                     </div>
@@ -428,13 +488,18 @@
                             <span class="bubble-letter">i</span>
                             <div class="bubble-face face-i1">
                                 <div class="eyes-row eyes-vertical">
-                                    <div class="eye eye-top"><div class="pupil pupil-always"></div></div>
+                                    <div class="eye eye-top">
+                                        <div class="pupil pupil-always"></div>
+                                    </div>
                                     <div class="mouth mouth-svg-sideways-smile">
                                         <svg viewBox="0 0 20 26" width="18" height="24">
-                                            <path d="M 4 4 C 16 4, 16 22, 4 22" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                            <path d="M 4 4 C 16 4, 16 22, 4 22" fill="none" stroke="#FFFFFF"
+                                                stroke-width="7" stroke-linecap="round" />
                                         </svg>
                                     </div>
-                                    <div class="eye eye-bottom"><div class="pupil pupil-always"></div></div>
+                                    <div class="eye eye-bottom">
+                                        <div class="pupil pupil-always"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -449,20 +514,23 @@
                                         <div class="pupil"></div>
                                         <div class="eye-idle-svg">
                                             <svg viewBox="0 0 18 18" width="18" height="18">
-                                                <path d="M 3 3 L 15 9 L 3 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M 3 3 L 15 9 L 3 15" fill="none" stroke="currentColor"
+                                                    stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </div>
                                     </div>
                                     <div class="mouth mouth-svg-smile">
                                         <svg viewBox="0 0 26 20" width="25" height="18">
-                                            <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                            <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF"
+                                                stroke-width="7" stroke-linecap="round" />
                                         </svg>
                                     </div>
                                     <div class="eye eye-right">
                                         <div class="pupil"></div>
                                         <div class="eye-idle-svg">
                                             <svg viewBox="0 0 18 18" width="18" height="18">
-                                                <path d="M 15 3 L 3 9 L 15 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M 15 3 L 3 9 L 15 15" fill="none" stroke="currentColor"
+                                                    stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </div>
                                     </div>
@@ -485,7 +553,8 @@
                                         <div class="pupil"></div>
                                         <div class="eye-idle-svg">
                                             <svg viewBox="0 0 18 18" width="18" height="18">
-                                                <path d="M 3 3 L 15 9 L 3 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M 3 3 L 15 9 L 3 15" fill="none" stroke="currentColor"
+                                                    stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </div>
                                     </div>
@@ -498,7 +567,8 @@
                                         <div class="pupil"></div>
                                         <div class="eye-idle-svg">
                                             <svg viewBox="0 0 18 18" width="18" height="18">
-                                                <path d="M 15 3 L 3 9 L 15 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M 15 3 L 3 9 L 15 15" fill="none" stroke="currentColor"
+                                                    stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </div>
                                     </div>
@@ -521,20 +591,23 @@
                                         <div class="pupil"></div>
                                         <div class="eye-idle-svg">
                                             <svg viewBox="0 0 22 14" width="22" height="14">
-                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor"
+                                                    stroke-width="5.5" stroke-linecap="round" />
                                             </svg>
                                         </div>
                                     </div>
                                     <div class="mouth mouth-svg-smile">
                                         <svg viewBox="0 0 26 20" width="25" height="18">
-                                            <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                            <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF"
+                                                stroke-width="7" stroke-linecap="round" />
                                         </svg>
                                     </div>
                                     <div class="eye eye-right">
                                         <div class="pupil"></div>
                                         <div class="eye-idle-svg">
                                             <svg viewBox="0 0 22 14" width="22" height="14">
-                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor"
+                                                    stroke-width="5.5" stroke-linecap="round" />
                                             </svg>
                                         </div>
                                     </div>
@@ -557,20 +630,24 @@
                                         <div class="pupil"></div>
                                         <div class="eye-idle-svg">
                                             <svg viewBox="0 0 22 14" width="22" height="14">
-                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor"
+                                                    stroke-width="5.5" stroke-linecap="round" />
                                             </svg>
                                         </div>
                                     </div>
                                     <div class="mouth mouth-svg-w">
                                         <svg viewBox="0 0 34 22" width="32" height="20">
-                                            <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none"
+                                                stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round"
+                                                stroke-linejoin="round" />
                                         </svg>
                                     </div>
                                     <div class="eye eye-right">
                                         <div class="pupil"></div>
                                         <div class="eye-idle-svg">
                                             <svg viewBox="0 0 22 14" width="22" height="14">
-                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                                <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor"
+                                                    stroke-width="5.5" stroke-linecap="round" />
                                             </svg>
                                         </div>
                                     </div>
@@ -580,7 +657,8 @@
 
                         <!-- Mini Icon 7 (Exclamation ! Cyan) -->
                         <div class="mini-bubble-item img-doodle doodle-slot-7 bubble-cyan" title="Exclamation">
-                            <img src="assets/section2/icon_exclamation.png" alt="Exclamation Icon" class="doodle-icon-img">
+                            <img src="assets/section2/icon_exclamation.png" alt="Exclamation Icon"
+                                class="doodle-icon-img">
                         </div>
 
                         <!-- 9. Letter i (Cyan) -->
@@ -589,13 +667,18 @@
                             <span class="bubble-letter">i</span>
                             <div class="bubble-face face-i2">
                                 <div class="eyes-row eyes-vertical">
-                                    <div class="eye eye-top"><div class="pupil pupil-always"></div></div>
+                                    <div class="eye eye-top">
+                                        <div class="pupil pupil-always"></div>
+                                    </div>
                                     <div class="mouth mouth-svg-sideways-smile">
                                         <svg viewBox="0 0 20 26" width="18" height="24">
-                                            <path d="M 4 4 C 16 4, 16 22, 4 22" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                            <path d="M 4 4 C 16 4, 16 22, 4 22" fill="none" stroke="#FFFFFF"
+                                                stroke-width="7" stroke-linecap="round" />
                                         </svg>
                                     </div>
-                                    <div class="eye eye-bottom"><div class="pupil pupil-always"></div></div>
+                                    <div class="eye eye-bottom">
+                                        <div class="pupil pupil-always"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -610,20 +693,24 @@
                                         <div class="pupil"></div>
                                         <div class="eye-idle-svg">
                                             <svg viewBox="0 0 18 18" width="18" height="18">
-                                                <path d="M 3 3 L 15 9 L 3 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M 3 3 L 15 9 L 3 15" fill="none" stroke="currentColor"
+                                                    stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </div>
                                     </div>
                                     <div class="mouth mouth-svg-w">
                                         <svg viewBox="0 0 34 22" width="32" height="20">
-                                            <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none"
+                                                stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round"
+                                                stroke-linejoin="round" />
                                         </svg>
                                     </div>
                                     <div class="eye eye-right">
                                         <div class="pupil"></div>
                                         <div class="eye-idle-svg">
                                             <svg viewBox="0 0 18 18" width="18" height="18">
-                                                <path d="M 15 3 L 3 9 L 15 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M 15 3 L 3 9 L 15 15" fill="none" stroke="currentColor"
+                                                    stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </div>
                                     </div>
@@ -633,7 +720,8 @@
 
                         <!-- Mini Icon 8 (Search Q Blue) -->
                         <div class="mini-bubble-item img-doodle doodle-slot-8 bubble-blue" title="Search">
-                            <img src="assets/section2/Property 1=Variant5.png" alt="Search Icon" class="doodle-icon-img">
+                            <img src="assets/section2/Property 1=Variant5.png" alt="Search Icon"
+                                class="doodle-icon-img">
                         </div>
 
                     </div>
@@ -647,20 +735,22 @@
     <div id="sec2-hero">
         <section class="section-1-wrapper" id="section1" style="min-height: 100vh;">
             <div class="hero-layout">
-                
+
                 <!-- Left Column: Logo, Title & Action Pill -->
                 <div class="hero-col-left">
                     <div class="brand-logo">
                         <img src="assets/section1/logo.png" alt="SocioLogic Logo" class="brand-logo-img">
                     </div>
 
-                    <h1 class="hero-title"><span class="hero-title-hanh">Hành</span><span class="hero-title-trinh">Trình</span></h1>
+                    <h1 class="hero-title"><span class="hero-title-hanh">Hành</span><span
+                            class="hero-title-trinh">Trình</span></h1>
                     <a href="#loi-chuc-section" class="pill-btn pill-btn-yellow">Hành Trang Tranh Biện</a>
                 </div>
 
                 <!-- Middle Column: Graphic Number 2 -->
                 <div class="hero-col-center vanish" id="heroNumber2">
-                    <img src="assets/section1/number2.png" alt="Con số 2 bằng các bong bóng ý kiến" class="number-2-img">
+                    <img src="assets/section1/number2.png" alt="Con số 2 bằng các bong bóng ý kiến"
+                        class="number-2-img">
                 </div>
 
                 <!-- Right Column: Title & Action Pill -->
@@ -762,7 +852,8 @@
                 <div class="journey-header-container">
                     <h2 class="journey-title">
                         <div class="title-line-script">
-                            <span class="highlight-script-yellow yellow-highlight-target"><span class="script-slide-inner">Hành Trình</span></span>
+                            <span class="highlight-script-yellow yellow-highlight-target"><span
+                                    class="script-slide-inner">Hành Trình</span></span>
                         </div>
                         <div class="title-line-main">
                             <span>Của SocioLogic</span>
@@ -770,12 +861,13 @@
                     </h2>
 
                     <p class="journey-subtitle-text">
-                        Hai năm không chỉ được đo bằng những con số, mà bằng những lớp học, những cuộc thi, những chuyến đi, những lần thử sức và vô vàn khoảnh khắc thầy cô, phụ huynh và các con đã cùng nhau trải qua.
+                        Hai năm không chỉ được đo bằng những con số, mà bằng những lớp học, những cuộc thi, những chuyến
+                        đi, những lần thử sức và vô vàn khoảnh khắc thầy cô, phụ huynh và các con đã cùng nhau trải qua.
                     </p>
                 </div>
 
                 <div class="stats-grid">
-                    
+
                     <!-- Card 1: 1,000+ Học Sinh -->
                     <div class="stat-card card-magenta">
                         <div class="card-image-wrapper">
@@ -783,7 +875,7 @@
                         </div>
                         <div class="card-info-box">
                             <div class="stat-number-box">
-                                <span class="stat-number" data-target="1000">0</span><span class="stat-plus">+</span>
+                                <span class="stat-number" data-target="500">0</span><span class="stat-plus">+</span>
                             </div>
                             <span class="stat-label">Học Sinh</span>
                         </div>
@@ -809,7 +901,7 @@
                         </div>
                         <div class="card-info-box">
                             <div class="stat-number-box">
-                                <span class="stat-number" data-target="500">0</span><span class="stat-plus">+</span>
+                                <span class="stat-number" data-target="50">0</span><span class="stat-plus">+</span>
                             </div>
                             <span class="stat-label">Giải Đấu</span>
                         </div>
@@ -824,7 +916,7 @@
                             <div class="stat-number-box">
                                 <span class="stat-number" data-target="10">0</span><span class="stat-plus">+</span>
                             </div>
-                            <span class="stat-label">Dự Án</span>
+                            <span class="stat-label">Dự Án Cộng Đồng</span>
                         </div>
                     </div>
 
@@ -841,7 +933,8 @@
                 <!-- Header Controls -->
                 <div class="editor-header">
                     <div class="author-input-wrapper">
-                        <input type="text" id="editor-name" placeholder="Tên của bạn (ví dụ: SocioLogic)" maxlength="30">
+                        <input type="text" id="editor-name" placeholder="Tên của bạn (ví dụ: SocioLogic)"
+                            maxlength="30">
                     </div>
                     <button id="btn-close-editor" class="btn-icon" title="Đóng modal">
                         <i class="ph-bold ph-x"></i>
@@ -876,14 +969,22 @@
                     <!-- Color Palette -->
                     <div class="color-palette-wrapper">
                         <div class="color-swatches">
-                            <button type="button" class="color-swatch active" data-color="#0260ED" style="background-color: #0260ED;" title="Xanh Dương"></button>
-                            <button type="button" class="color-swatch" data-color="#64D3FF" style="background-color: #64D3FF;" title="Xanh Nhạt"></button>
-                            <button type="button" class="color-swatch" data-color="#04A651" style="background-color: #04A651;" title="Xanh Lá"></button>
-                            <button type="button" class="color-swatch" data-color="#FEDF50" style="background-color: #FEDF50;" title="Vàng Tươi"></button>
-                            <button type="button" class="color-swatch" data-color="#FFB701" style="background-color: #FFB701;" title="Vàng Cam"></button>
-                            <button type="button" class="color-swatch" data-color="#FD5E60" style="background-color: #FD5E60;" title="Đỏ Cam"></button>
-                            <button type="button" class="color-swatch" data-color="#FF52B3" style="background-color: #FF52B3;" title="Hồng"></button>
-                            <button type="button" class="color-swatch" data-color="#334155" style="background-color: #334155;" title="Xám Đen"></button>
+                            <button type="button" class="color-swatch active" data-color="#0260ED"
+                                style="background-color: #0260ED;" title="Xanh Dương"></button>
+                            <button type="button" class="color-swatch" data-color="#64D3FF"
+                                style="background-color: #64D3FF;" title="Xanh Nhạt"></button>
+                            <button type="button" class="color-swatch" data-color="#04A651"
+                                style="background-color: #04A651;" title="Xanh Lá"></button>
+                            <button type="button" class="color-swatch" data-color="#FEDF50"
+                                style="background-color: #FEDF50;" title="Vàng Tươi"></button>
+                            <button type="button" class="color-swatch" data-color="#FFB701"
+                                style="background-color: #FFB701;" title="Vàng Cam"></button>
+                            <button type="button" class="color-swatch" data-color="#FD5E60"
+                                style="background-color: #FD5E60;" title="Đỏ Cam"></button>
+                            <button type="button" class="color-swatch" data-color="#FF52B3"
+                                style="background-color: #FF52B3;" title="Hồng"></button>
+                            <button type="button" class="color-swatch" data-color="#334155"
+                                style="background-color: #334155;" title="Xám Đen"></button>
                         </div>
                     </div>
                 </div>
@@ -902,7 +1003,8 @@
     <!-- Reader Detail Modal Overlay -->
     <div id="reader-overlay" class="overlay hidden">
         <div class="reader-modal-container">
-            <div id="reader-card-content" class="reader-card-content" style="width: 100%; display: flex; justify-content: center;">
+            <div id="reader-card-content" class="reader-card-content"
+                style="width: 100%; display: flex; justify-content: center;">
                 <!-- Clicked card content renders dynamically -->
             </div>
         </div>
@@ -944,20 +1046,18 @@
          CỤM 3: SECTION 5 -> SECTION 10 (CÁC SECTION CÒN LẠI TRƯỢT ĐÈ LÊN CỤM 2)
          ========================================================================== -->
     <div id="cluster-3-remaining">
-        
+
         <!-- SECTION 5: FULLSCREEN VIDEO -->
-        <section class="fullscreen-video-section" id="sec5-video" style="width: 100%; height: 100vh; background: #000; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-            <video 
-                class="fullscreen-video-player" 
+        <section class="fullscreen-video-section" id="sec5-video"
+            style="width: 100%; height: 100vh; background: #000; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+            <video class="fullscreen-video-player"
                 style="width: 100%; height: 100%; object-fit: cover; display: block; border: none; outline: none;"
-                autoplay 
-                muted 
-                loop 
-                playsinline 
-                controls
+                autoplay muted loop playsinline controls
                 poster="https://images.unsplash.com/photo-1518173946687-a4c8a383392e?auto=format&fit=crop&w=1920&q=80">
                 <source src="assets/videos/socio_logic.mp4" type="video/mp4">
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-seen-from-the-sky-in-a-sunset-26070-large.mp4" type="video/mp4">
+                <source
+                    src="https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-seen-from-the-sky-in-a-sunset-26070-large.mp4"
+                    type="video/mp4">
                 Trình duyệt của bạn không hỗ trợ thẻ video.
             </video>
         </section>
@@ -990,13 +1090,18 @@
                                 <span class="bubble-letter">S</span>
                                 <div class="bubble-face face-S">
                                     <div class="eyes-row">
-                                        <div class="eye eye-left"><div class="pupil pupil-always"></div></div>
+                                        <div class="eye eye-left">
+                                            <div class="pupil pupil-always"></div>
+                                        </div>
                                         <div class="mouth mouth-svg-smile">
                                             <svg viewBox="0 0 26 20" width="25" height="18">
-                                                <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                                <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF"
+                                                    stroke-width="7" stroke-linecap="round" />
                                             </svg>
                                         </div>
-                                        <div class="eye eye-right"><div class="pupil pupil-always"></div></div>
+                                        <div class="eye eye-right">
+                                            <div class="pupil pupil-always"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1011,7 +1116,9 @@
                                             <div class="pupil"></div>
                                             <div class="eye-idle-svg">
                                                 <svg viewBox="0 0 22 14" width="22" height="14">
-                                                    <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                                    <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none"
+                                                        stroke="currentColor" stroke-width="5.5"
+                                                        stroke-linecap="round" />
                                                 </svg>
                                             </div>
                                         </div>
@@ -1024,7 +1131,9 @@
                                             <div class="pupil"></div>
                                             <div class="eye-idle-svg">
                                                 <svg viewBox="0 0 22 14" width="22" height="14">
-                                                    <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                                    <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none"
+                                                        stroke="currentColor" stroke-width="5.5"
+                                                        stroke-linecap="round" />
                                                 </svg>
                                             </div>
                                         </div>
@@ -1042,20 +1151,26 @@
                                             <div class="pupil"></div>
                                             <div class="eye-idle-svg">
                                                 <svg viewBox="0 0 22 14" width="22" height="14">
-                                                    <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                                    <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none"
+                                                        stroke="currentColor" stroke-width="5.5"
+                                                        stroke-linecap="round" />
                                                 </svg>
                                             </div>
                                         </div>
                                         <div class="mouth mouth-svg-w">
                                             <svg viewBox="0 0 34 22" width="32" height="20">
-                                                <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none"
+                                                    stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
                                             </svg>
                                         </div>
                                         <div class="eye eye-right">
                                             <div class="pupil"></div>
                                             <div class="eye-idle-svg">
                                                 <svg viewBox="0 0 22 14" width="22" height="14">
-                                                    <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                                    <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none"
+                                                        stroke="currentColor" stroke-width="5.5"
+                                                        stroke-linecap="round" />
                                                 </svg>
                                             </div>
                                         </div>
@@ -1069,13 +1184,18 @@
                                 <span class="bubble-letter">i</span>
                                 <div class="bubble-face face-i1">
                                     <div class="eyes-row eyes-vertical">
-                                        <div class="eye eye-top"><div class="pupil pupil-always"></div></div>
+                                        <div class="eye eye-top">
+                                            <div class="pupil pupil-always"></div>
+                                        </div>
                                         <div class="mouth mouth-svg-sideways-smile">
                                             <svg viewBox="0 0 20 26" width="18" height="24">
-                                                <path d="M 4 4 C 16 4, 16 22, 4 22" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                                <path d="M 4 4 C 16 4, 16 22, 4 22" fill="none" stroke="#FFFFFF"
+                                                    stroke-width="7" stroke-linecap="round" />
                                             </svg>
                                         </div>
-                                        <div class="eye eye-bottom"><div class="pupil pupil-always"></div></div>
+                                        <div class="eye eye-bottom">
+                                            <div class="pupil pupil-always"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1090,20 +1210,25 @@
                                             <div class="pupil"></div>
                                             <div class="eye-idle-svg">
                                                 <svg viewBox="0 0 18 18" width="18" height="18">
-                                                    <path d="M 3 3 L 15 9 L 3 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path d="M 3 3 L 15 9 L 3 15" fill="none" stroke="currentColor"
+                                                        stroke-width="5.5" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
                                                 </svg>
                                             </div>
                                         </div>
                                         <div class="mouth mouth-svg-smile">
                                             <svg viewBox="0 0 26 20" width="25" height="18">
-                                                <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                                <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF"
+                                                    stroke-width="7" stroke-linecap="round" />
                                             </svg>
                                         </div>
                                         <div class="eye eye-right">
                                             <div class="pupil"></div>
                                             <div class="eye-idle-svg">
                                                 <svg viewBox="0 0 18 18" width="18" height="18">
-                                                    <path d="M 15 3 L 3 9 L 15 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path d="M 15 3 L 3 9 L 15 15" fill="none" stroke="currentColor"
+                                                        stroke-width="5.5" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
                                                 </svg>
                                             </div>
                                         </div>
@@ -1121,20 +1246,26 @@
                                             <div class="pupil"></div>
                                             <div class="eye-idle-svg">
                                                 <svg viewBox="0 0 18 18" width="18" height="18">
-                                                    <path d="M 3 3 L 15 9 L 3 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path d="M 3 3 L 15 9 L 3 15" fill="none" stroke="currentColor"
+                                                        stroke-width="5.5" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
                                                 </svg>
                                             </div>
                                         </div>
                                         <div class="mouth mouth-svg-w">
                                             <svg viewBox="0 0 34 22" width="32" height="20">
-                                                <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none"
+                                                    stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
                                             </svg>
                                         </div>
                                         <div class="eye eye-right">
                                             <div class="pupil"></div>
                                             <div class="eye-idle-svg">
                                                 <svg viewBox="0 0 18 18" width="18" height="18">
-                                                    <path d="M 15 3 L 3 9 L 15 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path d="M 15 3 L 3 9 L 15 15" fill="none" stroke="currentColor"
+                                                        stroke-width="5.5" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
                                                 </svg>
                                             </div>
                                         </div>
@@ -1148,13 +1279,18 @@
                                 <span class="bubble-letter">o</span>
                                 <div class="bubble-face face-o3">
                                     <div class="eyes-row">
-                                        <div class="eye eye-left"><div class="pupil pupil-always"></div></div>
+                                        <div class="eye eye-left">
+                                            <div class="pupil pupil-always"></div>
+                                        </div>
                                         <div class="mouth mouth-svg-smile">
                                             <svg viewBox="0 0 26 20" width="25" height="18">
-                                                <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                                <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF"
+                                                    stroke-width="7" stroke-linecap="round" />
                                             </svg>
                                         </div>
-                                        <div class="eye eye-right"><div class="pupil pupil-always"></div></div>
+                                        <div class="eye eye-right">
+                                            <div class="pupil pupil-always"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1165,13 +1301,18 @@
                                 <span class="bubble-letter">g</span>
                                 <div class="bubble-face face-g">
                                     <div class="eyes-row">
-                                        <div class="eye eye-left"><div class="pupil pupil-always"></div></div>
+                                        <div class="eye eye-left">
+                                            <div class="pupil pupil-always"></div>
+                                        </div>
                                         <div class="mouth mouth-svg-o">
                                             <svg viewBox="0 0 20 20" width="18" height="18">
-                                                <circle cx="10" cy="10" r="7.5" fill="none" stroke="#FFFFFF" stroke-width="5" />
+                                                <circle cx="10" cy="10" r="7.5" fill="none" stroke="#FFFFFF"
+                                                    stroke-width="5" />
                                             </svg>
                                         </div>
-                                        <div class="eye eye-right"><div class="pupil pupil-always"></div></div>
+                                        <div class="eye eye-right">
+                                            <div class="pupil pupil-always"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1182,13 +1323,18 @@
                                 <span class="bubble-letter">i</span>
                                 <div class="bubble-face face-i2">
                                     <div class="eyes-row eyes-vertical">
-                                        <div class="eye eye-top"><div class="pupil pupil-always"></div></div>
+                                        <div class="eye eye-top">
+                                            <div class="pupil pupil-always"></div>
+                                        </div>
                                         <div class="mouth mouth-svg-sideways-smile">
                                             <svg viewBox="0 0 20 26" width="18" height="24">
-                                                <path d="M 4 4 C 16 4, 16 22, 4 22" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                                <path d="M 4 4 C 16 4, 16 22, 4 22" fill="none" stroke="#FFFFFF"
+                                                    stroke-width="7" stroke-linecap="round" />
                                             </svg>
                                         </div>
-                                        <div class="eye eye-bottom"><div class="pupil pupil-always"></div></div>
+                                        <div class="eye eye-bottom">
+                                            <div class="pupil pupil-always"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1203,20 +1349,25 @@
                                             <div class="pupil"></div>
                                             <div class="eye-idle-svg">
                                                 <svg viewBox="0 0 22 14" width="22" height="14">
-                                                    <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                                    <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none"
+                                                        stroke="currentColor" stroke-width="5.5"
+                                                        stroke-linecap="round" />
                                                 </svg>
                                             </div>
                                         </div>
                                         <div class="mouth mouth-svg-smile">
                                             <svg viewBox="0 0 26 20" width="25" height="18">
-                                                <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                                <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF"
+                                                    stroke-width="7" stroke-linecap="round" />
                                             </svg>
                                         </div>
                                         <div class="eye eye-right">
                                             <div class="pupil"></div>
                                             <div class="eye-idle-svg">
                                                 <svg viewBox="0 0 22 14" width="22" height="14">
-                                                    <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                                    <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none"
+                                                        stroke="currentColor" stroke-width="5.5"
+                                                        stroke-linecap="round" />
                                                 </svg>
                                             </div>
                                         </div>
@@ -1229,10 +1380,12 @@
 
                     <div class="community-cards-container">
                         <div class="community-card card-left">
-                            <p>Là cộng đồng gồm những con người cùng gặp gỡ và<br class="card-br-mobile"> kiến tạo nên không gian của tư duy và tiếng nói.</p>
+                            <p>Là cộng đồng gồm những con người cùng gặp gỡ và<br class="card-br-mobile"> kiến tạo nên
+                                không gian của tư duy và tiếng nói.</p>
                         </div>
                         <div class="community-card card-right">
-                            <p>Là sự liên kết, là khả năng đặt câu hỏi, tư duy nhìn nhận<br class="card-br-mobile"> và kết nối những góc nhìn khác nhau.</p>
+                            <p>Là sự liên kết, là khả năng đặt câu hỏi, tư duy nhìn nhận<br class="card-br-mobile"> và
+                                kết nối những góc nhìn khác nhau.</p>
                         </div>
                     </div>
                 </div>
@@ -1257,13 +1410,18 @@
                                     <span class="bubble-letter">S</span>
                                     <div class="bubble-face face-S">
                                         <div class="eyes-row">
-                                            <div class="eye eye-left"><div class="pupil pupil-always"></div></div>
+                                            <div class="eye eye-left">
+                                                <div class="pupil pupil-always"></div>
+                                            </div>
                                             <div class="mouth mouth-svg-smile">
                                                 <svg viewBox="0 0 26 20" width="25" height="18">
-                                                    <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                                    <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF"
+                                                        stroke-width="7" stroke-linecap="round" />
                                                 </svg>
                                             </div>
-                                            <div class="eye eye-right"><div class="pupil pupil-always"></div></div>
+                                            <div class="eye eye-right">
+                                                <div class="pupil pupil-always"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1278,7 +1436,9 @@
                                                 <div class="pupil"></div>
                                                 <div class="eye-idle-svg">
                                                     <svg viewBox="0 0 22 14" width="22" height="14">
-                                                        <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                                        <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none"
+                                                            stroke="currentColor" stroke-width="5.5"
+                                                            stroke-linecap="round" />
                                                     </svg>
                                                 </div>
                                             </div>
@@ -1291,7 +1451,9 @@
                                                 <div class="pupil"></div>
                                                 <div class="eye-idle-svg">
                                                     <svg viewBox="0 0 22 14" width="22" height="14">
-                                                        <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                                        <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none"
+                                                            stroke="currentColor" stroke-width="5.5"
+                                                            stroke-linecap="round" />
                                                     </svg>
                                                 </div>
                                             </div>
@@ -1309,20 +1471,26 @@
                                                 <div class="pupil"></div>
                                                 <div class="eye-idle-svg">
                                                     <svg viewBox="0 0 22 14" width="22" height="14">
-                                                        <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                                        <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none"
+                                                            stroke="currentColor" stroke-width="5.5"
+                                                            stroke-linecap="round" />
                                                     </svg>
                                                 </div>
                                             </div>
                                             <div class="mouth mouth-svg-w">
                                                 <svg viewBox="0 0 34 22" width="32" height="20">
-                                                    <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5"
+                                                        fill="none" stroke="#FFFFFF" stroke-width="7.5"
+                                                        stroke-linecap="round" stroke-linejoin="round" />
                                                 </svg>
                                             </div>
                                             <div class="eye eye-right">
                                                 <div class="pupil"></div>
                                                 <div class="eye-idle-svg">
                                                     <svg viewBox="0 0 22 14" width="22" height="14">
-                                                        <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                                        <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none"
+                                                            stroke="currentColor" stroke-width="5.5"
+                                                            stroke-linecap="round" />
                                                     </svg>
                                                 </div>
                                             </div>
@@ -1336,13 +1504,18 @@
                                     <span class="bubble-letter">i</span>
                                     <div class="bubble-face face-i1">
                                         <div class="eyes-row eyes-vertical">
-                                            <div class="eye eye-top"><div class="pupil pupil-always"></div></div>
+                                            <div class="eye eye-top">
+                                                <div class="pupil pupil-always"></div>
+                                            </div>
                                             <div class="mouth mouth-svg-sideways-smile">
                                                 <svg viewBox="0 0 20 26" width="18" height="24">
-                                                    <path d="M 4 4 C 16 4, 16 22, 4 22" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                                    <path d="M 4 4 C 16 4, 16 22, 4 22" fill="none" stroke="#FFFFFF"
+                                                        stroke-width="7" stroke-linecap="round" />
                                                 </svg>
                                             </div>
-                                            <div class="eye eye-bottom"><div class="pupil pupil-always"></div></div>
+                                            <div class="eye eye-bottom">
+                                                <div class="pupil pupil-always"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1357,20 +1530,25 @@
                                                 <div class="pupil"></div>
                                                 <div class="eye-idle-svg">
                                                     <svg viewBox="0 0 18 18" width="18" height="18">
-                                                        <path d="M 3 3 L 15 9 L 3 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                        <path d="M 3 3 L 15 9 L 3 15" fill="none" stroke="currentColor"
+                                                            stroke-width="5.5" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
                                                     </svg>
                                                 </div>
                                             </div>
                                             <div class="mouth mouth-svg-smile">
                                                 <svg viewBox="0 0 26 20" width="25" height="18">
-                                                    <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                                    <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF"
+                                                        stroke-width="7" stroke-linecap="round" />
                                                 </svg>
                                             </div>
                                             <div class="eye eye-right">
                                                 <div class="pupil"></div>
                                                 <div class="eye-idle-svg">
                                                     <svg viewBox="0 0 18 18" width="18" height="18">
-                                                        <path d="M 15 3 L 3 9 L 15 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                        <path d="M 15 3 L 3 9 L 15 15" fill="none" stroke="currentColor"
+                                                            stroke-width="5.5" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
                                                     </svg>
                                                 </div>
                                             </div>
@@ -1381,7 +1559,8 @@
                         </div>
 
                         <div class="sec5a-mobile-card">
-                            <p>Là cộng đồng gồm những con người cùng gặp gỡ và kiến tạo nên không gian của tư duy và tiếng nói.</p>
+                            <p>Là cộng đồng gồm những con người cùng gặp gỡ và kiến tạo nên không gian của tư duy và
+                                tiếng nói.</p>
                         </div>
                     </div>
 
@@ -1399,20 +1578,26 @@
                                                 <div class="pupil"></div>
                                                 <div class="eye-idle-svg">
                                                     <svg viewBox="0 0 18 18" width="18" height="18">
-                                                        <path d="M 3 3 L 15 9 L 3 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                        <path d="M 3 3 L 15 9 L 3 15" fill="none" stroke="currentColor"
+                                                            stroke-width="5.5" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
                                                     </svg>
                                                 </div>
                                             </div>
                                             <div class="mouth mouth-svg-w">
                                                 <svg viewBox="0 0 34 22" width="32" height="20">
-                                                    <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5"
+                                                        fill="none" stroke="#FFFFFF" stroke-width="7.5"
+                                                        stroke-linecap="round" stroke-linejoin="round" />
                                                 </svg>
                                             </div>
                                             <div class="eye eye-right">
                                                 <div class="pupil"></div>
                                                 <div class="eye-idle-svg">
                                                     <svg viewBox="0 0 18 18" width="18" height="18">
-                                                        <path d="M 15 3 L 3 9 L 15 15" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                        <path d="M 15 3 L 3 9 L 15 15" fill="none" stroke="currentColor"
+                                                            stroke-width="5.5" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
                                                     </svg>
                                                 </div>
                                             </div>
@@ -1426,13 +1611,18 @@
                                     <span class="bubble-letter">o</span>
                                     <div class="bubble-face face-o3">
                                         <div class="eyes-row">
-                                            <div class="eye eye-left"><div class="pupil pupil-always"></div></div>
+                                            <div class="eye eye-left">
+                                                <div class="pupil pupil-always"></div>
+                                            </div>
                                             <div class="mouth mouth-svg-smile">
                                                 <svg viewBox="0 0 26 20" width="25" height="18">
-                                                    <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                                    <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF"
+                                                        stroke-width="7" stroke-linecap="round" />
                                                 </svg>
                                             </div>
-                                            <div class="eye eye-right"><div class="pupil pupil-always"></div></div>
+                                            <div class="eye eye-right">
+                                                <div class="pupil pupil-always"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1443,13 +1633,18 @@
                                     <span class="bubble-letter">g</span>
                                     <div class="bubble-face face-g">
                                         <div class="eyes-row">
-                                            <div class="eye eye-left"><div class="pupil pupil-always"></div></div>
+                                            <div class="eye eye-left">
+                                                <div class="pupil pupil-always"></div>
+                                            </div>
                                             <div class="mouth mouth-svg-o">
                                                 <svg viewBox="0 0 20 20" width="18" height="18">
-                                                    <circle cx="10" cy="10" r="7.5" fill="none" stroke="#FFFFFF" stroke-width="5" />
+                                                    <circle cx="10" cy="10" r="7.5" fill="none" stroke="#FFFFFF"
+                                                        stroke-width="5" />
                                                 </svg>
                                             </div>
-                                            <div class="eye eye-right"><div class="pupil pupil-always"></div></div>
+                                            <div class="eye eye-right">
+                                                <div class="pupil pupil-always"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1460,13 +1655,18 @@
                                     <span class="bubble-letter">i</span>
                                     <div class="bubble-face face-i2">
                                         <div class="eyes-row eyes-vertical">
-                                            <div class="eye eye-top"><div class="pupil pupil-always"></div></div>
+                                            <div class="eye eye-top">
+                                                <div class="pupil pupil-always"></div>
+                                            </div>
                                             <div class="mouth mouth-svg-sideways-smile">
                                                 <svg viewBox="0 0 20 26" width="18" height="24">
-                                                    <path d="M 4 4 C 16 4, 16 22, 4 22" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                                    <path d="M 4 4 C 16 4, 16 22, 4 22" fill="none" stroke="#FFFFFF"
+                                                        stroke-width="7" stroke-linecap="round" />
                                                 </svg>
                                             </div>
-                                            <div class="eye eye-bottom"><div class="pupil pupil-always"></div></div>
+                                            <div class="eye eye-bottom">
+                                                <div class="pupil pupil-always"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1481,20 +1681,25 @@
                                                 <div class="pupil"></div>
                                                 <div class="eye-idle-svg">
                                                     <svg viewBox="0 0 22 14" width="22" height="14">
-                                                        <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                                        <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none"
+                                                            stroke="currentColor" stroke-width="5.5"
+                                                            stroke-linecap="round" />
                                                     </svg>
                                                 </div>
                                             </div>
                                             <div class="mouth mouth-svg-smile">
                                                 <svg viewBox="0 0 26 20" width="25" height="18">
-                                                    <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+                                                    <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF"
+                                                        stroke-width="7" stroke-linecap="round" />
                                                 </svg>
                                             </div>
                                             <div class="eye eye-right">
                                                 <div class="pupil"></div>
                                                 <div class="eye-idle-svg">
                                                     <svg viewBox="0 0 22 14" width="22" height="14">
-                                                        <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                                        <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none"
+                                                            stroke="currentColor" stroke-width="5.5"
+                                                            stroke-linecap="round" />
                                                     </svg>
                                                 </div>
                                             </div>
@@ -1506,7 +1711,8 @@
                         </div>
 
                         <div class="sec5a-mobile-card">
-                            <p>Là sự liên kết, là khả năng đặt câu hỏi, tư duy nhìn nhận và kết nối những góc nhìn khác nhau.</p>
+                            <p>Là sự liên kết, là khả năng đặt câu hỏi, tư duy nhìn nhận và kết nối những góc nhìn khác
+                                nhau.</p>
                         </div>
                     </div>
                 </div>
@@ -1523,7 +1729,8 @@
                     <!-- ROW 1 -->
                     <div class="member-card card-1">
                         <div class="card-photo-wrapper">
-                            <img src="assets/section5/Group 289774.png" alt="Học Sinh SocioLogic" class="card-photo-img">
+                            <img src="assets/section5/Group 289774.png" alt="Học Sinh SocioLogic"
+                                class="card-photo-img">
                         </div>
                         <div class="card-info-box">
                             <h3 class="card-info-title">Học Sinh</h3>
@@ -1533,7 +1740,8 @@
 
                     <div class="member-card card-2">
                         <div class="card-photo-wrapper">
-                            <img src="assets/section5/Group 289774.png" alt="Huấn Luyện Viên SocioLogic" class="card-photo-img">
+                            <img src="assets/section5/Group 289774.png" alt="Huấn Luyện Viên SocioLogic"
+                                class="card-photo-img">
                         </div>
                         <div class="card-info-box">
                             <h3 class="card-info-title">Huấn Luyện Viên</h3>
@@ -1544,21 +1752,27 @@
                     <div class="sticky-note-card sticky-note-1">
                         <div class="sticky-tape"></div>
                         <h3 class="sticky-note-title">"Con được mở rộng vùng an toàn của mình"</h3>
-                        <p class="sticky-note-body">"Mọi người thường nói rằng ta phải bước ra khỏi vùng an toàn. Nhưng tại SocioLogic, con lại được mở rộng vùng an toàn của chính mình: khi thầy cô trao cho con những thử thách để con trưởng thành trong một môi trường đang đong đầy sự nỗ lực và tình yêu thương."</p>
+                        <p class="sticky-note-body">"Mọi người thường nói rằng ta phải bước ra khỏi vùng an toàn. Nhưng
+                            tại SocioLogic, con lại được mở rộng vùng an toàn của chính mình: khi thầy cô trao cho con
+                            những thử thách để con trưởng thành trong một môi trường đang đong đầy sự nỗ lực và tình yêu
+                            thương."</p>
                         <span class="sticky-note-author">(Học sinh Như Khôi)</span>
                     </div>
 
                     <!-- ROW 2 -->
                     <div class="sticky-note-card sticky-note-2">
                         <div class="sticky-tape"></div>
-                        <h3 class="sticky-note-title">"Con được mở rộng vùng an toàn của mình"</h3>
-                        <p class="sticky-note-body">"Mọi người thường nói rằng ta phải bước ra khỏi vùng an toàn. Nhưng tại SocioLogic, con lại được mở rộng vùng an toàn của chính mình: khi thầy cô trao cho con những thử thách để con trưởng thành trong một môi trường đang đong đầy sự nỗ lực và tình yêu thương."</p>
-                        <span class="sticky-note-author">(Học sinh Như Khôi)</span>
+                        <h3 class="sticky-note-title">"SocioLogic là tuổi trẻ mà tôi muốn con tôi có"</h3>
+                        <p class="sticky-note-body">"Các thầy cô ở SocioLogic trẻ nhưng đầy nhiệt huyết và mong muốn
+                            cống hiến. Các thầy cô luôn nỗ lực hàng ngày để thực hiện những hoài bão và cống hiến cho xã
+                            hội. Đó là tuổi trẻ mà Việt Nam đang cần."</p>
+                        <span class="sticky-note-author">(Phụ huynh Đinh Vân Trang)</span>
                     </div>
 
                     <div class="member-card card-3">
                         <div class="card-photo-wrapper">
-                            <img src="assets/section5/Group 289774.png" alt="Phụ Huynh SocioLogic" class="card-photo-img">
+                            <img src="assets/section5/Group 289774.png" alt="Phụ Huynh SocioLogic"
+                                class="card-photo-img">
                         </div>
                         <div class="card-info-box">
                             <h3 class="card-info-title">Phụ Huynh</h3>
@@ -1568,7 +1782,8 @@
 
                     <div class="member-card card-4">
                         <div class="card-photo-wrapper">
-                            <img src="assets/section5/Group 289774.png" alt="Ban Giám Khảo SocioLogic" class="card-photo-img">
+                            <img src="assets/section5/Group 289774.png" alt="Ban Giám Khảo SocioLogic"
+                                class="card-photo-img">
                         </div>
                         <div class="card-info-box">
                             <h3 class="card-info-title">Ban Giám Khảo</h3>
@@ -1589,19 +1804,25 @@
 
                     <div class="member-card card-6">
                         <div class="card-photo-wrapper">
-                            <img src="assets/section5/Group 289774.png" alt="Cộng Đồng SocioLogic" class="card-photo-img">
+                            <img src="assets/section5/Group 289774.png" alt="Cộng Đồng SocioLogic"
+                                class="card-photo-img">
                         </div>
                         <div class="card-info-box">
                             <h3 class="card-info-title">Cộng Đồng</h3>
-                            <p class="card-info-desc">Những người cùng chia sẻ niềm tin vào một thế hệ biết nghĩ, biết nói và biết hành động.</p>
+                            <p class="card-info-desc">Những người cùng chia sẻ niềm tin vào một thế hệ biết nghĩ, biết
+                                nói và biết hành động.</p>
                         </div>
                     </div>
 
                     <div class="sticky-note-card sticky-note-3">
                         <div class="sticky-tape"></div>
-                        <h3 class="sticky-note-title">"Con được mở rộng vùng an toàn của mình"</h3>
-                        <p class="sticky-note-body">"Mọi người thường nói rằng ta phải bước ra khỏi vùng an toàn. Nhưng tại SocioLogic, con lại được mở rộng vùng an toàn của chính mình: khi thầy cô trao cho con những thử thách để con trưởng thành trong một môi trường đang đong đầy sự nỗ lực và tình yêu thương."</p>
-                        <span class="sticky-note-author">(Học sinh Như Khôi)</span>
+                        <h3 class="sticky-note-title">"Tranh biện dành cho tất cả mọi người"</h3>
+                        <p class="sticky-note-body">"Dù bạn đến từ lĩnh vực nào, bạn cũng cần có khả năng thấu hiểu con
+                            người và cân nhắc những được - mất khi đưa ra quyết định. Đó cũng chính là những năng lực
+                            cốt lõi mà SocioLogic trang bị cho học sinh. Chúng tôi tin rằng việc nuôi dưỡng tư duy phản
+                            biện sẽ giúp các em tự tin trưởng thành và sẵn sàng đóng góp tích cực cho xã hội - dù các em
+                            chọn trở thành ai."</p>
+                        <span class="sticky-note-author">(Cô Nguyễn Khánh Linh - Đồng sáng lập SocioLogic)</span>
                     </div>
 
                 </div>
@@ -1616,10 +1837,12 @@
                 <div class="sec6-header">
                     <h2 class="sec6-title-main">
                         Kiến Tạo Một Xã Hội<br>
-                        Có <span class="sec6-yellow-box yellow-highlight-target"><span class="sec6-script-text">Giáo Dục</span></span> Tranh Biện
+                        Có <span class="sec6-yellow-box yellow-highlight-target"><span class="sec6-script-text">Giáo
+                                Dục</span></span> Tranh Biện
                     </h2>
                     <p class="sec6-subtitle">
-                        Nơi tư duy phản biện, đối thoại và khả năng lắng nghe được nuôi dưỡng từ gia đình, nhà trường đến cộng đồng — mang chuẩn giáo dục tranh biện quốc tế đến gần hơn với học sinh Việt Nam.
+                        Nơi tư duy phản biện, đối thoại và khả năng lắng nghe được nuôi dưỡng từ gia đình, nhà trường
+                        đến cộng đồng — mang chuẩn giáo dục tranh biện quốc tế đến gần hơn với học sinh Việt Nam.
                     </p>
                 </div>
 
@@ -1634,19 +1857,24 @@
                             </div>
                             <p class="sec6-card-desc">Những người luôn đặt câu hỏi và không ngừng khám phá</p>
                         </div>
-                        
+
                         <div class="sec6-graphic-panel">
                             <div class="sec6-bubble-wrapper bubble-blue-1">
                                 <img src="assets/section2/1_S_blue.png" alt="Blue Bubble" class="bubble-bg">
                                 <div class="bubble-face face-S">
                                     <div class="eyes-row">
-                                        <div class="eye eye-left"><div class="pupil pupil-always"></div></div>
+                                        <div class="eye eye-left">
+                                            <div class="pupil pupil-always"></div>
+                                        </div>
                                         <div class="mouth mouth-svg-smile">
                                             <svg viewBox="0 0 26 20" width="18" height="12">
-                                                <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round" />
+                                                <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF"
+                                                    stroke-width="6.5" stroke-linecap="round" />
                                             </svg>
                                         </div>
-                                        <div class="eye eye-right"><div class="pupil pupil-always"></div></div>
+                                        <div class="eye eye-right">
+                                            <div class="pupil pupil-always"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1659,27 +1887,32 @@
                                             <div class="pupil"></div>
                                             <div class="eye-idle-svg">
                                                 <svg viewBox="0 0 22 14" width="18" height="12">
-                                                    <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" />
+                                                    <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none"
+                                                        stroke="currentColor" stroke-width="4.5"
+                                                        stroke-linecap="round" />
                                                 </svg>
                                             </div>
                                         </div>
                                         <div class="mouth mouth-svg-smile">
                                             <svg viewBox="0 0 26 20" width="22" height="16">
-                                                <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round" />
+                                                <path d="M 4 4 C 4 16, 22 16, 22 4" fill="none" stroke="#FFFFFF"
+                                                    stroke-width="6.5" stroke-linecap="round" />
                                             </svg>
                                         </div>
                                         <div class="eye eye-right">
                                             <div class="pupil"></div>
                                             <div class="eye-idle-svg">
                                                 <svg viewBox="0 0 22 14" width="18" height="12">
-                                                    <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" />
+                                                    <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none"
+                                                        stroke="currentColor" stroke-width="4.5"
+                                                        stroke-linecap="round" />
                                                 </svg>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="icon-bubble bubble-pencil">
                                 <img src="assets/section2/icon_pencil.png" alt="Pencil Icon">
                             </div>
@@ -1699,9 +1932,10 @@
                                 <div class="sec6-badge-number">2</div>
                                 <h3 class="sec6-card-title">Nói Hay</h3>
                             </div>
-                            <p class="sec6-card-desc">Những người tự tin cất lên tiếng nói của mình một cách chân thành và thuyết phục</p>
+                            <p class="sec6-card-desc">Những người tự tin cất lên tiếng nói của mình một cách chân thành
+                                và thuyết phục</p>
                         </div>
-                        
+
                         <div class="sec6-graphic-panel">
                             <div class="sec6-bubble-wrapper bubble-red-2">
                                 <img src="assets/section2/6_L_redorange.png" alt="Red Orange Bubble" class="bubble-bg">
@@ -1711,7 +1945,9 @@
                                             <div class="pupil"></div>
                                             <div class="eye-idle-svg">
                                                 <svg viewBox="0 0 18 18" width="15" height="15">
-                                                    <path d="M 3 3 L 15 9 L 3 15" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path d="M 3 3 L 15 9 L 3 15" fill="none" stroke="currentColor"
+                                                        stroke-width="4.5" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
                                                 </svg>
                                             </div>
                                         </div>
@@ -1724,7 +1960,9 @@
                                             <div class="pupil"></div>
                                             <div class="eye-idle-svg">
                                                 <svg viewBox="0 0 18 18" width="15" height="15">
-                                                    <path d="M 15 3 L 3 9 L 15 15" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path d="M 15 3 L 3 9 L 15 15" fill="none" stroke="currentColor"
+                                                        stroke-width="4.5" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
                                                 </svg>
                                             </div>
                                         </div>
@@ -1740,27 +1978,33 @@
                                             <div class="pupil"></div>
                                             <div class="eye-idle-svg">
                                                 <svg viewBox="0 0 22 14" width="18" height="12">
-                                                    <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" />
+                                                    <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none"
+                                                        stroke="currentColor" stroke-width="4.5"
+                                                        stroke-linecap="round" />
                                                 </svg>
                                             </div>
                                         </div>
                                         <div class="mouth mouth-svg-w">
                                             <svg viewBox="0 0 34 22" width="26" height="16">
-                                                <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none"
+                                                    stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
                                             </svg>
                                         </div>
                                         <div class="eye eye-right">
                                             <div class="pupil"></div>
                                             <div class="eye-idle-svg">
                                                 <svg viewBox="0 0 22 14" width="18" height="12">
-                                                    <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" />
+                                                    <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none"
+                                                        stroke="currentColor" stroke-width="4.5"
+                                                        stroke-linecap="round" />
                                                 </svg>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="icon-bubble bubble-exclamation">
                                 <img src="assets/section2/icon_exclamation.png" alt="Exclamation Icon">
                             </div>
@@ -1779,7 +2023,7 @@
                             </div>
                             <p class="sec6-card-desc">Những người luôn đặt câu hỏi và không ngừng khám phá</p>
                         </div>
-                        
+
                         <div class="sec6-graphic-panel">
                             <div class="sec6-bubble-wrapper bubble-grey-3">
                                 <img src="assets/section5/8_g_grey.png" alt="Grey Bubble" class="bubble-bg">
@@ -1789,20 +2033,26 @@
                                             <div class="pupil"></div>
                                             <div class="eye-idle-svg">
                                                 <svg viewBox="0 0 22 14" width="18" height="12">
-                                                    <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" />
+                                                    <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none"
+                                                        stroke="currentColor" stroke-width="4.5"
+                                                        stroke-linecap="round" />
                                                 </svg>
                                             </div>
                                         </div>
                                         <div class="mouth mouth-svg-w">
                                             <svg viewBox="0 0 34 22" width="26" height="16">
-                                                <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M 5 5 C 5 15, 12 18, 17 12 C 22 18, 29 15, 29 5" fill="none"
+                                                    stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
                                             </svg>
                                         </div>
                                         <div class="eye eye-right">
                                             <div class="pupil"></div>
                                             <div class="eye-idle-svg">
                                                 <svg viewBox="0 0 22 14" width="18" height="12">
-                                                    <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" />
+                                                    <path d="M 3 11 C 3 3, 19 3, 19 11" fill="none"
+                                                        stroke="currentColor" stroke-width="4.5"
+                                                        stroke-linecap="round" />
                                                 </svg>
                                             </div>
                                         </div>
@@ -1814,17 +2064,22 @@
                                 <img src="assets/section2/4_i_yellow.png" alt="Yellow Bubble" class="bubble-bg">
                                 <div class="bubble-face face-i1">
                                     <div class="eyes-row eyes-vertical">
-                                        <div class="eye eye-top"><div class="pupil pupil-always"></div></div>
+                                        <div class="eye eye-top">
+                                            <div class="pupil pupil-always"></div>
+                                        </div>
                                         <div class="mouth mouth-svg-sideways-smile">
                                             <svg viewBox="0 0 20 26" width="15" height="20">
-                                                <path d="M 4 4 C 16 4, 16 22, 4 22" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" />
+                                                <path d="M 4 4 C 16 4, 16 22, 4 22" fill="none" stroke="#FFFFFF"
+                                                    stroke-width="6" stroke-linecap="round" />
                                             </svg>
                                         </div>
-                                        <div class="eye eye-bottom"><div class="pupil pupil-always"></div></div>
+                                        <div class="eye eye-bottom">
+                                            <div class="pupil pupil-always"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="icon-bubble bubble-question-3">
                                 <img src="assets/section2/icon_question.png" alt="Question Icon">
                             </div>
@@ -1846,11 +2101,13 @@
                 <div class="sec7-header">
                     <h2 class="sec7-title-main">
                         Cùng SocioLogic Viết<br>
-                        <span class="sec7-yellow-box yellow-highlight-target"><span class="sec7-script-text">Chặng Đường</span></span> Tiếp Theo
+                        <span class="sec7-yellow-box yellow-highlight-target"><span class="sec7-script-text">Chặng
+                                Đường</span></span> Tiếp Theo
                     </h2>
-                    
+
                     <a href="#loi-chuc-section" class="sec7-cta-btn">
-                        <svg class="sec7-btn-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="sec7-btn-icon" viewBox="0 0 24 24" width="18" height="18" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M12 20h9"></path>
                             <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
                         </svg>
@@ -1886,25 +2143,29 @@
                         <ul class="footer-contact-list">
                             <li>
                                 <svg class="footer-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                    <path
+                                        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                                 </svg>
                                 <span>Số 04, ngõ 62 Khúc Thừa Dụ, phường Dịch Vọng, quận Cầu Giấy, Hà Nội</span>
                             </li>
                             <li>
                                 <svg class="footer-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                                    <path
+                                        d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
                                 </svg>
                                 <span>0979.249.156 - 0328.597.607</span>
                             </li>
                             <li>
                                 <svg class="footer-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                                    <path
+                                        d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
                                 </svg>
                                 <a href="mailto:contact@sociologic.co">contact@sociologic.co</a>
                             </li>
                             <li>
                                 <svg class="footer-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                                    <path
+                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
                                 </svg>
                                 <a href="https://sociologic.vn/" target="_blank">sociologic.vn</a>
                             </li>
@@ -1938,7 +2199,8 @@
             <!-- 3. Bottom Copyright Bar -->
             <div class="footer-copyright-bar">
                 <div class="copyright-inner">
-                    <p class="copyright-text">Bản quyền thuộc về CÔNG TY TNHH TRANH BIỆN VÀ TƯ DUY PHẢN BIỆN SOCIOLOGIC</p>
+                    <p class="copyright-text">Bản quyền thuộc về CÔNG TY TNHH TRANH BIỆN VÀ TƯ DUY PHẢN BIỆN SOCIOLOGIC
+                    </p>
                 </div>
             </div>
         </footer>
@@ -1990,7 +2252,7 @@
                 headers.forEach(header => {
                     const rect = header.getBoundingClientRect();
                     const isCompletelyOut = rect.bottom < 0 || rect.top > windowHeight;
-                    
+
                     const surroundingElements = header.querySelectorAll('.title-main-text, .header-subtitle, .sec6-title-main, .sec7-title-main, .sec6-subtitle, .sec7-subtitle, .journey-title, .title-line-main, .journey-subtitle-text, .hero-main-title, .hero-title');
                     const targetElements = surroundingElements.length > 0 ? surroundingElements : [header];
 
@@ -2002,7 +2264,7 @@
                         });
                     } else {
                         header.classList.add('is-visible', 'is-center-visible');
-                        
+
                         // Animation starts when header enters into viewport (85% height) and finishes at 35% height (upper center)
                         const startPoint = windowHeight * 0.85;
                         const endPoint = windowHeight * 0.35;
@@ -2114,4 +2376,5 @@
     </script>
 
 </body>
+
 </html>

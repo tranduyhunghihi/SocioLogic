@@ -147,6 +147,12 @@ html, body, button, input, select, textarea, p, span, div, h1, h2, h3, h4, h5, h
     font-family: 'Playwrite IE', 'Playwrite VN', cursive, sans-serif !important;
 }
 
+/* STICKY NOTE CONTENT FONT (MATCHING SECTION 3 WISH CARDS) */
+.sticky-note-body,
+.sticky-note-author {
+    font-family: 'Playwrite GB S', 'Playwrite IE', cursive, sans-serif !important;
+}
+
 .scroll-word-span {
     font-family: inherit !important;
     font-size: inherit !important;
