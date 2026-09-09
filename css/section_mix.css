@@ -1492,7 +1492,7 @@ a.pill-btn-yellow:hover {
         top: auto !important;
         left: auto !important;
         transform: none !important;
-        margin: clamp(140px, 18vh, 190px) auto 0 auto !important;
+        margin: 90px auto 0 auto !important;
         width: 100% !important;
         max-width: 95vw !important;
         gap: 2px !important;
