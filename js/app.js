@@ -2212,6 +2212,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function forceOpenParentPopup() {
         if (!parentPopupOverlay) return;
         isPopupOpened = true;
+        
+        // Reset button and form state for manual button trigger
+        const btnSubmit = document.getElementById('btn-submit-parent-popup');
+        if (btnSubmit) {
+            btnSubmit.disabled = false;
+            btnSubmit.style.background = '';
+            btnSubmit.style.boxShadow = '';
+            btnSubmit.innerHTML = `<span>Xác Nhận Tham Gia</span> <i class="ph-bold ph-arrow-right"></i>`;
+        }
+
         parentPopupOverlay.classList.remove('hidden');
         parentPopupOverlay.offsetHeight;
         parentPopupOverlay.classList.add('active');
