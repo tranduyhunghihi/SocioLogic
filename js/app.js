@@ -1656,24 +1656,10 @@ document.addEventListener('DOMContentLoaded', () => {
             mobileGrid.appendChild(cardEl);
         });
 
-        // Render Pagination Dots & Controls
+        // Render Pagination Dots
         if (mobileDotsContainer) {
             mobileDotsContainer.innerHTML = '';
             if (totalPages > 1) {
-                // Prev Arrow
-                const prevBtn = document.createElement('button');
-                prevBtn.type = 'button';
-                prevBtn.className = 'mobile-page-arrow prev-arrow';
-                prevBtn.innerHTML = '<i class="ph-bold ph-caret-left"></i>';
-                prevBtn.disabled = (currentMobilePage <= 0);
-                prevBtn.onclick = () => {
-                    if (currentMobilePage > 0) {
-                        currentMobilePage--;
-                        renderMobileWishView();
-                    }
-                };
-                mobileDotsContainer.appendChild(prevBtn);
-
                 // Dynamic sliding window (max 6 visible dots)
                 const MAX_DOTS = 6;
                 let startPage = 0;
@@ -1693,20 +1679,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     };
                     mobileDotsContainer.appendChild(dot);
                 }
-
-                // Next Arrow
-                const nextBtn = document.createElement('button');
-                nextBtn.type = 'button';
-                nextBtn.className = 'mobile-page-arrow next-arrow';
-                nextBtn.innerHTML = '<i class="ph-bold ph-caret-right"></i>';
-                nextBtn.disabled = (currentMobilePage >= totalPages - 1);
-                nextBtn.onclick = () => {
-                    if (currentMobilePage < totalPages - 1) {
-                        currentMobilePage++;
-                        renderMobileWishView();
-                    }
-                };
-                mobileDotsContainer.appendChild(nextBtn);
             }
         }
 
@@ -1814,26 +1786,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!paginationEl) return;
 
-        // Toggle Prev/Next arrow buttons
-        if (prevBtn) {
-            prevBtn.disabled = (currentWishPage <= 0);
-            prevBtn.onclick = () => {
-                if (currentWishPage > 0) {
-                    currentWishPage--;
-                    renderWishesView();
-                }
-            };
-        }
-
-        if (nextBtn) {
-            nextBtn.disabled = (currentWishPage >= totalPages - 1);
-            nextBtn.onclick = () => {
-                if (currentWishPage < totalPages - 1) {
-                    currentWishPage++;
-                    renderWishesView();
-                }
-            };
-        }
+        // Hide Prev/Next arrow buttons
+        if (prevBtn) prevBtn.style.display = 'none';
+        if (nextBtn) nextBtn.style.display = 'none';
 
         // Dynamic sliding window (max 6 visible dots)
         const MAX_DOTS = 6;
