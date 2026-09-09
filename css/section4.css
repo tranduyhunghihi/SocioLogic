@@ -174,7 +174,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    height: 100%;
+    height: 90%;
     width: 100%;
     min-width: 0;
     box-shadow: 0 12px 30px rgba(0, 82, 255, 0.22);
@@ -226,13 +226,15 @@ body {
     padding: 4px 6px 2px 6px;
     display: flex;
     align-items: baseline;
-    justify-content: space-between;
+    justify-content: flex-start;
+    align-items: center;
     flex-wrap: wrap;
     gap: 6px;
     width: 100%;
     margin-top: -12px;
     z-index: 2;
     position: relative;
+    bottom: 28px;
     border-radius: 0 0 22px 22px;
     min-width: 0;
     box-sizing: border-box;
@@ -243,13 +245,14 @@ body {
 .stat-number-box {
     display: inline-flex;
     align-items: baseline;
-    font-size: clamp(4rem, 2.3vw, 2.6rem);
+    font-size: clamp(4.6rem, 2.3vw, 2.6rem);
     font-weight: 500;
     color: #FFFFFF;
     line-height: 1;
     letter-spacing: -0.5px;
     font-variant-numeric: tabular-nums;
     flex-shrink: 0;
+
 }
 
 .section-4-wrapper .stat-number,
@@ -265,12 +268,12 @@ body {
     font-size: clamp(0.85rem, 1.05vw, 1.15rem);
     font-weight: 400;
     color: #60CEFF;
-    white-space: nowrap;
+    white-space: normal;
     letter-spacing: -0.01em;
     margin: 0;
     padding: 0;
     background: none;
-    line-height: 1.2;
+    line-height: 1.25;
     text-align: left;
     overflow: visible;
 }

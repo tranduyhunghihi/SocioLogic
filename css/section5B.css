@@ -152,6 +152,7 @@
 .section-5b-wrapper .member-card .card-info-box,
 .section-5b-wrapper .card-info-box {
     position: relative;
+    bottom: 0;
     z-index: 3;
     background-color: #F1F5F9 !important;
     border-radius: 20px !important;
