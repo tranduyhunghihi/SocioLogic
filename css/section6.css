@@ -544,7 +544,7 @@
     }
 
     .section-6-wrapper .sec6-title-main {
-        font-size: clamp(1.5rem, 5.0vw, 1.95rem) !important;
+        font-size: clamp(1.75rem, 5.8vw, 2.1rem) !important;
         font-weight: 600 !important;
         line-height: 1.35 !important;
         letter-spacing: -0.3px !important;
