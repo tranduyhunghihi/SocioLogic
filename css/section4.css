@@ -262,17 +262,17 @@ body {
 
 .section-4-wrapper .stat-label,
 .stat-label {
-    font-size: clamp(0.85rem, 1.05vw, 1.15rem) !important;
+    font-size: clamp(0.85rem, 1.05vw, 1.15rem);
     font-weight: 400;
-    color: #60CEFF !important;
-    white-space: nowrap !important;
+    color: #60CEFF;
+    white-space: nowrap;
     letter-spacing: -0.01em;
-    margin: 0 !important;
-    padding: 0 !important;
+    margin: 0;
+    padding: 0;
     background: none;
-    line-height: 1.2 !important;
-    text-align: left !important;
-    overflow: visible !important;
+    line-height: 1.2;
+    text-align: left;
+    overflow: visible;
 }
 
 /* 3. Subtitle Paragraph */
@@ -482,6 +482,7 @@ body {
         overflow: visible !important;
     }
 
+    .section-4-wrapper .stat-number-box,
     .stat-number-box {
         font-size: clamp(1.6rem, 5.5vw, 2.2rem) !important;
         font-weight: 500 !important;
@@ -489,8 +490,9 @@ body {
         flex-shrink: 0 !important;
     }
 
+    .section-4-wrapper .stat-label,
     .stat-label {
-        font-size: clamp(0.85rem, 3.2vw, 1.1rem) !important;
+        font-size: clamp(1.1rem, 4.0vw, 1.5rem) !important;
         color: #60CEFF !important;
         font-weight: 400 !important;
         white-space: nowrap !important;
