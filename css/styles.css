@@ -537,7 +537,7 @@ body {
         min-height: 100svh !important;
         min-height: 100dvh !important;
         box-sizing: border-box !important;
-        padding: 16px 10px !important;
+        padding: clamp(65px, 9vh, 95px) 10px 20px 10px !important;
         display: flex !important;
         flex-direction: column !important;
         justify-content: space-between !important;
