@@ -617,8 +617,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function fitBubblesToContainer() {
         if (!bubblesContainer) return;
-        // Container auto-fit scale limit removed as requested
-        bubblesContainer.style.transform = 'scale(1)';
+        if (window.innerWidth <= 768) {
+            bubblesContainer.style.transform = '';
+        } else {
+            bubblesContainer.style.transform = 'scale(1)';
+        }
     }
 
     window.addEventListener('resize', fitBubblesToContainer);
