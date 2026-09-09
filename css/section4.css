@@ -238,7 +238,7 @@ body {
 .stat-number-box {
     display: flex;
     align-items: center;
-    font-size: clamp(2.2rem, 3.1vw, 3.6rem);
+    font-size: clamp(2.4rem, 3.5vw, 3.8rem);
     font-weight: 600;
     color: #FFFFFF;
     line-height: 1;
@@ -257,7 +257,7 @@ body {
 
 .section-4-wrapper .stat-label,
 .stat-label {
-    font-size: clamp(1.05rem, 1.4vw, 1.4rem);
+    font-size: clamp(1.3rem, 1.8vw, 1.8rem);
     font-weight: 700;
     color: #60CEFF;
     /* Soft sky blue text matching reference image 100%! */
@@ -466,19 +466,19 @@ body {
         display: flex !important;
         align-items: center !important;
         justify-content: flex-start !important;
-        gap: 6px !important;
-        overflow: hidden !important;
+        gap: 8px !important;
+        overflow: visible !important;
     }
 
     .stat-number-box {
-        font-size: clamp(2.0rem, 7.0vw, 3.0rem) !important;
+        font-size: clamp(2.2rem, 7.5vw, 3.2rem) !important;
         font-weight: 700 !important;
         color: #FFFFFF !important;
         flex-shrink: 0 !important;
     }
 
     .stat-label {
-        font-size: clamp(1.05rem, 3.6vw, 1.35rem) !important;
+        font-size: clamp(1.35rem, 4.8vw, 1.75rem) !important;
         color: #60CEFF !important;
         font-weight: 700 !important;
         white-space: nowrap !important;

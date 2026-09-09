@@ -1762,9 +1762,9 @@ body {
 }
 
 .stat-label {
-    font-size: clamp(1.05rem, 1.4vw, 1.4rem);
-    font-weight: 700;
-    color: #60CEFF;
+    font-size: clamp(1.3rem, 1.8vw, 1.8rem) !important;
+    font-weight: 700 !important;
+    color: #60CEFF !important;
     /* Soft sky blue text matching reference image 100%! */
     white-space: nowrap !important;
     letter-spacing: -0.02em;
