@@ -2955,7 +2955,7 @@ body.modal-open {
     }
 
     .badge-pink-right {
-        top: 75px !important;
+        top: 55px !important;
         right: 14px !important;
     }
 
@@ -2982,6 +2982,12 @@ body.modal-open {
     .popup-subtitle-desc {
         font-size: 0.82rem !important;
         line-height: 1.45 !important;
+        text-wrap: balance !important;
+        padding: 0 10px !important;
+    }
+
+    .popup-subtitle-desc br {
+        display: none !important;
     }
 
     .popup-info-boxes {
