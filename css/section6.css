@@ -555,7 +555,7 @@
     .section-6-wrapper .sec6-cards-grid {
         grid-template-columns: 1fr !important;
         gap: 22px !important;
-        max-width: 350px !important;
+        width: 100% !important;
         margin: 0 auto !important;
     }
 
@@ -564,6 +564,8 @@
         padding: 20px 16px 16px !important;
         border-radius: 22px !important;
         background-color: #BAE6FD !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
 
     .section-6-wrapper .sec6-card-header {
@@ -596,9 +598,9 @@
 
     .section-6-wrapper .sec6-graphic-panel {
         width: 100% !important;
-        max-width: 250px !important;
-        height: 235px !important;
-        margin: 0 auto !important;
+        max-width: 100% !important;
+        height: 240px !important;
+        margin: 0 !important;
         border-radius: 18px !important;
         background: #FFFFFF !important;
         position: relative !important;
@@ -611,42 +613,42 @@
     .section-6-wrapper .bubble-blue-1 {
         width: 140px !important;
         height: 200px !important;
-        left: 4px !important;
+        left: calc(50% - 130px) !important;
         bottom: 15px !important;
     }
 
     .section-6-wrapper .bubble-pink-1 {
         width: 155px !important;
         height: 155px !important;
-        right: 4px !important;
+        right: calc(50% - 135px) !important;
         bottom: 5px !important;
     }
 
     .section-6-wrapper .bubble-red-2 {
         width: 135px !important;
         height: 200px !important;
-        left: 6px !important;
+        left: calc(50% - 120px) !important;
         bottom: 5px !important;
     }
 
     .section-6-wrapper .bubble-green-2 {
         width: 145px !important;
         height: 155px !important;
-        right: 4px !important;
+        right: calc(50% - 125px) !important;
         bottom: 25px !important;
     }
 
     .section-6-wrapper .bubble-grey-3 {
         width: 145px !important;
         height: 200px !important;
-        left: 4px !important;
+        left: calc(50% - 125px) !important;
         bottom: 15px !important;
     }
 
     .section-6-wrapper .bubble-yellow-3 {
         width: 125px !important;
         height: 200px !important;
-        right: 6px !important;
+        right: calc(50% - 115px) !important;
         bottom: 5px !important;
     }
 
