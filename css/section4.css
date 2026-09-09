@@ -475,10 +475,10 @@ body {
     .card-info-box {
         background-color: #0052FF !important;
         padding: 4px 2px 2px 2px !important;
-        margin-top: -10px !important;
+        margin-top: -18px !important;
         border-radius: 0 0 20px 20px !important;
         display: flex !important;
-        align-items: baseline !important;
+        align-items: center !important;
         justify-content: flex-start !important;
         width: 100% !important;
         gap: 8px !important;
@@ -487,10 +487,12 @@ body {
 
     .section-4-wrapper .stat-number-box,
     .stat-number-box {
-        font-size: clamp(4rem, 5.5vw, 2.2rem) !important;
+        font-size: clamp(6rem, 5.5vw, 2.2rem) !important;
         font-weight: 500 !important;
         color: #FFFFFF !important;
         flex-shrink: 0 !important;
+        position: relative;
+        bottom: 18px;
     }
 
     .section-4-wrapper .stat-label,
