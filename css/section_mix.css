@@ -58,13 +58,13 @@ body {
 
 .nav-container {
     width: 100%;
-    background: rgba(255, 255, 255, 0.42);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.65);
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.85);
     border-radius: 20px;
     padding: 12px 36px;
-    box-shadow: 0 10px 30px rgba(0, 132, 255, 0.05), 0 2px 8px rgba(0, 0, 0, 0.02);
+    box-shadow: 0 10px 30px rgba(0, 132, 255, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -166,10 +166,10 @@ body {
 }
 
 .floating-navbar.nav-video-mode .nav-container {
-    background: #F8F8F833;
+    background: rgba(255, 255, 255, 0.88);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.85);
     border-radius: 16px;
     padding: 10px 32px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.9);

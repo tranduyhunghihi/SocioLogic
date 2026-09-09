@@ -1772,7 +1772,7 @@ body.modal-open {
 .stat-number-box {
     display: flex;
     align-items: center;
-    font-size: clamp(2.2rem, 3.1vw, 3.6rem);
+    font-size: clamp(3rem, 3.1vw, 3.6rem);  
     font-weight: 600;
     color: #FFFFFF;
     line-height: 1;
@@ -1788,7 +1788,7 @@ body.modal-open {
 }
 
 .stat-label {
-    font-size: clamp(1.4rem, 1.05vw, 1.18rem) !important;
+    font-size: clamp(0.8rem, 1.05vw, 1.18rem) !important;
     font-weight: 800 !important;
     color: #60CEFF !important;
     /* Soft sky blue text matching reference image 100%! */
