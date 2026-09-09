@@ -573,7 +573,9 @@ body {
     }
 
     #sec3-loichuc .title-main-text,
+    #sec3-loichuc .title-line-top .title-main-text,
     #sec3-loichuc .title-line-bottom .title-main-text {
+        font-family: var(--font-main), 'BT BeauSans', -apple-system, BlinkMacSystemFont, sans-serif !important;
         font-size: clamp(1.75rem, 5.8vw, 2.1rem) !important;
         font-weight: 600 !important;
         line-height: 1.15 !important;
@@ -581,6 +583,7 @@ body {
     }
 
     #sec3-loichuc .script-reveal-text {
+        font-family: var(--font-playwrite), 'Playwrite IE', cursive, sans-serif !important;
         font-size: clamp(1.65rem, 5.8vw, 2.0rem) !important;
         font-weight: 400 !important;
         line-height: 1.15 !important;
@@ -591,77 +594,80 @@ body {
     }
 }
 
-#sec3-loichuc .app-header {
-    text-align: center;
-    margin-bottom: 16px;
-    width: 100%;
-    box-sizing: border-box;
-}
+/* PC Desktop Header Title Wishes */
+@media (min-width: 769px) {
+    #sec3-loichuc .app-header {
+        text-align: center;
+        margin-bottom: 16px;
+        width: 100%;
+        box-sizing: border-box;
+    }
 
-#sec3-loichuc .header-title-wishes {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    width: 100%;
-    box-sizing: border-box;
-    font-weight: 500 !important;
-    -webkit-font-smoothing: antialiased !important;
-    -moz-osx-font-smoothing: grayscale !important;
-}
+    #sec3-loichuc .header-title-wishes {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        width: 100%;
+        box-sizing: border-box;
+        font-weight: 500;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
 
-#sec3-loichuc .title-line-top {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    flex-wrap: nowrap !important;
-    white-space: nowrap !important;
-    width: 100%;
-    max-width: 100%;
-    font-weight: 500 !important;
-}
+    #sec3-loichuc .title-line-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        flex-wrap: nowrap;
+        white-space: nowrap;
+        width: 100%;
+        max-width: 100%;
+        font-weight: 500;
+    }
 
-#sec3-loichuc .title-main-text {
-    font-family: var(--font-main), 'BT BeauSans', sans-serif;
-    font-size: clamp(2.4rem, 4.0vw, 3.4rem);
-    font-weight: 500 !important;
-    color: #0052FF;
-    line-height: 1.25;
-    letter-spacing: -0.5px;
-    white-space: nowrap !important;
-    -webkit-font-smoothing: antialiased !important;
-    -moz-osx-font-smoothing: grayscale !important;
-}
+    #sec3-loichuc .title-main-text {
+        font-family: var(--font-main), 'BT BeauSans', sans-serif;
+        font-size: clamp(2.4rem, 4.0vw, 3.4rem);
+        font-weight: 500;
+        color: #0052FF;
+        line-height: 1.25;
+        letter-spacing: -0.5px;
+        white-space: nowrap;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
 
-#sec3-loichuc .title-yellow-box {
-    position: relative;
-    background-color: transparent !important;
-    padding: 0 6px !important;
-    border-radius: 0;
-    display: inline-flex;
-    align-items: center;
-    white-space: nowrap !important;
-}
+    #sec3-loichuc .title-yellow-box {
+        position: relative;
+        background-color: transparent;
+        padding: 0 6px;
+        border-radius: 0;
+        display: inline-flex;
+        align-items: center;
+        white-space: nowrap;
+    }
 
-#sec3-loichuc .script-reveal-text {
-    font-family: var(--font-playwrite), 'Playwrite IE', cursive, sans-serif !important;
-    font-size: clamp(2.5rem, 4.2vw, 3.6rem);
-    font-weight: 400 !important;
-    color: #0052FF;
-    line-height: 1.25;
-    white-space: nowrap !important;
-    -webkit-font-smoothing: antialiased !important;
-    -moz-osx-font-smoothing: grayscale !important;
-}
+    #sec3-loichuc .script-reveal-text {
+        font-family: var(--font-playwrite), 'Playwrite IE', cursive, sans-serif;
+        font-size: clamp(2.5rem, 4.2vw, 3.6rem);
+        font-weight: 400;
+        color: #0052FF;
+        line-height: 1.25;
+        white-space: nowrap;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
 
-#sec3-loichuc .title-line-bottom .title-main-text {
-    font-size: clamp(2.4rem, 4.0vw, 3.4rem);
-    font-weight: 500 !important;
-    letter-spacing: -0.5px;
-    white-space: nowrap !important;
-    -webkit-font-smoothing: antialiased !important;
-    -moz-osx-font-smoothing: grayscale !important;
+    #sec3-loichuc .title-line-bottom .title-main-text {
+        font-size: clamp(2.4rem, 4.0vw, 3.4rem);
+        font-weight: 500;
+        letter-spacing: -0.5px;
+        white-space: nowrap;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
 }
 
 /* Action Buttons Bar */
