@@ -409,9 +409,9 @@
     display: flex;
     align-items: stretch;
     justify-content: center;
-    gap: 64px;
+    gap: 36px;
     width: 100%;
-    max-width: 1160px;
+    max-width: 1260px;
     margin: -10px auto 0;
 }
 
@@ -420,7 +420,7 @@
     background: #FFFFFF;
     border: 1.5px solid #E2E8F0;
     border-radius: 18px;
-    padding: 24px 32px;
+    padding: 22px 28px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
     display: flex;
     align-items: center;
@@ -437,10 +437,10 @@
 
 .section-5a-wrapper .community-card p {
     font-family: 'BT BeauSans', sans-serif;
-    font-size: clamp(0.95rem, 1.25vw, 1.12rem);
+    font-size: clamp(0.88rem, 1.08vw, 1.02rem);
     font-weight: 500;
     color: #7B7B7B;
-    line-height: 1.6;
+    line-height: 1.55;
     margin: 0;
     letter-spacing: -0.01em;
 }
