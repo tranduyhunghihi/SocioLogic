@@ -2838,8 +2838,8 @@ body.modal-open {
 }
 
 .popup-info-box {
-    background: #FDF0F6;
-    border-radius: 14px;
+    background: #FCE4EC;
+    border-radius: 0;
     padding: 14px 16px;
     display: flex;
     align-items: center;
