@@ -532,6 +532,9 @@ body {
 
     #sec3-loichuc,
     #loi-chuc-section {
+        position: relative !important;
+        z-index: 20 !important;
+        background: linear-gradient(180deg, #BAE6FD 0%, #E0F2FE 280px, #FFFFFF 520px) !important;
         height: 100vh !important;
         height: 100svh !important;
         height: 100dvh !important;

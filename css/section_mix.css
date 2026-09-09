@@ -2002,6 +2002,13 @@ a.pill-btn-yellow:hover {
     /* ==========================================================================
        SECTION 2 MOBILE RESPONSIVE DESIGN (EXACT MATCH FOR MOBILE SCREENSHOT)
        ========================================================================== */
+    #sec2-hero {
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 10 !important;
+        background-color: #FFFFFF !important;
+    }
+
     #sec2-hero,
     #sec2-hero .section-1-wrapper {
         height: 100vh !important;
@@ -2019,6 +2026,9 @@ a.pill-btn-yellow:hover {
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
+    }
+
+    #sec2-hero .section-1-wrapper {
         position: relative !important;
     }
 
