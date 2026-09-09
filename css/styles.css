@@ -584,7 +584,6 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 4px;
-    margin: 0 0 12px 0;
     width: 100%;
     box-sizing: border-box;
     font-weight: 500 !important;
@@ -2407,6 +2406,7 @@ body.modal-open {
         margin: 0 auto;
         padding: 0 16px 40px;
         box-sizing: border-box;
+        touch-action: pan-y !important;
     }
 
     /* Top Action Buttons Bar */

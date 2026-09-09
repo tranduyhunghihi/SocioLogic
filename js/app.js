@@ -1818,15 +1818,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     const diffX = Math.abs(currentX - mobileTouchStartX);
                     const diffY = Math.abs(currentY - mobileTouchStartY);
 
-                    // If user moves finger horizontally more than vertically, lock vertical scrolling for this gesture
                     if (diffX > diffY && diffX > 6) {
                         isHorizontalLock = true;
-                        if (e.cancelable) {
-                            e.preventDefault();
-                        }
                     }
                 }
-            }, { passive: false });
+            }, { passive: true });
 
             gridWrapper.addEventListener('touchend', (e) => {
                 if (e.changedTouches && e.changedTouches.length === 1) {
