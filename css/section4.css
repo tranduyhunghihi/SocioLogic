@@ -173,13 +173,13 @@ body {
     overflow: visible !important;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     height: 100%;
     width: 100%;
     min-width: 0;
     box-shadow: 0 12px 30px rgba(0, 82, 255, 0.22);
     transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
-    padding: 6px 6px 12px 6px;
+    padding: 10px 10px 14px 10px;
     position: relative;
     box-sizing: border-box;
 }
@@ -196,8 +196,6 @@ body {
     margin: 0 !important;
     display: block;
     position: relative;
-    right: 8px;
-    bottom: 10px;
     z-index: 1;
     overflow: visible !important;
     box-sizing: border-box;
@@ -211,8 +209,6 @@ body {
     display: block;
     object-fit: contain !important;
     margin: 0 !important;
-    transform: scale(1.03) !important;
-    transform-origin: center top !important;
     transition: transform 0.3s ease, filter 0.3s ease;
 }
 
@@ -221,16 +217,16 @@ body {
     filter: none !important;
 }
 
-/* Bottom Solid Blue Info Box - Left Aligned Number + Soft Sky Blue Label */
+/* Bottom Solid Blue Info Box - Left Aligned Number + Soft Sky Blue Label Tight Below Image */
 .card-info-box {
     background-color: #0052FF;
-    padding: 8px 6px 2px 6px;
+    padding: 4px 4px 2px 4px;
     display: flex;
     align-items: baseline;
     justify-content: flex-start;
     gap: 10px;
     width: 100%;
-    margin-top: 0;
+    margin-top: -12px;
     z-index: 2;
     position: relative;
     border-radius: 0 0 22px 22px;
@@ -461,14 +457,18 @@ body {
     .stat-card {
         background-color: #0052FF !important;
         border-radius: 20px !important;
-        padding: 12px 12px 12px 12px !important;
+        padding: 10px 10px 12px 10px !important;
         box-shadow: 0 8px 24px rgba(0, 102, 255, 0.18) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
         overflow: visible !important;
     }
 
     .card-info-box {
         background-color: #0052FF !important;
-        padding: 8px 0 2px 0 !important;
+        padding: 4px 2px 2px 2px !important;
+        margin-top: -10px !important;
         border-radius: 0 0 20px 20px !important;
         display: flex !important;
         align-items: baseline !important;
