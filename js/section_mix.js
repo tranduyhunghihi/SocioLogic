@@ -717,14 +717,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setupVideoNavbarMode();
 
-    // Click to play/pause video
-    document.querySelectorAll('.fullscreen-video-player').forEach(video => {
-        video.addEventListener('click', () => {
+    // Fullscreen Video Play/Pause & Overlay Management
+    document.querySelectorAll('.fullscreen-video-section').forEach(section => {
+        const video = section.querySelector('video');
+        const overlay = section.querySelector('.video-play-btn-overlay');
+        if (!video) return;
+
+        const togglePlay = (e) => {
+            if (e) e.stopPropagation();
             if (video.paused) {
-                video.play().catch(() => {});
+                video.play().then(() => {
+                    if (overlay) overlay.classList.add('is-playing');
+                }).catch(() => {});
             } else {
                 video.pause();
+                if (overlay) overlay.classList.remove('is-playing');
             }
+        };
+
+        if (overlay) {
+            overlay.addEventListener('click', togglePlay);
+        }
+
+        video.addEventListener('click', togglePlay);
+
+        video.addEventListener('play', () => {
+            if (overlay) overlay.classList.add('is-playing');
+        });
+
+        video.addEventListener('pause', () => {
+            if (overlay) overlay.classList.remove('is-playing');
         });
     });
 });
