@@ -2209,6 +2209,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, 2200);
 
+    function forceOpenParentPopup() {
+        if (!parentPopupOverlay) return;
+        isPopupOpened = true;
+        parentPopupOverlay.classList.remove('hidden');
+        parentPopupOverlay.offsetHeight;
+        parentPopupOverlay.classList.add('active');
+        updateModalBodyScrollLock();
+    }
+
+    const sec7PartyBtns = document.querySelectorAll('#btn-open-parent-popup-sec7, .sec7-party-btn');
+    sec7PartyBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            forceOpenParentPopup();
+        });
+    });
+
     if (btnCloseParentPopup) {
         btnCloseParentPopup.addEventListener('click', closeParentPopup);
     }
