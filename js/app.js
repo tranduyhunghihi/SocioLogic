@@ -1715,18 +1715,21 @@ document.addEventListener('DOMContentLoaded', () => {
         if (gridWrapper && !gridWrapper.dataset.swipeBound) {
             gridWrapper.dataset.swipeBound = "true";
 
+            let isHorizontalLock = false;
+
             const handleStart = (clientX, clientY) => {
                 mobileTouchStartX = clientX;
                 mobileTouchStartY = clientY;
                 mobileTouchIsSwiping = false;
+                isHorizontalLock = false;
             };
 
             const handleEnd = (clientX, clientY) => {
                 const diffX = mobileTouchStartX - clientX;
                 const diffY = mobileTouchStartY - clientY;
 
-                // Horizontal swipe check: horizontal displacement > vertical displacement and > 30px
-                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 30) {
+                // Horizontal swipe check: horizontal displacement > vertical displacement and > 25px
+                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 25) {
                     mobileTouchIsSwiping = true;
                     const totalPagesNow = Math.max(1, Math.ceil((wishes ? wishes.length : 0) / 4));
 
@@ -1752,6 +1755,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     handleStart(e.touches[0].clientX, e.touches[0].clientY);
                 }
             }, { passive: true });
+
+            gridWrapper.addEventListener('touchmove', (e) => {
+                if (e.touches && e.touches.length === 1) {
+                    const currentX = e.touches[0].clientX;
+                    const currentY = e.touches[0].clientY;
+                    const diffX = Math.abs(currentX - mobileTouchStartX);
+                    const diffY = Math.abs(currentY - mobileTouchStartY);
+
+                    // If user moves finger horizontally more than vertically, lock vertical scrolling for this gesture
+                    if (diffX > diffY && diffX > 6) {
+                        isHorizontalLock = true;
+                        if (e.cancelable) {
+                            e.preventDefault();
+                        }
+                    }
+                }
+            }, { passive: false });
 
             gridWrapper.addEventListener('touchend', (e) => {
                 if (e.changedTouches && e.changedTouches.length === 1) {
