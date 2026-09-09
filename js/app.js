@@ -743,6 +743,58 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Helper: Lock / Unlock body scroll when modals pop up
+    function updateModalBodyScrollLock() {
+        const isAnyModalOpen = (gridOverlay && !gridOverlay.classList.contains('hidden')) ||
+                               (readerOverlay && !readerOverlay.classList.contains('hidden')) ||
+                               (editorOverlay && !editorOverlay.classList.contains('hidden'));
+        if (isAnyModalOpen) {
+            document.body.classList.add('modal-open');
+            document.documentElement.classList.add('modal-open');
+        } else {
+            document.body.classList.remove('modal-open');
+            document.documentElement.classList.remove('modal-open');
+        }
+    }
+
+    // Helper: Setup wheel / touchmove containment on modal overlays to prevent background scrolling
+    function setupOverlayScrollContainment() {
+        [gridOverlay, readerOverlay, editorOverlay].forEach(overlay => {
+            if (!overlay) return;
+            overlay.addEventListener('wheel', (e) => {
+                const scrollable = e.target.closest('.grid-modal-scroll, .card-text-content, .editor-card-container');
+                if (!scrollable) {
+                    e.preventDefault();
+                } else {
+                    const { scrollTop, scrollHeight, clientHeight } = scrollable;
+                    const delta = e.deltaY;
+                    if ((delta < 0 && scrollTop <= 0) || (delta > 0 && scrollTop + clientHeight >= scrollHeight - 1)) {
+                        e.preventDefault();
+                    }
+                }
+            }, { passive: false });
+
+            overlay.addEventListener('touchmove', (e) => {
+                const scrollable = e.target.closest('.grid-modal-scroll, .card-text-content, .editor-card-container');
+                if (!scrollable) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+        });
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (readerOverlay && !readerOverlay.classList.contains('hidden')) {
+                    closeReader();
+                } else if (gridOverlay && !gridOverlay.classList.contains('hidden')) {
+                    closeGridModal();
+                } else if (editorOverlay && !editorOverlay.classList.contains('hidden')) {
+                    closeEditor();
+                }
+            }
+        });
+    }
+
     // ==========================================================================
     // EDITOR MODAL LOGIC
     // ==========================================================================
@@ -753,12 +805,14 @@ document.addEventListener('DOMContentLoaded', () => {
             editorCard.style.backgroundColor = currentEditorBgColor;
         }
         editorOverlay.classList.remove('hidden');
+        updateModalBodyScrollLock();
         resetEditor();
         setTimeout(resizeCanvas, 50);
     }
 
     function closeEditor() {
         editorOverlay.classList.add('hidden');
+        updateModalBodyScrollLock();
     }
 
     function resetEditor() {
@@ -779,15 +833,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function closeReader() {
         readerOverlay.classList.add('hidden');
+        updateModalBodyScrollLock();
     }
 
     function openGridModal() {
         renderGridModalCards();
         if (gridOverlay) gridOverlay.classList.remove('hidden');
+        updateModalBodyScrollLock();
     }
 
     function closeGridModal() {
         if (gridOverlay) gridOverlay.classList.add('hidden');
+        updateModalBodyScrollLock();
     }
 
     function renderGridModalCards() {
@@ -2078,6 +2135,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
         readerOverlay.classList.remove('hidden');
+        updateModalBodyScrollLock();
     }
 
     function escapeHtml(str) {

@@ -460,7 +460,7 @@ body {
 
     .stat-card {
         background-color: #0052FF !important;
-        border-radius: 20px !important;
+        border-radius: 22px !important;
         padding: 10px 10px 12px 10px !important;
         box-shadow: 0 8px 24px rgba(0, 102, 255, 0.18) !important;
         display: flex !important;
@@ -484,7 +484,7 @@ body {
 
     .section-4-wrapper .stat-number-box,
     .stat-number-box {
-        font-size: clamp(3rem, 5.5vw, 2.2rem) !important;
+        font-size: clamp(4rem, 5.5vw, 2.2rem) !important;
         font-weight: 500 !important;
         color: #FFFFFF !important;
         flex-shrink: 0 !important;
@@ -492,7 +492,7 @@ body {
 
     .section-4-wrapper .stat-label,
     .stat-label {
-        font-size: 1.5rem !important;
+        font-size: 1.4rem !important;
         color: #60CEFF !important;
         font-weight: 400 !important;
         white-space: nowrap !important;
@@ -506,5 +506,14 @@ body {
 
     .journey-subtitle p {
         font-size: 1.05rem !important;
+    }
+
+    .card-image-wrapper {
+        position: relative !important;
+        bottom: 56px !important;
+        /* Đẩy lên (-) hoặc dịch xuống (+) */
+        right: 10px !important;
+        /* Dịch sang trái (-) hoặc sang phải (+) */
+        margin-bottom: 0px !important;
     }
 }

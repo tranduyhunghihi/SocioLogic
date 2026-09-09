@@ -1001,8 +1001,27 @@ body {
 }
 
 /* ==========================================================================
-   OVERLAY MODAL (EDITOR & READER)
+   OVERLAY MODAL (EDITOR & READER) SCROLL LOCK & CONTAINMENT
    ========================================================================== */
+body.modal-open,
+html.modal-open {
+    overflow: hidden !important;
+    height: 100vh !important;
+    touch-action: none !important;
+}
+
+.overlay,
+#grid-overlay,
+#reader-overlay,
+#editor-modal-overlay,
+.grid-modal-container,
+.grid-modal-scroll,
+.reader-modal-container,
+.reader-modal-card,
+.card-text-content {
+    overscroll-behavior: contain !important;
+}
+
 .overlay {
     position: fixed !important;
     top: 0 !important;
