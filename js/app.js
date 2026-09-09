@@ -673,7 +673,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (readerOverlay) {
             readerOverlay.addEventListener('click', (e) => {
-                if (!e.target.closest('.wish-card')) closeReader();
+                if (!e.target.closest('.reader-modal-card') && !e.target.closest('#reader-card-content')) closeReader();
             });
         }
 
@@ -2039,6 +2039,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (cachedWishObj) {
                     await saveCardPosition(cachedWishObj);
                 }
+            } else {
+                const wishId = cardEl.dataset.id;
+                openReaderModalByWishId(wishId);
             }
         };
 
