@@ -529,6 +529,7 @@ body {
 }
 
 @media (max-width: 768px) {
+
     #sec3-loichuc,
     #loi-chuc-section {
         height: 100vh !important;
@@ -1768,7 +1769,7 @@ body {
 }
 
 .stat-label {
-    font-size: clamp(0.88rem, 1.05vw, 1.18rem) !important;
+    font-size: clamp(1.4rem, 1.05vw, 1.18rem) !important;
     font-weight: 800 !important;
     color: #60CEFF !important;
     /* Soft sky blue text matching reference image 100%! */
@@ -2078,10 +2079,12 @@ body {
         height: 380px;
         padding: 24px 12px 12px 12px;
     }
+
     .reader-modal-card .card-author-title {
         font-size: 1rem !important;
         margin-bottom: 6px;
     }
+
     .reader-modal-card .card-text-content {
         padding: 12px;
         font-size: 0.95rem;
@@ -2350,10 +2353,12 @@ body {
    ========================================================================== */
 
 .wishes-mobile-container {
-    display: none; /* Hidden on PC */
+    display: none;
+    /* Hidden on PC */
 }
 
 @media (max-width: 768px) {
+
     /* Hide PC Wish Board on Mobile */
     .wish-board,
     .board-wrapper,
@@ -2578,6 +2583,7 @@ body {
 
 /* Mobile Responsive Customizations (PC Desktop Remains 100% Untouched Originals) */
 @media (max-width: 768px) {
+
     /* Zero Border-Radius for Mobile Wish Cards */
     .wish-card,
     .wish-note-card,
