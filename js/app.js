@@ -753,10 +753,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                (editorOverlay && !editorOverlay.classList.contains('hidden'));
         if (isAnyModalOpen) {
             document.body.classList.add('modal-open');
-            document.documentElement.classList.add('modal-open');
         } else {
             document.body.classList.remove('modal-open');
-            document.documentElement.classList.remove('modal-open');
         }
     }
 
@@ -1513,10 +1511,19 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!emptyNotice) {
                 emptyNotice = document.createElement('div');
                 emptyNotice.className = 'empty-board-notice';
+                emptyNotice.style.cssText = 'pointer-events: auto; cursor: pointer; text-align: center; padding: 40px 20px;';
                 emptyNotice.innerHTML = `
-                    <i class="ph-bold ph-cards"></i>
-                    <p>Chưa có lời chúc nào. Hãy là người đầu tiên viết lời chúc nhé!</p>
+                    <i class="ph-bold ph-pencil-line" style="font-size: 2.8rem; color: #0052FF; margin-bottom: 12px; display: block;"></i>
+                    <p style="font-size: 1.15rem; font-weight: 700; color: #1E293B; margin-bottom: 6px;">Chưa có lời chúc nào trên bảng</p>
+                    <p style="font-size: 0.92rem; color: #64748B; margin-bottom: 18px;">Hãy nhấp vào đây để là người đầu tiên viết lời chúc nhé!</p>
+                    <button class="btn-board-action" type="button" style="background: #0052FF !important; color: #FFFFFF !important; padding: 10px 24px; pointer-events: auto;">
+                        <i class="ph-bold ph-pencil-line"></i> Viết lời chúc ngay
+                    </button>
                 `;
+                emptyNotice.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openEditor();
+                });
                 cardsViewport.appendChild(emptyNotice);
             }
             return;
@@ -1668,11 +1675,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!wishes || wishes.length === 0) {
             mobileGrid.innerHTML = `
-                <div class="empty-board-notice" style="grid-column: 1 / -1; padding: 40px 10px;">
-                    <i class="ph-bold ph-cards" style="font-size: 2rem; color: #94A3B8;"></i>
-                    <p style="color: #64748B; margin-top: 8px;">Chưa có lời chúc nào. Hãy là người đầu tiên viết lời chúc nhé!</p>
+                <div class="empty-board-notice" style="grid-column: 1 / -1; padding: 40px 16px; text-align: center; cursor: pointer;">
+                    <i class="ph-bold ph-pencil-line" style="font-size: 2.5rem; color: #0052FF; display: block; margin-bottom: 10px;"></i>
+                    <p style="font-size: 1.05rem; font-weight: 700; color: #1E293B; margin-bottom: 4px;">Chưa có lời chúc nào</p>
+                    <p style="font-size: 0.85rem; color: #64748B; margin-bottom: 14px;">Hãy nhấn vào đây để viết lời chúc đầu tiên!</p>
+                    <button class="btn-board-action" type="button" style="background: #0052FF !important; color: #FFFFFF !important; padding: 8px 20px; font-size: 0.88rem;">
+                        <i class="ph-bold ph-pencil-line"></i> Viết lời chúc ngay
+                    </button>
                 </div>
             `;
+            const emptyEl = mobileGrid.querySelector('.empty-board-notice');
+            if (emptyEl) {
+                emptyEl.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openEditor();
+                });
+            }
             if (mobileDotsContainer) mobileDotsContainer.innerHTML = '';
             return;
         }
@@ -1890,7 +1908,7 @@ document.addEventListener('DOMContentLoaded', () => {
         wishBoard.dataset.dragSwipeBound = "true";
 
         wishBoard.addEventListener('mousedown', (e) => {
-            if (e.target.closest('.wish-card') || e.target.closest('.btn-board-action') || e.target.closest('.wish-nav-btn')) return;
+            if (e.target.closest('.wish-card') || e.target.closest('.btn-board-action') || e.target.closest('.wish-nav-btn') || e.target.closest('.empty-board-notice')) return;
             isBoardMouseDown = true;
             boardDragStartX = e.clientX;
         });

@@ -1006,11 +1006,8 @@ body {
 /* ==========================================================================
    OVERLAY MODAL (EDITOR & READER) SCROLL LOCK & CONTAINMENT
    ========================================================================== */
-body.modal-open,
-html.modal-open {
+body.modal-open {
     overflow: hidden !important;
-    height: 100vh !important;
-    touch-action: none !important;
 }
 
 .overlay,
