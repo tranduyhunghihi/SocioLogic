@@ -2175,9 +2175,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function openParentPopup() {
         if (isPopupOpened || !parentPopupOverlay) return;
 
-        const hasSubmitted = sessionStorage.getItem('socio_logic_parent_popup_submitted');
-        if (hasSubmitted === 'true') return;
-
         isPopupOpened = true;
         parentPopupOverlay.classList.remove('hidden');
         // Force reflow for smooth fade/scale transition
