@@ -80,7 +80,7 @@ body {
 /* 1. Header Title & Subtitle Matching Reference Image */
 .journey-header-container {
     max-width: 900px;
-    margin: 0 auto 52px;
+    margin: 0 auto 64px;
     text-align: center;
 }
 
@@ -412,7 +412,7 @@ body {
     }
 
     .journey-header-container {
-        margin-bottom: 36px !important;
+        margin-bottom: 64px !important;
     }
 
     .title-line-main {
@@ -484,7 +484,7 @@ body {
 
     .section-4-wrapper .stat-number-box,
     .stat-number-box {
-        font-size: clamp(1.6rem, 5.5vw, 2.2rem) !important;
+        font-size: clamp(3rem, 5.5vw, 2.2rem) !important;
         font-weight: 500 !important;
         color: #FFFFFF !important;
         flex-shrink: 0 !important;
@@ -492,7 +492,7 @@ body {
 
     .section-4-wrapper .stat-label,
     .stat-label {
-        font-size: clamp(1.1rem, 4.0vw, 1.5rem) !important;
+        font-size: 1.5rem !important;
         color: #60CEFF !important;
         font-weight: 400 !important;
         white-space: nowrap !important;
