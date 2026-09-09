@@ -1591,8 +1591,8 @@ a.pill-btn-yellow:hover {
         margin: 0 auto !important;
         width: 100% !important;
         max-width: 100% !important;
-        height: calc(820px * min(calc((100vw - 16px) / 440), calc((100dvh - 130px) / 820))) !important;
-        min-height: calc(820px * min(calc((100vw - 16px) / 440), calc((100dvh - 130px) / 820))) !important;
+        height: calc(820px * 0.86 * min(calc((100vw - 20px) / 440), calc((100dvh - 120px) / 820))) !important;
+        min-height: calc(820px * 0.86 * min(calc((100vw - 20px) / 440), calc((100dvh - 120px) / 820))) !important;
         overflow: visible !important;
         display: flex !important;
         justify-content: center !important;
@@ -1611,7 +1611,7 @@ a.pill-btn-yellow:hover {
         min-height: 820px !important;
         margin: 0 auto !important;
         transform-origin: bottom center !important;
-        transform: scale(min(calc((100vw - 16px) / 440), calc((100dvh - 130px) / 820))) !important;
+        transform: scale(calc(0.86 * min(calc((100vw - 20px) / 440), calc((100dvh - 120px) / 820)))) !important;
     }
 
     /* ==========================================================================
