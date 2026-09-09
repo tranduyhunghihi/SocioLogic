@@ -220,25 +220,25 @@ body {
 /* Bottom Solid Blue Info Box - Tight Compact Base */
 .card-info-box {
     background-color: #0052FF;
-    padding: 10px 10px 20px 12px;
+    padding: 12px 16px 20px 16px;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    gap: 6px;
+    justify-content: space-between;
+    width: 100%;
     margin-top: -24px;
     z-index: 2;
     position: relative;
     border-radius: 0 0 22px 22px;
     min-width: 0;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .section-4-wrapper .stat-number-box,
 .stat-number-box {
     display: flex;
     align-items: center;
-    font-size: clamp(2.6rem, 4.0vw, 4.2rem);
+    font-size: clamp(2.4rem, 3.8vw, 4.0rem);
     font-weight: 800;
     color: #FFFFFF;
     line-height: 1;
@@ -257,16 +257,17 @@ body {
 
 .section-4-wrapper .stat-label,
 .stat-label {
-    font-size: clamp(1.5rem, 2.2vw, 2.2rem);
+    font-size: clamp(1.35rem, 2.0vw, 2.0rem);
     font-weight: 800;
     color: #60CEFF;
     /* Soft sky blue text matching reference image 100%! */
     white-space: nowrap !important;
     letter-spacing: -0.02em;
-    margin: 0;
+    margin: 0 0 0 auto;
     padding: 3px 0 5px 0;
     background: none;
     line-height: 1.2 !important;
+    text-align: right;
     overflow: visible !important;
 }
 
@@ -465,26 +466,29 @@ body {
         border-radius: 0 0 20px 20px !important;
         display: flex !important;
         align-items: center !important;
-        justify-content: flex-start !important;
+        justify-content: space-between !important;
+        width: 100% !important;
         gap: 10px !important;
         overflow: visible !important;
     }
 
     .stat-number-box {
-        font-size: clamp(2.5rem, 8.5vw, 3.8rem) !important;
+        font-size: clamp(2.4rem, 8.0vw, 3.6rem) !important;
         font-weight: 800 !important;
         color: #FFFFFF !important;
         flex-shrink: 0 !important;
     }
 
     .stat-label {
-        font-size: clamp(1.6rem, 5.8vw, 2.2rem) !important;
+        font-size: clamp(1.4rem, 5.0vw, 2.0rem) !important;
         color: #60CEFF !important;
         font-weight: 800 !important;
         white-space: nowrap !important;
         letter-spacing: -0.02em !important;
         line-height: 1.2 !important;
         padding: 3px 0 5px 0 !important;
+        margin-left: auto !important;
+        text-align: right !important;
         overflow: visible !important;
     }
 
