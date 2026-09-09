@@ -2007,7 +2007,7 @@ a.pill-btn-yellow:hover {
         min-height: 100dvh !important;
         max-height: 100vh !important;
         max-height: 100dvh !important;
-        padding: 20px 12px !important;
+        padding: 20px 6px !important;
         box-sizing: border-box !important;
         overflow: hidden !important;
         display: flex !important;
@@ -2021,10 +2021,11 @@ a.pill-btn-yellow:hover {
         flex-direction: row !important;
         align-items: center !important;
         justify-content: center !important;
-        gap: 8px !important;
+        gap: 4px !important;
         width: 100% !important;
-        max-width: 440px !important;
+        max-width: 100% !important;
         margin: 0 auto !important;
+        box-sizing: border-box !important;
     }
 
     #sec2-hero .hero-col-left {
@@ -2033,7 +2034,8 @@ a.pill-btn-yellow:hover {
         align-items: flex-end !important;
         text-align: right !important;
         gap: 6px !important;
-        flex: 1 !important;
+        flex: 1 1 0% !important;
+        min-width: 0 !important;
         z-index: 5 !important;
         order: 1 !important;
     }
@@ -2080,8 +2082,8 @@ a.pill-btn-yellow:hover {
     #sec2-hero .hero-col-right a.pill-btn-yellow,
     #sec2-hero .hero-col-right .pill-btn-yellow {
         font-family: var(--font-main) !important;
-        font-size: 0.72rem !important;
-        padding: 4px 10px !important;
+        font-size: clamp(0.52rem, 2.3vw, 0.65rem) !important;
+        padding: 3px 6px !important;
         border-radius: 4px !important;
         background-color: #FFF9C4 !important;
         color: #0052FF !important;
@@ -2089,10 +2091,11 @@ a.pill-btn-yellow:hover {
         box-shadow: none !important;
         white-space: nowrap !important;
         margin-top: 6px !important;
-        letter-spacing: -0.2px !important;
+        letter-spacing: -0.3px !important;
         display: inline-block !important;
         max-width: 100% !important;
         box-sizing: border-box !important;
+        text-align: center !important;
     }
 
     #sec2-hero .hero-col-center {
@@ -2114,9 +2117,9 @@ a.pill-btn-yellow:hover {
     }
 
     #sec2-hero .number-2-img {
-        height: 250px !important;
+        height: 240px !important;
         width: auto !important;
-        max-width: 130px !important;
+        max-width: clamp(90px, 25vw, 110px) !important;
         object-fit: contain !important;
         transition: opacity 0.5s ease-out, transform 0.5s ease-out !important;
     }
@@ -2132,7 +2135,8 @@ a.pill-btn-yellow:hover {
         align-items: flex-start !important;
         text-align: left !important;
         gap: 6px !important;
-        flex: 1 !important;
+        flex: 1 1 0% !important;
+        min-width: 0 !important;
         z-index: 5 !important;
         order: 3 !important;
     }
