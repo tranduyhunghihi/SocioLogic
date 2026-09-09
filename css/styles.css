@@ -47,12 +47,18 @@
     padding: 0;
 }
 
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important;
+}
+
 body {
     font-family: var(--font-sans);
     background-color: #FFFFFF;
     color: var(--text-heading);
     min-height: 100vh;
-    overflow-x: hidden;
     background-image:
         radial-gradient(circle at 15% 15%, rgba(0, 102, 255, 0.04) 0%, transparent 40%),
         radial-gradient(circle at 85% 75%, rgba(236, 72, 153, 0.04) 0%, transparent 40%);

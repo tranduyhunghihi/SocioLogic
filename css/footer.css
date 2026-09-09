@@ -7,12 +7,9 @@
 
 .footer-wrapper {
     position: relative;
-    width: 100vw;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    max-width: 100vw;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
     /* Top Main Section: Vertical Gradient (White at Top -> Soft Sky Blue #80D5FF at Bottom) */
@@ -180,12 +177,12 @@
 
 /* 3. Bottom Copyright Bar (PERFECTLY BLENDED SKY BLUE #80D5FF AT RIGHT END) */
 .footer-wrapper .footer-copyright-bar {
-    width: 100vw;
+    width: 100%;
+    max-width: 100%;
     position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
+    margin: 0;
+    left: 0;
+    right: 0;
     /* Exactly matching the bottom right color #80D5FF of the section above it */
     background: linear-gradient(90deg, #FFFFFF 0%, #F2F9FF 25%, #A8E3FF 65%, #80D5FF 100%);
     padding: 18px 0;
