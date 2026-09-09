@@ -691,7 +691,7 @@ a.pill-btn-yellow:hover {
 
 @media (max-width: 868px) {
     .hero-center-titles {
-        top: 20%;
+        top: 25%;
     }
 
     .hero-main-title {
@@ -1492,7 +1492,7 @@ a.pill-btn-yellow:hover {
         top: auto !important;
         left: auto !important;
         transform: none !important;
-        margin: clamp(22px, 3.5vh, 34px) auto 0 auto !important;
+        margin: clamp(65px, 9vh, 95px) auto 0 auto !important;
         width: 100% !important;
         max-width: 95vw !important;
         gap: 2px !important;

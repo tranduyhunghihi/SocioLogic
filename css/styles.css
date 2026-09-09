@@ -2749,14 +2749,12 @@ body.modal-open {
     top: 26px;
     left: 26px;
     background: radial-gradient(circle at center, #FFFFFF 20%, #FFFBEB 60%, #FEF08A 100%);
-    box-shadow: 0 6px 18px rgba(250, 204, 21, 0.28);
 }
 
 .badge-pink-right {
     top: 72px;
     right: 36px;
     background: radial-gradient(circle at center, #FFFFFF 20%, #FFF1F2 60%, #FECDD3 100%);
-    box-shadow: 0 6px 18px rgba(244, 63, 94, 0.28);
 }
 
 /* Header Titles & Subtitles */
