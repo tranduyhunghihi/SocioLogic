@@ -150,7 +150,7 @@
 
     .section-7-wrapper .sec7-title-main {
         font-size: clamp(1.75rem, 5.8vw, 2.1rem) !important;
-        font-weight: 600 !important;
+        font-weight: 500 !important;
         line-height: 1.35 !important;
         letter-spacing: -0.3px !important;
         margin-bottom: 28px !important;

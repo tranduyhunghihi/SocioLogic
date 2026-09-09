@@ -526,7 +526,7 @@
     .sec5a-mobile-blue-title {
         font-family: 'BT BeauSans', sans-serif !important;
         font-size: clamp(1.75rem, 5.8vw, 2.1rem) !important;
-        font-weight: 600 !important;
+        font-weight: 500 !important;
         color: #0052FF !important;
         margin: 0 !important;
         line-height: 1.2 !important;
