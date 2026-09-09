@@ -340,9 +340,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadInitialWishesInstantly() {
         try {
             const cachedData = localStorage.getItem(CACHE_STORAGE_KEY);
-            if (cachedData) {
+            if (cachedData !== null) {
                 const parsed = JSON.parse(cachedData);
-                if (Array.isArray(parsed) && parsed.length > 0) {
+                if (Array.isArray(parsed)) {
                     wishes = parsed;
                     updateWishCount();
                     renderWishesView();
@@ -388,7 +388,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function saveWishesToCache() {
         try {
-            if (wishes && wishes.length > 0) {
+            if (Array.isArray(wishes)) {
                 localStorage.setItem(CACHE_STORAGE_KEY, JSON.stringify(wishes));
             }
         } catch (e) {}
@@ -490,12 +490,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 }
 
-                if (combinedWishes.length > 0) {
-                    wishes = combinedWishes;
-                    saveWishesToCache();
-                    updateWishCount();
-                    renderWishesView();
-                }
+                wishes = combinedWishes;
+                saveWishesToCache();
+                updateWishCount();
+                renderWishesView();
             }
         } catch (err) {
             console.warn('MongoDB fetch notice (using instant pre-rendered cards):', err);
@@ -547,8 +545,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateWishCount() {
+        const countStr = `${wishes ? wishes.length : 0} lời chúc`;
         if (wishCountEl) {
-            wishCountEl.textContent = `${wishes.length} lời chúc`;
+            wishCountEl.textContent = countStr;
+        }
+        const mobileCountSpan = document.getElementById('wish-count-mobile');
+        if (mobileCountSpan) {
+            mobileCountSpan.textContent = countStr;
         }
     }
 
@@ -1503,6 +1506,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!wishes || wishes.length === 0) {
             cardsViewport.style.transform = 'scale(1)';
+            const existingCards = cardsViewport.querySelectorAll('.wish-card');
+            existingCards.forEach(cardEl => cardEl.remove());
+
             let emptyNotice = cardsViewport.querySelector('.empty-board-notice');
             if (!emptyNotice) {
                 emptyNotice = document.createElement('div');
@@ -1829,11 +1835,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderWishesView() {
-        if (window.innerWidth <= 768) {
-            renderMobileWishView();
-        } else {
-            renderBoardCards();
-        }
+        renderBoardCards();
+        renderMobileWishView();
     }
 
     function renderPaginationDots(totalPages) {
