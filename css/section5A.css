@@ -197,6 +197,9 @@
     width: 100px;
     height: 195px;
     transform: translateY(-26px) !important;
+    margin-left: 14px !important;
+    margin-right: 14px !important;
+    z-index: 10 !important;
 }
 
 .section-5a-wrapper .sec5a-bubbles-viewport .letter-5-o {
@@ -227,6 +230,9 @@
     width: 100px;
     height: 195px;
     transform: translateY(-28px) !important;
+    margin-left: 14px !important;
+    margin-right: 14px !important;
+    z-index: 10 !important;
 }
 
 .section-5a-wrapper .sec5a-bubbles-viewport .letter-10-c {
@@ -450,6 +456,7 @@
     display: block !important;
     width: 100%;
 }
+
 .sec5a-mobile-view {
     display: none !important;
     width: 100%;
@@ -459,6 +466,7 @@
     .sec5a-pc-view {
         display: block !important;
     }
+
     .sec5a-mobile-view {
         display: none !important;
     }
@@ -468,6 +476,7 @@
     .sec5a-pc-view {
         display: none !important;
     }
+
     .sec5a-mobile-view {
         display: flex !important;
         flex-direction: column !important;
@@ -561,34 +570,43 @@
 
     /* Mobile Font Size Increase Exclusively for Section 5A Bubble Letters */
     .sec5a-mobile-bubbles-viewport .letter-1-S .bubble-letter {
-        font-size: 15.2rem !important;
+        font-size: 14.5rem !important;
     }
+
     .sec5a-mobile-bubbles-viewport .letter-2-o .bubble-letter {
         font-size: 14.8rem !important;
     }
+
     .sec5a-mobile-bubbles-viewport .letter-3-c .bubble-letter {
-        font-size: 14.8rem !important;
+        font-size: 14.5rem !important;
     }
+
     .sec5a-mobile-bubbles-viewport .letter-4-i .bubble-letter {
-        font-size: 13.5rem !important;
+        font-size: 13rem !important;
     }
+
     .sec5a-mobile-bubbles-viewport .letter-5-o .bubble-letter {
         font-size: 14.8rem !important;
     }
+
     .sec5a-mobile-bubbles-viewport .letter-6-L .bubble-letter {
-        font-size: 15.2rem !important;
+        font-size: 14.5rem !important;
     }
+
     .sec5a-mobile-bubbles-viewport .letter-7-o .bubble-letter {
         font-size: 14.8rem !important;
     }
+
     .sec5a-mobile-bubbles-viewport .letter-8-g .bubble-letter {
-        font-size: 15.2rem !important;
+        font-size: 14rem !important;
     }
+
     .sec5a-mobile-bubbles-viewport .letter-9-i .bubble-letter {
-        font-size: 13.5rem !important;
+        font-size: 13rem !important;
     }
+
     .sec5a-mobile-bubbles-viewport .letter-10-c .bubble-letter {
-        font-size: 14.8rem !important;
+        font-size: 14.5rem !important;
     }
 
     /* NEUTRALIZE OVERRIDING SCATTER TRANSLATIONS FROM SECTION_MIX.CSS */
@@ -613,46 +631,61 @@
         height: 265px !important;
         transform: translateY(-10px) !important;
     }
+
     .sec5a-mobile-view .letter-2-o {
         width: 195px !important;
         height: 195px !important;
         transform: translateY(15px) !important;
     }
+
     .sec5a-mobile-view .letter-3-c {
         width: 195px !important;
         height: 195px !important;
         transform: translateY(6px) !important;
     }
+
     .sec5a-mobile-view .letter-4-i {
         width: 100px !important;
         height: 195px !important;
         transform: translateY(-18px) !important;
+        margin-left: 16px !important;
+        margin-right: 16px !important;
+        z-index: 10 !important;
     }
+
     .sec5a-mobile-view .letter-5-o {
         width: 195px !important;
         height: 195px !important;
         transform: translateY(16px) !important;
     }
+
     .sec5a-mobile-view .letter-6-L {
         width: 190px !important;
         height: 270px !important;
         transform: translateY(-12px) !important;
     }
+
     .sec5a-mobile-view .letter-7-o {
         width: 195px !important;
         height: 195px !important;
         transform: translateY(15px) !important;
     }
+
     .sec5a-mobile-view .letter-8-g {
         width: 195px !important;
         height: 270px !important;
         transform: translateY(-4px) !important;
     }
+
     .sec5a-mobile-view .letter-9-i {
         width: 100px !important;
         height: 195px !important;
         transform: translateY(-20px) !important;
+        margin-left: 16px !important;
+        margin-right: 16px !important;
+        z-index: 10 !important;
     }
+
     .sec5a-mobile-view .letter-10-c {
         width: 195px !important;
         height: 195px !important;
@@ -688,6 +721,7 @@
     .sec5a-mobile-bubbles-viewport {
         height: 110px !important;
     }
+
     .sec5a-mobile-bubbles-viewport .bubbles-row {
         transform: scale(0.38) !important;
     }
