@@ -51,7 +51,7 @@ html,
 body {
     width: 100%;
     max-width: 100%;
-    overflow-x: hidden !important;
+    overflow-x: clip !important;
 }
 
 body {
@@ -530,21 +530,13 @@ body {
 
 @media (max-width: 768px) {
 
-    #sec3-loichuc,
-    #loi-chuc-section {
+    #sec3-loichuc {
         position: relative !important;
         z-index: 20 !important;
         background: linear-gradient(180deg, #BAE6FD 0%, #E0F2FE 280px, #FFFFFF 520px) !important;
-        height: 100vh !important;
-        height: 100svh !important;
-        height: 100dvh !important;
         min-height: 100vh !important;
         min-height: 100svh !important;
         min-height: 100dvh !important;
-        max-height: 100vh !important;
-        max-height: 100svh !important;
-        max-height: 100dvh !important;
-        overflow: hidden !important;
         box-sizing: border-box !important;
         padding: 16px 10px !important;
         display: flex !important;
