@@ -561,7 +561,7 @@
 
     .section-6-wrapper .sec6-card {
         min-height: auto !important;
-        padding: 20px 16px 16px !important;
+        padding: 18px 10px 14px !important;
         border-radius: 22px !important;
         background-color: #BAE6FD !important;
         width: 100% !important;
@@ -599,7 +599,7 @@
     .section-6-wrapper .sec6-graphic-panel {
         width: 100% !important;
         max-width: 100% !important;
-        height: 240px !important;
+        height: 260px !important;
         margin: 0 !important;
         border-radius: 18px !important;
         background: #FFFFFF !important;
@@ -611,69 +611,69 @@
 
     /* Scaling graphic elements inside panel on mobile */
     .section-6-wrapper .bubble-blue-1 {
-        width: 140px !important;
-        height: 200px !important;
-        left: calc(50% - 130px) !important;
-        bottom: 15px !important;
+        width: 165px !important;
+        height: 235px !important;
+        left: calc(50% - 150px) !important;
+        bottom: 20px !important;
     }
 
     .section-6-wrapper .bubble-pink-1 {
-        width: 155px !important;
-        height: 155px !important;
-        right: calc(50% - 135px) !important;
+        width: 185px !important;
+        height: 185px !important;
+        right: calc(50% - 155px) !important;
         bottom: 5px !important;
     }
 
     .section-6-wrapper .bubble-red-2 {
-        width: 135px !important;
-        height: 200px !important;
-        left: calc(50% - 120px) !important;
+        width: 160px !important;
+        height: 240px !important;
+        left: calc(50% - 145px) !important;
         bottom: 5px !important;
     }
 
     .section-6-wrapper .bubble-green-2 {
-        width: 145px !important;
-        height: 155px !important;
-        right: calc(50% - 125px) !important;
-        bottom: 25px !important;
+        width: 170px !important;
+        height: 180px !important;
+        right: calc(50% - 145px) !important;
+        bottom: 30px !important;
     }
 
     .section-6-wrapper .bubble-grey-3 {
-        width: 145px !important;
-        height: 200px !important;
-        left: calc(50% - 125px) !important;
-        bottom: 15px !important;
+        width: 175px !important;
+        height: 235px !important;
+        left: calc(50% - 145px) !important;
+        bottom: 20px !important;
     }
 
     .section-6-wrapper .bubble-yellow-3 {
-        width: 125px !important;
-        height: 200px !important;
-        right: calc(50% - 115px) !important;
+        width: 150px !important;
+        height: 240px !important;
+        right: calc(50% - 135px) !important;
         bottom: 5px !important;
     }
 
     .section-6-wrapper .icon-bubble {
-        width: 44px !important;
-        height: 44px !important;
-        padding: 7px !important;
+        width: 50px !important;
+        height: 50px !important;
+        padding: 8px !important;
     }
 
     .section-6-wrapper .bubble-pencil {
         top: 10px !important;
-        left: 52% !important;
+        left: 51% !important;
     }
 
     .section-6-wrapper .bubble-book {
-        top: 25px !important;
-        right: 12px !important;
+        top: 22px !important;
+        right: 10px !important;
     }
 
     .section-6-wrapper .bubble-question-1 {
         bottom: 5px !important;
         left: 50% !important;
         transform: translateX(-50%) !important;
-        width: 46px !important;
-        height: 46px !important;
+        width: 48px !important;
+        height: 48px !important;
     }
 
     .section-6-wrapper .bubble-exclamation {
@@ -685,12 +685,12 @@
 
     .section-6-wrapper .bubble-heart {
         bottom: 6px !important;
-        right: 20px !important;
+        right: 18px !important;
     }
 
     .section-6-wrapper .bubble-question-3 {
         top: 10px !important;
-        right: 14px !important;
+        right: 12px !important;
     }
 
     .section-6-wrapper .bubble-trophy {
