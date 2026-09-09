@@ -559,6 +559,38 @@
         margin: 0 auto !important;
     }
 
+    /* Mobile Font Size Increase Exclusively for Section 5A Bubble Letters */
+    .sec5a-mobile-bubbles-viewport .letter-1-S .bubble-letter {
+        font-size: 15.2rem !important;
+    }
+    .sec5a-mobile-bubbles-viewport .letter-2-o .bubble-letter {
+        font-size: 14.8rem !important;
+    }
+    .sec5a-mobile-bubbles-viewport .letter-3-c .bubble-letter {
+        font-size: 14.8rem !important;
+    }
+    .sec5a-mobile-bubbles-viewport .letter-4-i .bubble-letter {
+        font-size: 13.5rem !important;
+    }
+    .sec5a-mobile-bubbles-viewport .letter-5-o .bubble-letter {
+        font-size: 14.8rem !important;
+    }
+    .sec5a-mobile-bubbles-viewport .letter-6-L .bubble-letter {
+        font-size: 15.2rem !important;
+    }
+    .sec5a-mobile-bubbles-viewport .letter-7-o .bubble-letter {
+        font-size: 14.8rem !important;
+    }
+    .sec5a-mobile-bubbles-viewport .letter-8-g .bubble-letter {
+        font-size: 15.2rem !important;
+    }
+    .sec5a-mobile-bubbles-viewport .letter-9-i .bubble-letter {
+        font-size: 13.5rem !important;
+    }
+    .sec5a-mobile-bubbles-viewport .letter-10-c .bubble-letter {
+        font-size: 14.8rem !important;
+    }
+
     /* NEUTRALIZE OVERRIDING SCATTER TRANSLATIONS FROM SECTION_MIX.CSS */
     .sec5a-mobile-view .bubble-item {
         --base-x: 0px !important;
