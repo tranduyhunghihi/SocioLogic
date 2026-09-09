@@ -716,4 +716,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     setupVideoNavbarMode();
+
+    // Click to play/pause video
+    document.querySelectorAll('.fullscreen-video-player').forEach(video => {
+        video.addEventListener('click', () => {
+            if (video.paused) {
+                video.play().catch(() => {});
+            } else {
+                video.pause();
+            }
+        });
+    });
 });
