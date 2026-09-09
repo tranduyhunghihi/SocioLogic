@@ -1591,8 +1591,8 @@ a.pill-btn-yellow:hover {
         margin: 0 auto !important;
         width: 100% !important;
         max-width: 100% !important;
-        height: calc(820px * 0.75 * min(calc((100vw - 20px) / 440), calc((100dvh - 110px) / 820))) !important;
-        min-height: calc(820px * 0.75 * min(calc((100vw - 20px) / 440), calc((100dvh - 110px) / 820))) !important;
+        height: calc(820px * min(calc((100vw - 16px) / 440), calc((100dvh - 100px) / 820))) !important;
+        min-height: calc(820px * min(calc((100vw - 16px) / 440), calc((100dvh - 100px) / 820))) !important;
         overflow: visible !important;
         display: flex !important;
         justify-content: center !important;
@@ -1611,7 +1611,7 @@ a.pill-btn-yellow:hover {
         min-height: 820px !important;
         margin: 0 auto !important;
         transform-origin: bottom center !important;
-        transform: scale(calc(0.75 * min(calc((100vw - 20px) / 440), calc((100dvh - 110px) / 820)))) !important;
+        transform: scale(min(calc((100vw - 16px) / 440), calc((100dvh - 100px) / 820))) !important;
     }
 
     /* ==========================================================================
@@ -1642,8 +1642,8 @@ a.pill-btn-yellow:hover {
     .letter-1-S {
         left: 0px !important;
         top: 130px !important;
-        width: 155px !important;
-        height: 205px !important;
+        width: 124px !important;
+        height: 164px !important;
         --base-x: 0px !important;
         --base-y: 0px !important;
         --rot-final: 0deg;
@@ -1655,8 +1655,8 @@ a.pill-btn-yellow:hover {
     .letter-2-o {
         left: 140px !important;
         top: 215px !important;
-        width: 160px !important;
-        height: 160px !important;
+        width: 128px !important;
+        height: 128px !important;
         --base-x: 0px !important;
         --base-y: 0px !important;
         --rot-final: 0deg;
@@ -1668,8 +1668,8 @@ a.pill-btn-yellow:hover {
     .letter-3-c {
         left: 275px !important;
         top: 115px !important;
-        width: 160px !important;
-        height: 160px !important;
+        width: 128px !important;
+        height: 128px !important;
         --base-x: 0px !important;
         --base-y: 0px !important;
         --rot-final: 0deg;
@@ -1681,8 +1681,8 @@ a.pill-btn-yellow:hover {
     .letter-4-i {
         left: 120px !important;
         top: 310px !important;
-        width: 80px !important;
-        height: 200px !important;
+        width: 64px !important;
+        height: 160px !important;
         --base-x: 0px !important;
         --base-y: 0px !important;
         --rot-final: -28deg;
@@ -1694,8 +1694,8 @@ a.pill-btn-yellow:hover {
     .letter-5-o {
         left: 230px !important;
         top: 350px !important;
-        width: 165px !important;
-        height: 165px !important;
+        width: 132px !important;
+        height: 132px !important;
         --base-x: 0px !important;
         --base-y: 0px !important;
         --rot-final: -6deg;
@@ -1707,8 +1707,8 @@ a.pill-btn-yellow:hover {
     .letter-6-L {
         left: 10px !important;
         top: 430px !important;
-        width: 145px !important;
-        height: 205px !important;
+        width: 116px !important;
+        height: 164px !important;
         --base-x: 0px !important;
         --base-y: 0px !important;
         --rot-final: 0deg;
@@ -1720,8 +1720,8 @@ a.pill-btn-yellow:hover {
     .letter-7-o {
         left: 130px !important;
         top: 500px !important;
-        width: 160px !important;
-        height: 160px !important;
+        width: 128px !important;
+        height: 128px !important;
         --base-x: 0px !important;
         --base-y: 0px !important;
         --rot-final: -15deg;
@@ -1733,8 +1733,8 @@ a.pill-btn-yellow:hover {
     .letter-8-g {
         left: 275px !important;
         top: 530px !important;
-        width: 160px !important;
-        height: 210px !important;
+        width: 128px !important;
+        height: 168px !important;
         --base-x: 0px !important;
         --base-y: 0px !important;
         --rot-final: 0deg;
@@ -1746,8 +1746,8 @@ a.pill-btn-yellow:hover {
     .letter-9-i {
         left: 80px !important;
         top: 630px !important;
-        width: 80px !important;
-        height: 190px !important;
+        width: 64px !important;
+        height: 152px !important;
         --base-x: 0px !important;
         --base-y: 0px !important;
         --rot-final: -18deg;
@@ -1759,8 +1759,8 @@ a.pill-btn-yellow:hover {
     .letter-10-c {
         left: 135px !important;
         top: 660px !important;
-        width: 160px !important;
-        height: 160px !important;
+        width: 128px !important;
+        height: 128px !important;
         --base-x: 0px !important;
         --base-y: 0px !important;
         --rot-final: 0deg;
@@ -1770,43 +1770,43 @@ a.pill-btn-yellow:hover {
 
     /* Mobile Proportional Font-Size Scaling for Bubble Overlay Letters */
     .bubbles-row .letter-1-S .bubble-letter {
-        font-size: 9.2rem !important;
+        font-size: 7.4rem !important;
     }
 
     .bubbles-row .letter-2-o .bubble-letter {
-        font-size: 11.0rem !important;
+        font-size: 8.8rem !important;
     }
 
     .bubbles-row .letter-3-c .bubble-letter {
-        font-size: 8.5rem !important;
+        font-size: 6.8rem !important;
     }
 
     .bubbles-row .letter-4-i .bubble-letter {
-        font-size: 10.5rem !important;
+        font-size: 8.4rem !important;
     }
 
     .bubbles-row .letter-5-o .bubble-letter {
-        font-size: 11.0rem !important;
+        font-size: 8.8rem !important;
     }
 
     .bubbles-row .letter-6-L .bubble-letter {
-        font-size: 9.2rem !important;
+        font-size: 7.4rem !important;
     }
 
     .bubbles-row .letter-7-o .bubble-letter {
-        font-size: 11.0rem !important;
+        font-size: 8.8rem !important;
     }
 
     .bubbles-row .letter-8-g .bubble-letter {
-        font-size: 9.2rem !important;
+        font-size: 7.4rem !important;
     }
 
     .bubbles-row .letter-9-i .bubble-letter {
-        font-size: 10.5rem !important;
+        font-size: 8.4rem !important;
     }
 
     .bubbles-row .letter-10-c .bubble-letter {
-        font-size: 8.5rem !important;
+        font-size: 6.8rem !important;
     }
 
     /* Mobile Face Eyes & Mouth Scale & Centering Proportional Fit */
