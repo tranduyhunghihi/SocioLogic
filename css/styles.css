@@ -2724,18 +2724,19 @@ body.modal-open {
     transform: scale(1.08);
 }
 
-/* Decorative Glowing Icon Badges */
+/* Decorative Floating Icon Badges */
 .popup-icon-badge {
-    width: 52px;
-    height: 52px;
+    position: absolute;
+    width: 62px;
+    height: 62px;
     border-radius: 50%;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
-    padding: 8px;
+    padding: 10px;
     box-sizing: border-box;
     pointer-events: none;
-    flex-shrink: 0;
+    z-index: 2;
 }
 
 .popup-icon-badge img {
@@ -2744,12 +2745,16 @@ body.modal-open {
     object-fit: contain;
 }
 
-.badge-yellow {
+.badge-yellow-top {
+    top: 26px;
+    left: 36px;
     background: radial-gradient(circle at center, #FFFFFF 20%, #FFFBEB 60%, #FEF08A 100%);
     box-shadow: 0 6px 18px rgba(250, 204, 21, 0.28);
 }
 
-.badge-pink {
+.badge-pink-right {
+    top: 72px;
+    right: 36px;
     background: radial-gradient(circle at center, #FFFFFF 20%, #FFF1F2 60%, #FECDD3 100%);
     box-shadow: 0 6px 18px rgba(244, 63, 94, 0.28);
 }
@@ -2757,20 +2762,7 @@ body.modal-open {
 /* Header Titles & Subtitles */
 .popup-header-content {
     margin-bottom: 22px;
-    padding: 0 10px;
-}
-
-.popup-title-line {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 6px;
-    width: 100%;
-}
-
-.popup-title-line.line-2 {
-    margin-bottom: 16px;
+    padding: 0 30px;
 }
 
 .popup-title-main {
@@ -2778,9 +2770,23 @@ body.modal-open {
     font-size: 2.15rem;
     font-weight: 800;
     color: #0052FF;
-    line-height: 1.2;
-    margin: 0;
+    line-height: 1.25;
+    margin-bottom: 4px;
     letter-spacing: -0.01em;
+    text-align: center;
+}
+
+.popup-title-sub {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'BT BeauSans', sans-serif;
+    font-size: 2.15rem;
+    font-weight: 800;
+    color: #0052FF;
+    line-height: 1.25;
+    margin-bottom: 16px;
 }
 
 .title-mung {
@@ -2916,18 +2922,25 @@ body.modal-open {
         padding: 5px !important;
     }
 
+    .badge-yellow-top {
+        top: 14px !important;
+        left: 14px !important;
+    }
+
+    .badge-pink-right {
+        top: 48px !important;
+        right: 14px !important;
+    }
+
     .popup-header-content {
         padding: 0 !important;
         margin-bottom: 14px !important;
     }
 
-    .popup-title-line {
-        gap: 6px !important;
-    }
-
     .popup-title-main,
+    .popup-title-sub,
     .title-mung {
-        font-size: 1.3rem !important;
+        font-size: 1.35rem !important;
     }
 
     .yellow-script-highlight {
