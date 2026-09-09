@@ -748,9 +748,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Helper: Lock / Unlock body scroll when modals pop up
     function updateModalBodyScrollLock() {
+        const parentPopupOverlay = document.getElementById('parent-popup-overlay');
         const isAnyModalOpen = (gridOverlay && !gridOverlay.classList.contains('hidden')) ||
                                (readerOverlay && !readerOverlay.classList.contains('hidden')) ||
-                               (editorOverlay && !editorOverlay.classList.contains('hidden'));
+                               (editorOverlay && !editorOverlay.classList.contains('hidden')) ||
+                               (parentPopupOverlay && parentPopupOverlay.classList.contains('active'));
         if (isAnyModalOpen) {
             document.body.classList.add('modal-open');
         } else {
@@ -2157,6 +2159,117 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         readerOverlay.classList.remove('hidden');
         updateModalBodyScrollLock();
+    }
+
+    // ==========================================================================
+    // PARENT BIRTHDAY PARTY REGISTRATION POPUP LOGIC
+    // ==========================================================================
+    const parentPopupOverlay = document.getElementById('parent-popup-overlay');
+    const btnCloseParentPopup = document.getElementById('btn-close-parent-popup');
+    const parentPopupForm = document.getElementById('parent-popup-form');
+    const parentNameInput = document.getElementById('parent-name-input');
+    const parentPhoneInput = document.getElementById('parent-phone-input');
+
+    let isPopupOpened = false;
+
+    function openParentPopup() {
+        if (isPopupOpened || !parentPopupOverlay) return;
+
+        const hasSubmitted = sessionStorage.getItem('socio_logic_parent_popup_submitted');
+        if (hasSubmitted === 'true') return;
+
+        isPopupOpened = true;
+        parentPopupOverlay.classList.remove('hidden');
+        // Force reflow for smooth fade/scale transition
+        parentPopupOverlay.offsetHeight;
+        parentPopupOverlay.classList.add('active');
+        updateModalBodyScrollLock();
+    }
+
+    function closeParentPopup() {
+        if (!parentPopupOverlay) return;
+        parentPopupOverlay.classList.remove('active');
+        setTimeout(() => {
+            parentPopupOverlay.classList.add('hidden');
+            updateModalBodyScrollLock();
+        }, 300);
+    }
+
+    // Listen for Section 1 drop animation completion event
+    window.addEventListener('section1DropCompleted', () => {
+        setTimeout(() => {
+            openParentPopup();
+        }, 400);
+    });
+
+    // Fallback trigger 2.2s after page load if event is delayed
+    setTimeout(() => {
+        if (!isPopupOpened) {
+            openParentPopup();
+        }
+    }, 2200);
+
+    if (btnCloseParentPopup) {
+        btnCloseParentPopup.addEventListener('click', closeParentPopup);
+    }
+
+    if (parentPopupOverlay) {
+        parentPopupOverlay.addEventListener('click', (e) => {
+            if (e.target === parentPopupOverlay) {
+                closeParentPopup();
+            }
+        });
+    }
+
+    if (parentPopupForm) {
+        parentPopupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const parentName = parentNameInput ? parentNameInput.value.trim() : '';
+            const phone = parentPhoneInput ? parentPhoneInput.value.trim() : '';
+
+            if (!parentName || !phone) {
+                alert('Vui lòng điền đầy đủ Họ tên và Số điện thoại của Ba/Mẹ!');
+                return;
+            }
+
+            const btnSubmit = document.getElementById('btn-submit-parent-popup');
+            if (btnSubmit) {
+                btnSubmit.disabled = true;
+                btnSubmit.innerHTML = `<span>Đang gửi thông tin...</span>`;
+            }
+
+            const apiUrl = getApiUrl();
+            try {
+                await fetch(`${apiUrl}/api/parent-registrations`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ parentName, phone })
+                });
+
+                sessionStorage.setItem('socio_logic_parent_popup_submitted', 'true');
+
+                if (btnSubmit) {
+                    btnSubmit.style.background = '#10B981';
+                    btnSubmit.style.boxShadow = '0 6px 20px rgba(16, 185, 129, 0.4)';
+                    btnSubmit.innerHTML = `<i class="ph-bold ph-check-circle" style="font-size: 1.2rem;"></i> <span>Xác nhận thành công!</span>`;
+                }
+
+                setTimeout(() => {
+                    closeParentPopup();
+                }, 1400);
+            } catch (err) {
+                console.warn('Backend registration notice:', err);
+                sessionStorage.setItem('socio_logic_parent_popup_submitted', 'true');
+                if (btnSubmit) {
+                    btnSubmit.style.background = '#10B981';
+                    btnSubmit.style.boxShadow = '0 6px 20px rgba(16, 185, 129, 0.4)';
+                    btnSubmit.innerHTML = `<i class="ph-bold ph-check-circle" style="font-size: 1.2rem;"></i> <span>Xác nhận thành công!</span>`;
+                }
+                setTimeout(() => {
+                    closeParentPopup();
+                }, 1400);
+            }
+        });
     }
 
     function escapeHtml(str) {

@@ -931,6 +931,65 @@
         </section>
     </div>
 
+    <!-- Parent Birthday Party Registration Pop-up Modal -->
+    <div id="parent-popup-overlay" class="parent-popup-overlay hidden">
+        <div class="parent-popup-modal" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+            <button id="btn-close-parent-popup" class="btn-close-popup" type="button" aria-label="Đóng pop-up">
+                <i class="ph-bold ph-x"></i>
+            </button>
+
+            <div class="popup-header-content">
+                <div class="popup-title-line line-1">
+                    <div class="popup-icon-badge badge-yellow">
+                        <img src="assets/pop-up/icon_pop-up1.png" alt="Paint Roller Icon">
+                    </div>
+                    <h2 id="popup-title" class="popup-title-main">
+                        Cùng SocioLogic Thổi Nến
+                    </h2>
+                </div>
+
+                <div class="popup-title-line line-2">
+                    <span class="title-mung">Mừng</span>
+                    <span class="yellow-script-highlight">Sinh Nhật 2 Tuổi</span>
+                    <div class="popup-icon-badge badge-pink">
+                        <img src="assets/pop-up/icon_pop-up2.png" alt="Party Popper Icon">
+                    </div>
+                </div>
+
+                <p class="popup-subtitle-desc">
+                    Bữa tiệc sinh nhật ấm cúng đang chờ đón Ba mẹ và Các con.<br>
+                    Ba mẹ hãy để lại SĐT để SocioLogic gửi thiệp mời và tiếp đón gia đình thật chu đáo nhé!
+                </p>
+            </div>
+
+            <div class="popup-info-boxes">
+                <div class="popup-info-box">
+                    <span>27/09 | 09:00–11:00</span>
+                </div>
+                <div class="popup-info-box">
+                    <span>SocioLogic, 62 Khúc Thừa Dụ, Cầu Giấy, Hà Nội</span>
+                </div>
+            </div>
+
+            <form id="parent-popup-form" class="popup-form">
+                <div class="popup-inputs-row">
+                    <div class="popup-input-group">
+                        <input type="text" id="parent-name-input" class="popup-input" placeholder="Họ và Tên Ba/Mẹ" required autocomplete="name">
+                    </div>
+                    <div class="popup-input-group">
+                        <input type="tel" id="parent-phone-input" class="popup-input" placeholder="Số điện thoại của Ba/Mẹ" required autocomplete="tel">
+                    </div>
+                </div>
+
+                <div class="popup-actions">
+                    <button type="submit" id="btn-submit-parent-popup" class="btn-submit-popup">
+                        <span>Xác nhận tham gia Tiệc sinh nhật</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Overlay Editor Modal (Khi bấm "Viết lời chúc") -->
     <div id="editor-overlay" class="overlay hidden">
         <div class="editor-card-container">

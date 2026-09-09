@@ -154,6 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     el.style.opacity = '';
                     el.style.transform = '';
                 });
+                window.dispatchEvent(new CustomEvent('section1DropCompleted'));
             }
         }
 

@@ -37,6 +37,15 @@ const wishSchema = new mongoose.Schema({
 
 const Wish = mongoose.model('Wish', wishSchema);
 
+// Mongoose Parent Registration Schema
+const registrationSchema = new mongoose.Schema({
+    parentName: { type: String, required: true },
+    phone: { type: String, required: true },
+    timestamp: { type: Number, default: Date.now }
+}, { timestamps: true });
+
+const ParentRegistration = mongoose.model('ParentRegistration', registrationSchema);
+
 // MongoDB Database Connection
 if (MONGODB_URI) {
     mongoose.connect(MONGODB_URI)
@@ -61,6 +70,33 @@ app.post('/api/admin/verify-pin', (req, res) => {
         res.json({ success: true, authed: true });
     } else {
         res.status(401).json({ success: false, error: 'Mã PIN quản trị viên không đúng!' });
+    }
+});
+
+// 1c. POST /api/parent-registrations - Save parent birthday party registration
+app.post('/api/parent-registrations', async (req, res) => {
+    try {
+        const { parentName, phone } = req.body;
+        if (!parentName || !phone) {
+            return res.status(400).json({ error: 'Vui lòng điền đầy đủ Họ tên và Số điện thoại!' });
+        }
+        const newReg = new ParentRegistration({ parentName, phone, timestamp: Date.now() });
+        await newReg.save();
+        console.log(`🎉 New parent registration saved: ${parentName} (${phone})`);
+        res.status(201).json({ success: true, registration: newReg });
+    } catch (err) {
+        console.error('Error saving parent registration:', err);
+        res.status(500).json({ error: 'Lỗi lưu thông tin đăng ký' });
+    }
+});
+
+// 1d. GET /api/parent-registrations - Fetch all registrations for Admin moderation
+app.get('/api/parent-registrations', async (req, res) => {
+    try {
+        const list = await ParentRegistration.find().sort({ timestamp: -1 });
+        res.json(list);
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to fetch registrations' });
     }
 });
 
