@@ -453,7 +453,7 @@ body {
 
     .stats-grid {
         grid-template-columns: 1fr !important;
-        gap: 48px !important;
+        gap: 80px !important;
         max-width: 350px !important;
         margin: 0 auto !important;
     }
