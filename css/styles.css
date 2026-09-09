@@ -66,9 +66,13 @@ body {
 }
 
 /* Section 3 (Wishes Board) Top Soft Sky-Blue Gradient Fading to White (100% Opaque Solid Colors) */
-#sec3-loichuc,
-#loi-chuc-section {
+#sec3-loichuc {
     background: linear-gradient(180deg, #BAE6FD 0%, #E0F2FE 280px, #FFFFFF 520px) !important;
+}
+
+#loi-chuc-section {
+    background: transparent !important;
+    padding-top: 0 !important;
 }
 
 /* ==========================================================================
@@ -2427,7 +2431,7 @@ body.modal-open {
         padding: 8px 12px !important;
         font-size: clamp(0.72rem, 3.2vw, 0.85rem) !important;
         flex-shrink: 0 !important;
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05) !important;
+        box-shadow: none !important;
         border: 1px solid #E2E8F0 !important;
         background: #FFFFFF !important;
         border-radius: 9999px !important;
@@ -2471,10 +2475,10 @@ body.modal-open {
         width: 100%;
         box-sizing: border-box;
         overflow: hidden;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+        box-shadow: none !important;
         cursor: pointer;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
-        border: 1px solid rgba(0, 0, 0, 0.03);
+        border: none !important;
     }
 
     .mobile-wish-card:active {
