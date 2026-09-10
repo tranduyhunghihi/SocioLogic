@@ -85,6 +85,10 @@
     -webkit-font-smoothing: antialiased;
 }
 
+.sec6-mobile-br {
+    display: none !important;
+}
+
 .sec6-tranh-bien {
     white-space: nowrap !important;
     display: inline-block;
@@ -549,6 +553,10 @@
         line-height: 1.35 !important;
         letter-spacing: -0.3px !important;
         margin-bottom: 12px !important;
+    }
+
+    .sec6-mobile-br {
+        display: block !important;
     }
 
     .section-6-wrapper .sec6-yellow-box {
