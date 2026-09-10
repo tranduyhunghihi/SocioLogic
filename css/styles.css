@@ -3214,7 +3214,7 @@ body.modal-open {
         height: auto !important;
         min-height: auto !important;
         margin: 0 auto !important;
-        transform: scale(calc(84vw / 1400)) !important;
+        transform: none !important;
         transform-origin: bottom center !important;
     }
 
