@@ -3301,36 +3301,38 @@ body.modal-open {
         }
     }
 
-    /* Section 4 Stat Counters Grid: Enforce 4 columns in 1 single row & side-by-side labels */
-    .section-4-wrapper .stats-grid {
-        grid-template-columns: repeat(4, 1fr) !important;
-        gap: 12px !important;
-    }
+    /* Section 4 Stat Counters Grid: Tablet Landscape Only (Strictly scoped min-width: 769px & max-width: 1200px; PC Desktop > 1200px & Mobile <= 768px are 100% untouched) */
+    @media (max-width: 1200px) and (min-width: 769px) {
+        .section-4-wrapper .stats-grid {
+            grid-template-columns: repeat(4, 1fr) !important;
+            gap: 12px !important;
+        }
 
-    .section-4-wrapper .counter-card,
-    .section-4-wrapper .stat-card {
-        padding: 12px 6px 14px 6px !important;
-    }
+        .section-4-wrapper .counter-card,
+        .section-4-wrapper .stat-card {
+            padding: 12px 6px 14px 6px !important;
+        }
 
-    .section-4-wrapper .card-info-box {
-        flex-wrap: nowrap !important;
-        gap: 4px !important;
-        padding: 2px 4px !important;
-        justify-content: flex-start !important;
-        align-items: center !important;
-    }
+        .section-4-wrapper .card-info-box {
+            flex-wrap: nowrap !important;
+            gap: 4px !important;
+            padding: 2px 4px !important;
+            justify-content: flex-start !important;
+            align-items: center !important;
+        }
 
-    .section-4-wrapper .stat-number-box {
-        font-size: clamp(1.5rem, 2.1vw, 2.4rem) !important;
-        flex-shrink: 0 !important;
-        letter-spacing: -0.5px !important;
-    }
+        .section-4-wrapper .stat-number-box {
+            font-size: clamp(1.5rem, 2.2vw, 2.1rem) !important;
+            flex-shrink: 0 !important;
+            letter-spacing: -0.5px !important;
+        }
 
-    .section-4-wrapper .stat-label {
-        font-size: clamp(0.72rem, 0.85vw, 0.95rem) !important;
-        line-height: 1.18 !important;
-        white-space: normal !important;
-        flex-shrink: 1 !important;
+        .section-4-wrapper .stat-label {
+            font-size: clamp(0.70rem, 0.85vw, 0.95rem) !important;
+            line-height: 1.18 !important;
+            white-space: normal !important;
+            flex-shrink: 1 !important;
+        }
     }
 
     /* Section 5B Sticky Note Cards: Force 3 columns in 1 single row (No 2+1 line wrapping) */

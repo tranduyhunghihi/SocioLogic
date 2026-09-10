@@ -245,14 +245,13 @@ body {
 .stat-number-box {
     display: inline-flex;
     align-items: baseline;
-    font-size: clamp(4.6rem, 2.3vw, 2.6rem);
+    font-size: clamp(2.5rem, 3.2vw, 3.6rem);
     font-weight: 500;
     color: #FFFFFF;
     line-height: 1;
     letter-spacing: -0.5px;
     font-variant-numeric: tabular-nums;
     flex-shrink: 0;
-
 }
 
 .section-4-wrapper .stat-number,
