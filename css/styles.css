@@ -3214,7 +3214,7 @@ body.modal-open {
         height: auto !important;
         min-height: auto !important;
         margin: 0 auto !important;
-        transform: scale(0.68) !important;
+        transform: scale(calc(68vw / 1400)) !important;
         transform-origin: bottom center !important;
     }
 
@@ -3227,42 +3227,31 @@ body.modal-open {
         margin: 0 !important;
     }
 
+    /* Section 5A Bubbles: Responsive Scale Breakpoints */
     .section-5a-wrapper .sec5a-bubbles-viewport .bubbles-row {
         transform: scale(0.55) !important;
         transform-origin: center center !important;
     }
 
     @media (max-width: 1440px) {
-        #sec1-banner .bubbles-row {
-            transform: scale(0.55) !important;
-        }
         .section-5a-wrapper .sec5a-bubbles-viewport .bubbles-row {
             transform: scale(0.50) !important;
         }
     }
 
     @media (max-width: 1280px) {
-        #sec1-banner .bubbles-row {
-            transform: scale(0.48) !important;
-        }
         .section-5a-wrapper .sec5a-bubbles-viewport .bubbles-row {
             transform: scale(0.44) !important;
         }
     }
 
     @media (max-width: 1080px) {
-        #sec1-banner .bubbles-row {
-            transform: scale(0.40) !important;
-        }
         .section-5a-wrapper .sec5a-bubbles-viewport .bubbles-row {
             transform: scale(0.38) !important;
         }
     }
 
     @media (max-width: 900px) {
-        #sec1-banner .bubbles-row {
-            transform: scale(0.34) !important;
-        }
         .section-5a-wrapper .sec5a-bubbles-viewport .bubbles-row {
             transform: scale(0.32) !important;
         }
