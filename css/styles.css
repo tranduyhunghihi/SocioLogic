@@ -3240,6 +3240,28 @@ body.modal-open {
         }
     }
 
+    /* Section 2 Content Tablet Landscape Scale Adjustments (Strictly scoped min-width: 769px & max-width: 1200px; PC Desktop > 1200px & Mobile <= 768px are 100% untouched) */
+    @media (max-width: 1200px) and (min-width: 769px) {
+        #sec2-hero .hero-layout {
+            transform: scale(0.82) !important;
+            transform-origin: center center !important;
+        }
+    }
+
+    @media (max-width: 1024px) and (min-width: 769px) {
+        #sec2-hero .hero-layout {
+            transform: scale(0.72) !important;
+            transform-origin: center center !important;
+        }
+    }
+
+    @media (max-width: 850px) and (min-width: 769px) {
+        #sec2-hero .hero-layout {
+            transform: scale(0.64) !important;
+            transform-origin: center center !important;
+        }
+    }
+
     #sec1-banner .bubbles-row .bubble-item {
         position: relative !important;
         display: flex !important;
