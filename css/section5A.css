@@ -176,25 +176,25 @@
 
 @media (max-width: 1440px) {
     .section-5a-wrapper .sec5a-bubbles-viewport .bubbles-row {
-        transform: scale(0.58) !important;
+        transform: scale(0.62) !important;
     }
 }
 
 @media (max-width: 1280px) {
     .section-5a-wrapper .sec5a-bubbles-viewport .bubbles-row {
-        transform: scale(0.50) !important;
+        transform: scale(0.56) !important;
     }
 }
 
 @media (max-width: 1080px) {
     .section-5a-wrapper .sec5a-bubbles-viewport .bubbles-row {
-        transform: scale(0.42) !important;
+        transform: scale(0.48) !important;
     }
 }
 
 @media (max-width: 900px) {
     .section-5a-wrapper .sec5a-bubbles-viewport .bubbles-row {
-        transform: scale(0.35) !important;
+        transform: scale(0.40) !important;
     }
 }
 
