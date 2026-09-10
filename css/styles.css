@@ -3221,21 +3221,21 @@ body.modal-open {
     /* Section 1 Tablet Landscape Scale Adjustments (Strictly scoped min-width: 769px & max-width: 1200px; PC Desktop > 1200px & Mobile <= 768px are 100% untouched) */
     @media (max-width: 1200px) and (min-width: 769px) {
         #sec1-banner .bubbles-row {
-            transform: scale(0.64) !important;
+            transform: scale(0.72) !important;
             transform-origin: bottom center !important;
         }
     }
 
     @media (max-width: 1024px) and (min-width: 769px) {
         #sec1-banner .bubbles-row {
-            transform: scale(0.55) !important;
+            transform: scale(0.62) !important;
             transform-origin: bottom center !important;
         }
     }
 
     @media (max-width: 850px) and (min-width: 769px) {
         #sec1-banner .bubbles-row {
-            transform: scale(0.46) !important;
+            transform: scale(0.52) !important;
             transform-origin: bottom center !important;
         }
     }
