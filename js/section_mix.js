@@ -163,6 +163,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     applyPhysicsDrop();
 
+    function getBubblesContainerScale() {
+        const isMobilePortrait = window.innerWidth <= 600 || (window.innerWidth <= 768 && window.innerHeight > window.innerWidth);
+        if (isMobilePortrait) return 1;
+        const availableWidth = window.innerWidth * 0.84;
+        const baseWidth = 1400;
+        return Math.min(1, Math.max(0.35, availableWidth / baseWidth));
+    }
+
     // 2. SLOW ZERO-GRAVITY SPACE FLOATING ANIMATION FOR ALL MINI ICONS IN SECTION 2
     function startSpaceFloating() {
         if (miniBubbleItems.length === 0) return;
@@ -190,8 +198,9 @@ document.addEventListener('DOMContentLoaded', () => {
             el.style.pointerEvents = 'none';
             el.style.opacity = '0'; // Start invisible above the top edge
 
-            const isMobile = (window.innerWidth <= 768);
-            const iconSize = isMobile ? 39 : 85;
+            const isMobile = (window.innerWidth <= 768 && window.innerHeight > window.innerWidth);
+            const currentScale = getBubblesContainerScale();
+            const iconSize = (isMobile ? 39 : 85) * currentScale;
 
             const targetX = 15 + ((idx * (heroW - iconSize - 30)) / Math.max(1, miniBubbleItems.length - 1));
             const targetY = (isMobile ? 30 : 60) + ((idx % 4) * (isMobile ? 45 : 85));
@@ -201,7 +210,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const angle = (idx * (Math.PI * 2 / 8)) + (idx % 2 === 0 ? 0.3 : -0.3);
             const baseSpeed = isMobile ? (0.4 + (idx % 3) * 0.25) : (0.7 + (idx % 3) * 0.4);
 
-            el.style.transform = `translate3d(${targetX.toFixed(1)}px, ${startY.toFixed(1)}px, 0) rotate(${(idx * 45) % 360}deg)`;
+            const scaleStr = currentScale !== 1 ? ` scale(${currentScale.toFixed(4)})` : '';
+            el.style.transform = `translate3d(${targetX.toFixed(1)}px, ${startY.toFixed(1)}px, 0) rotate(${(idx * 45) % 360}deg)${scaleStr}`;
 
             return {
                 el,
@@ -222,13 +232,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const containerW = sec2Hero.clientWidth || window.innerWidth;
             const containerH = sec2Hero.clientHeight || window.innerHeight;
-            const isMobile = (window.innerWidth <= 768);
-            const iconSize = isMobile ? 39 : 85;
+            const isMobile = (window.innerWidth <= 768 && window.innerHeight > window.innerWidth);
+            const currentScale = getBubblesContainerScale();
+            const iconSize = (isMobile ? 39 : 85) * currentScale;
 
             const minX = 10;
             const maxX = Math.max(minX + 20, containerW - iconSize - 10);
             const minY = 20;
             const maxY = Math.max(minY + 20, containerH - iconSize - 20);
+
+            const scaleStr = currentScale !== 1 ? ` scale(${currentScale.toFixed(4)})` : '';
 
             spaceState.forEach((item) => {
                 if (item.falling) {
@@ -284,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
 
-                item.el.style.transform = `translate3d(${item.x.toFixed(1)}px, ${item.y.toFixed(1)}px, 0) rotate(${item.rot.toFixed(1)}deg)`;
+                item.el.style.transform = `translate3d(${item.x.toFixed(1)}px, ${item.y.toFixed(1)}px, 0) rotate(${item.rot.toFixed(1)}deg)${scaleStr}`;
             });
 
             spaceFloatAnimation = requestAnimationFrame(floatStep);
@@ -623,9 +636,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bubblesContainer.style.transform = '';
             bubblesContainer.style.transformOrigin = '';
         } else {
-            const availableWidth = window.innerWidth * 0.84;
-            const baseWidth = 1400;
-            const scale = Math.min(1, Math.max(0.35, availableWidth / baseWidth));
+            const scale = getBubblesContainerScale();
             bubblesContainer.style.transform = `scale(${scale.toFixed(4)})`;
             bubblesContainer.style.transformOrigin = 'bottom center';
         }
