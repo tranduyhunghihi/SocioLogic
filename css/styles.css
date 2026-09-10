@@ -3417,42 +3417,42 @@ body.modal-open {
         .section-6-wrapper .bubble-blue-1 {
             width: 135px !important;
             height: 195px !important;
-            left: calc(50% - 110px) !important;
+            left: calc(50% - 140px) !important;
             bottom: 25px !important;
         }
 
         .section-6-wrapper .bubble-pink-1 {
             width: 155px !important;
             height: 155px !important;
-            right: calc(50% - 115px) !important;
+            right: calc(50% - 135px) !important;
             bottom: 5px !important;
         }
 
         .section-6-wrapper .bubble-red-2 {
             width: 130px !important;
             height: 198px !important;
-            left: calc(50% - 105px) !important;
+            left: calc(50% - 145px) !important;
             bottom: 5px !important;
         }
 
         .section-6-wrapper .bubble-green-2 {
             width: 140px !important;
             height: 146px !important;
-            right: calc(50% - 110px) !important;
+            right: calc(50% - 120px) !important;
             bottom: 35px !important;
         }
 
         .section-6-wrapper .bubble-grey-3 {
             width: 148px !important;
             height: 195px !important;
-            left: calc(50% - 115px) !important;
+            left: calc(50% - 135px) !important;
             bottom: 25px !important;
         }
 
         .section-6-wrapper .bubble-yellow-3 {
             width: 125px !important;
             height: 198px !important;
-            right: calc(50% - 105px) !important;
+            right: calc(50% - 125px) !important;
             bottom: 5px !important;
         }
 
