@@ -3365,8 +3365,8 @@ body.modal-open {
             margin-right: -10px !important;
             width: calc(100% + 20px) !important;
             padding: 12px 14px 14px 14px !important;
-            height: auto !important;
-            min-height: auto !important;
+            height: 124px !important;
+            min-height: 124px !important;
         }
 
         .section-5b-wrapper .card-info-title {
