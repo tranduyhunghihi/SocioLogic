@@ -168,7 +168,7 @@
     justify-content: center;
     gap: 10px;
     margin: 0 auto;
-    transform: scale(0.68);
+    transform: scale(min(0.68, calc(72vw / 1900))) !important;
     transform-origin: center center;
     opacity: 1 !important;
     visibility: visible !important;
