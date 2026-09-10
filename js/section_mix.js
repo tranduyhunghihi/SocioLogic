@@ -618,10 +618,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function fitBubblesToContainer() {
         if (!bubblesContainer) return;
-        if (window.innerWidth <= 768) {
+        const isMobilePortrait = window.innerWidth <= 600 || (window.innerWidth <= 768 && window.innerHeight > window.innerWidth);
+        if (isMobilePortrait) {
             bubblesContainer.style.transform = '';
+            bubblesContainer.style.transformOrigin = '';
         } else {
-            bubblesContainer.style.transform = 'scale(1)';
+            const availableWidth = window.innerWidth * 0.84;
+            const baseWidth = 1400;
+            const scale = Math.min(1, Math.max(0.35, availableWidth / baseWidth));
+            bubblesContainer.style.transform = `scale(${scale.toFixed(4)})`;
+            bubblesContainer.style.transformOrigin = 'bottom center';
         }
     }
 

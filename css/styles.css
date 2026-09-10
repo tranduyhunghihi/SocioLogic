@@ -3169,6 +3169,13 @@ body.modal-open {
         display: none !important;
     }
 
+    /* Section 1 Hero Bubbles: Fit perfectly within landscape width with safe margins */
+    #sec1-banner .bubbles-row,
+    .section-banner .bubbles-row {
+        transform: scale(calc(84vw / 1400)) !important;
+        transform-origin: bottom center !important;
+    }
+
     /* Section 4 Stat Counters Grid: Enforce 4 columns in 1 single row */
     .section-4-wrapper .stats-grid {
         grid-template-columns: repeat(4, 1fr) !important;
