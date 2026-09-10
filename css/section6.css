@@ -657,14 +657,14 @@
     .section-6-wrapper .bubble-grey-3 {
         width: 175px !important;
         height: 235px !important;
-        left: calc(50% - 145px) !important;
+        left: calc(50% - 155px) !important;
         bottom: 20px !important;
     }
 
     .section-6-wrapper .bubble-yellow-3 {
         width: 150px !important;
         height: 240px !important;
-        right: calc(50% - 135px) !important;
+        right: calc(50% - 145px) !important;
         bottom: 5px !important;
     }
 

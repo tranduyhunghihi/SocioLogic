@@ -485,6 +485,7 @@ body {
         overflow: visible !important;
         position: relative !important;
         z-index: 2 !important;
+        flex-wrap: nowrap;
     }
 
     .section-4-wrapper .stat-number-box,
@@ -517,13 +518,14 @@ body {
 
     .card-image-wrapper {
         position: relative !important;
-        bottom: 44px !important;
-        right: 4px !important;
+        bottom: 54px !important;
+        right: 9px !important;
         left: auto !important;
         margin-bottom: -28px !important;
         width: 100% !important;
         z-index: 1 !important;
         overflow: visible !important;
+        padding-bottom: 24px !important;
     }
 
     .card-bubble-img {
@@ -531,7 +533,7 @@ body {
         height: auto !important;
         max-width: 100% !important;
         object-fit: contain !important;
-        transform: scale(1.08) !important;
+        transform: scale(1.1) !important;
         display: block !important;
         margin: 0 auto !important;
     }
