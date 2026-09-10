@@ -3413,50 +3413,50 @@ body.modal-open {
             height: 225px !important;
         }
 
-        /* Scaled Down Character Bubbles for Tablet Landscape */
+        /* Scaled Down Character Bubbles Centered Relative to 50% for Tablet Landscape */
         .section-6-wrapper .bubble-blue-1 {
             width: 135px !important;
             height: 195px !important;
-            left: 2px !important;
+            left: calc(50% - 110px) !important;
             bottom: 25px !important;
         }
 
         .section-6-wrapper .bubble-pink-1 {
             width: 155px !important;
             height: 155px !important;
-            right: 2px !important;
+            right: calc(50% - 115px) !important;
             bottom: 5px !important;
         }
 
         .section-6-wrapper .bubble-red-2 {
             width: 130px !important;
             height: 198px !important;
-            left: 3px !important;
+            left: calc(50% - 105px) !important;
             bottom: 5px !important;
         }
 
         .section-6-wrapper .bubble-green-2 {
             width: 140px !important;
             height: 146px !important;
-            right: 3px !important;
+            right: calc(50% - 110px) !important;
             bottom: 35px !important;
         }
 
         .section-6-wrapper .bubble-grey-3 {
             width: 148px !important;
             height: 195px !important;
-            left: 2px !important;
+            left: calc(50% - 115px) !important;
             bottom: 25px !important;
         }
 
         .section-6-wrapper .bubble-yellow-3 {
             width: 125px !important;
             height: 198px !important;
-            right: 3px !important;
+            right: calc(50% - 105px) !important;
             bottom: 5px !important;
         }
 
-        /* Scaled Down Icon Badges on Tablet Landscape */
+        /* Scaled Down Icon Badges Centered Relative to 50% for Tablet Landscape */
         .section-6-wrapper .icon-bubble {
             width: 44px !important;
             height: 44px !important;
@@ -3464,40 +3464,44 @@ body.modal-open {
         }
 
         .section-6-wrapper .bubble-pencil {
-            top: 20px !important;
-            left: 125px !important;
+            top: 15px !important;
+            left: calc(50% + 15px) !important;
         }
 
         .section-6-wrapper .bubble-book {
-            top: 40px !important;
-            right: 2px !important;
+            top: 35px !important;
+            right: calc(50% - 110px) !important;
         }
 
         .section-6-wrapper .bubble-question-1 {
             bottom: 5px !important;
-            left: 85px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
             width: 44px !important;
             height: 44px !important;
         }
 
         .section-6-wrapper .bubble-exclamation {
             top: 8px !important;
-            right: 105px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            right: auto !important;
         }
 
         .section-6-wrapper .bubble-heart {
             bottom: 5px !important;
-            right: 35px !important;
+            right: calc(50% - 95px) !important;
         }
 
         .section-6-wrapper .bubble-question-3 {
             top: 10px !important;
-            right: 10px !important;
+            right: calc(50% - 100px) !important;
         }
 
         .section-6-wrapper .bubble-trophy {
             bottom: 5px !important;
-            left: 110px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
         }
     }
 
