@@ -3218,6 +3218,28 @@ body.modal-open {
         transform-origin: bottom center !important;
     }
 
+    /* Section 1 Small Tablet Landscape Scale Adjustments (Strictly scoped <= 1200px, PC Desktop > 1200px is 100% untouched) */
+    @media (max-width: 1200px) {
+        #sec1-banner .bubbles-row {
+            transform: scale(0.52) !important;
+            transform-origin: bottom center !important;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        #sec1-banner .bubbles-row {
+            transform: scale(0.44) !important;
+            transform-origin: bottom center !important;
+        }
+    }
+
+    @media (max-width: 850px) {
+        #sec1-banner .bubbles-row {
+            transform: scale(0.36) !important;
+            transform-origin: bottom center !important;
+        }
+    }
+
     #sec1-banner .bubbles-row .bubble-item {
         position: relative !important;
         display: flex !important;
