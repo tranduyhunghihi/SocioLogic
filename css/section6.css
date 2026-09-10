@@ -544,16 +544,21 @@
     }
 
     .section-6-wrapper .sec6-title-main {
-        font-size: clamp(1.75rem, 5.8vw, 2.1rem) !important;
+        font-size: clamp(1.35rem, 4.7vw, 1.85rem) !important;
         font-weight: 500 !important;
         line-height: 1.35 !important;
         letter-spacing: -0.3px !important;
         margin-bottom: 12px !important;
     }
 
+    .section-6-wrapper .sec6-title-line2 {
+        white-space: nowrap !important;
+        display: inline-block !important;
+    }
+
     .section-6-wrapper .sec6-yellow-box {
         padding: 0 2px !important;
-        margin: 0 2px !important;
+        margin: 0 1px !important;
     }
 
     .section-6-wrapper .sec6-script-text {
