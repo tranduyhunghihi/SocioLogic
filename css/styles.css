@@ -3360,6 +3360,25 @@ body.modal-open {
             padding: 10px 10px 0 10px !important;
         }
 
+        .section-5b-wrapper .card-info-box {
+            margin-left: -10px !important;
+            margin-right: -10px !important;
+            width: calc(100% + 20px) !important;
+            padding: 12px 14px 14px 14px !important;
+            height: auto !important;
+            min-height: auto !important;
+        }
+
+        .section-5b-wrapper .card-info-title {
+            font-size: clamp(1.1rem, 1.35vw, 1.3rem) !important;
+            margin-bottom: 4px !important;
+        }
+
+        .section-5b-wrapper .card-info-desc {
+            font-size: clamp(0.80rem, 0.92vw, 0.90rem) !important;
+            line-height: 1.35 !important;
+        }
+
         .section-5b-wrapper .card-photo-img {
             transform: translateY(8px) scale(0.95) !important;
         }
