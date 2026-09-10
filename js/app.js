@@ -2212,7 +2212,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btnSubmit.disabled = false;
             btnSubmit.style.background = '';
             btnSubmit.style.boxShadow = '';
-            btnSubmit.innerHTML = `<span>Xác Nhận Tham Gia</span> <i class="ph-bold ph-arrow-right"></i>`;
+            btnSubmit.innerHTML = `<span>Xác Nhận Tham Gia</span>`;
         }
 
         parentPopupOverlay.classList.remove('hidden');
