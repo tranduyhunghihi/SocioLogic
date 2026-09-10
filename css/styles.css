@@ -3333,6 +3333,20 @@ body.modal-open {
             white-space: normal !important;
             flex-shrink: 1 !important;
         }
+
+        /* Section 5A White Text Cards: Tablet Landscape Max 2 Lines */
+        .section-5a-wrapper .community-cards-container {
+            gap: 20px !important;
+        }
+
+        .section-5a-wrapper .community-card {
+            padding: 16px 20px !important;
+        }
+
+        .section-5a-wrapper .community-card p {
+            font-size: clamp(0.78rem, 0.92vw, 0.92rem) !important;
+            line-height: 1.45 !important;
+        }
     }
 
     /* Section 5B Sticky Note Cards: Force 3 columns in 1 single row (No 2+1 line wrapping) */
