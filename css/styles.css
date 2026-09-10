@@ -3347,24 +3347,32 @@ body.modal-open {
             font-size: clamp(0.78rem, 0.92vw, 0.92rem) !important;
             line-height: 1.45 !important;
         }
-    }
 
-    /* Section 5B Sticky Note Cards: Force 3 columns in 1 single row (No 2+1 line wrapping) */
-    .section-5b-wrapper .cards-grid {
-        grid-template-columns: repeat(3, 1fr) !important;
-        gap: 16px !important;
-        row-gap: 40px !important;
-    }
+        /* Section 5B Sticky Note Cards & Photo Image Scale: Tablet Landscape Only */
+        .section-5b-wrapper .cards-grid {
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 16px !important;
+            row-gap: 40px !important;
+        }
 
-    .section-5b-wrapper .member-card {
-        padding: 10px 10px 0 10px !important;
-    }
+        .section-5b-wrapper .member-card {
+            padding: 10px 10px 0 10px !important;
+        }
 
-    .section-5b-wrapper .sticky-note-card,
-    .section-5b-wrapper .sticky-note-1,
-    .section-5b-wrapper .sticky-note-2,
-    .section-5b-wrapper .sticky-note-3 {
-        padding: 16px 14px !important;
+        .section-5b-wrapper .card-photo-img {
+            transform: translateY(14px) scale(1.05) !important;
+        }
+
+        .section-5b-wrapper .member-card:hover .card-photo-img {
+            transform: translateY(-2px) rotate(-3.5deg) scale(1.05) !important;
+        }
+
+        .section-5b-wrapper .sticky-note-card,
+        .section-5b-wrapper .sticky-note-1,
+        .section-5b-wrapper .sticky-note-2,
+        .section-5b-wrapper .sticky-note-3 {
+            padding: 16px 14px !important;
+        }
     }
 
     /* Section 6 Cards Grid: Force 3 columns in 1 single row (No 2+1 line wrapping) */
