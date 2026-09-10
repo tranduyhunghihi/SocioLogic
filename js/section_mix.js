@@ -166,9 +166,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function getBubblesContainerScale() {
         const isMobilePortrait = window.innerWidth <= 600 || (window.innerWidth <= 768 && window.innerHeight > window.innerWidth);
         if (isMobilePortrait) return 1;
-        const availableWidth = window.innerWidth * 0.84;
+        const availableWidth = window.innerWidth * 0.68;
         const baseWidth = 1400;
-        return Math.min(1, Math.max(0.35, availableWidth / baseWidth));
+        return Math.min(1, Math.max(0.32, availableWidth / baseWidth));
     }
 
     // 2. SLOW ZERO-GRAVITY SPACE FLOATING ANIMATION FOR ALL MINI ICONS IN SECTION 2
