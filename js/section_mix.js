@@ -626,6 +626,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     window.addEventListener('resize', fitBubblesToContainer);
+    window.addEventListener('orientationchange', () => {
+        setTimeout(() => {
+            fitBubblesToContainer();
+            if (typeof checkSection2Scroll === 'function') checkSection2Scroll();
+        }, 150);
+    });
     setTimeout(fitBubblesToContainer, 50);
 
     document.addEventListener('mouseleave', () => {

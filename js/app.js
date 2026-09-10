@@ -620,6 +620,9 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('resize', () => {
             resizeCanvas();
         });
+        window.addEventListener('orientationchange', () => {
+            setTimeout(resizeCanvas, 150);
+        });
 
         // Tab visibility change auto-sync when returning to active tab
         document.addEventListener('visibilitychange', () => {
