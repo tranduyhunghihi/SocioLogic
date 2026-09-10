@@ -438,6 +438,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         allSection1Items.forEach((bubble) => {
             const computedStyle = getComputedStyle(bubble);
+            const baseXStr = computedStyle.getPropertyValue('--base-x').trim() || '0px';
+            const baseYStr = computedStyle.getPropertyValue('--base-y').trim() || '0px';
             const targetRotStr = computedStyle.getPropertyValue('--rot-final').trim() || '0deg';
 
             bubble.style.position = '';
@@ -447,7 +449,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bubble.style.pointerEvents = '';
             bubble.style.visibility = 'visible';
             bubble.style.transition = 'transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease';
-            bubble.style.transform = `translate3d(0, 0, 0) rotate(${targetRotStr})`;
+            bubble.style.transform = `translate3d(${baseXStr}, ${baseYStr}, 0) rotate(${targetRotStr})`;
             bubble.style.opacity = '1';
         });
 
