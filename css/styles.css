@@ -3187,9 +3187,7 @@ body.modal-open {
         display: none !important;
     }
 
-    /* Section 1 Hero Bubbles: Fit 1700px total spread within landscape width with safe margins */
-    .bubbles-viewport,
-    .section-banner .bubbles-viewport,
+    /* Section 1 Hero Bubbles: Scope EXCLUSIVELY to Section 1 (#sec1-banner) */
     #sec1-banner .bubbles-viewport {
         position: absolute !important;
         bottom: 30px !important;
@@ -3205,10 +3203,7 @@ body.modal-open {
         overflow: visible !important;
     }
 
-    #sec1-banner .bubbles-row,
-    .section-banner .bubbles-row,
-    .bubbles-row,
-    #bubblesContainer {
+    #sec1-banner .bubbles-row {
         display: flex !important;
         align-items: flex-end !important;
         justify-content: center !important;
@@ -3223,14 +3218,19 @@ body.modal-open {
         transform-origin: bottom center !important;
     }
 
-    .bubbles-row .bubble-item,
-    .bubble-item {
+    #sec1-banner .bubbles-row .bubble-item {
         position: relative !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         flex-shrink: 0 !important;
         margin: 0 !important;
+    }
+
+    /* Section 5A Bubbles: Scale cleanly above Section 5A community cards */
+    .section-5a-wrapper .sec5a-bubbles-viewport .bubbles-row {
+        transform: scale(calc(68vw / 1400)) !important;
+        transform-origin: center center !important;
     }
 
     /* Section 4 Stat Counters Grid: Enforce 4 columns in 1 single row & side-by-side labels */

@@ -1370,9 +1370,7 @@ a.pill-btn-yellow:hover {
 
 @media (min-width: 769px) and (max-width: 1440px) {
 
-    .section-banner .bubbles-row,
-    #sec1-banner .bubbles-row,
-    #bubblesContainer {
+    #sec1-banner .bubbles-row {
         transform: scale(calc(68vw / 1400)) !important;
         transform-origin: bottom center !important;
     }
