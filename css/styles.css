@@ -3214,7 +3214,7 @@ body.modal-open {
         height: auto !important;
         min-height: auto !important;
         margin: 0 auto !important;
-        transform: scale(calc(68vw / 1400)) !important;
+        transform: scale(calc(54vw / 1400)) !important;
         transform-origin: bottom center !important;
     }
 
@@ -3229,7 +3229,7 @@ body.modal-open {
 
     /* Section 5A Bubbles: Scale cleanly above Section 5A community cards */
     .section-5a-wrapper .sec5a-bubbles-viewport .bubbles-row {
-        transform: scale(calc(68vw / 1400)) !important;
+        transform: scale(calc(54vw / 1400)) !important;
         transform-origin: center center !important;
     }
 
