@@ -3188,11 +3188,49 @@ body.modal-open {
     }
 
     /* Section 1 Hero Bubbles: Fit 1700px total spread within landscape width with safe margins */
+    .bubbles-viewport,
+    .section-banner .bubbles-viewport,
+    #sec1-banner .bubbles-viewport {
+        position: absolute !important;
+        bottom: 30px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: flex-end !important;
+        overflow: visible !important;
+    }
+
     #sec1-banner .bubbles-row,
     .section-banner .bubbles-row,
+    .bubbles-row,
     #bubblesContainer {
+        display: flex !important;
+        align-items: flex-end !important;
+        justify-content: center !important;
+        position: relative !important;
+        width: 1400px !important;
+        min-width: 1400px !important;
+        max-width: 1400px !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 auto !important;
         transform: scale(calc(68vw / 1400)) !important;
         transform-origin: bottom center !important;
+    }
+
+    .bubbles-row .bubble-item,
+    .bubble-item {
+        position: relative !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-shrink: 0 !important;
+        margin: 0 !important;
     }
 
     /* Section 4 Stat Counters Grid: Enforce 4 columns in 1 single row & side-by-side labels */

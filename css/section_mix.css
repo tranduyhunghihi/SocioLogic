@@ -1378,7 +1378,7 @@ a.pill-btn-yellow:hover {
     }
 }
 
-@media (max-width: 868px) {
+@media (max-width: 868px) and (orientation: portrait) {
     .hero-layout {
         grid-template-columns: 1fr;
         gap: 32px;
@@ -1434,7 +1434,7 @@ a.pill-btn-yellow:hover {
 /* ==========================================================================
    SECTION 1 MOBILE RESPONSIVE DESIGN (EXACT MATCH FOR MOBILE SCREENSHOT)
    ========================================================================== */
-@media (max-width: 768px) {
+@media (max-width: 768px) and (orientation: portrait) {
 
     /* 1. Header & Navigation Adjustments for Mobile */
     .floating-navbar {
