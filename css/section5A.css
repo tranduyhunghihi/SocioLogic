@@ -168,10 +168,34 @@
     justify-content: center;
     gap: 10px;
     margin: 0 auto;
-    transform: scale(min(0.68, calc(72vw / 1900))) !important;
+    transform: scale(0.55) !important;
     transform-origin: center center;
     opacity: 1 !important;
     visibility: visible !important;
+}
+
+@media (max-width: 1440px) {
+    .section-5a-wrapper .sec5a-bubbles-viewport .bubbles-row {
+        transform: scale(0.50) !important;
+    }
+}
+
+@media (max-width: 1280px) {
+    .section-5a-wrapper .sec5a-bubbles-viewport .bubbles-row {
+        transform: scale(0.44) !important;
+    }
+}
+
+@media (max-width: 1080px) {
+    .section-5a-wrapper .sec5a-bubbles-viewport .bubbles-row {
+        transform: scale(0.38) !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .section-5a-wrapper .sec5a-bubbles-viewport .bubbles-row {
+        transform: scale(0.32) !important;
+    }
 }
 
 /* 100% Exact Section Mix Dimensions & Upright Stance */
