@@ -3348,14 +3348,15 @@ body.modal-open {
             line-height: 1.45 !important;
         }
 
-        /* Section 5B Sticky Note Cards & Photo Image Scale: Tablet Landscape Only */
+        /* Section 5B Sticky Note Cards: 3:3:4 Ratio (Photo Cards = 3 parts, Note Cards = 4 parts) */
         .section-5b-wrapper .cards-grid {
-            grid-template-columns: repeat(3, 1fr) !important;
+            grid-template-columns: repeat(10, 1fr) !important;
             gap: 16px !important;
             row-gap: 40px !important;
         }
 
         .section-5b-wrapper .member-card {
+            grid-column: span 3 !important;
             padding: 10px 10px 0 10px !important;
         }
 
@@ -3371,6 +3372,7 @@ body.modal-open {
         .section-5b-wrapper .sticky-note-1,
         .section-5b-wrapper .sticky-note-2,
         .section-5b-wrapper .sticky-note-3 {
+            grid-column: span 4 !important;
             padding: 16px 14px !important;
         }
     }
