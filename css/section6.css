@@ -531,10 +531,10 @@
 }
 
 /* Responsive Scaling Breakpoints */
-@media (max-width: 1150px) {
+@media (max-width: 1150px) and (min-width: 769px) {
     .section-6-wrapper .sec6-cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
     }
 }
 

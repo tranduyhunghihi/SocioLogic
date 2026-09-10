@@ -300,8 +300,9 @@
 /* Responsive Scaling Breakpoints */
 @media (max-width: 1150px) and (min-width: 769px) {
     .section-5b-wrapper .cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        row-gap: 48px;
     }
 }
 
