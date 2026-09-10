@@ -388,6 +388,27 @@ body {
         gap: 12px;
     }
 
+    .section-4-wrapper .card-info-box {
+        flex-wrap: nowrap;
+        gap: 4px;
+        padding: 2px 4px;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .section-4-wrapper .stat-number-box {
+        font-size: clamp(1.7rem, 2.1vw, 2.4rem);
+        flex-shrink: 0;
+        letter-spacing: -0.5px;
+    }
+
+    .section-4-wrapper .stat-label {
+        font-size: clamp(0.72rem, 0.85vw, 0.95rem);
+        line-height: 1.18;
+        white-space: normal;
+        flex-shrink: 1;
+    }
+
     .section-4-wrapper .play-icon-circle {
         width: 100px;
         height: 100px;
