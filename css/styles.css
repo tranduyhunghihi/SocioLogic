@@ -557,14 +557,36 @@ body {
         padding: 24px 10px 20px 10px;
     }
 
+    #sec3-loichuc .app-header {
+        padding: 0.5rem 1rem 0 !important;
+    }
+
+    #sec3-loichuc .scroll-reveal-header {
+        margin-bottom: 0 !important;
+    }
+
     #sec3-loichuc .header-title-wishes {
         gap: 0 !important;
-        margin-bottom: 0.75rem !important;
+        margin-bottom: 0 !important;
+        overflow: visible !important;
     }
 
     #sec3-loichuc .title-line-top {
+        gap: 6px !important;
         margin-bottom: -4px !important;
-        line-height: 1.15 !important;
+        line-height: 1.25 !important;
+        overflow: visible !important;
+    }
+
+    #sec3-loichuc .title-yellow-box {
+        padding: 0 2px !important;
+        margin-left: 0 !important;
+        overflow: visible !important;
+    }
+
+    #sec3-loichuc .title-yellow-box::before {
+        left: 0 !important;
+        width: calc(100% - 6px) !important;
     }
 
     #sec3-loichuc .title-line-bottom {
@@ -586,11 +608,14 @@ body {
         font-family: var(--font-playwrite), 'Playwrite IE', cursive, sans-serif !important;
         font-size: clamp(1.65rem, 5.8vw, 2.0rem) !important;
         font-weight: 400 !important;
-        line-height: 1.15 !important;
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-        margin-top: 0 !important;
+        line-height: 1.5 !important;
+        padding-top: 24px !important;
+        padding-bottom: 2px !important;
+        padding-left: 2px !important;
+        padding-right: 18px !important;
+        margin-top: -20px !important;
         margin-bottom: 0 !important;
+        overflow: visible !important;
     }
 }
 
@@ -2443,7 +2468,7 @@ body.modal-open {
         flex-wrap: nowrap !important;
         gap: 8px !important;
         width: 100% !important;
-        margin-top: 15px !important;
+        margin-top: 10px !important;
         margin-bottom: 20px !important;
         padding: 0 4px !important;
         box-sizing: border-box !important;

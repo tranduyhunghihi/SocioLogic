@@ -1004,14 +1004,14 @@ document.addEventListener('DOMContentLoaded', () => {
         textWrapper.style.maxWidth = 'calc(100% - 40px)';
         textWrapper.style.boxSizing = 'border-box';
 
-        const truncatedInitial = initialText ? initialText.substring(0, 50) : '';
+        const truncatedInitial = initialText ? initialText.substring(0, 500) : '';
 
         textWrapper.innerHTML = `
             <div class="element-drag-handle" title="Nhấp giữ để kéo di chuyển">
                 <i class="ph-bold ph-dots-six-vertical"></i> Kéo di chuyển
-                <span class="text-char-count">${truncatedInitial.length}/50</span>
+                <span class="text-char-count">${truncatedInitial.length}/500</span>
             </div>
-            <div class="card-element-text-content" contenteditable="true" data-placeholder="Nhập lời chúc (tối đa 50 ký tự)..." style="color: ${activeColor};">${escapeHtml(truncatedInitial)}</div>
+            <div class="card-element-text-content" contenteditable="true" data-placeholder="Nhập lời chúc (tối đa 500 ký tự)..." style="color: ${activeColor};">${escapeHtml(truncatedInitial)}</div>
             <button type="button" class="element-delete-btn" title="Xóa"><i class="ph-bold ph-x"></i></button>
         `;
 
@@ -1025,15 +1025,15 @@ document.addEventListener('DOMContentLoaded', () => {
             let currentText = textContent.innerText || '';
             if (currentText.endsWith('\n')) currentText = currentText.slice(0, -1);
 
-            if (currentText.length > 50) {
-                currentText = currentText.substring(0, 50);
+            if (currentText.length > 500) {
+                currentText = currentText.substring(0, 500);
                 textContent.innerText = currentText;
                 placeCaretAtEnd(textContent);
             }
 
             if (charCounter) {
-                charCounter.innerText = `${currentText.length}/50`;
-                if (currentText.length >= 50) {
+                charCounter.innerText = `${currentText.length}/500`;
+                if (currentText.length >= 500) {
                     charCounter.classList.add('limit-reached');
                 } else {
                     charCounter.classList.remove('limit-reached');
@@ -1365,12 +1365,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 const textContent = el.querySelector('.card-element-text-content');
                 if (textContent && textContent.innerText.trim()) {
                     let text = textContent.innerText.trim();
-                    if (text.length > 50) text = text.substring(0, 50);
+                    if (text.length > 500) text = text.substring(0, 500);
 
                     const color = textContent.style.color || '#1E293B';
                     
                     rCtx.fillStyle = color;
-                    rCtx.font = '300 24px "Playwrite GB S", "Playwrite IE", cursive, sans-serif';
+
+                    // Dynamic font size and line height based on text length
+                    let fontSize = 24;
+                    let lineStep = 34;
+                    if (text.length > 300) {
+                        fontSize = 15;
+                        lineStep = 22;
+                    } else if (text.length > 150) {
+                        fontSize = 18;
+                        lineStep = 26;
+                    }
+
+                    rCtx.font = `300 ${fontSize}px "Playwrite GB S", "Playwrite IE", cursive, sans-serif`;
                     rCtx.textAlign = 'left';
                     rCtx.textBaseline = 'top';
 
@@ -1400,7 +1412,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
 
                     lines.forEach((l, idx) => {
-                        rCtx.fillText(l, safeX, safeY + idx * 34);
+                        rCtx.fillText(l, safeX, safeY + idx * lineStep);
                     });
                 }
             } else if (el.classList.contains('image-element')) {
